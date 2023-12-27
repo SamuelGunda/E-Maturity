@@ -7,11 +7,13 @@ import { AppComponent } from './app.component';
 
 import { environment } from './environments/environment';
 import { HeaderComponent } from './header/header.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    LandingPageComponent,
   ],
   imports: [
     BrowserModule,
