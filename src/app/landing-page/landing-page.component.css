@@ -1,7 +1,4 @@
 #main_page_container {
-  height: 900px;
-  width: 1440px;
-  background-color: #FBFEF9;
   border-radius: 10px;
   display: flex;
 }
