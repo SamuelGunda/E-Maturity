@@ -6,6 +6,10 @@
     flex-wrap: wrap;
 }
 
+/* 
+*TU SA NASTAVUJE VELKOST KONTAJNERA NIE KONTENT, KONTENT NASTAVIS V KONRETNYCH KOMPONENTOCH TO ZNAMENA ZE SA TOHTO NEDOTYKAT, LEN V KRAJNEJ NUDZI, INAK TA ZABIJEM
+*/
+
 app-header,
 app-navbar,
 app-landing-page {
@@ -16,7 +20,7 @@ app-landing-page {
 }
 
 app-header {
-    height: 6rem;
+
     flex: 1 2 100%;
 }
 
