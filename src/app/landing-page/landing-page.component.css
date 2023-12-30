@@ -1,4 +1,10 @@
 #main_page_container {
   border-radius: 10px;
   display: flex;
+  background-color: #FBFEF9;
+  border: 1px solid rgba(0, 0, 0, 0.163);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  height: 100%;
+  width: 100%;
 }

@@ -10,17 +10,7 @@
 *TU SA NASTAVUJE VELKOST KONTAJNERA NIE KONTENT, KONTENT NASTAVIS V KONRETNYCH KOMPONENTOCH TO ZNAMENA ZE SA TOHTO NEDOTYKAT, LEN V KRAJNEJ NUDZI, INAK TA ZABIJEM
 */
 
-app-header,
-app-navbar,
-app-landing-page {
-    background-color: #FAE8EB;
-    border: 1px solid rgba(0, 0, 0, 0.163);
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
 app-header {
-
     flex: 1 2 100%;
 }
 
@@ -31,7 +21,7 @@ app-navbar {
 }
 
 app-landing-page {
-    flex: 1 1 50%;
+    flex: 1 1 70%;
     height: calc(100% - 6rem);
-    width: auto;
+    width: 100%;
 }

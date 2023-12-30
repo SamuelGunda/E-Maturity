@@ -6,6 +6,10 @@ header {
     align-items: center;
     flex-wrap: nowrap;
     font-size: 1.5rem;
+    background-color: #FBFEF9;
+    border: 1px solid rgba(0, 0, 0, 0.163);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 
@@ -15,9 +19,9 @@ header {
     align-items: center;
     justify-content: center;
     font-weight: 500;
-    color: #242423;
+    color: #3369F3;
     letter-spacing: 1px;
-    font-size: 3rem;
+    font-size: 2rem;
 }
 
 /** end of headline section */
@@ -49,7 +53,7 @@ button {
 button.register {
     position: relative;
     padding: 10px 20px;
-    background-color: #242423;
+    background-color: #618DFF;
     color: #fff;
 }
 
@@ -69,7 +73,7 @@ button.register:before {
     transform: translate(-50%, -50%);
     width: 0;
     height: 100%;
-    background: linear-gradient(109.6deg, rgb(6, 183, 249) 11.2%, rgb(25, 74, 236) 91.1%);
+    background: linear-gradient(109.6deg, rgb(42, 127, 238) 11.2%, #497bfa);
     transition: width 0.7s ease-in-out;
 }
 
@@ -94,3 +98,23 @@ button>p {
 }
 
 /** end of button section*/
+
+.hamburger-menu {
+    cursor: pointer;
+}
+
+.hamburger-menu div {
+    width: 30px;
+    height: 4px;
+    background-color: #3369F3;
+    margin: 6px 0;
+    transition: 0.4s;
+}
+
+
+@media (max-width: 425px) {
+    .buttons {
+        flex-direction: column;
+        font-size: 0.5rem;
+    }
+}
