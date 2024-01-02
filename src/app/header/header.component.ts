@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { SharedService } from '../shared.service';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +6,9 @@ import { SharedService } from '../shared.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  constructor(private sharedService: SharedService) {}
+  @Output() toggleNavEvent = new EventEmitter<void>();
 
-  onClick() {
-    this.sharedService.toggleVisibility();
+  onToggleNav(): void {
+    this.toggleNavEvent.emit();
   }
 }

@@ -8,3 +8,10 @@
   height: 100%;
   width: 100%;
 }
+
+#main_page_inner_container {
+  border: 1px solid black;
+  margin: 1.5rem;
+  border-radius: 10px;
+  width: 100%;
+}
