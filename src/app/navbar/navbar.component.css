@@ -12,6 +12,12 @@ ul {
     margin: 0;
 }
 
+ul.main {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
 li {
     font-size: 1.2rem;
     border-bottom: 1px solid #3369F3;
