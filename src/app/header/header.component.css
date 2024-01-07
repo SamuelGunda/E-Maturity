@@ -99,17 +99,39 @@ button>p {
 
 /** end of button section*/
 
-.hamburger-menu {
+.burger_menu {
     cursor: pointer;
+    padding: 30px 20px;
+    background: #eaeaea;
+    display: inline-block;
 }
 
-.hamburger-menu div {
-    width: 30px;
-    height: 3px;
-    background-color: #3369F3;
-    margin: 6px 0;
-    transition: 0.4s;
+.burger_menu span {
+    background: #3369F3;
+    height: 5px;
+    width: 38px;
+    display: block;
+    position: relative;
+    transition: all ease 0.1s;
 }
+
+.burger_menu span:after,
+.burger_menu span:before {
+    background: #3369F3;
+    height: 5px;
+    width: 38px;
+    display: block;
+    position: absolute;
+    content: '';
+    left: 0;
+    top: 12px;
+    transition: all ease 0.2s;
+}
+
+.burger_menu span:before {
+    top: -12px;
+}
+
 
 
 @media (max-width: 425px) {

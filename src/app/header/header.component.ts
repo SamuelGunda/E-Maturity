@@ -6,9 +6,17 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  @Output() toggleNavEvent = new EventEmitter<void>();
-
   onToggleNav(): void {
-    this.toggleNavEvent.emit();
+    const navbar = document.getElementById('navbar') as HTMLElement;
+    const landingPage = document.getElementById('landingPage') as HTMLElement;
+
+    if (navbar.style.display === 'none') {
+      navbar.style.display = 'block';
+      navbar.style.display = '0 1 20%';
+      landingPage.style.flex = '1 1 75%';
+    } else {
+      navbar.style.display = 'none';
+      landingPage.style.flexBasis = '100%';
+    }
   }
 }
