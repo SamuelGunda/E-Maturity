@@ -1,9 +1,8 @@
 nav {
     background-color: #FBFEF9;
-    border: 1px solid rgba(0, 0, 0, 0.163);
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    height: 100%;
+    border: 1px solid rgba(116, 116, 116, 0.163);
+    border-radius: 0 0 10px 10px;
+    width: 20rem;
 }
 
 ul {
@@ -34,7 +33,7 @@ li:focus {
     cursor: pointer;
 }
 
-li:hover:first-child,
-li:focus:first-child {
-    border-radius: 10px 10px 0 0;
+li:hover:last-child,
+li:focus:last-child {
+    border-radius: 0 0 10px 10px;
 }

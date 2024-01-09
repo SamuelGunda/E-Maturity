@@ -1,3 +1,4 @@
+
 import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
@@ -8,15 +9,14 @@ import { Component, EventEmitter, Output } from '@angular/core';
 export class HeaderComponent {
   onToggleNav(): void {
     const navbar = document.getElementById('navbar') as HTMLElement;
-    const landingPage = document.getElementById('landingPage') as HTMLElement;
+    const header = document.getElementById('main_header') as HTMLElement;
 
-    if (navbar.style.display === 'none') {
-      navbar.style.display = 'block';
-      navbar.style.display = '0 1 20%';
-      landingPage.style.flex = '1 1 75%';
-    } else {
+    if (navbar.style.display === 'block') {
       navbar.style.display = 'none';
-      landingPage.style.flexBasis = '100%';
+      header.style.borderRadius = '10px'
+    } else {
+      navbar.style.display = 'block';
+      header.style.borderRadius = '10px 10px 10px 0px'
     }
   }
 }

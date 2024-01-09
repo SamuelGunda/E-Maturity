@@ -1,3 +1,10 @@
+app-navbar {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    margin-top: 0.5rem;
+}
+
 header {
     height: 6rem;
     padding: 1rem;
