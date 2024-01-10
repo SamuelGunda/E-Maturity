@@ -21,15 +21,7 @@ header {
 
 
 /** headline section */
-.headline {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 500;
-    color: #3369F3;
-    letter-spacing: 1px;
-    font-size: 2rem;
-}
+
 
 /** end of headline section */
 

@@ -5,5 +5,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
+displayed : boolean = false;
+
+changeSubCat() {
+  this.displayed = !this.displayed;
+}
 
 }
