@@ -5,8 +5,8 @@
   border: 1px solid rgba(0, 0, 0, 0.163);
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  width: 100%;
-  min-height: 100%;
+  width: 112.5rem;
+  height: 100%;
 }
 
 #main_page_inner_container {
@@ -54,6 +54,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+  font-size: 0.9rem;
   height: clamp(12rem, 20rem, 32rem);
   width: clamp(8rem, 12rem, 34rem);
   transition: .5s;

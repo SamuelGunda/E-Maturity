@@ -5,6 +5,11 @@ nav {
     width: 20rem;
 }
 
+.types {
+    font-size: 1rem;
+    height: 2.2rem;
+}
+
 ul {
     list-style: none;
     padding: 0;

@@ -1,4 +1,4 @@
 <div class="container">
     <app-header (scroll)="onScroll()" [ngClass]="headerfixes ? 'fixed' : 'notfixed'"></app-header>
-    <app-landing-page id="landingPage"></app-landing-page>
+    <router-outlet></router-outlet>
 </div>
