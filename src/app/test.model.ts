@@ -1,4 +1,4 @@
 export class Test {
-    year!:number;
     subject!: string;
+    year!:number;
 }
