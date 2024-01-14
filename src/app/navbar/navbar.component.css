@@ -5,11 +5,6 @@ nav {
     width: 20rem;
 }
 
-.types {
-    font-size: 1rem;
-    height: 2.2rem;
-}
-
 ul {
     list-style: none;
     padding: 0;
@@ -49,12 +44,17 @@ ul.expandable_ul:focus {
     cursor: pointer;
 }
 
-li:hover:last-child,
-li:focus:last-child {
+.menuitem:hover:last-child,
+.menuitem:focus:last-child {
     border-radius: 0 0 10px 10px;
 }
 
-li:focus:first-child,
-li:hover:first-child {
+.menuitem:focus:first-child,
+.menuitem:hover:first-child {
     border-radius: 10px 10px 0 0;
+}
+
+.types {
+    font-size: 1rem;
+    height: 2.2rem;
 }

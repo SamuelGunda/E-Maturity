@@ -1,6 +1,6 @@
 <nav id="nav_menu" class="navmenu">
     <ul class="main">
-        <li id="nav_menu_home" routerLink="/">Domov</li>
+        <li class="menuitem" id="nav_menu_home" routerLink="/">Domov</li>
         <ul id="nav_menu_tests" class="expandable_ul" (click)="changeSubCat()">Maturitné testy</ul>
         <div [ngClass]="{'displayed': displayed, 'hidden': !displayed}">
             <li class="types">Slovenský jazyk a literatúra</li>
