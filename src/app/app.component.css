@@ -17,5 +17,6 @@ app-header.fixed {
 }
 
 router-outlet {
-    display: none;
+    margin: 0;
+    padding: 0;
 }

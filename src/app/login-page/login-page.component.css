@@ -1,0 +1,50 @@
+:host(app-login-page) {
+    height: calc(100% - 6rem);
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.163);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    background-color: #FBFEF9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.login_card {
+    background-color: #5C89FF;
+    width: clamp(20rem, 25rem, 35rem);
+    height: clamp(15rem, 30rem, 35rem);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px 3px rgba(0, 0, 0, 0.5);
+}
+
+.login {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.input_group {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    margin-bottom: 1rem;
+}
+
+label {
+    margin-bottom: 0.5rem;
+}
+
+.login_cred {
+    height: 2.5rem;
+}
+
+.utils {
+    display: flex;
+    justify-content: space-between;
+}
