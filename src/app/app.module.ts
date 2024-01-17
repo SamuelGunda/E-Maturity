@@ -5,12 +5,24 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
 
 import { environment } from './environments/environment';
 import { HeaderComponent } from './header/header.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import {NgOptimizedImage} from "@angular/common";
+import { LoginPageComponent } from './login-page/login-page.component';
+import { RegisterPageComponent } from './register-page/register-page.component';
+
+const routes: Routes = [
+  //{path: '', component: LandingPageComponent },
+  {path: '', component: LandingPageComponent },
+  //{path: '', redirectTo: 'home', pathMatch: 'full'}
+  {path : 'login', component : LoginPageComponent},
+  {path : 'register', component : RegisterPageComponent},
+];
 
 @NgModule({
   declarations: [
@@ -18,11 +30,13 @@ import {NgOptimizedImage} from "@angular/common";
     HeaderComponent,
     LandingPageComponent,
     NavbarComponent,
-    routingComponents,
+    LoginPageComponent,
+    RegisterPageComponent
   ],
   imports: [
+    RouterModule.forRoot(routes),
     BrowserModule,
-    AppRoutingModule,
+    FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     NgOptimizedImage,
