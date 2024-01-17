@@ -1,4 +1,78 @@
 :host(app-register-page) {
-    height: calc(100% - 6rem);
-    width: 100%;
+  height: calc(100% - 6rem);
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.163);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  background-color: #FBFEF9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.register_card {
+  background: url("/assets/waves_login.png");
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-color: #5C89FF;
+  width: clamp(20rem, 25rem, 35rem);
+  height: clamp(15rem, 30rem, 35rem);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 3px 3px 10px 3px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.input_group {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  border: 2px solid #4363b58d;
+  padding: 5px;
+}
+
+label {
+  margin-bottom: 0.3rem;
+}
+
+.register_cred {
+  height: 2.5rem;
+}
+
+.bot_section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+button {
+  padding: 0.5rem 0.8rem 0.5rem 0.8rem;
+  border: 0.1rem rgb(104, 135, 240) solid;
+  font: inherit;
+  font-size: 16px;
+  color: black;
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 1px 1px 5px rgb(114, 112, 112);
+  font-weight: 400;
+  width: 60%;
+}
+
+button:hover,
+button:focus {
+  background-color: #c6d4ff;
+}
+
+button:first-of-type {
+  margin-bottom: 1rem;
 }

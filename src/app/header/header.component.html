@@ -1,15 +1,15 @@
 <div class="container">
     <header id="main_header">
-        <div class="burger_menu" (click)="onToggleNav()"><span></span></div>
+        <div class="burger_menu" (click)="onToggleNav()" [ngClass]="{ 'expanded': buttonExpanded }"><span></span></div>
         <div class="headline" id="header_title">
             <img src="assets/logo.png" alt="" width="100px" height="100px">
         </div>
         <div class="buttons" id="but">
             <button class="register" id="header_reg_button" routerLink="/register">
-                <p>Register</p>
+                <p>Registrácia</p>
             </button>
             <button class="login" id=" header_log_button" routerLink="/login">
-                <p>Log In</p>
+                <p>Prihlásenie</p>
             </button>
         </div>
     </header>

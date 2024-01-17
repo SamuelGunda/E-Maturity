@@ -1,1 +1,23 @@
-<p>register-page works!</p>
+<div class="register_card">
+  <div class="top_section">
+    <div class="input_group">
+      <label for="meno">Prihlasovacie meno</label>
+      <input type="text" name="meno" id="meno" class="register_cred" required
+             placeholder="Zadaj svoje prihlasovacie meno">
+      <label for="heslo">Heslo</label>
+      <input type="password" name="heslo" id="heslo" class="register_cred" required placeholder="Zadaj svoje heslo">
+      <label for="hesloKontrola">Kontrola hesla</label>
+      <input type="password" name="hesloKontrola" id="hesloKontrola" class="register_cred" required placeholder="Zopakujte svoje heslo">
+      <label for="email">E-mail</label>
+      <input type="email" name="email" id="email" class="register_cred" required placeholder="Zadaj svoj e-mail">
+    </div>
+  </div>
+  <div class="bot_section">
+    <button>
+      <p>Založ účet</p>
+    </button>
+    <button class="login" id="register_log_button" routerLink="/login">
+      <p>Späť na prihlásenie</p>
+    </button>
+  </div>
+</div>
