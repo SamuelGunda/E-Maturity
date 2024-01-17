@@ -1,6 +1,6 @@
 <div class="container">
     <header id="main_header">
-        <div class="burger_menu" (click)="onToggleNav()"><span></span></div>
+        <div class="burger_menu" (click)="onToggleNav()" [ngClass]="{ 'expanded': buttonExpanded }"><span></span></div>
         <div class="headline" id="header_title">
             <img src="assets/logo.png" alt="" width="100px" height="100px">
         </div>

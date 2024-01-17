@@ -104,9 +104,12 @@ button>p {
 
 .burger_menu {
     cursor: pointer;
-    padding: 30px 20px;
+    width: 80px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: #eaeaea;
-    display: inline-block;
 }
 
 .burger_menu span {
@@ -115,7 +118,8 @@ button>p {
     width: 38px;
     display: block;
     position: relative;
-    transition: all ease 0.1s;
+    transition: all ease 0.5s;
+    border-radius: 5px;
 }
 
 .burger_menu span:after,
@@ -128,13 +132,21 @@ button>p {
     content: '';
     left: 0;
     top: 12px;
-    transition: all ease 0.2s;
+    transition: all ease 0.3s;
+    border-radius: 5px;
 }
 
 .burger_menu span:before {
     top: -12px;
+    transition: all ease 0.7s;
 }
 
+.expanded>span,
+.expanded>span::before,
+.expanded>span::after {
+    border-radius: 5px;
+    width: 6px;
+}
 
 
 @media (max-width: 425px) {
