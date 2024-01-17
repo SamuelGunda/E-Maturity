@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Service } from '../service/service';
-import { User } from '../model/user';
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -9,11 +9,22 @@ import { User } from '../model/user';
 })
 export class LoginPageComponent {
   submitted = false;
+  name: any;
+  password: any;
 
-  constructor(private service: Service) {}
+  constructor( private router: Router, private service: AuthService) {
+  }
+  
+  submit() {
+    this.submitted = true;
+  }
 
   login() {
-    console.log('login');
-    this.service.getAll();
+    this.service.login(this.name, this.password).then((res) => {
+      console.log(res);
+      this.router.navigate(['']);
+    }).catch((err) => {
+      console.log(err);
+    });
   }
 }

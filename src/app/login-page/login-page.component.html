@@ -3,11 +3,11 @@
         <div class="top_section">
             <div class="input_group">
                 <label for="meno">Prihlasovacie meno</label>
-                <input type="text" name="meno" id="meno" class="login_cred" required
+                <input type="text" [(ngModel)]="name" name="meno" id="meno" class="login_cred" required
                     placeholder="Zadaj svoje prihlasovacie meno">
 
                 <label for="heslo">Heslo</label>
-                <input type="text" name="heslo" id="heslo" class="login_cred" required placeholder="Zadaj svoje heslo">
+                <input type="text" [(ngModel)]="password" name="heslo" id="heslo" class="login_cred" required placeholder="Zadaj svoje heslo">
             </div>
 
             <div class="utils">

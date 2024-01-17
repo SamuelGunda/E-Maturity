@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+/* import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { User } from '../model/user';
 
@@ -36,4 +36,4 @@ export class Service {
   delete(id: string): Promise<void> {
     return this.user.doc(id).delete();
   }
-}
+} */
