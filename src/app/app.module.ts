@@ -1,48 +1,33 @@
+// app.module.ts
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-import { RouterModule, Routes } from '@angular/router';
+import { AppRoutingModule, routingComponent } from './app-routing.module';
 
 import { environment } from './environments/environment';
 import { HeaderComponent } from './header/header.component';
-import { LandingPageComponent } from './landing-page/landing-page.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import {NgOptimizedImage} from "@angular/common";
-import { LoginPageComponent } from './login-page/login-page.component';
-import { RegisterPageComponent } from './register-page/register-page.component';
-
-const routes: Routes = [
-  //{path: '', component: LandingPageComponent },
-  {path: '', component: LandingPageComponent },
-  //{path: '', redirectTo: 'home', pathMatch: 'full'}
-  {path : 'login', component : LoginPageComponent},
-  {path : 'register', component : RegisterPageComponent},
-];
+import { NgOptimizedImage } from "@angular/common";
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    LandingPageComponent,
     NavbarComponent,
-    LoginPageComponent,
-    RegisterPageComponent
+    routingComponent,
   ],
   imports: [
-    RouterModule.forRoot(routes),
     BrowserModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     NgOptimizedImage,
+    AppRoutingModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-
-export class AppModule { }
+export class AppModule {}
