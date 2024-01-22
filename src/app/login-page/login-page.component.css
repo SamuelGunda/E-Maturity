@@ -120,7 +120,14 @@ button:focus {
 }
 
 .error_message {
-    color: rgb(170, 32, 32);
     font-weight: 800;
-    display: none;
+    visibility: hidden;
+}
+
+.error_message_on{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(199, 41, 41);
+    font-weight: bolder;
 }

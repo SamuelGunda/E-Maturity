@@ -1,39 +1,59 @@
 <div class="login_card">
-    <div class="top_section">
-        <div class="input_group">
-            <label for="meno">Prihlasovacie meno</label>
-            <input type="text" [(ngModel)]="name" name="meno" id="meno" class="login_cred" required
-                [ngClass]="{'error-border': Error}" placeholder="Zadaj svoje prihlasovacie meno">
-            <div class="error_message" [ngClass]="{'error_message' : !Error}">
-                <p>Nesprávne zadané údaje</p>
-            </div>
+  <div class="top_section">
+    <div class="input_group">
+      <label for="meno">Prihlasovacie meno</label>
+      <input
+        (ngModelChange)="newInput()"
+        type="text"
+        [(ngModel)]="name"
+        name="meno"
+        id="meno"
+        class="login_cred"
+        required
+        [ngClass]="{ 'error-border': error }"
+        placeholder="Zadaj svoje prihlasovacie meno"
+      />
 
-            <label for="heslo">Heslo</label>
-            <input type="password" [(ngModel)]="password" name="heslo" id="heslo" class="login_cred" required
-                [ngClass]="{'error-border': Error}" placeholder="Zadaj svoje heslo">
-            <div class="error_message" [ngClass]="{'error_message' : !Error}">
-                <p>Nesprávne zadané údaje</p>
-            </div>
-        </div>
-
-        <div class="utils">
-            <p>Zabudnuté heslo</p>
-
-            <div class="remember">
-                <label for="remember">zapamätaj si ma</label>
-                <input type="checkbox" name="remember" id="remember">
-            </div>
-        </div>
+      <label for="heslo">Heslo</label>
+      <input
+        (ngModelChange)="newInput()"
+        type="password"
+        [(ngModel)]="password"
+        name="heslo"
+        id="heslo"
+        class="login_cred"
+        required
+        [ngClass]="{ 'error-border': error }"
+        placeholder="Zadaj svoje heslo"
+      />
     </div>
 
-    <div class="mid_section">
-        <button class="login-button">
-            <img src="assets/googleicon.png" alt="googleicon" width="32px" height="32px">
-            Login with gmail</button>
-    </div>
+    <div class="utils">
+      <p>Zabudnuté heslo</p>
 
-    <div class="bot_section">
-        <button (click)="login()" type="submit">Prihlásiť</button>
-        <button routerLink="/register">Zaregistrovať</button>
+      <div class="remember">
+        <label for="remember">zapamätaj si ma</label>
+        <input type="checkbox" name="remember" id="remember" />
+      </div>
     </div>
+  </div>
+<div class="error_message_on" [ngClass]="{'error_message': !error }">
+    <p>Nesprávne zadané údaje</p>
+  </div>
+  <div class="mid_section">
+    <button class="login-button">
+      <img
+        src="assets/googleicon.png"
+        alt="googleicon"
+        width="32px"
+        height="32px"
+      />
+      Login with gmail
+    </button>
+  </div>
+  
+  <div class="bot_section">
+    <button (click)="login()" type="submit">Prihlásiť</button>
+    <button routerLink="/register">Zaregistrovať</button>
+  </div>
 </div>

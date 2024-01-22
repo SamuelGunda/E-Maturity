@@ -11,23 +11,26 @@ export class LoginPageComponent {
   submitted = false;
   name: any;
   password: any;
-
-  constructor( private router: Router, private service: AuthService) {
-  }
+  error: boolean = false;
   
+  constructor(private router: Router, private service: AuthService) {}
+
   submit() {
     this.submitted = true;
   }
 
-  Error: boolean = false;
-  
+  newInput() {
+    this.error = false;
+  }
+
   login() {
-    this.service.login(this.name, this.password)
+    this.service
+      .login(this.name, this.password)
       .then((res) => {
-          this.router.navigate(['']);
+        this.router.navigate(['']);
       })
       .catch((err) => {
-        this.Error = !this.Error;
+        this.error = true;
       });
   }
 }
