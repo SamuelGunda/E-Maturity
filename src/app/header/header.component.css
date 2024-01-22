@@ -94,6 +94,31 @@ button.login:focus:before {
 
 /** end of login button */
 
+button.logout:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 100%;
+    background-color: #fa4949;
+    transition: width 0.7s ease-in-out;
+}
+
+/** logout button section */
+
+button.logout {
+    position: relative;
+}
+
+button.logout:hover:before,
+button.logout:focus:before {
+    width: 101%;
+}
+
+/** end of logout button */
+
 button>p {
     position: relative;
     font-size: 1rem;
