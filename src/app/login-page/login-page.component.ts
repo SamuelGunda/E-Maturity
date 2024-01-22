@@ -24,8 +24,7 @@ export class LoginPageComponent {
   login() {
     this.service.login(this.name, this.password)
       .then((res) => {
-        console.log(res);
-        this.router.navigate(['']);
+          this.router.navigate(['']);
       })
       .catch((err) => {
         this.Error = !this.Error;
