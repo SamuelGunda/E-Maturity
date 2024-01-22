@@ -19,12 +19,16 @@ export class LoginPageComponent {
     this.submitted = true;
   }
 
+  Error: boolean = false;
+  
   login() {
-    this.service.login(this.name, this.password).then((res) => {
-      console.log(res);
-      this.router.navigate(['']);
-    }).catch((err) => {
-      console.log(err);
-    });
+    this.service.login(this.name, this.password)
+      .then((res) => {
+        console.log(res);
+        this.router.navigate(['']);
+      })
+      .catch((err) => {
+        this.Error = !this.Error;
+      });
   }
 }

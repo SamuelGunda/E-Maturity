@@ -3,11 +3,17 @@
         <div class="input_group">
             <label for="meno">Prihlasovacie meno</label>
             <input type="text" [(ngModel)]="name" name="meno" id="meno" class="login_cred" required
-                placeholder="Zadaj svoje prihlasovacie meno">
+                [ngClass]="{'error-border': Error}" placeholder="Zadaj svoje prihlasovacie meno">
+            <div class="error_message" [ngClass]="{'error_message' : !Error}">
+                <p>Nesprávne zadané údaje</p>
+            </div>
 
             <label for="heslo">Heslo</label>
             <input type="password" [(ngModel)]="password" name="heslo" id="heslo" class="login_cred" required
-                placeholder="Zadaj svoje heslo">
+                [ngClass]="{'error-border': Error}" placeholder="Zadaj svoje heslo">
+            <div class="error_message" [ngClass]="{'error_message' : !Error}">
+                <p>Nesprávne zadané údaje</p>
+            </div>
         </div>
 
         <div class="utils">
@@ -20,7 +26,11 @@
         </div>
     </div>
 
-    <div class="mid_section"></div>
+    <div class="mid_section">
+        <button class="login-button">
+            <img src="assets/googleicon.png" alt="googleicon" width="32px" height="32px">
+            Login with gmail</button>
+    </div>
 
     <div class="bot_section">
         <button (click)="login()" type="submit">Prihlásiť</button>
