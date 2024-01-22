@@ -16,7 +16,12 @@ userData:Observable<firebase.User>
   }
 
   register(email: string, password: string) {
-    return this.afAuth.createUserWithEmailAndPassword(email, password);
+    return this.afAuth.createUserWithEmailAndPassword(email, password)
+    .then((res) => {
+      this.isLoggedIn = true;
+      localStorage.setItem("email", JSON.stringify(res.user))
+    })
+    
   }
 
   login(email: string, password: string) {
