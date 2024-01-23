@@ -1,31 +1,13 @@
 <div class="login_card">
   <div class="top_section">
     <div class="input_group">
-      <label for="meno">Prihlasovacie meno</label>
-      <input
-        (ngModelChange)="newInput()"
-        type="text"
-        [(ngModel)]="name"
-        name="meno"
-        id="meno"
-        class="login_cred"
-        required
-        [ngClass]="{ 'error-border': error }"
-        placeholder="Zadaj svoje prihlasovacie meno"
-      />
+      <label for="meno">Prihlasovaci email</label>
+      <input (ngModelChange)="newInput()" type="text" [(ngModel)]="name" name="meno" id="meno" class="login_cred"
+        required [ngClass]="{ 'error-border': error }" placeholder="Zadaj svoj email na prihlasenie" />
 
       <label for="heslo">Heslo</label>
-      <input
-        (ngModelChange)="newInput()"
-        type="password"
-        [(ngModel)]="password"
-        name="heslo"
-        id="heslo"
-        class="login_cred"
-        required
-        [ngClass]="{ 'error-border': error }"
-        placeholder="Zadaj svoje heslo"
-      />
+      <input (ngModelChange)="newInput()" type="password" [(ngModel)]="password" name="heslo" id="heslo"
+        class="login_cred" required [ngClass]="{ 'error-border': error }" placeholder="Zadaj svoje heslo" />
     </div>
 
     <div class="utils">
@@ -37,21 +19,16 @@
       </div>
     </div>
   </div>
-<div class="error_message_on" [ngClass]="{'error_message': !error }">
+  <div class="error_message_on" [ngClass]="{'error_message': !error }">
     <p>Nesprávne zadané údaje</p>
   </div>
   <div class="mid_section">
     <button class="login-button">
-      <img
-        src="assets/googleicon.png"
-        alt="googleicon"
-        width="32px"
-        height="32px"
-      />
+      <img src="assets/googleicon.png" alt="googleicon" width="32px" height="32px" />
       Login with gmail
     </button>
   </div>
-  
+
   <div class="bot_section">
     <button (click)="login()" type="submit">Prihlásiť</button>
     <button routerLink="/register">Zaregistrovať</button>

@@ -3,14 +3,20 @@
     <div class="input_group">
       <label for="meno">Prihlasovacie meno</label>
       <input [(ngModel)]="name" type="text" name="meno" id="meno" class="register_cred" required
-             placeholder="Zadaj svoje prihlasovacie meno">
+        placeholder="Zadaj svoje prihlasovacie meno">
       <label for="heslo">Heslo</label>
-      <input [(ngModel)]="password" type="password" name="heslo" id="heslo" class="register_cred" required placeholder="Zadaj svoje heslo">
+      <input [(ngModel)]="password" type="password" name="heslo" id="heslo" class="register_cred" required
+        [ngClass]="{ 'error-border': pswdError ,'noborder': !pswdError }" placeholder="Zadaj svoje heslo">
       <label for="hesloKontrola">Kontrola hesla</label>
-      <input [(ngModel)]="passwordCheck" type="password" name="hesloKontrola" id="hesloKontrola" class="register_cred" required placeholder="Zopakujte svoje heslo">
+      <input [(ngModel)]="passwordCheck" type="password" name="hesloKontrola" id="hesloKontrola" class="register_cred"
+        [ngClass]="{ 'error-border': pswdError, 'noborder': !pswdError }" required placeholder="Zopakujte svoje heslo">
       <label for="email">E-mail</label>
-      <input [(ngModel)]="email" type="email" name="email" id="email" class="register_cred" required placeholder="Zadaj svoj e-mail">
+      <input [(ngModel)]="email" type="email" name="email" id="email" class="register_cred" required
+        [ngClass]="{ 'error-border' : emailError ,'noborder': !emailError }" placeholder="Zadaj svoj e-mail">
     </div>
+  </div>
+  <div class="mid_section">
+    {{errorMessage}}
   </div>
   <div class="bot_section">
     <button>

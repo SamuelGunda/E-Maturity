@@ -116,7 +116,7 @@ button:focus {
 }
 
 .error-border {
-    border: 2px solid red;
+    border: 2px solid rgb(229, 34, 34);
 }
 
 .error_message {
@@ -124,10 +124,11 @@ button:focus {
     visibility: hidden;
 }
 
-.error_message_on{
+.error_message_on {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: rgb(199, 41, 41);
-    font-weight: bolder;
+    color: rgb(229, 34, 34);
+    font-weight: 800;
+    font-size: 1.2rem;
 }

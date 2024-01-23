@@ -12,25 +12,54 @@ export class RegisterPageComponent {
   email: any;
   password: any;
   passwordCheck: any;
+  errorMessage : string = '';
+  pswdError : boolean = false;
+  emailError : boolean = false;
 
   constructor(private router: Router, private service: AuthService) {}
 
+  isValidEmail(email: string): boolean {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+
   register() {
     if (!this.email || !this.password || !this.passwordCheck) {
-      alert('Please fill in all fields');
+      this.errorMessage = "Prosím vyplň všetky políčka";
       return;
+    }
+    if (this.password.length < 6) {
+      this.errorMessage = `Heslo musí mať aspoň 6 znakov`;
+      this.pswdError = true;
+      return;
+    }
+    else{
+      this.pswdError = false;
     }
     if (this.password !== this.passwordCheck) {
-      alert('Passwords do not match');
+      this.errorMessage = "Hesla sa nezhodujú"
+      this.pswdError = true;
       return;
     }
+    else{
+      this.pswdError = false;
+    }
+
+    if (!this.isValidEmail(this.email)) {
+      this.errorMessage = "Neplatná emailová adresa";
+      this.emailError = true;
+      return;
+    }
+    else{
+      this.emailError = false;
+    }
+
     this.service
       .register(this.email, this.password)
       .then((res) => {
         this.router.navigate(['']);
       })
       .catch((err) => {
-        console.log(err);
       });
   }
 }
