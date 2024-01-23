@@ -29,31 +29,30 @@ export class RegisterPageComponent {
       return;
     }
     if (this.password.length < 6) {
-      this.errorMessage = `Heslo musí mať aspoň 6 znakov`;
+      this.errorMessage = `Heslo musí obsahovať aspoň 6 znakov`;
       this.pswdError = true;
+      this.emailError = false; 
       return;
-    }
-    else{
+    } else {
       this.pswdError = false;
     }
     if (this.password !== this.passwordCheck) {
       this.errorMessage = "Hesla sa nezhodujú"
       this.pswdError = true;
+      this.emailError = false;
       return;
-    }
-    else{
+    } else {
       this.pswdError = false;
     }
-
+  
     if (!this.isValidEmail(this.email)) {
       this.errorMessage = "Neplatná emailová adresa";
       this.emailError = true;
       return;
-    }
-    else{
+    } else {
       this.emailError = false;
     }
-
+  
     this.service
       .register(this.email, this.password)
       .then((res) => {

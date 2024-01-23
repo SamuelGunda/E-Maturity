@@ -1,14 +1,19 @@
 <nav id="nav_menu" class="navmenu">
     <ul class="main">
-        <li class="menuitem" id="nav_menu_home" routerLink="/">Domov</li>
-        <ul id="nav_menu_tests" class="expandable_ul" (click)="changeSubCat()" routerLink="/test-page">Maturitné testy
+        <li class="menuitem" id="nav_menu_home" routerLink="/">
+            <img src="assets/icons/home.png" alt="" width="28px" height="28px">Domov
+        </li>
+        <ul id="nav_menu_tests" class="expandable_ul" (click)="changeSubCat()" routerLink="/test-page">
+            <img src="assets/icons/tests.png" alt="" width="28px" height="28px">Maturitné testy
         </ul>
         <div [ngClass]="{'displayed': displayed, 'hidden': !displayed}">
             <li class="types">Slovenský jazyk a literatúra</li>
             <li class="types">Anglický jazyk</li>
             <li class="types">Matematika</li>
         </div>
-        <li id="nav_menu_scripts">Učebné materiály</li>
-        <li id="nav_menu_savedtests">Uložené testy</li>
+        <li id="nav_menu_scripts"> <img src="assets/icons/notes.png" alt="" width="28px" height="28px">Učebné materiály
+        </li>
+        <li id="nav_menu_savedtests"><img src="assets/icons/saved.png" alt="" width="28px" height="28px"> Uložené testy
+        </li>
     </ul>
 </nav>

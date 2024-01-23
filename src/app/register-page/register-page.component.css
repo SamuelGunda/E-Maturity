@@ -80,7 +80,7 @@ button:first-of-type {
 .mid_section {
   display: flex;
   justify-content: center;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   color: rgb(229, 34, 34);
   font-weight: 800;
 }
