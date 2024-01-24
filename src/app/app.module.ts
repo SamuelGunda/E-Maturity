@@ -11,6 +11,7 @@ import { environment } from './environments/environment';
 import { HeaderComponent } from './header/header.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NgOptimizedImage } from "@angular/common";
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { NgOptimizedImage } from "@angular/common";
     HeaderComponent,
     NavbarComponent,
     routingComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
     BrowserModule,

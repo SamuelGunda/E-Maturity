@@ -4,6 +4,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { TestsPageComponent } from './tests-page/tests-page.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { Test } from './model/test.model';
 
 const routes: Routes = [
@@ -11,7 +12,8 @@ const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
   { path: 'register', component: RegisterPageComponent },
   { path: 'landing-page', component: LandingPageComponent},
-  { path: 'test-page', component: TestsPageComponent}
+  { path: 'test-page', component: TestsPageComponent},
+  { path: 'forgot-password', component: ForgotPasswordComponent}
 ];
 
 @NgModule({
@@ -19,4 +21,4 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
-export const routingComponent = [LandingPageComponent, LoginPageComponent, RegisterPageComponent, LandingPageComponent, TestsPageComponent];
+export const routingComponent = [LandingPageComponent, LoginPageComponent, RegisterPageComponent, LandingPageComponent, TestsPageComponent, ForgotPasswordComponent];
