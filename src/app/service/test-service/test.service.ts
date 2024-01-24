@@ -10,25 +10,48 @@ import {Question} from "../../model/question.model";
 export class TestService {
 
   constructor(
-    private firestore : Firestore
-  ) { }
+    private firestore: Firestore
+  ) {
+  }
 
-  getTests(): Observable<Test[]> {
+  getTestsYears(subCat: string): Observable<string[]> {
     const dataCollection = collection(this.firestore, "test");
 
     return from(
       getDocs(dataCollection).then(querySnapshot => {
-        return querySnapshot.docs.map(doc => {
-          const data = doc.data() as { id: string; articles: string[]; questions: Question[] };
-          return {
-            id: doc.id,
-            articles: data.articles,
-            questions: data.questions,
-          };
-        });
+        return querySnapshot.docs
+          .filter(doc => {
+            const subject = doc.id.split("-")[1].toLowerCase();
+            return subCat === subject;
+          })
+          .map(doc => {
+            const year = doc.id.split("-")[0];
+            return year;
+          });
       })
     );
   }
 
+  getTests(subCat: string): Observable<Test[]> {
+    const dataCollection = collection(this.firestore, "test");
 
+    return from(
+      getDocs(dataCollection).then(querySnapshot => {
+        return querySnapshot.docs
+          .filter(doc => {
+            const subject = doc.id.split("-")[1].toLowerCase();
+            const year = doc.id.split("-")[0];
+            return subCat === subject;
+          })
+          .map(doc => {
+            const data = doc.data() as { id: string; articles: string[]; questions: Question[] };
+            return {
+              id: doc.id,
+              articles: data.articles,
+              questions: data.questions,
+            } as Test;
+          });
+      })
+    );
+  }
 }

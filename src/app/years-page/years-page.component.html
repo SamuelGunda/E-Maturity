@@ -1,1 +1,11 @@
-<p>years-page works!</p>
+<div *ngIf="years">
+  <button *ngFor="let year of years">
+    {{ year }}
+  </button>
+</div>
+<div *ngIf="(!years || years.length==0) && !loading">
+  <p>no years</p>
+</div>
+<div *ngIf="loading">
+  <p>loading</p>
+</div>

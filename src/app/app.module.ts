@@ -17,6 +17,7 @@ import {provideFirebaseApp} from "@angular/fire/app";
 import firebase from "firebase/compat/app";
 import initializeApp = firebase.initializeApp;
 import {getFirestore, provideFirestore} from "@angular/fire/firestore";
+import { TestPageComponent } from './test-page/test-page.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import {getFirestore, provideFirestore} from "@angular/fire/firestore";
     NavbarComponent,
     routingComponent,
     YearsPageComponent,
+    TestPageComponent,
   ],
   imports: [
     BrowserModule,
