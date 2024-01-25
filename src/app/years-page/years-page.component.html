@@ -1,11 +1,13 @@
-<div *ngIf="years">
-  <button *ngFor="let year of years">
-    {{ year }}
-  </button>
-</div>
-<div *ngIf="(!years || years.length==0) && !loading">
-  <p>no years</p>
-</div>
-<div *ngIf="loading">
-  <p>loading</p>
+<div id="main_page_container">
+  <div *ngIf="years">
+    <a *ngFor="let year of years" [routerLink]="['/test-page', subCat, year]">
+      {{ year }}
+    </a>
+  </div>
+  <div *ngIf="(!years || years.length == 0) && !loading">
+    <p>no years</p>
+  </div>
+  <div *ngIf="loading">
+    <p>loading</p>
+  </div>
 </div>

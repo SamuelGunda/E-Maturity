@@ -1,7 +1,8 @@
-import {Question} from "./question.model";
+import { Question } from './question.model';
+import { Article } from './article.model';
 
 export interface Test {
-    id: string;
-    articles: string[];
-    questions: Question[];
+  id: string;
+  articles: Article[];
+  questions: Question[];
 }

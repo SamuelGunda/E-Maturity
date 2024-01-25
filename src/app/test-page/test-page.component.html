@@ -1,1 +1,12 @@
-<p>test-page works!</p>
+<div *ngIf="test">
+  <div *ngFor="let article of test.articles">
+    <img [src]="article.url" width="500" />
+  </div>
+  <div *ngFor="let question of test.questions">
+    <p>{{ question.text }}</p>
+    <div *ngFor="let option of question.options">
+      <input [name]="option" type="radio" [value]="option" />
+      <label [for]="option">{{ option }}</label>
+    </div>
+  </div>
+</div>

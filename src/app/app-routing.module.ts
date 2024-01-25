@@ -4,6 +4,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import {YearsPageComponent} from "./years-page/years-page.component";
+import {TestPageComponent} from "./test-page/test-page.component";
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterPageComponent },
   { path: 'landing-page', component: LandingPageComponent},
   { path: 'years-page/:subCat', component: YearsPageComponent},
+  { path: 'test-page/:subCat/:year', component: TestPageComponent},
 ];
 
 @NgModule({
