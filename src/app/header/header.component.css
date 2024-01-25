@@ -40,6 +40,7 @@ header {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    width: 8rem;
 }
 
 button {
@@ -129,7 +130,7 @@ button>p {
 
 .burger_menu {
     cursor: pointer;
-    width: 80px;
+    width: 8rem;
     height: 60px;
     display: flex;
     align-items: center;

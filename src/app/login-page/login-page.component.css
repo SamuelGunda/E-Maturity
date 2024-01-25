@@ -57,6 +57,7 @@ label {
 .remember {
     display: flex;
     align-items: center;
+    padding-top: 8px;
 }
 
 .remember input {
@@ -71,7 +72,7 @@ label {
     justify-content: space-between;
 }
 
-button {
+.bot_button {
     padding: 0.5rem 0.8rem 0.5rem 0.8rem;
     border: 0.1rem rgb(104, 135, 240) solid;
     font: inherit;
@@ -85,8 +86,8 @@ button {
     font-weight: 400;
 }
 
-button:hover,
-button:focus {
+.bot_button:hover,
+.bot_button:focus {
     background-color: #c6d4ff;
 }
 
@@ -131,4 +132,18 @@ button:focus {
     color: rgb(229, 34, 34);
     font-weight: 800;
     font-size: 1.2rem;
+}
+
+.forgot-password {
+    cursor: pointer;
+    border: none;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    font-size: 1rem;
+}
+
+.forgot-password:hover,
+.forgot-password:focus {
+    color: #0e2766;
 }

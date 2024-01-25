@@ -49,7 +49,7 @@ label {
 
 .bot_section {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -65,7 +65,7 @@ button {
   overflow: hidden;
   box-shadow: 1px 1px 5px rgb(114, 112, 112);
   font-weight: 400;
-  width: 60%;
+
 }
 
 button:hover,
@@ -73,9 +73,6 @@ button:focus {
   background-color: #c6d4ff;
 }
 
-button:first-of-type {
-  margin-bottom: 1rem;
-}
 
 .mid_section {
   display: flex;
