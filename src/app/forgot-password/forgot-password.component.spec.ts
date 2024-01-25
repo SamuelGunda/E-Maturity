@@ -2,6 +2,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ForgotPasswordComponent } from './forgot-password.component';
 
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
+
+const email = 'user@example.com';
+
 describe('ForgotPasswordComponent', () => {
   let component: ForgotPasswordComponent;
   let fixture: ComponentFixture<ForgotPasswordComponent>;
@@ -19,3 +23,5 @@ describe('ForgotPasswordComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+
