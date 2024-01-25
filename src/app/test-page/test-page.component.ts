@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TestService } from '../service/test-service/test.service';
 import { Test } from '../model/test.model';
 import { Observable, of, switchMap } from 'rxjs';
+import { Question } from '../model/question.model';
 
 @Component({
   selector: 'app-test-page',
@@ -42,6 +43,10 @@ export class TestPageComponent {
           console.error(error);
         },
       );
+  }
+
+  isTextInput(question: Question): boolean {
+    return !question.options || question.options.every((option) => !option);
   }
 
   private fetchTest(): Observable<Test> {

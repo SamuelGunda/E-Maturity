@@ -1,12 +1,23 @@
-<div *ngIf="test">
-  <div *ngFor="let article of test.articles">
-    <img [src]="article.url" width="500" />
-  </div>
-  <div *ngFor="let question of test.questions">
-    <p>{{ question.text }}</p>
-    <div *ngFor="let option of question.options">
-      <input [name]="option" type="radio" [value]="option" />
-      <label [for]="option">{{ option }}</label>
+<div id="main_page_container">
+  <div *ngIf="test">
+    <div *ngFor="let article of test.articles">
+      <div class="article">
+        <img [src]="article.url" width="500" />
+      </div>
+    </div>
+    <div *ngFor="let question of test.questions">
+      <div class="questions">
+        <p [innerHTML]="question.text"></p>
+        <ng-container *ngIf="isTextInput(question); else radioOptions">
+          <input type="text" />
+        </ng-container>
+        <ng-template #radioOptions>
+          <div *ngFor="let option of question.options">
+            <input [name]="question.id" type="radio" [value]="option" />
+            <label [for]="option" [innerHTML]="option"></label>
+          </div>
+        </ng-template>
+      </div>
     </div>
   </div>
 </div>
