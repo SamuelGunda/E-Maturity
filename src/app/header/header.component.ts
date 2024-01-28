@@ -1,5 +1,6 @@
 
 import { Component, EventEmitter, Output } from '@angular/core';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,11 @@ import { Component, EventEmitter, Output } from '@angular/core';
 export class HeaderComponent {
 
 buttonExpanded: any = false;
+authService: AuthService;
+constructor(authService: AuthService) {this.authService = authService; }
+  
 
+  /** toggle navigation menu */
   onToggleNav(): void {
     const navbar = document.getElementById('navbar') as HTMLElement;
 
@@ -20,5 +25,10 @@ buttonExpanded: any = false;
       navbar.style.display = 'block';
       this.buttonExpanded = !this.buttonExpanded;
     }
+  }
+
+  /** logout */
+  onLogout(): void {
+    this.authService.logout();
   }
 }

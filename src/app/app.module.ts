@@ -18,6 +18,8 @@ import firebase from "firebase/compat/app";
 import initializeApp = firebase.initializeApp;
 import {getFirestore, provideFirestore} from "@angular/fire/firestore";
 import { TestPageComponent } from './test-page/test-page.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { UserAccountComponent } from './user-account/user-account.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { TestPageComponent } from './test-page/test-page.component';
     routingComponent,
     YearsPageComponent,
     TestPageComponent,
+    ForgotPasswordComponent,
+    UserAccountComponent,
   ],
   imports: [
     BrowserModule,
