@@ -19,7 +19,7 @@ export class RegisterPageComponent {
   constructor(private router: Router, private service: AuthService) {}
 
   isValidEmail(email: string): boolean {
-    const emailRegex = /^[a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]+$/;
+    const emailRegex = /^[\w\-\.]+@([\w-]+\.)+[\w-]{2,}$/;
     return emailRegex.test(email);
   }
 
