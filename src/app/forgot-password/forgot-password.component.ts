@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-forgot-password',
@@ -8,23 +9,31 @@ import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
 })
 export class ForgotPasswordComponent {
   email: string = '';
+  isError: boolean = false;
+  errorMessage: string = 'Nesprávny formát emailu.';
 
-  constructor() {}
+  constructor(private router: Router) {}
+
+  isValidEmail(): void {
+    const emailRegex = /^[\w\-\.]+@([\w-]+\.)+[\w-]{2,}$/;
+    this.isError = !emailRegex.test(this.email);
+  }
 
   sendPasswordResetEmail() {
     const auth = getAuth();
-
-    sendPasswordResetEmail(auth, this.email)
-      .then(() => {
-        console.log('Password reset email sent successfully.');
-      })
-      .catch((error: any) => {
+    this.isValidEmail();
+    if (!this.isError) {
+      try {
+        sendPasswordResetEmail(auth, this.email);
+        this.isError = false;
+        this.router.navigate(['']);
+      } catch (error: any) {
         const errorCode = error.code;
         const errorMessage = error.message;
-
         console.error(
           `Error sending password reset email: ${errorCode} - ${errorMessage}`
         );
-      });
+      }
+    }
   }
 }
