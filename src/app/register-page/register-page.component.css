@@ -89,3 +89,9 @@ button:focus {
 .noborder {
   border: none;
 }
+
+@media (max-width: 375px) {
+  .register_cred {
+    font-size: 0.7rem;
+  }
+}
