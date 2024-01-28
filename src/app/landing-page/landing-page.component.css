@@ -128,7 +128,7 @@
     flex-wrap: wrap;
     gap: 1rem;
     margin-top: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 7rem;
   }
 
   .main_card_containers {
@@ -141,13 +141,19 @@
   }
 }
 
+@media (max-width: 800px) {
+  #main_card_container {
+    margin-bottom: 7rem;
+  }
+}
+
 @media (max-width: 780px) {
   #main_card_containers {
     padding: 2rem;
   }
 
-  #main_page_container {
-    min-height: auto;
-    /* You can set a specific min-height if needed */
+  #main_card_container {
+    margin-bottom: 13rem;
   }
+
 }
