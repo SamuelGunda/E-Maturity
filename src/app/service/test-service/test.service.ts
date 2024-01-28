@@ -74,7 +74,7 @@ export class TestService {
             } as Article;
           });
           //return arrayu articlov
-          return articles;
+          return articles.sort((a, b) => a.id.localeCompare(b.id));
         }),
       ),
       //3.funkcia
@@ -85,6 +85,7 @@ export class TestService {
             //returnne jednu question a ulozi ju do arrayu questions
             return {
               id: doc.id,
+              articleId: doc.data()['articleId'],
               correctAnswer: doc.data()['correctAnswer'],
               options: options,
               text: doc.data()['text'],

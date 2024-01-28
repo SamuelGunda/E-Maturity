@@ -1,12 +1,10 @@
-<div id="main_page_container">
-  <div *ngIf="test">
-    <div *ngFor="let article of test.articles">
-      <div class="article">
-        <img [src]="article.url" width="500" />
-      </div>
+<div *ngIf="articleWithQuestions" id="main_page_container">
+  <div *ngFor="let articleQuestion of articleWithQuestions">
+    <div class="article">
+      <img [src]="articleQuestion.article.url" width="500" />
     </div>
-    <div *ngFor="let question of test.questions">
-      <div class="questions">
+    <div *ngFor="let question of articleQuestion.questions">
+      <div *ngIf="question.text.length != 0" class="questions">
         <p [innerHTML]="question.text"></p>
         <ng-container *ngIf="isTextInput(question); else radioOptions">
           <input type="text" />
