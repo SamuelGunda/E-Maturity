@@ -1,0 +1,21 @@
+<div *ngIf="articleWithQuestions" id="main_page_container">
+  <div *ngFor="let articleQuestion of articleWithQuestions">
+    <div class="article">
+      <img [src]="articleQuestion.article.url" width="500" />
+    </div>
+    <div *ngFor="let question of articleQuestion.questions">
+      <div *ngIf="question.text.length != 0" class="questions">
+        <p [innerHTML]="question.text"></p>
+        <ng-container *ngIf="isTextInput(question); else radioOptions">
+          <input type="text" />
+        </ng-container>
+        <ng-template #radioOptions>
+          <div *ngFor="let option of question.options">
+            <input [name]="question.id" type="radio" [value]="option" />
+            <label [for]="option" [innerHTML]="option"></label>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
