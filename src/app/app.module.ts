@@ -12,6 +12,7 @@ import { HeaderComponent } from './header/header.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NgOptimizedImage } from "@angular/common";
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { UserAccountComponent } from './user-account/user-account.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     NavbarComponent,
     routingComponent,
     ForgotPasswordComponent,
+    UserAccountComponent,
   ],
   imports: [
     BrowserModule,
