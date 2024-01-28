@@ -141,19 +141,14 @@
   }
 }
 
-@media (max-width: 800px) {
-  #main_card_container {
-    margin-bottom: 7rem;
-  }
-}
 
-@media (max-width: 780px) {
+@media (max-width: 510px) {
   #main_card_containers {
     padding: 2rem;
   }
 
   #main_card_container {
-    margin-bottom: 13rem;
+    margin-bottom: 14rem;
   }
 
 }
