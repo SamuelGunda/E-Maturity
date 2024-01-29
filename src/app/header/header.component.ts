@@ -14,7 +14,6 @@ export class HeaderComponent {
   constructor(authService: AuthService, private el: ElementRef, private router: Router) {
     this.authService = authService;
 
-    // Subscribe to router events to close navbar on navigation
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.closeNavbar();
@@ -28,7 +27,6 @@ export class HeaderComponent {
     this.buttonExpanded = false;
   }
 
-  /** toggle navigation menu */
   onToggleNav(): void {
     const navbar = document.getElementById('navbar') as HTMLElement;
 
@@ -46,16 +44,12 @@ export class HeaderComponent {
     this.authService.logout();
   }
 
-  // Click event listener for the whole document
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: Event): void {
     const targetElement = event.target as HTMLElement;
 
-    // Check if the clicked element is outside the navbar and header
     if (!this.el.nativeElement.contains(targetElement)) {
       const navbar = document.getElementById('navbar') as HTMLElement;
-      
-      // Close the navbar
       navbar.style.display = 'none';
       this.buttonExpanded = false;
     }

@@ -4,9 +4,18 @@
       <label for="email">E-mail</label>
       <input [(ngModel)]="email" type="email" name="email" id="email" class="register_cred" required
         [ngClass]="{ 'error-border': emailError, 'noborder': !emailError }" placeholder="Zadaj svoj e-mail">
-      <label for="meno">Prihlasovacie meno</label>
-      <input [(ngModel)]="name" type="text" name="meno" id="meno" class="register_cred" required
-        placeholder="Zadaj svoje prihlasovacie meno">
+      <div class="user_cred">
+        <div class="user_firstcred">
+          <label for="krstne">Krstné meno</label>
+          <input [(ngModel)]="name" type="text" name="krstne" id="krstne" class="register_cred" required
+            placeholder="Zadaj svoje krstné meno">
+        </div>
+        <div class="user_secondcred">
+          <label for="priezv">Priezvisko</label>
+          <input [(ngModel)]="name" type="text" name="priezv" id="priezv" class="register_cred" required
+            placeholder="Zadaj svoje priezvisko">
+        </div>
+      </div>
       <label for="heslo">Heslo</label>
       <input [(ngModel)]="password" type="password" name="heslo" id="heslo" class="register_cred" required
         [ngClass]="{ 'error-border': pswdError ,'noborder': !pswdError }" placeholder="Zadaj svoje heslo">
