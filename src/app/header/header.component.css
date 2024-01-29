@@ -190,11 +190,6 @@ button>p {
 }
 
 @media (max-width: 425px) {
-    .buttons {
-        flex-direction: column;
-        font-size: 0.8rem;
-        /* Adjusted font size for better readability */
-    }
 
     header {
         padding: 0.5rem;

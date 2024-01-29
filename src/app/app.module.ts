@@ -22,6 +22,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { TestPageComponent } from './test-page/test-page.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { UserAccountComponent } from './user-account/user-account.component';
+import { TestsPageComponent } from './tests-page/tests-page.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { UserAccountComponent } from './user-account/user-account.component';
     TestPageComponent,
     ForgotPasswordComponent,
     UserAccountComponent,
+    TestsPageComponent,
   ],
   imports: [
     BrowserModule,
