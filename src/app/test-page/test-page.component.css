@@ -54,6 +54,19 @@
   gap: 0.3rem;
 }
 
+.test_question {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.question_id {
+  background-color: rgb(160, 160, 160);
+  padding: 3px 5px 3px 5px;
+  font-weight: 800;
+}
+
 
 
 @media (max-width: 525px) {

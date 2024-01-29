@@ -5,7 +5,10 @@
     </div>
     <div *ngFor="let question of articleQuestion.questions" class="question">
       <div *ngIf="question.text.length != 0" class="questions">
-        <p [innerHTML]="question.text" class="question_text"></p>
+        <div class="test_question">
+          <p class="question_id">{{question.id}}.</p>
+          <p [innerHTML]="question.text" class="question_text"></p>
+        </div>
         <ng-container *ngIf="question.text === 'Zrušená otázka'">
         </ng-container>
         <ng-container *ngIf="isTextInput(question) && question.text !== 'Zrušená otázka'; else radioOptions">
