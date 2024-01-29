@@ -13,7 +13,7 @@ app-header.notfixed {
 app-header.fixed {
     position: fixed;
     width: 96%;
-    top: 0.5rem;
+    top: 0;
 }
 
 router-outlet {

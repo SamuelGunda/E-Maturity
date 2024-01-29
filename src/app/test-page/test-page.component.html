@@ -16,7 +16,7 @@
         </ng-container>
         <ng-template #radioOptions>
           <div *ngFor="let option of question.options" class="radio_options">
-            <input [name]="question.id" type="radio" [value]="option" />
+            <input [name]="question.id" type="radio" [value]="option" [id]="option" />
             <label [for]="option" [innerHTML]="option"></label>
           </div>
         </ng-template>
