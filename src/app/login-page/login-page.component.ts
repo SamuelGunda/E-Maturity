@@ -9,23 +9,12 @@ import { Router } from '@angular/router';
 })
 export class LoginPageComponent {
   submitted = false;
-  name: any;
-  password: any;
+  name: string = '';
+  password: string = '';
   error: boolean = false;
   rememberMe: boolean = false;
-  
-  constructor(private router: Router, private service: AuthService) {}
 
-  ngOnInit() {
-    const rememberedUser = localStorage.getItem('rememberMe');
-    if (rememberedUser) {
-      const user = JSON.parse(rememberedUser);
-      this.name = user.name;
-      this.password = user.password;
-      this.rememberMe = true;
-      this.login();
-    }
-  }
+  constructor(private router: Router, private service: AuthService) {}
 
   submit() {
     this.submitted = true;
@@ -37,14 +26,11 @@ export class LoginPageComponent {
 
   login() {
     this.service
-      .login(this.name, this.password)
-      .then((res) => {
+      .login(this.name, this.password, this.rememberMe)
+      .then(() => {
         this.router.navigate(['']);
-        if (this.rememberMe) {
-          localStorage.setItem('rememberMe', JSON.stringify({ name: this.name, password: this.password }));
-        }
       })
-      .catch((err) => {
+      .catch(() => {
         this.error = true;
       });
   }

@@ -14,5 +14,5 @@ html {
 body {
     height: 100vh;
     padding: 2%;
-    background: linear-gradient(109.6deg, rgb(6, 183, 249) 11.2%, rgb(25, 74, 236) 91.1%);
+    background: linear-gradient(109.6deg, #06b7f9 11.2%, #194aec 91.1%);
 }
