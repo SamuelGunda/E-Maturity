@@ -36,5 +36,6 @@ userData:Observable<firebase.User>
     this.isLoggedIn = false;
     this.afAuth.signOut()
     localStorage.removeItem("email");
+    localStorage.removeItem("rememberMe");
   }
 }
