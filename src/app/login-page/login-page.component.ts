@@ -14,16 +14,6 @@ export class LoginPageComponent {
   error: boolean = false;
   rememberMe: boolean = false;
   
-  ngOnInit() {
-    const rememberedUser = localStorage.getItem('rememberedUser');
-    if (rememberedUser) {
-      const user = JSON.parse(rememberedUser);
-      this.name = user.name;
-      this.password = user.password;
-      this.rememberMe = true;
-    }
-  }
-  
   constructor(private router: Router, private service: AuthService) {}
 
   submit() {
@@ -38,10 +28,10 @@ export class LoginPageComponent {
     this.service
       .login(this.name, this.password)
       .then((res) => {
+        this.router.navigate(['']);
         if (this.rememberMe) {
           localStorage.setItem('rememberedUser', JSON.stringify({ name: this.name, password: this.password }));
         }
-        this.router.navigate(['']);
       })
       .catch((err) => {
         this.error = true;
