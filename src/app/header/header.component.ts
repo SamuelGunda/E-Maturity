@@ -42,6 +42,7 @@ export class HeaderComponent {
   /** logout */
   onLogout(): void {
     this.authService.logout();
+    localStorage.removeItem('rememberedUser');
   }
 
   @HostListener('document:click', ['$event'])

@@ -8,7 +8,8 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./register-page.component.css'],
 })
 export class RegisterPageComponent {
-  name: any;
+  fname: any;
+  lname:any;
   email: any;
   password: any;
   passwordCheck: any;
