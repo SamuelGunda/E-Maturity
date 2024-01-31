@@ -25,13 +25,8 @@ export class LoginPageComponent {
   }
 
   login() {
-    this.service
-      .login(this.name, this.password, this.rememberMe)
-      .then(() => {
-        this.router.navigate(['']);
-      })
-      .catch(() => {
-        this.error = true;
-      });
+    this.service.login(this.name, this.password, this.rememberMe)
+      .then(() => this.router.navigate(['']))
+      .catch(() => this.error = true);
   }
 }

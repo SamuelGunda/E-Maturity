@@ -55,7 +55,7 @@ export class RegisterPageComponent {
     }
   
     this.service
-      .register(this.email, this.password)
+      .register(this.email, this.password, this.fname, this.lname)
       .then((res) => {
         this.router.navigate(['']);
       })

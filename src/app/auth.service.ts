@@ -15,11 +15,12 @@ export class AuthService {
     this.userData = afAuth.authState;
   }
 
-  register(email: string, password: string) {
+  register(email: string, password: string, fname: string, lname: string) {
     return this.afAuth.createUserWithEmailAndPassword(email, password)
       .then((res) => {
         this.isLoggedIn = true;
         localStorage.setItem("email", JSON.stringify(res.user));
+        localStorage.setItem("User_info", JSON.stringify({fname, lname}))
       });
   }
 
