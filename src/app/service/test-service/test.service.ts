@@ -23,10 +23,12 @@ export class TestService {
     return from(
       getDocs(dataCollection).then((querySnapshot) => {
         return querySnapshot.docs
-          .filter((doc) => {
-            const subject = doc.id.split('-')[1].toLowerCase();
-            return subCat === subject;
-          })
+        .filter((doc) => {
+          const subjectParts = doc.id.split('-');
+          const subject = subjectParts.length > 1 ? subjectParts[1].toLowerCase() : '';
+          return subCat === subject;
+      })
+      
           .map((doc) => {
             const year = doc.id.split('-')[0];
             return year;

@@ -69,7 +69,6 @@ button.register:focus:before {
 
 /** end of register button */
 
-button.login:before,
 button.register:before {
     content: "";
     position: absolute;
@@ -82,43 +81,6 @@ button.register:before {
     transition: width 0.7s ease-in-out;
 }
 
-/** login button section */
-
-button.login {
-    position: relative;
-}
-
-button.login:hover:before,
-button.login:focus:before {
-    width: 101%;
-}
-
-/** end of login button */
-
-button.logout:before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 0;
-    height: 100%;
-    background-color: #fa4949;
-    transition: width 0.7s ease-in-out;
-}
-
-/** logout button section */
-
-button.logout {
-    position: relative;
-}
-
-button.logout:hover:before,
-button.logout:focus:before {
-    width: 101%;
-}
-
-/** end of logout button */
 
 button>p {
     position: relative;
@@ -193,32 +155,18 @@ button>p {
 
     header {
         padding: 0.5rem;
-        /* Adjusted header padding */
     }
 
     .burger_menu {
         width: 4rem;
-        /* Adjusted burger menu width */
         height: 40px;
-        /* Adjusted burger menu height */
-    }
-
-    .burger_menu span,
-    .burger_menu span:before,
-    .burger_menu span:after {
-        height: 3px;
-        /* Adjusted burger menu bar height */
-        width: 24px;
-        /* Adjusted burger menu bar width */
     }
 
     .logged_icons {
         gap: 1rem;
-        /* Adjusted gap between logged icons */
     }
 
     .logged_icons>p {
         font-size: 0.8rem;
-        /* Adjusted font size for logged icons */
     }
 }

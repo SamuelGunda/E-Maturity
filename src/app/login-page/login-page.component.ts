@@ -9,10 +9,11 @@ import { Router } from '@angular/router';
 })
 export class LoginPageComponent {
   submitted = false;
-  name: any;
-  password: any;
+  name: string = '';
+  password: string = '';
   error: boolean = false;
-  
+  rememberMe: boolean = false;
+
   constructor(private router: Router, private service: AuthService) {}
 
   submit() {
@@ -24,13 +25,8 @@ export class LoginPageComponent {
   }
 
   login() {
-    this.service
-      .login(this.name, this.password)
-      .then((res) => {
-        this.router.navigate(['']);
-      })
-      .catch((err) => {
-        this.error = true;
-      });
+    this.service.login(this.name, this.password, this.rememberMe)
+      .then(() => this.router.navigate(['']))
+      .catch(() => this.error = true);
   }
 }

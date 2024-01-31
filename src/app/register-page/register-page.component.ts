@@ -8,7 +8,8 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./register-page.component.css'],
 })
 export class RegisterPageComponent {
-  name: any;
+  fname: any;
+  lname:any;
   email: any;
   password: any;
   passwordCheck: any;
@@ -54,7 +55,7 @@ export class RegisterPageComponent {
     }
   
     this.service
-      .register(this.email, this.password)
+      .register(this.email, this.password, this.fname, this.lname)
       .then((res) => {
         this.router.navigate(['']);
       })
