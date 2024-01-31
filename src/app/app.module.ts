@@ -44,4 +44,4 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

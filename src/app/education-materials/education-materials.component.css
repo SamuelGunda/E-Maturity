@@ -1,0 +1,55 @@
+:host(app-education-materials) {
+  height: calc(100% - 6rem);
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.163);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  background-color: #FBFEF9;
+  display: flex;
+  justify-content: space-around;
+}
+
+button {
+  background-color: #3369F3;
+  transition: width 0.7s ease-in-out;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px rgb(114, 112, 112);
+  margin-top: 2rem;
+  color: white;
+  width: 18rem;
+  height: 3.5rem;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  font-size: 2rem;
+  text-align: center;
+  color: white;
+  border: none;
+
+}
+
+p {
+  position: relative;
+  z-index: 1;
+}
+
+button:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 100%;
+  background-color: #497bfa;
+  transition: width 0.7s ease-in-out;
+}
+
+button:hover:before {
+  width: 101%;
+}
+
+
+.mat>a {
+  font-size: 1rem;
+}
