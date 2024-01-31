@@ -90,28 +90,8 @@ button:focus {
   border: none;
 }
 
-.user_cred {
-  display: flex;
-}
-
-.user_firstcred>input::placeholder,
-.user_secondcred>input::placeholder {
-  font-size: 0.7rem;
-}
-
 @media (max-width: 375px) {
   .register_cred {
     font-size: 0.7rem;
-  }
-}
-
-@media (max-width: 425px) {
-  .user_cred {
-    flex-direction: column;
-  }
-
-  .user_firstcred>input,
-  .user_secondcred>input {
-    width: 100%;
   }
 }

@@ -7,6 +7,7 @@ import {YearsPageComponent} from "./years-page/years-page.component";
 import { TestPageComponent} from "./test-page/test-page.component";
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { UserAccountComponent } from './user-account/user-account.component';
+import {EducationMaterialsComponent} from "./education-materials/education-materials.component";
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'test-page/:subCat/:year', component: TestPageComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent},
   { path: 'user-account', component: UserAccountComponent},
+  { path: 'education-materials', component: EducationMaterialsComponent}
 ];
 
 @NgModule({
@@ -25,4 +27,4 @@ const routes: Routes = [
 })
 export class AppRoutingModule {}
 export const routingComponent = [LandingPageComponent, LoginPageComponent, RegisterPageComponent, LandingPageComponent,
-   ForgotPasswordComponent, UserAccountComponent, TestPageComponent, YearsPageComponent];
+   ForgotPasswordComponent, UserAccountComponent, TestPageComponent, YearsPageComponent, EducationMaterialsComponent];
