@@ -37,28 +37,6 @@ export class TestPageComponent {
         console.error('subCat and year are required');
       }
     });
-    // .pipe(
-    //   switchMap((params) => {
-    //     if (params && params['subCat'] && params['year']) {
-    //       this.subCat = params['subCat'];
-    //       this.year = params['year'];
-    //       return this.fetchTest();
-    //     } else {
-    //       console.error('subCat and year are required');
-    //       return of(null);
-    //     }
-    //   }),
-    // )
-    // .subscribe(
-    //   (testData: Test | null) => {
-    //     if (testData !== null) {
-    //       this.test = testData;
-    //     }
-    //   },
-    //   (error) => {
-    //     console.error(error);
-    //   },
-    // );
   }
 
   isTextInput(question: Question): boolean {

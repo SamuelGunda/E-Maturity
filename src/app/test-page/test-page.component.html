@@ -4,19 +4,46 @@
       <img [src]="articleQuestion.article.url" />
     </div>
     <div *ngFor="let question of articleQuestion.questions" class="question">
-      <div *ngIf="question.text.length != 0" class="questions">
+      <div *ngIf="question.text || question.image" class="questions">
         <div class="test_question">
-          <p class="question_id">{{question.id}}.</p>
-          <p [innerHTML]="question.text" class="question_text"></p>
+          <p class="question_id">{{ question.id }}.</p>
+          <div class="question_content">
+            <p
+              *ngIf="question.text"
+              [innerHTML]="question.text"
+              class="question_text"
+            ></p>
+            <div class="question_image_container">
+              <img
+                *ngIf="question.image"
+                class="question_image"
+                [src]="question.image"
+              />
+            </div>
+          </div>
         </div>
         <ng-container *ngIf="question.text === 'Zrušená otázka'">
         </ng-container>
-        <ng-container *ngIf="isTextInput(question) && question.text !== 'Zrušená otázka'; else radioOptions">
-          <input type="text" class="input_text" placeholder="Sem napíšte svoju odpoveď" />
+        <ng-container
+          *ngIf="
+            isTextInput(question) && question.text !== 'Zrušená otázka';
+            else radioOptions
+          "
+        >
+          <input
+            type="text"
+            class="input_text"
+            placeholder="Sem napíšte svoju odpoveď"
+          />
         </ng-container>
         <ng-template #radioOptions>
           <div *ngFor="let option of question.options" class="radio_options">
-            <input [name]="question.id" type="radio" [value]="option" [id]="option" />
+            <input
+              [name]="question.id"
+              type="radio"
+              [value]="option"
+              [id]="option"
+            />
             <label [for]="option" [innerHTML]="option"></label>
           </div>
         </ng-template>
