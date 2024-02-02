@@ -90,8 +90,21 @@ button:focus {
   border: none;
 }
 
+.user_cred {
+  display: flex;
+}
+
 @media (max-width: 375px) {
   .register_cred {
     font-size: 0.7rem;
+  }
+
+  .user_cred {
+    flex-direction: column;
+  }
+
+  .user_firstcred>input,
+  .user_secondcred>input {
+    width: 100%;
   }
 }
