@@ -14,12 +14,13 @@ export class AuthService {
     // @ts-ignore
     this.userData = afAuth.authState;
   }
-
   register(email: string, password: string, fname: string, lname: string) {
     return this.afAuth.createUserWithEmailAndPassword(email, password)
       .then((res) => {
         this.isLoggedIn = true;
-        localStorage.setItem("User_info", JSON.stringify({fname, lname}))
+        return res.user?.updateProfile({
+          displayName: `${fname} ${lname}`,
+        });
       });
   }
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -6,11 +6,16 @@ import { AuthService } from '../auth.service';
   templateUrl: './user-account.component.html',
   styleUrls: ['./user-account.component.css']
 })
-export class UserAccountComponent {
+export class UserAccountComponent implements OnInit {
   userName: string = '';
 
+  constructor(private authService: AuthService) {}
+
   ngOnInit() {
-    const userData = JSON.parse(localStorage.getItem('User_info') || '{}');
-    this.userName = `${userData.lname} ${userData.fname}`;
+    this.authService.userData.subscribe(user => {
+      if (user) {
+        this.userName = user.displayName || '';
+      }
+    });
   }
 }
