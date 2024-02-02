@@ -34,6 +34,7 @@
             type="text"
             class="input_text"
             placeholder="Sem napíšte svoju odpoveď"
+            [(ngModel)]="question.userAnswer"
           />
         </ng-container>
         <ng-template #radioOptions>
@@ -43,6 +44,7 @@
               type="radio"
               [value]="option"
               [id]="option"
+              [(ngModel)]="question.userAnswer"
             />
             <label [for]="option" [innerHTML]="option"></label>
           </div>
@@ -50,4 +52,5 @@
       </div>
     </div>
   </div>
+  <button mat-raised-button (click)="openDialog()">Pick one</button>
 </div>
