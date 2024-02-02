@@ -82,8 +82,8 @@ button.register:before {
 }
 .modeSwitch {
     position: absolute;
-    top: 1.6rem; right: 6.8rem;
-    width: 4.2rem;
+    top: 1.86rem; right: 6.8rem;
+    width: 3rem;
     height: auto;
 }
 
