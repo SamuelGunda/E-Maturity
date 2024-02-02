@@ -94,18 +94,11 @@ button:focus {
   display: flex;
 }
 
-.user_firstcred>input::placeholder,
-.user_secondcred>input::placeholder {
-  font-size: 0.7rem;
-}
-
 @media (max-width: 375px) {
   .register_cred {
     font-size: 0.7rem;
   }
-}
 
-@media (max-width: 425px) {
   .user_cred {
     flex-direction: column;
   }

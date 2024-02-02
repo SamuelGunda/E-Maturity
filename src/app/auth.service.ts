@@ -19,7 +19,6 @@ export class AuthService {
     return this.afAuth.createUserWithEmailAndPassword(email, password)
       .then((res) => {
         this.isLoggedIn = true;
-        localStorage.setItem("email", JSON.stringify(res.user));
         localStorage.setItem("User_info", JSON.stringify({fname, lname}))
       });
   }
@@ -38,6 +37,8 @@ export class AuthService {
 
   logout() {
     this.isLoggedIn = false;
+    localStorage.removeItem('rememberMe');
+    localStorage.removeItem('User_info');
     this.afAuth.signOut();
   }
 }
