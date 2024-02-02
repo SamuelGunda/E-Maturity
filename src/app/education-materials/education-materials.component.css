@@ -54,11 +54,11 @@ button:hover:before {
 }
 
 .mat>a {
+  
   font-size: 1rem;
 }
 
 ul {
-
   list-style: none;
 }
 
@@ -66,16 +66,22 @@ li {
   padding-top: 1rem;
 }
 
+img {
+  width: 1rem;
+  height: auto;
+  margin-right: 0.5rem;
+}
+
 a {
   color: #007BFF;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: bold;
 }
 
 a:hover {
-  color: #0056b3;
+  color: #5ea2ec;
 }
 
 a:active {
-  color: #003366;
+  color: #036bd4;
 }
