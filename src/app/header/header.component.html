@@ -4,9 +4,6 @@
         <div class="headline" id="header_title">
             <img src="assets/logo.png" alt="" width="100px" height="100px">
         </div>
-        <div class="modeSwitch">
-            <img class="modeSwitch" src="assets/header_icons/Moon.png" alt="">
-        </div>
         <div *ngIf="!authService.isLoggedIn" class="buttons" id="but">
             <button class="register" id="header_reg_button" routerLink="/login">
                 <p>Účet</p>

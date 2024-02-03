@@ -80,12 +80,6 @@ button.register:before {
     background-color: #497bfa;
     transition: width 0.7s ease-in-out;
 }
-.modeSwitch {
-    position: absolute;
-    top: 1.86rem; right: 6.8rem;
-    width: 3rem;
-    height: auto;
-}
 
 button>p {
     position: relative;

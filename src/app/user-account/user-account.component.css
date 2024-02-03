@@ -14,6 +14,21 @@
     gap: 0.8rem;
 }
 
+.modeSwitch {
+    display: flex;
+    margin-left: auto;
+    width: 2rem;
+    height: auto;
+    margin-top: -2rem;
+    cursor: pointer;
+}
+
+.modeSwitch img {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+}
+
 .container,
 .test_container,
 .question_container {
