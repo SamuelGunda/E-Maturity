@@ -25,7 +25,7 @@ export class RegisterPageComponent {
   }
 
   register() {
-    if (!this.email || !this.password || !this.passwordCheck) {
+    if (!this.email || !this.password || !this.passwordCheck || !this.fname || !this.lname) {
       this.errorMessage = "Prosím vyplň všetky políčka";
       return;
     }

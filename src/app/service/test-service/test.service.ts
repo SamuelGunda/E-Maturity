@@ -7,9 +7,11 @@ import {
   Firestore,
   getDoc,
   getDocs,
+  setDoc,
 } from '@angular/fire/firestore';
 import { Question } from '../../model/question.model';
 import { Article } from '../../model/article.model';
+import { SavedTest } from '../../model/saved-test.model';
 
 @Injectable({
   providedIn: 'root',
@@ -23,12 +25,13 @@ export class TestService {
     return from(
       getDocs(dataCollection).then((querySnapshot) => {
         return querySnapshot.docs
-        .filter((doc) => {
-          const subjectParts = doc.id.split('-');
-          const subject = subjectParts.length > 1 ? subjectParts[1].toLowerCase() : '';
-          return subCat === subject;
-      })
-      
+          .filter((doc) => {
+            const subjectParts = doc.id.split('-');
+            const subject =
+              subjectParts.length > 1 ? subjectParts[1].toLowerCase() : '';
+            return subCat === subject;
+          })
+
           .map((doc) => {
             const year = doc.id.split('-')[0];
             return year;
@@ -91,6 +94,7 @@ export class TestService {
               correctAnswer: doc.data()['correctAnswer'],
               options: options,
               text: doc.data()['text'],
+              image: doc.data()['image'],
             } as Question;
           });
           //return arrayu questions
@@ -108,5 +112,12 @@ export class TestService {
         return test;
       }),
     );
+  }
+  saveUserTest(uid: string, savedTest: SavedTest): void {
+    const dataCollection = collection(this.firestore, 'users');
+    const documentRef = doc(dataCollection, uid);
+    const savedTestsCollectionRef = collection(documentRef, 'savedTests');
+    const savedTestDocumentRef = doc(savedTestsCollectionRef);
+    setDoc(savedTestDocumentRef, savedTest);
   }
 }

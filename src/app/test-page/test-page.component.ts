@@ -1,10 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TestService } from '../service/test-service/test.service';
 import { Test } from '../model/test.model';
 import { Observable, of, switchMap } from 'rxjs';
 import { Question } from '../model/question.model';
 import { ArticleQuestions } from '../model/article-questions.model';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalWindowComponent } from '../modal-window/modal-window.component';
+import { QuestionResult, SavedTest } from '../model/saved-test.model';
+
+export interface ModalData {
+  score: number;
+  total: number;
+  savedTest: SavedTest;
+}
 
 @Component({
   selector: 'app-test-page',
@@ -16,11 +25,14 @@ export class TestPageComponent {
   subCat: string | undefined;
   test: Test | undefined;
   articleWithQuestions: ArticleQuestions[] | undefined;
+  score: number = 0;
+  total: number = 0;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private testService: TestService,
+    public dialog: MatDialog,
   ) {
     this.route.params.subscribe((params) => {
       if (params && params['subCat'] && params['year']) {
@@ -37,28 +49,18 @@ export class TestPageComponent {
         console.error('subCat and year are required');
       }
     });
-    // .pipe(
-    //   switchMap((params) => {
-    //     if (params && params['subCat'] && params['year']) {
-    //       this.subCat = params['subCat'];
-    //       this.year = params['year'];
-    //       return this.fetchTest();
-    //     } else {
-    //       console.error('subCat and year are required');
-    //       return of(null);
-    //     }
-    //   }),
-    // )
-    // .subscribe(
-    //   (testData: Test | null) => {
-    //     if (testData !== null) {
-    //       this.test = testData;
-    //     }
-    //   },
-    //   (error) => {
-    //     console.error(error);
-    //   },
-    // );
+  }
+
+  openDialog(): void {
+    const savedTest = this.checkAnswers();
+
+    const dialogRef = this.dialog.open(ModalWindowComponent, {
+      data: { score: this.score, total: this.total, savedTest: savedTest },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+    });
   }
 
   isTextInput(question: Question): boolean {
@@ -81,5 +83,78 @@ export class TestPageComponent {
       articleWithQuestions.push({ article, questions: articleQuestions });
     });
     return articleWithQuestions;
+  }
+
+  checkAnswers(): SavedTest {
+    const savedTest: SavedTest = {} as SavedTest;
+    savedTest.id = this.year + '-' + this.subCat;
+    savedTest.questions = [];
+    const testResults: any[] = [];
+    for (const articleQuestion of this.articleWithQuestions || []) {
+      for (const question of articleQuestion.questions) {
+        const questionResult: QuestionResult = {
+          questionId: question.id,
+          text: question.text,
+          isCorrect: false,
+          correctAnswer: question.correctAnswer,
+          userAnswer: question.userAnswer,
+          options: question.options,
+        };
+        if (questionResult.options === undefined) {
+          questionResult.options = [];
+        }
+        if (
+          questionResult.userAnswer === undefined ||
+          questionResult.userAnswer === ''
+        ) {
+          questionResult.userAnswer = 'Nevyplnene';
+        }
+        if (question.text === 'Zrušená otázka') {
+          // console.log(`Question ${question.id} is cancelled.`);
+          questionResult.isCorrect = true;
+        } else {
+          if (question.correctAnswer instanceof Array) {
+            for (const correctAnswer of question.correctAnswer) {
+              if (question.userAnswer === correctAnswer) {
+                // console.log(`Question ${question.id} is correct!`);
+                questionResult.isCorrect = true;
+                break;
+              }
+            }
+            if (!questionResult.isCorrect) {
+              // console.log(
+              //   `Question ${question.id} is incorrect. Correct answer is ${question.correctAnswer}.`,
+              // );
+            }
+          } else {
+            if (question.userAnswer === question.correctAnswer) {
+              // console.log(`Question ${question.id} is correct!`);
+              questionResult.isCorrect = true;
+            } else {
+              // console.log(
+              //   `Question ${question.id} is incorrect. Correct answer is ${question.correctAnswer}.`,
+              // );
+            }
+          }
+        }
+        savedTest.questions.push(questionResult);
+        testResults.push(questionResult);
+      }
+    }
+    this.calculateScore(testResults);
+    return savedTest;
+  }
+
+  private calculateScore(testResults: any[]) {
+    let score = 0;
+    let total = testResults.length;
+    for (const result of testResults) {
+      if (result.isCorrect) {
+        score++;
+      }
+    }
+    this.score = score;
+    this.total = total;
+    console.log(`Score: ${score}/${total}`);
   }
 }

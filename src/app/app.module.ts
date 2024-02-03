@@ -18,8 +18,12 @@ import { provideFirebaseApp } from '@angular/fire/app';
 import firebase from 'firebase/compat/app';
 import initializeApp = firebase.initializeApp;
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
-
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ModalWindowComponent } from './modal-window/modal-window.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { SavedTestsPageComponent } from './saved-tests-page/saved-tests-page.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +31,8 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
     HeaderComponent,
     NavbarComponent,
     routingComponent,
+    ModalWindowComponent,
+    SavedTestsPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,8 +46,12 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
     NgOptimizedImage,
     AppRoutingModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
+    MatInputModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

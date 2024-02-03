@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Observable } from "rxjs";
-import firebase from "firebase/compat";
+import { Observable } from 'rxjs';
+import firebase from 'firebase/compat';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   isLoggedIn = false;
@@ -14,30 +14,40 @@ export class AuthService {
     // @ts-ignore
     this.userData = afAuth.authState;
   }
-
   register(email: string, password: string, fname: string, lname: string) {
-    return this.afAuth.createUserWithEmailAndPassword(email, password)
+    return this.afAuth
+      .createUserWithEmailAndPassword(email, password)
       .then((res) => {
         this.isLoggedIn = true;
-        localStorage.setItem("email", JSON.stringify(res.user));
-        localStorage.setItem("User_info", JSON.stringify({fname, lname}))
+        return res.user?.updateProfile({
+          displayName: `${fname} ${lname}`,
+        });
       });
   }
 
-  login(email: string, password: string, rememberMe: boolean) {
-    return this.afAuth.signInWithEmailAndPassword(email, password)
-      .then(res => {
-        this.isLoggedIn = true;
-        if (rememberMe) {
-          localStorage.setItem('rememberMe', JSON.stringify({ email, password }));
-        } else {
-          localStorage.removeItem('rememberMe');
-        }
-      });
+  async login(email: string, password: string, rememberMe: boolean) {
+    const userCredential = await this.afAuth.signInWithEmailAndPassword(
+      email,
+      password,
+    );
+    if (!userCredential.user) {
+      return;
+    }
+    const uid = userCredential.user.uid;
+    this.isLoggedIn = true;
+    if (rememberMe) {
+      localStorage.setItem('rememberMe', JSON.stringify({ email, password }));
+    } else {
+      localStorage.removeItem('rememberMe');
+    }
+    localStorage.setItem('uid', uid);
   }
 
   logout() {
     this.isLoggedIn = false;
+    localStorage.removeItem('rememberMe');
+    localStorage.removeItem('User_info');
+    localStorage.removeItem('uid');
     this.afAuth.signOut();
   }
 }
