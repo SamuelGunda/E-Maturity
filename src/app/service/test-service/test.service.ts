@@ -7,9 +7,11 @@ import {
   Firestore,
   getDoc,
   getDocs,
+  setDoc,
 } from '@angular/fire/firestore';
 import { Question } from '../../model/question.model';
 import { Article } from '../../model/article.model';
+import { SavedTest } from '../../model/saved-test.model';
 
 @Injectable({
   providedIn: 'root',
@@ -110,5 +112,12 @@ export class TestService {
         return test;
       }),
     );
+  }
+  saveUserTest(uid: string, savedTest: SavedTest): void {
+    const dataCollection = collection(this.firestore, 'users');
+    const documentRef = doc(dataCollection, uid);
+    const savedTestsCollectionRef = collection(documentRef, 'savedTests');
+    const savedTestDocumentRef = doc(savedTestsCollectionRef);
+    setDoc(savedTestDocumentRef, savedTest);
   }
 }

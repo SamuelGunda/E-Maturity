@@ -8,6 +8,7 @@ import { TestPageComponent } from './test-page/test-page.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { UserAccountComponent } from './user-account/user-account.component';
 import { EducationMaterialsComponent } from './education-materials/education-materials.component';
+import { SavedTestsPageComponent } from './saved-tests-page/saved-tests-page.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'user-account', component: UserAccountComponent },
   { path: 'education-materials', component: EducationMaterialsComponent },
+  { path: 'saved-tests-page', component: SavedTestsPageComponent },
 ];
 
 @NgModule({

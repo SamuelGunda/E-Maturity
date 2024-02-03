@@ -7,10 +7,12 @@ import { Question } from '../model/question.model';
 import { ArticleQuestions } from '../model/article-questions.model';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalWindowComponent } from '../modal-window/modal-window.component';
+import { QuestionResult, SavedTest } from '../model/saved-test.model';
 
 export interface ModalData {
   score: number;
   total: number;
+  savedTest: SavedTest;
 }
 
 @Component({
@@ -50,9 +52,10 @@ export class TestPageComponent {
   }
 
   openDialog(): void {
-    this.checkAnswers();
+    const savedTest = this.checkAnswers();
+
     const dialogRef = this.dialog.open(ModalWindowComponent, {
-      data: { score: this.score, total: this.total },
+      data: { score: this.score, total: this.total, savedTest: savedTest },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
@@ -82,48 +85,64 @@ export class TestPageComponent {
     return articleWithQuestions;
   }
 
-  checkAnswers() {
+  checkAnswers(): SavedTest {
+    const savedTest: SavedTest = {} as SavedTest;
+    savedTest.id = this.year + '-' + this.subCat;
+    savedTest.questions = [];
     const testResults: any[] = [];
     for (const articleQuestion of this.articleWithQuestions || []) {
       for (const question of articleQuestion.questions) {
-        const questionResult: any = {
-          id: question.id,
+        const questionResult: QuestionResult = {
+          questionId: question.id,
+          text: question.text,
           isCorrect: false,
           correctAnswer: question.correctAnswer,
           userAnswer: question.userAnswer,
+          options: question.options,
         };
+        if (questionResult.options === undefined) {
+          questionResult.options = [];
+        }
+        if (
+          questionResult.userAnswer === undefined ||
+          questionResult.userAnswer === ''
+        ) {
+          questionResult.userAnswer = 'Nevyplnene';
+        }
         if (question.text === 'Zrušená otázka') {
-          console.log(`Question ${question.id} is cancelled.`);
+          // console.log(`Question ${question.id} is cancelled.`);
           questionResult.isCorrect = true;
         } else {
           if (question.correctAnswer instanceof Array) {
             for (const correctAnswer of question.correctAnswer) {
               if (question.userAnswer === correctAnswer) {
-                console.log(`Question ${question.id} is correct!`);
+                // console.log(`Question ${question.id} is correct!`);
                 questionResult.isCorrect = true;
                 break;
               }
             }
             if (!questionResult.isCorrect) {
-              console.log(
-                `Question ${question.id} is incorrect. Correct answer is ${question.correctAnswer}.`,
-              );
+              // console.log(
+              //   `Question ${question.id} is incorrect. Correct answer is ${question.correctAnswer}.`,
+              // );
             }
           } else {
             if (question.userAnswer === question.correctAnswer) {
-              console.log(`Question ${question.id} is correct!`);
+              // console.log(`Question ${question.id} is correct!`);
               questionResult.isCorrect = true;
             } else {
-              console.log(
-                `Question ${question.id} is incorrect. Correct answer is ${question.correctAnswer}.`,
-              );
+              // console.log(
+              //   `Question ${question.id} is incorrect. Correct answer is ${question.correctAnswer}.`,
+              // );
             }
           }
         }
+        savedTest.questions.push(questionResult);
         testResults.push(questionResult);
       }
     }
-    return this.calculateScore(testResults);
+    this.calculateScore(testResults);
+    return savedTest;
   }
 
   private calculateScore(testResults: any[]) {

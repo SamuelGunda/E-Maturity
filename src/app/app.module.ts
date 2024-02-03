@@ -23,6 +23,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ModalWindowComponent } from './modal-window/modal-window.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { SavedTestsPageComponent } from './saved-tests-page/saved-tests-page.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { MatButtonModule } from '@angular/material/button';
     NavbarComponent,
     routingComponent,
     ModalWindowComponent,
+    SavedTestsPageComponent,
   ],
   imports: [
     BrowserModule,
