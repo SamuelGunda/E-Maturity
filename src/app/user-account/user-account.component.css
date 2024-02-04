@@ -18,9 +18,7 @@
     display: flex;
     margin-left: auto;
     width: 2rem;
-    height: auto;
-    margin-top: -2rem;
-    cursor: pointer;
+    height: 2rem;
 }
 
 .modeSwitch img {
@@ -29,10 +27,27 @@
     height: 100%;
 }
 
-.container,
-.test_container,
-.question_container {
+.modeSwitchButton {
+    border: none;
+    padding: 0;
+    background: none;
+    cursor: pointer;
+}
+
+.container.light-mode,
+.test_container.light-mode,
+.question_container.light-mode {
     border-bottom: 1px solid #213d85;
+    padding-bottom: 15px;
+    margin-bottom: 0.6rem;
+}
+
+.container.dark-mode,
+.test_container.dark-mode,
+.question_container.dark-mode {
+    background-color: #3c3c3c;
+    color: white;
+    border-bottom: 1px solid #ffffff;
     padding-bottom: 15px;
     margin-bottom: 0.6rem;
 }

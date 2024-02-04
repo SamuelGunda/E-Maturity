@@ -3,10 +3,20 @@
   width: 100%;
 }
 
-#main_page_container {
+#main_page_container.light-mode {
   border-radius: 10px;
   display: flex;
   background-color: #FBFEF9;
+  border: 1px solid rgba(0, 0, 0, 0.163);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+}
+#main_page_container.dark-mode {
+  border-radius: 10px;
+  display: flex;
+  background-color: #3c3c3c;
   border: 1px solid rgba(0, 0, 0, 0.163);
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);

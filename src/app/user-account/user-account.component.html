@@ -1,18 +1,20 @@
-<div class="container">
+<div class="container" [class.light-mode]="!isDarkMode" [class.dark-mode]="isDarkMode">
     <div class="icon_selector"></div>
     <div class="cred_container">
-        <h1>{{userName}}</h1>
-        <p>Košická akádemia softverového vývoja</p>
+        <h1>{{ userName }}</h1>
+        <p>Košická akádemia softvérového vývoja</p>
     </div>
-    <div class="modeSwitch">
-        <img class="modeSwitch" src="assets/header_icons/Moon.png" alt="">
-    </div>
+    <div class="modeSwitch" (click)="toggleDarkMode()">
+        <button class="modeSwitchButton" [@toggleAnimation]="isDarkMode ? 'dark' : 'light'">
+          <img class="modeSwitch" src="assets/header_icons/{{ isDarkMode ? 'Sun.png' : 'Moon.png' }}" alt="mode switch">
+        </button>
+      </div>
 </div>
 
-<div class="test_container">
+<div class="test_container" [class.light-mode]="!isDarkMode" [class.dark-mode]="isDarkMode">
     <h2>História testov</h2>
 </div>
 
-<div class="question_container">
+<div class="question_container" [class.light-mode]="!isDarkMode" [class.dark-mode]="isDarkMode">
     <h2>Uložené otázky</h2>
 </div>
