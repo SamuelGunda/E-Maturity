@@ -45,7 +45,7 @@
 .container.dark-mode,
 .test_container.dark-mode,
 .question_container.dark-mode {
-    background-color: #3c3c3c;
+    background-color: #000000;
     color: white;
     border-bottom: 1px solid #ffffff;
     padding-bottom: 15px;
