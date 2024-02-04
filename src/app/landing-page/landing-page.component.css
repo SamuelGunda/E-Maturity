@@ -6,10 +6,10 @@
 #main_page_container {
   border-radius: 10px;
   display: flex;
-  background-color: #FBFEF9;
-  border: 1px solid rgba(0, 0, 0, 0.163);
+  background-color: var(--main-bg-color);
+  border: 1px solid var(--border-color);
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px var(--box-shadow-color);
   width: 100%;
   height: 100%;
 }
@@ -19,7 +19,7 @@
   justify-content: space-evenly;
   align-items: center;
   flex-direction: column;
-  box-shadow: inset 0 0 12px rgba(13, 13, 13, 0.5);
+  box-shadow: inset 0 0 12px var(--box-shadow-color);
   margin: 1.5rem;
   border-radius: 10px;
   width: 100%;
@@ -31,7 +31,7 @@
 
 .textare>h1 {
   font-weight: 500;
-  color: #3369f3;
+  color: var(--main-text-color);
 }
 
 /*Logo section*/
@@ -44,7 +44,6 @@
 }
 
 #logo {
-  border: 1px solid rgba(13, 13, 13, 0.5);
   margin-top: 1rem;
   height: 128px;
   width: 128px;
@@ -82,7 +81,7 @@
   width: 90%;
   height: 50%;
   border-radius: 10px;
-  background-color: white;
+  background-color: var(--main-bg-color);
   padding: 0.5rem;
   display: flex;
   justify-content: center;

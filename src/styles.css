@@ -1,6 +1,28 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
+:root {
+  --main-bg-color: #FBFEF9;
+  --border-color: #0000002a;
+  --box-shadow-color: #00000080;
+  --main-text-color: #3369f3;
+  --inset-box-shadow-color: rgba(13, 13, 13, 0.5);
+  --text-area-bg: #FBFEF9;
+
+  --test-border-color: #00000080;
+
+  --account-border-color: #6887f0;
+  --account-button-color: #3369f3;
+  --account-button-hover-color: #5987fd;
+
+  --main-blue-color: #3369f3;
+  --main-error-message: rgb(229, 34, 34);
+
+  --auth-bg-color: #5C89FF;
+
+  --button-white-bg: #FBFEF9;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -17,10 +39,12 @@ body {
   padding: 2%;
   background: linear-gradient(109.6deg, #06b7f9 11.2%, #194aec 91.1%);
 }
+
 html,
 body {
   height: 100%;
 }
+
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
