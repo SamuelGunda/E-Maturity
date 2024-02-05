@@ -8,6 +8,7 @@ import { ArticleQuestions } from '../model/article-questions.model';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalWindowComponent } from '../modal-window/modal-window.component';
 import { QuestionResult, SavedTest } from '../model/saved-test.model';
+import { AuthService } from '../auth.service';
 
 export interface ModalData {
   score: number;
@@ -20,7 +21,13 @@ export interface ModalData {
   templateUrl: './test-page.component.html',
   styleUrls: ['./test-page.component.css'],
 })
+
 export class TestPageComponent {
+isStarFilled = false;
+toggleStar() {
+  this.isStarFilled = !this.isStarFilled;
+}
+
   year: string | undefined;
   subCat: string | undefined;
   test: Test | undefined;
@@ -33,6 +40,7 @@ export class TestPageComponent {
     private router: Router,
     private testService: TestService,
     public dialog: MatDialog,
+    public authService: AuthService,
   ) {
     this.route.params.subscribe((params) => {
       if (params && params['subCat'] && params['year']) {
