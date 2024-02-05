@@ -1,14 +1,16 @@
-<h2 mat-dialog-title>Výsledok</h2>
-<div class="dialog-content">
-  <mat-dialog-content>
-    <p>V teste ste dosiahli:</p>
-    <p>{{ data.score }}/{{ data.total }} bodov, alebo</p>
-  </mat-dialog-content>
-  <mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">Zatvoriť</button>
+<div class="main_container" [class.light]="!isDarkMode" [class.dark]="isDarkMode">
+  <h2 mat-dialog-title [class.light]="!isDarkMode" [class.dark]="isDarkMode">Výsledok</h2>
+  <div class="dialog-content">
+    <mat-dialog-content [class.light]="!isDarkMode" [class.dark]="isDarkMode">
+      <p>V teste ste dosiahli:</p>
+      <p>{{ data.score }}/{{ data.total }} bodov, alebo</p>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button mat-button (click)="onNoClick()">Zatvoriť</button>
 
-    <button *ngIf="authService.isLoggedIn" mat-button (click)="onSave()">
-      Uložiť test
-    </button>
-  </mat-dialog-actions>
+      <button *ngIf="authService.isLoggedIn" mat-button (click)="onSave()">
+        Uložiť test
+      </button>
+    </mat-dialog-actions>
+  </div>
 </div>
