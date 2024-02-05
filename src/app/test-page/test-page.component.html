@@ -10,8 +10,8 @@
           <div class="question_content">
             <div class="queston_with_star">
               <p *ngIf="question.text" [innerHTML]="question.text" class="question_text"></p>
-              <p *ngIf="authService.isLoggedIn" (click)="toggleStar()" class="star"
-              [innerHTML]="isStarFilled ? '&#9733;' : '&#9734;'"></p>
+              <p *ngIf="authService.isLoggedIn" (click)="toggleStar(question)" class="star"
+                [innerHTML]="question.isStarFilled ? '&#9733;' : '&#9734;'"></p>
             </div>
             <div class="question_image_container">
               <img *ngIf="question.image" class="question_image" [src]="question.image" />
@@ -25,7 +25,7 @@
             else radioOptions
             ">
           <input type="text" class="input_text" placeholder="Sem napíšte svoju odpoveď"
-          [(ngModel)]="question.userAnswer" />
+            [(ngModel)]="question.userAnswer" />
         </ng-container>
         <ng-template #radioOptions>
           <div *ngFor="let option of question.options" class="radio_options">

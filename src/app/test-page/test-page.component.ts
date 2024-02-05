@@ -10,6 +10,7 @@ import { ModalWindowComponent } from '../modal-window/modal-window.component';
 import { QuestionResult, SavedTest } from '../model/saved-test.model';
 import { AuthService } from '../auth.service';
 import { DarkModeService } from '../dark-mode.service';
+import { UserAccountService } from '../user-acc.service';
 
 
 export interface ModalData {
@@ -27,8 +28,15 @@ export interface ModalData {
 export class TestPageComponent implements OnInit{
 isStarFilled = false;
 isDarkMode: boolean = false;
-toggleStar() {
-  this.isStarFilled = !this.isStarFilled;
+
+toggleStar(question: Question): void {
+  question.isStarFilled = !question.isStarFilled;
+
+  if (question.isStarFilled) {
+    this.userAccountService.saveQuestion(question);
+  } else {
+    this.userAccountService.removeQuestion(question);
+  }
 }
 
   year: string | undefined;
@@ -44,7 +52,8 @@ toggleStar() {
     private testService: TestService,
     public dialog: MatDialog,
     public authService: AuthService,
-    private darkModeService: DarkModeService
+    private darkModeService: DarkModeService,
+    private userAccountService: UserAccountService
   ) {
     this.route.params.subscribe((params) => {
       if (params && params['subCat'] && params['year']) {
@@ -62,7 +71,7 @@ toggleStar() {
       }
     });
   }
-
+  
   ngOnInit() {
     this.darkModeService.isDarkMode$.subscribe((isDarkMode) => {
       this.isDarkMode = isDarkMode;
@@ -95,6 +104,8 @@ toggleStar() {
       const articleQuestions: Question[] = [];
       this.test?.questions.forEach((question) => {
         if (question.articleId === parseInt(article.id)) {
+          // Add isStarFilled property to each question
+          question.isStarFilled = false;
           articleQuestions.push(question);
         }
       });
@@ -102,7 +113,6 @@ toggleStar() {
     });
     return articleWithQuestions;
   }
-
   checkAnswers(): SavedTest {
     const savedTest: SavedTest = {} as SavedTest;
     savedTest.id = this.year + '-' + this.subCat;

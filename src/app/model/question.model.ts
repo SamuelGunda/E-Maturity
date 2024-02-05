@@ -1,4 +1,6 @@
 export interface Question {
+  isStarFilled: boolean;
+  isSaved?: boolean;
   id: string;
   articleId: number;
   correctAnswer: string | string[];

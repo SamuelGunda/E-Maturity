@@ -3,11 +3,11 @@
 
 :root {
   --main-bg-color-light: #FBFEF9;
-  --main-bg-color-dark:  #202020;
+  --main-bg-color-dark: #202020;
   --border-color-light: #0000002a;
-  --border-color-dark:  #ffffff38;
+  --border-color-dark: #ffffff38;
   --box-shadow-color-light: #00000080;
-  --box-shadow-color-dark:  #ffffff45;
+  --box-shadow-color-dark: #ffffff45;
 
   --main-text-color-light: #3369f3;
   --main-text-color-dark:  #3369f3;
@@ -17,7 +17,7 @@
 
 
   --text-area-bg-light: #FBFEF9;
-  --text-area-bg-dark:  #1c1e21;
+  --text-area-bg-dark: #1c1e21;
 
 
   --test-border-color-light: #00000080;
@@ -25,13 +25,13 @@
 
 
   --account-border-color-light: #6887f0;
-  --account-border-color-dark:  #ffffff;
+  --account-border-color-dark: #ffffff;
 
-  
+
   --account-button-color-light: #3369f3;
   --account-button-color-dark: #3369f3;
 
-  
+
   --account-button-hover-color-light: #5987fd;
 
 

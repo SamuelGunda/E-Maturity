@@ -2,19 +2,22 @@
     height: calc(100% - 6rem);
     width: 100%;
 }
-.main_container{
+
+.main_container {
     border: 1px solid rgba(0, 0, 0, 0.163);
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     padding: 2rem;
     height: 100%;
-    
+
 }
-.main_container.light{
+
+.main_container.light {
     background-color: var(--main-bg-color-light);
     color: var(--main-text-color-light);
 }
-.main_container.dark{
+
+.main_container.dark {
     background-color: var(--main-bg-color-dark);
     color: var(--main-text-color-dark);
 }
