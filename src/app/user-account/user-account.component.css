@@ -4,9 +4,9 @@
     border: 1px solid rgba(0, 0, 0, 0.163);
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    background-color: #FBFEF9;
+    background-color: var(--main-bg-color);
     padding: 2rem;
-    color: #3369f3;
+    color: var(--main-text-color);
 }
 
 .container {

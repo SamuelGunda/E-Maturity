@@ -1,10 +1,10 @@
 :host(app-register-page) {
   height: calc(100% - 6rem);
   width: 100%;
-  border: 1px solid rgba(0, 0, 0, 0.163);
+  border: 1px solid var(--border-color);
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  background-color: #FBFEF9;
+  box-shadow: 0 0 10px var(--box-shadow-color);
+  background-color: var(--main-bg-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,12 +16,12 @@
   background-size: cover;
   background-position: 50% 50%;
   background-repeat: no-repeat;
-  background-color: #5C89FF;
+  background-color: var(--auth-bg-color);
   width: clamp(20rem, 25rem, 35rem);
   height: clamp(15rem, 33rem, 45rem);
   padding: 2rem;
   border-radius: 10px;
-  box-shadow: 3px 3px 10px 3px rgba(0, 0, 0, 0.5);
+  box-shadow: 3px 3px 10px 3px var(--box-shadow-color);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -60,7 +60,7 @@ button {
   font-size: 16px;
   color: black;
   border-radius: 10px;
-  background-color: rgb(255, 255, 255);
+  background-color: var(--button-white-bg);
   cursor: pointer;
   overflow: hidden;
   box-shadow: 1px 1px 5px rgb(114, 112, 112);
@@ -78,12 +78,12 @@ button:focus {
   display: flex;
   justify-content: center;
   font-size: 1.1rem;
-  color: rgb(229, 34, 34);
+  color: var(--main-error-message);
   font-weight: 800;
 }
 
 .error-border {
-  border: 2px solid red;
+  border: 2px solid var(--main-error-message);
 }
 
 .noborder {

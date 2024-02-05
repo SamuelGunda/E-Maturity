@@ -6,25 +6,25 @@
   display: flex;
   flex-flow: column;
   border-radius: 10px;
-  background-color: #fbfef9;
-  border: 1px solid rgba(0, 0, 0, 0.163);
+  background-color: var(--main-bg-color);
+  border: 1px solid var(--border-color);
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px var(--box-shadow-color);
   width: 100%;
   padding: 2% 20% 2% 20%;
 }
 
 .test {
-  border: 2px solid black;
+  border: 2px solid var(--test-border-color);
 }
 
 .article {
   display: flex;
   justify-content: center;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--test-border-color);
 }
 
-.article > img {
+.article>img {
   width: 31rem;
 }
 
@@ -92,7 +92,7 @@
 }
 
 @media (max-width: 525px) {
-  .article > img {
+  .article>img {
     width: 25rem;
   }
 
@@ -102,13 +102,13 @@
 }
 
 @media (max-width: 415px) {
-  .article > img {
+  .article>img {
     width: 20rem;
   }
 }
 
 @media (max-width: 375px) {
-  .article > img {
+  .article>img {
     width: 18rem;
   }
 }
