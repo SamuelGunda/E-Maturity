@@ -12,10 +12,20 @@ header {
     align-items: center;
     flex-wrap: nowrap;
     font-size: 1.5rem;
-    background-color: var(--main-bg-color);
-    border: 1px solid var(--border-color);
     border-radius: 10px;
-    box-shadow: 0 0 10px var(--box-shadow-color);
+    box-shadow: 0 0 10px var(--box-shadow-color-light);
+}
+
+header.light {
+    background-color: var(--main-bg-color-light);
+    border: 1px solid var(--border-color-light);
+    box-shadow: 0 0 10px var(--box-shadow-color-light);
+}
+
+header.dark {
+    background-color: var(--main-bg-color-dark);
+    border: 1px solid var(--border-color-dark);
+    box-shadow: 0 0 10px var(--box-shadow-color-dark);
 }
 
 
@@ -25,7 +35,7 @@ header {
     align-items: center;
     justify-content: center;
     font-weight: 500;
-    color: var(--main-text-color);
+    color: var(--main-text-color-light);
     letter-spacing: 1px;
     font-size: 2rem;
 }
@@ -45,7 +55,7 @@ header {
 
 button {
     padding: 0.5rem 0.6rem 0.5rem 0.6rem;
-    border: 0.1rem var(--account-border-color) solid;
+    border: 0.1rem var(--account-border-color-light) solid;
     border-radius: 10px;
     cursor: pointer;
     overflow: hidden;
@@ -57,7 +67,7 @@ button {
 
 button.register {
     position: relative;
-    background-color: var(--account-button-color);
+    background-color: var(--account-button-color-light);
     color: #fff;
 }
 
@@ -76,7 +86,7 @@ button.register:before {
     transform: translate(-50%, -50%);
     width: 0;
     height: 100%;
-    background-color: var(--account-button-hover-color);
+    background-color: var(--account-button-hover-color-light);
     transition: width 0.7s ease-in-out;
 }
 
@@ -98,7 +108,7 @@ button>p {
 }
 
 .burger_menu span {
-    background: var(--account-button-color);
+    background: var(--account-button-color-light);
     height: 5px;
     width: 38px;
     display: block;
@@ -109,7 +119,7 @@ button>p {
 
 .burger_menu span:after,
 .burger_menu span:before {
-    background: var(--account-button-color);
+    background: var(--account-button-color-light);
     height: 5px;
     width: 38px;
     display: block;

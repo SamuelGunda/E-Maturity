@@ -1,10 +1,10 @@
 :host(app-years-page) {
   height: calc(100% - 6rem);
   width: 100%;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--border-color-light);
   border-radius: 10px;
-  box-shadow: 0 0 10px var(--box-shadow-color);
-  background-color: var(--main-bg-color);
+  box-shadow: 0 0 10px var(--box-shadow-color-light);
+  background-color: var(--main-bg-color-light);
   display: flex;
   align-items: center;
   padding: 2rem;
@@ -19,7 +19,7 @@
 .main_page_container>a {
   width: 10rem;
   height: 2.5rem;
-  background-color: var(--main-blue-color);
+  background-color: var(--main-blue-color-light);
   display: flex;
   align-items: center;
   justify-content: center;

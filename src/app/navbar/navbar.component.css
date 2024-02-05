@@ -1,8 +1,15 @@
 nav {
-    background-color: var(--main-bg-color);
     border: 1px solid rgba(121, 120, 120, 0.541);
     border-radius: 10px;
     width: 20rem;
+}
+nav.light {
+    background-color: var(--main-bg-color-light);
+    color: var(--text-color-light);
+}
+nav.dark {
+    background-color: var(--main-bg-color-dark);
+    color: var(--text-color-dark);
 }
 
 ul {

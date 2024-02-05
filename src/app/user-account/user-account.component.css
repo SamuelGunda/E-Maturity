@@ -1,13 +1,24 @@
 :host(app-user-account) {
     height: calc(100% - 6rem);
     width: 100%;
+}
+.main_container{
     border: 1px solid rgba(0, 0, 0, 0.163);
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    background-color: var(--main-bg-color);
     padding: 2rem;
-    color: var(--main-text-color);
+    height: 100%;
+    
 }
+.main_container.light{
+    background-color: var(--main-bg-color-light);
+    color: var(--main-text-color-light);
+}
+.main_container.dark{
+    background-color: var(--main-bg-color-dark);
+    color: var(--main-text-color-dark);
+}
+
 
 .container {
     display: flex;
@@ -34,20 +45,10 @@
     cursor: pointer;
 }
 
-.container.light-mode,
-.test_container.light-mode,
-.question_container.light-mode {
+.container,
+.test_container,
+.question_container {
     border-bottom: 1px solid #213d85;
-    padding-bottom: 15px;
-    margin-bottom: 0.6rem;
-}
-
-.container.dark-mode,
-.test_container.dark-mode,
-.question_container.dark-mode {
-    background-color: #000000;
-    color: white;
-    border-bottom: 1px solid #ffffff;
     padding-bottom: 15px;
     margin-bottom: 0.6rem;
 }
