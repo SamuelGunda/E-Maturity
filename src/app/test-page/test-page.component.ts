@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TestService } from '../service/test-service/test.service';
 import { Test } from '../model/test.model';
@@ -9,6 +9,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ModalWindowComponent } from '../modal-window/modal-window.component';
 import { QuestionResult, SavedTest } from '../model/saved-test.model';
 import { AuthService } from '../auth.service';
+import { DarkModeService } from '../dark-mode.service';
+
 
 export interface ModalData {
   score: number;
@@ -22,8 +24,9 @@ export interface ModalData {
   styleUrls: ['./test-page.component.css'],
 })
 
-export class TestPageComponent {
+export class TestPageComponent implements OnInit{
 isStarFilled = false;
+isDarkMode: boolean = false;
 toggleStar() {
   this.isStarFilled = !this.isStarFilled;
 }
@@ -41,6 +44,7 @@ toggleStar() {
     private testService: TestService,
     public dialog: MatDialog,
     public authService: AuthService,
+    private darkModeService: DarkModeService
   ) {
     this.route.params.subscribe((params) => {
       if (params && params['subCat'] && params['year']) {
@@ -59,6 +63,12 @@ toggleStar() {
     });
   }
 
+  ngOnInit() {
+    this.darkModeService.isDarkMode$.subscribe((isDarkMode) => {
+      this.isDarkMode = isDarkMode;
+    });
+  }
+  
   openDialog(): void {
     const savedTest = this.checkAnswers();
 

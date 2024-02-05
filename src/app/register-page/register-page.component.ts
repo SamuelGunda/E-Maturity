@@ -1,24 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { DarkModeService } from '../dark-mode.service';
 
 @Component({
   selector: 'app-register-page',
   templateUrl: './register-page.component.html',
   styleUrls: ['./register-page.component.css'],
 })
-export class RegisterPageComponent {
+export class RegisterPageComponent implements OnInit {
   fname: any;
-  lname:any;
+  lname: any;
   email: any;
   password: any;
   passwordCheck: any;
-  errorMessage : string = '';
-  pswdError : boolean = false;
-  emailError : boolean = false;
+  errorMessage: string = '';
+  pswdError: boolean = false;
+  emailError: boolean = false;
+  isDarkMode: boolean = false;
 
-  constructor(private router: Router, private service: AuthService) {}
 
+  constructor(private router: Router, private service: AuthService, private darkModeService: DarkModeService) { }
+
+  ngOnInit() {
+    this.darkModeService.isDarkMode$.subscribe((isDarkMode) => {
+      this.isDarkMode = isDarkMode;
+    });
+  }
   isValidEmail(email: string): boolean {
     const emailRegex = /^[\w\-\.]+@([\w-]+\.)+[\w-]{2,}$/;
     return emailRegex.test(email);
@@ -32,7 +40,7 @@ export class RegisterPageComponent {
     if (this.password.length < 6) {
       this.errorMessage = `Heslo musí obsahovať aspoň 6 znakov`;
       this.pswdError = true;
-      this.emailError = false; 
+      this.emailError = false;
       return;
     } else {
       this.pswdError = false;
@@ -45,7 +53,7 @@ export class RegisterPageComponent {
     } else {
       this.pswdError = false;
     }
-  
+
     if (!this.isValidEmail(this.email)) {
       this.errorMessage = "Neplatná emailová adresa";
       this.emailError = true;
@@ -53,7 +61,7 @@ export class RegisterPageComponent {
     } else {
       this.emailError = false;
     }
-  
+
     this.service
       .register(this.email, this.password, this.fname, this.lname)
       .then((res) => {

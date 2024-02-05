@@ -1,3 +1,4 @@
+<div class="main_container" [class.light]="!isDarkMode" [class.dark]="isDarkMode">
 <div *ngIf="years" class="main_page_container">
   <a *ngFor="let year of years" [routerLink]="['/test-page', subCat, year]">
     {{ year }}
@@ -8,4 +9,5 @@
 </div>
 <div *ngIf="loading">
   <p>loading</p>
+</div>
 </div>

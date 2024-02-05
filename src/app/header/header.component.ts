@@ -9,7 +9,7 @@ import { DarkModeService } from '../dark-mode.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit{
+export class HeaderComponent implements OnInit {
   buttonExpanded: any = false;
   authService: AuthService;
   isDarkMode: boolean = false;

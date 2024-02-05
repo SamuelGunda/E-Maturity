@@ -1,13 +1,28 @@
 :host(app-years-page) {
   height: calc(100% - 6rem);
   width: 100%;
-  border: 1px solid var(--border-color-light);
+}
+
+.main_container {
   border-radius: 10px;
-  box-shadow: 0 0 10px var(--box-shadow-color-light);
-  background-color: var(--main-bg-color-light);
   display: flex;
   align-items: center;
   padding: 2rem;
+  height: 100%;
+}
+
+.main_container.light {
+  border: 1px solid var(--border-color-light);
+  box-shadow: 0 0 10px var(--box-shadow-color-light);
+  background-color: var(--main-bg-color-light);
+  color: var(--text-color-light);
+}
+
+.main_container.dark {
+  border: 1px solid var(--border-color-dark);
+  box-shadow: 0 0 10px var(--box-shadow-color-dark);
+  background-color: var(--main-bg-color-dark);
+  color: var(--text-color-dark);
 }
 
 .main_page_container {

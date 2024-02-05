@@ -1,4 +1,5 @@
-<div class="login_card">
+<div class="main_container" [class.light]="!isDarkMode" [class.dark]="isDarkMode">
+  <div class="login_card">
   <div class="top_section">
     <div class="input_group">
       <label for="meno">Prihlasovaci email</label>
@@ -33,4 +34,5 @@
     <button (click)="login()" type="submit" class="bot_button">Prihlásiť</button>
     <button routerLink="/register" class="bot_button">Zaregistrovať</button>
   </div>
+</div>
 </div>

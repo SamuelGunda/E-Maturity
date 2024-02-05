@@ -1,4 +1,4 @@
-<div *ngIf="articleWithQuestions" id="main_page_container">
+<div *ngIf="articleWithQuestions" id="main_page_container" [class.light]="!isDarkMode" [class.dark]="isDarkMode">
   <div *ngFor="let articleQuestion of articleWithQuestions" class="test">
     <div class="article">
       <img [src]="articleQuestion.article.url" />
@@ -11,7 +11,7 @@
             <div class="queston_with_star">
               <p *ngIf="question.text" [innerHTML]="question.text" class="question_text"></p>
               <p *ngIf="authService.isLoggedIn" (click)="toggleStar()" class="star"
-                [innerHTML]="isStarFilled ? '&#9733;' : '&#9734;'"></p>
+              [innerHTML]="isStarFilled ? '&#9733;' : '&#9734;'"></p>
             </div>
             <div class="question_image_container">
               <img *ngIf="question.image" class="question_image" [src]="question.image" />
@@ -23,9 +23,9 @@
         <ng-container *ngIf="
             isTextInput(question) && question.text !== 'Zrušená otázka';
             else radioOptions
-          ">
+            ">
           <input type="text" class="input_text" placeholder="Sem napíšte svoju odpoveď"
-            [(ngModel)]="question.userAnswer" />
+          [(ngModel)]="question.userAnswer" />
         </ng-container>
         <ng-template #radioOptions>
           <div *ngFor="let option of question.options" class="radio_options">
