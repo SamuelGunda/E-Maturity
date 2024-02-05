@@ -1,5 +1,5 @@
 <div *ngIf="articleWithQuestions" id="main_page_container" [class.light]="!isDarkMode" [class.dark]="isDarkMode">
-  <div *ngFor="let articleQuestion of articleWithQuestions" class="test">
+  <div *ngFor="let articleQuestion of articleWithQuestions" class="test" [class.light]="!isDarkMode" [class.dark]="isDarkMode">
     <div class="article">
       <img [src]="articleQuestion.article.url" />
     </div>

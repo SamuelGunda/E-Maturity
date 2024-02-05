@@ -103,11 +103,9 @@
 .main_card_textareas.dark {
   background-color: var(--text-area-bg-dark);
 }
-p.light {
-  color: var(--text-color-light)
-}
+
 p.dark {
-  color: var(--text-color-dark)
+  color: var(--main-text-color-dark)
 }
 
 #main_first_card {

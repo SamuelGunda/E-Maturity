@@ -25,6 +25,10 @@
   border: 2px solid var(--test-border-color-light);
   background-color: var(--main-bg-color-light);
 }
+.test.dark {
+  background-color: rgb(255, 229, 164);
+}
+
 
 .article {
   display: flex;

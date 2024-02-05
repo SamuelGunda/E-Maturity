@@ -10,7 +10,7 @@
   --box-shadow-color-dark:  #ffffff45;
 
   --main-text-color-light: #3369f3;
-  --main-text-color-dark:  #fff;
+  --main-text-color-dark:  #3369f3;
 
   --inset-box-shadow-color-light: rgba(13, 13, 13, 0.5);
   --inset-box-shadow-color-dark: rgba(113, 113, 113, 0.5);
@@ -35,7 +35,7 @@
   --account-button-hover-color-light: #5987fd;
 
 
-  --main-blue-color-light: #3369f3;
+  --main-blue-color: #3369f3;
 
   --main-error-message-light: rgb(229, 34, 34);
 
@@ -45,10 +45,6 @@
 
   --button-white-bg-light: #FBFEF9;
   --button-white-bg-dark:  #1d2a34;
-
-  --text-color-light:  black;
-  --text-color-dark:  white;
-
 }
 
 html {

@@ -34,7 +34,7 @@
 .main_page_container>a {
   width: 10rem;
   height: 2.5rem;
-  background-color: var(--main-blue-color-light);
+  background-color: var(--main-blue-color);
   display: flex;
   align-items: center;
   justify-content: center;

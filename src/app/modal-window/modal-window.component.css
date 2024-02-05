@@ -14,10 +14,10 @@
   background-color: var(--main-bg-color-dark);
 }
 mat-dialog-content.dark{
-  color: var(--text-color-dark);
+  color: var(--main-text-color-dark);
 }
 h2.dark{
-  color: var(--text-color-dark);
+  color: var(--main-text-color-dark);
 }
 
 .dialog-content {

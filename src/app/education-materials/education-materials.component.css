@@ -28,7 +28,7 @@
 }
 
 button {
-  background-color: var(--main-blue-color-light);
+  background-color: var(--main-blue-color);
   transition: width 0.7s ease-in-out;
   border-radius: 10px;
   box-shadow: 1px 1px 5px var(--box-shadow-color-light);

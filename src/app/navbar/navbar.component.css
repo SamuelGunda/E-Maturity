@@ -5,11 +5,10 @@ nav {
 }
 nav.light {
     background-color: var(--main-bg-color-light);
-    color: var(--text-color-light);
 }
 nav.dark {
     background-color: var(--main-bg-color-dark);
-    color: var(--text-color-dark);
+    color: var(--main-text-color-dark);
 }
 
 ul {
