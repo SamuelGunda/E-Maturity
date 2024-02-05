@@ -1,22 +1,27 @@
-<div class="main_container"  [class.light]="!isDarkMode" [class.dark]="isDarkMode">
-<div class="container">
-    <div class="icon_selector"></div>
-    <div class="cred_container">
-        <h1>{{ userName }}</h1>
-        <p>Košická akádemia softvérového vývoja</p>
+<div class="main_container" [class.light]="!isDarkMode" [class.dark]="isDarkMode">
+    <div class="container">
+        <div class="icon_selector"></div>
+        <div class="cred_container">
+            <h1>{{ userName }}</h1>
+            <p>Košická akádemia softvérového vývoja</p>
+        </div>
+        <div class="modeSwitch" (click)="toggleDarkMode()">
+            <button class="modeSwitchButton" [@toggleAnimation]="isDarkMode ? 'dark' : 'light'">
+                <img class="modeSwitch" src="assets/header_icons/{{ isDarkMode ? 'Sun.png' : 'Moon.png' }}"
+                    alt="mode switch">
+            </button>
+        </div>
     </div>
-    <div class="modeSwitch" (click)="toggleDarkMode()">
-        <button class="modeSwitchButton" [@toggleAnimation]="isDarkMode ? 'dark' : 'light'">
-          <img class="modeSwitch" src="assets/header_icons/{{ isDarkMode ? 'Sun.png' : 'Moon.png' }}" alt="mode switch">
-        </button>
-      </div>
-</div>
 
-<div class="test_container">
-    <h2>História testov</h2>
-</div>
+    <div class="test_container">
+        <h2>História testov</h2>
+    </div>
 
-<div class="question_container">
-    <h2>Uložené otázky</h2>
-</div>
+    <div class="question_container">
+        <h2>Uložené otázky</h2>
+        <div *ngFor="let savedQuestion of userAccountService.savedQuestions$ | async">
+            <p [innerHTML]="savedQuestion.text"></p>
+            <p [innerHTML]="savedQuestion.options"></p>
+        </div>
+    </div>
 </div>

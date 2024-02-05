@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { DarkModeService } from '../dark-mode.service';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { UserAccountService } from '../user-acc.service';
 
 
 @Component({
@@ -24,7 +25,7 @@ export class UserAccountComponent implements OnInit {
   userName: string = '';
   isDarkMode: boolean = false;
 
-  constructor(private authService: AuthService, private darkModeService: DarkModeService) { }
+  constructor(private authService: AuthService, private darkModeService: DarkModeService, public userAccountService: UserAccountService) { }
 
   ngOnInit() {
     this.authService.userData.subscribe(user => {

@@ -12,7 +12,6 @@
 }
 
 #main_page_container.light {
-
   background-color: var(--main-bg-color-light);
   border: 1px solid var(--border-color-light);
   box-shadow: 0 0 10px var(--box-shadow-color-light);
@@ -97,15 +96,19 @@
   justify-content: center;
   text-align: center;
 }
+
 .main_card_textareas.light {
   background-color: var(--text-area-bg-light);
 }
+
 .main_card_textareas.dark {
   background-color: var(--text-area-bg-dark);
 }
+
 p.light {
   color: var(--text-color-light)
 }
+
 p.dark {
   color: var(--text-color-dark)
 }
