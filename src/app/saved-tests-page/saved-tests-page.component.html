@@ -2,12 +2,12 @@
   <div class="inner-saved-test-page-container">
     <div (click)="revealDetails(savedTest)" [ngClass]="{
         'saved-test-container-open': selectedTest === savedTest,
-        'saved-test-container-closed': selectedTest !== savedTest
+        'saved-test-container-closed': selectedTest !== savedTest 
       }" *ngFor="let savedTest of savedTests" [class.selected]="selectedTest === savedTest">
       <p class="test-name">{{ savedTest.testName }}</p>
 
       <div class="test-questions-container" *ngIf="selectedTest === savedTest">
-        <div class="question-content" *ngFor="let question of selectedTest.questions">
+        <div class="question-content" *ngFor="let question of selectedTest.questions" [class.light]="!isDarkMode" [class.dark]="isDarkMode">
           <div class="question-container">
             <p class="question_number" [innerHTML]="question.questionId"></p>
             <p class="text-container" [innerHTML]="question.text"></p>

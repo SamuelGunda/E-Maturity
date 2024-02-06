@@ -7,7 +7,6 @@
   border-radius: 10px;
   display: flex;
   flex-flow: column;
-  background-color: #FBFEF9;
   border: 1px solid rgba(0, 0, 0, 0.163);
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -16,10 +15,12 @@
 }
 
 .saved-test-page-container.light {
+  border: 1px solid rgba(0, 0, 0, 0.163);
   background-color: var(--main-bg-color-light);
 }
 
 .saved-test-page-container.dark {
+  border: 1px solid rgba(255, 255, 255, 0.163);
   background-color: var(--main-bg-color-dark);
   color: var(--main-text-color-dark);
 }
@@ -89,12 +90,13 @@
 
 .saved-test-container-closed:hover.light {
   background-color: var(--main-bg-color-light);
-
 }
 
 .saved-test-container-closed:hover.dark {
   background-color: var(--main-bg-color-dark);
-
+}
+.question-content.dark {
+  border: 1px solid rgba(255, 255, 255, 0.288);
 }
 
 .test-questions-container {

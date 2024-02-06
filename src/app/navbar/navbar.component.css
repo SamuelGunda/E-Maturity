@@ -3,9 +3,11 @@ nav {
     border-radius: 10px;
     width: 20rem;
 }
+
 nav.light {
     background-color: var(--main-bg-color-light);
 }
+
 nav.dark {
     background-color: var(--main-bg-color-dark);
     color: var(--main-text-color-dark);
@@ -42,11 +44,19 @@ li,
     display: block;
 }
 
-li:hover,
-li:focus,
-ul.expandable_ul:hover,
-ul.expandable_ul:focus {
+li:hover.light,
+li:focus.light,
+ul.expandable_ul:hover.light,
+ul.expandable_ul:focus.light {
     background-color: #497bfa;
+    cursor: pointer;
+}
+
+li:hover.dark,
+ul.expandable_ul:hover.dark,
+ul.expandable_ul:focus.dark,
+li:focus.dark {
+    background-color: #8eabf6;
     cursor: pointer;
 }
 
