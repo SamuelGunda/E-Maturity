@@ -3,6 +3,7 @@ import { AuthService } from '../auth.service';
 import { NavigationEnd, Router } from '@angular/router';
 import { DarkModeService } from '../dark-mode.service';
 import { TestPageComponent } from '../test-page/test-page.component';
+import {TimerService} from "../service/timer-service/timer.service";
 
 
 @Component({
@@ -18,11 +19,14 @@ export class HeaderComponent implements OnInit {
   timerIsOn: boolean = false;
   timeLeft: number = 0;
 
-  constructor(authService: AuthService, private el: ElementRef, private router: Router, private darkModeService: DarkModeService, testPage: TestPageComponent) {
+  constructor(authService: AuthService,
+              private el: ElementRef,
+              private router: Router,
+              private darkModeService: DarkModeService,
+              testPage: TestPageComponent,
+              private timerService: TimerService) {
     this.authService = authService;
-
     this.testPage = testPage;
-
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.closeNavbar();
@@ -34,13 +38,10 @@ export class HeaderComponent implements OnInit {
     this.darkModeService.isDarkMode$.subscribe((isDarkMode) => {
       this.isDarkMode = isDarkMode;
     });
-    this.testPage.timerIsOn$.subscribe((timerIsOn) => {
-      this.timerIsOn = timerIsOn;
-    });
-    this.testPage.timeLeft$.subscribe((timeLeft) => {
-      this.timeLeft = timeLeft;
-    });
+    this.timerService.getTimerIsOn().subscribe(isOn => this.timerIsOn = isOn);
+    this.timerService.getTimeLeft().subscribe(time => this.timeLeft = time);
   }
+
   private closeNavbar(): void {
     const navbar = document.getElementById('navbar') as HTMLElement;
     navbar.style.display = 'none';
