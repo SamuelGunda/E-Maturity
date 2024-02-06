@@ -9,11 +9,13 @@
   width: 100%;
   padding: 2% 20% 2% 20%;
 }
+
 #main_page_container.light {
   background-color: var(--main-bg-color-light);
   border: 1px solid var(--border-color-light);
   box-shadow: 0 0 10px var(--box-shadow-color-light);
 }
+
 #main_page_container.dark {
   background-color: var(--main-bg-color-dark);
   border: 1px solid var(--border-color-dark);
@@ -24,8 +26,9 @@
   border: 2px solid var(--test-border-color-light);
   background-color: var(--main-bg-color-light);
 }
+
 .test.dark {
-  background-color: rgb(255, 229, 164);
+  background-color: #CCCCCC;
 }
 
 .article {

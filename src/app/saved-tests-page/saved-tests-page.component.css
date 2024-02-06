@@ -7,15 +7,18 @@
   border-radius: 10px;
   display: flex;
   flex-flow: column;
+  background-color: #FBFEF9;
   border: 1px solid rgba(0, 0, 0, 0.163);
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   min-height: 100%;
   width: 100%;
 }
+
 .saved-test-page-container.light {
   background-color: var(--main-bg-color-light);
 }
+
 .saved-test-page-container.dark {
   background-color: var(--main-bg-color-dark);
   color: var(--main-text-color-dark);
@@ -44,13 +47,14 @@
   padding: 0 1rem 0 1rem;
 }
 
-.saved-test-container-closed > .test-name {
+.saved-test-container-closed>.test-name {
   transition: all 0.8s ease;
   font-size: 1.5rem;
   font-weight: bold;
   padding: 1rem 0 0;
 }
-.saved-test-container-closed > .test-name.dark {
+
+.saved-test-container-closed>.test-name.dark {
   color: var(--main-text-color-dark);
 }
 
@@ -68,23 +72,26 @@
   padding: 0 1rem 0 1rem;
 }
 
-.saved-test-container-open > .test-name {
+.saved-test-container-open>.test-name {
   transition: all 0.8s ease;
   font-size: 1rem;
   font-weight: bold;
   padding: 1rem 0 0;
 }
-.saved-test-container-open > .test-name.dark {
+
+.saved-test-container-open>.test-name.dark {
   color: var(--main-text-color-dark);
 }
 
 .saved-test-container-closed:hover {
   width: calc(100% - 2rem);
 }
+
 .saved-test-container-closed:hover.light {
   background-color: var(--main-bg-color-light);
 
 }
+
 .saved-test-container-closed:hover.dark {
   background-color: var(--main-bg-color-dark);
 
