@@ -6,22 +6,32 @@
   display: flex;
   flex-flow: column;
   border-radius: 10px;
-  background-color: #fbfef9;
-  border: 1px solid rgba(0, 0, 0, 0.163);
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   width: 100%;
   padding: 2% 20% 2% 20%;
 }
+#main_page_container.light {
+  background-color: var(--main-bg-color-light);
+  border: 1px solid var(--border-color-light);
+  box-shadow: 0 0 10px var(--box-shadow-color-light);
+}
+#main_page_container.dark {
+  background-color: var(--main-bg-color-dark);
+  border: 1px solid var(--border-color-dark);
+  box-shadow: 0 0 10px var(--box-shadow-color-dark);
+}
 
 .test {
-  border: 2px solid black;
+  border: 2px solid var(--test-border-color-light);
+  background-color: var(--main-bg-color-light);
+}
+.test.dark {
+  background-color: rgb(255, 229, 164);
 }
 
 .article {
   display: flex;
   justify-content: center;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--test-border-color-light);
 }
 
 .article > img {
@@ -75,8 +85,6 @@
   display: flex;
   width: 100%;
   flex-direction: column;
-  margin-bottom: 1rem;
-  margin-bottom: 1rem;
 }
 
 .question_image_container {
@@ -91,46 +99,39 @@
   max-width: 31rem;
 }
 
-.submit-button {
+.queston_with_star {
   display: flex;
-  justify-content: center;
-  border-left: 2px solid black;
-  border-right: 2px solid black;
-  border-bottom: 2px solid black;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.submit-button > button {
-  margin: 1rem;
-  padding: 0.5rem 0.8rem 0.5rem 0.8rem;
-  border: 0.1rem rgb(104, 135, 240) solid;
-  font: inherit;
-  font-size: 16px;
-  color: black;
-  border-radius: 10px;
-  background-color: rgb(255, 255, 255);
+.star {
+  font-size: 170%;
+  color: rgb(220, 220, 81);
+  font-weight: 600;
   cursor: pointer;
-  overflow: hidden;
-  box-shadow: 1px 1px 5px rgb(114, 112, 112);
-  font-weight: 400;
+  margin-left: 1.3rem;
+  transition: all 0.5s ease-in-out;
 }
 
-@media (max-width: 525px) {
+.star:focus,
+.star:hover {
+  transform: scale(130%);
+}
+
+@media (max-width: 830px) {
   .article > img {
     width: 25rem;
   }
+}
 
-  .question {
+@media (max-width: 670px) {
+  #main_page_container {
     padding: 0;
   }
 }
 
-@media (max-width: 415px) {
-  .article > img {
-    width: 20rem;
-  }
-}
-
-@media (max-width: 375px) {
+@media (max-width: 405px) {
   .article > img {
     width: 18rem;
   }

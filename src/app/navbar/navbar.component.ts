@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {Router} from "@angular/router";
+import { DarkModeService } from '../dark-mode.service';
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -7,10 +9,16 @@ import {Router} from "@angular/router";
 })
 export class NavbarComponent {
 displayed : boolean = false;
+isDarkMode: boolean = false;
 
-constructor(private router: Router) {
+
+constructor(private router: Router, private darkModeService: DarkModeService) {
 }
-
+ngOnInit() {
+  this.darkModeService.isDarkMode$.subscribe((isDarkMode) => {
+    this.isDarkMode = isDarkMode;
+  });
+}
 changeSubCat() {
   this.displayed = !this.displayed;
 }

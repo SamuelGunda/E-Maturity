@@ -1,12 +1,23 @@
-:host {
+.main_container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  background: #fff;
   padding: 8px 16px 16px;
   width: 25rem;
   height: 15rem;
+}
+.main_container.light {
+  background-color: var(--main-bg-color-light);
+}
+.main_container.dark {
+  background-color: var(--main-bg-color-dark);
+}
+mat-dialog-content.dark{
+  color: var(--main-text-color-dark);
+}
+h2.dark{
+  color: var(--main-text-color-dark);
 }
 
 .dialog-content {

@@ -1,6 +1,52 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
+:root {
+  --main-bg-color-light: #FBFEF9;
+  --main-bg-color-dark: #202020;
+  --border-color-light: #0000002a;
+  --border-color-dark: #ffffff38;
+  --box-shadow-color-light: #00000080;
+  --box-shadow-color-dark: #ffffff45;
+
+  --main-text-color-light: #3369f3;
+  --main-text-color-dark:  #3369f3;
+
+  --inset-box-shadow-color-light: rgba(13, 13, 13, 0.5);
+  --inset-box-shadow-color-dark: rgba(113, 113, 113, 0.5);
+
+
+  --text-area-bg-light: #FBFEF9;
+  --text-area-bg-dark: #1c1e21;
+
+
+  --test-border-color-light: #00000080;
+  --test-border-color-dark: #ffffff80;
+
+
+  --account-border-color-light: #6887f0;
+  --account-border-color-dark: #ffffff;
+
+
+  --account-button-color-light: #3369f3;
+  --account-button-color-dark: #3369f3;
+
+
+  --account-button-hover-color-light: #5987fd;
+
+
+  --main-blue-color: #3369f3;
+
+  --main-error-message-light: rgb(229, 34, 34);
+
+
+  --auth-bg-color-light: #5C89FF;
+
+
+  --button-white-bg-light: #FBFEF9;
+  --button-white-bg-dark:  #1d2a34;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -17,10 +63,12 @@ body {
   padding: 2%;
   background: linear-gradient(109.6deg, #06b7f9 11.2%, #194aec 91.1%);
 }
+
 html,
 body {
   height: 100%;
 }
+
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;

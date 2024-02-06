@@ -1,19 +1,37 @@
 :host(app-education-materials) {
   height: calc(100% - 6rem);
   width: 100%;
-  border: 1px solid rgba(0, 0, 0, 0.163);
+}
+
+.main_container {
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  background-color: #FBFEF9;
   display: flex;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+    display: flex;
   justify-content: space-around;
 }
 
+.main_container.light {
+
+  background-color: var(--main-bg-color-light);
+  border: 1px solid var(--border-color-light);
+  box-shadow: 0 0 10px var(--box-shadow-color-light);
+
+}
+
+.main_container.dark {
+  background-color: var(--main-bg-color-dark);
+  border: 1px solid var(--border-color-dark);
+  box-shadow: 0 0 10px var(--inset-box-shadow-color-dark);
+}
+
 button {
-  background-color: #3369F3;
+  background-color: var(--main-blue-color);
   transition: width 0.7s ease-in-out;
   border-radius: 10px;
-  box-shadow: 1px 1px 5px rgb(114, 112, 112);
+  box-shadow: 1px 1px 5px var(--box-shadow-color-light);
   margin-top: 2rem;
   color: white;
   width: 18rem;
@@ -41,7 +59,7 @@ button:before {
   transform: translate(-50%, -50%);
   width: 0;
   height: 100%;
-  background-color: #497bfa;
+  background-color: var(--account-button-hover-color-light);
   transition: width 0.7s ease-in-out;
 }
 
@@ -54,7 +72,7 @@ button:hover:before {
 }
 
 .mat>a {
-  
+
   font-size: 1rem;
 }
 
@@ -73,15 +91,12 @@ img {
 }
 
 a {
-  color: #007BFF;
+  color: var(--main-text-color-light);
   text-decoration: none;
   font-weight: bold;
 }
 
-a:hover {
-  color: #5ea2ec;
-}
-
-a:active {
-  color: #036bd4;
+a:hover,
+a:focus {
+  color: var(--account-button-hover-color-light);
 }

@@ -1,5 +1,15 @@
-<div *ngIf="articleWithQuestions" id="main_page_container">
-  <div *ngFor="let articleQuestion of articleWithQuestions" class="test">
+<div
+  *ngIf="articleWithQuestions"
+  id="main_page_container"
+  [class.light]="!isDarkMode"
+  [class.dark]="isDarkMode"
+>
+  <div
+    *ngFor="let articleQuestion of articleWithQuestions"
+    class="test"
+    [class.light]="!isDarkMode"
+    [class.dark]="isDarkMode"
+  >
     <div class="article">
       <img [src]="articleQuestion.article.url" />
     </div>
@@ -8,11 +18,19 @@
         <div class="test_question">
           <p class="question_id">{{ question.id }}.</p>
           <div class="question_content">
-            <p
-              *ngIf="question.text"
-              [innerHTML]="question.text"
-              class="question_text"
-            ></p>
+            <div class="queston_with_star">
+              <p
+                *ngIf="question.text"
+                [innerHTML]="question.text"
+                class="question_text"
+              ></p>
+              <p
+                *ngIf="authService.isLoggedIn"
+                (click)="toggleStar(question)"
+                class="star"
+                [innerHTML]="question.isStarFilled ? '&#9733;' : '&#9734;'"
+              ></p>
+            </div>
             <div class="question_image_container">
               <img
                 *ngIf="question.image"
@@ -52,7 +70,5 @@
       </div>
     </div>
   </div>
-  <div class="submit-button">
-    <button mat-raised-button (click)="openDialog()">Vyhodnotenie</button>
-  </div>
+  <button mat-raised-button (click)="openDialog()">Vyhodnotenie</button>
 </div>

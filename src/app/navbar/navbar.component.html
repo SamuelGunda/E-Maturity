@@ -1,7 +1,7 @@
-<nav id="nav_menu" class="navmenu">
+<nav id="nav_menu" class="navmenu" [class.light]="!isDarkMode" [class.dark]="isDarkMode">
   <ul class="main">
     <li class="menuitem" id="nav_menu_home" routerLink="/">
-      <img src="assets/icons/home.png" alt="" width="28px" height="28px" />Domov
+      <img src="assets/icons/home.png" alt="" width="28px" height="28px"/>Domov
     </li>
     <ul id="nav_menu_tests" class="expandable_ul" (click)="changeSubCat()">
       <img

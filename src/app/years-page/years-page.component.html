@@ -1,22 +1,17 @@
-<div class="years-page-container">
-  <div class="years-page-inner-container">
-    <div class="subcat-title-container">
-      <h1>Maturitné testy: {{ titleBySubcat(subCat) }}</h1>
-    </div>
-    <div class="year-buttons-container" *ngIf="years">
-      <a
-        class="year-buttons"
-        *ngFor="let year of years"
-        [routerLink]="['/test-page', subCat, year]"
-      >
-        {{ year }}
-      </a>
-    </div>
-    <div *ngIf="(!years || years.length == 0) && !loading">
-      <p>K dispozícii niesu žiadne testy</p>
-    </div>
-    <div *ngIf="loading">
-      <p>Načítavanie...</p>
-    </div>
+<div
+  class="main_container"
+  [class.light]="!isDarkMode"
+  [class.dark]="isDarkMode"
+>
+  <div *ngIf="years" class="main_page_container">
+    <a *ngFor="let year of years" [routerLink]="['/test-page', subCat, year]">
+      {{ year }}
+    </a>
+  </div>
+  <div *ngIf="(!years || years.length == 0) && !loading">
+    <p>no years</p>
+  </div>
+  <div *ngIf="loading">
+    <p>loading</p>
   </div>
 </div>

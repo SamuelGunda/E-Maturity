@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TestService } from '../service/test-service/test.service';
 import { Test } from '../model/test.model';
@@ -8,6 +8,10 @@ import { ArticleQuestions } from '../model/article-questions.model';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalWindowComponent } from '../modal-window/modal-window.component';
 import { QuestionResult, SavedTest } from '../model/saved-test.model';
+import { AuthService } from '../auth.service';
+import { DarkModeService } from '../dark-mode.service';
+import { UserAccountService } from '../user-acc.service';
+
 
 export interface ModalData {
   score: number;
@@ -20,7 +24,21 @@ export interface ModalData {
   templateUrl: './test-page.component.html',
   styleUrls: ['./test-page.component.css'],
 })
-export class TestPageComponent {
+
+export class TestPageComponent implements OnInit{
+isStarFilled = false;
+isDarkMode: boolean = false;
+
+toggleStar(question: Question): void {
+  question.isStarFilled = !question.isStarFilled;
+
+  if (question.isStarFilled) {
+    this.userAccountService.saveQuestion(question);
+  } else {
+    this.userAccountService.removeQuestion(question);
+  }
+}
+
   year: string | undefined;
   subCat: string | undefined;
   test: Test | undefined;
@@ -33,6 +51,9 @@ export class TestPageComponent {
     private router: Router,
     private testService: TestService,
     public dialog: MatDialog,
+    public authService: AuthService,
+    private darkModeService: DarkModeService,
+    private userAccountService: UserAccountService
   ) {
     this.route.params.subscribe((params) => {
       if (params && params['subCat'] && params['year']) {
@@ -50,7 +71,13 @@ export class TestPageComponent {
       }
     });
   }
-
+  
+  ngOnInit() {
+    this.darkModeService.isDarkMode$.subscribe((isDarkMode) => {
+      this.isDarkMode = isDarkMode;
+    });
+  }
+  
   openDialog(): void {
     const savedTest = this.checkAnswers();
 
@@ -77,6 +104,8 @@ export class TestPageComponent {
       const articleQuestions: Question[] = [];
       this.test?.questions.forEach((question) => {
         if (question.articleId === parseInt(article.id)) {
+          // Add isStarFilled property to each question
+          question.isStarFilled = false;
           articleQuestions.push(question);
         }
       });
@@ -84,7 +113,6 @@ export class TestPageComponent {
     });
     return articleWithQuestions;
   }
-
   checkAnswers(): SavedTest {
     const savedTest: SavedTest = {} as SavedTest;
     if (this.subCat === 'sk') {
