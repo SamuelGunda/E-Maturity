@@ -5,8 +5,11 @@ export interface QuestionResult {
   userAnswer: string;
   isCorrect: boolean;
   options?: string[];
+  image?: string;
 }
 export interface SavedTest {
   id: string;
+  testName: string;
+  finishedAt: Date;
   questions: QuestionResult[];
 }

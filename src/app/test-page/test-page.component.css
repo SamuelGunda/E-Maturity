@@ -91,6 +91,29 @@
   max-width: 31rem;
 }
 
+.submit-button {
+  display: flex;
+  justify-content: center;
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+}
+
+.submit-button > button {
+  margin: 1rem;
+  padding: 0.5rem 0.8rem 0.5rem 0.8rem;
+  border: 0.1rem rgb(104, 135, 240) solid;
+  font: inherit;
+  font-size: 16px;
+  color: black;
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 1px 1px 5px rgb(114, 112, 112);
+  font-weight: 400;
+}
+
 @media (max-width: 525px) {
   .article > img {
     width: 25rem;

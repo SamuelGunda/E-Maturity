@@ -1,12 +1,15 @@
 <h2 mat-dialog-title>Výsledok</h2>
 <div class="dialog-content">
   <mat-dialog-content>
-    <p>V teste ste dosiahli:</p>
-    <p>{{ data.score }}/{{ data.total }} bodov, alebo</p>
+    <div class="dialog-text">
+      <p>V teste ste dosiahli:</p>
+      <p class="percentage-output">
+        {{ (data.score / data.total) * 100 | number: "1.2-2" }}%
+      </p>
+    </div>
   </mat-dialog-content>
   <mat-dialog-actions>
     <button mat-button (click)="onNoClick()">Zatvoriť</button>
-
     <button *ngIf="authService.isLoggedIn" mat-button (click)="onSave()">
       Uložiť test
     </button>

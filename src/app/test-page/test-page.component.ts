@@ -87,19 +87,39 @@ export class TestPageComponent {
 
   checkAnswers(): SavedTest {
     const savedTest: SavedTest = {} as SavedTest;
+    if (this.subCat === 'sk') {
+      savedTest.testName = 'Slovenčina ' + this.year + ' ';
+    } else if (this.subCat === 'aj') {
+      savedTest.testName = 'Angličtina ' + this.year + ' ';
+    } else if (this.subCat === 'mat') {
+      savedTest.testName = 'Matematika ' + this.year + ' ';
+    }
     savedTest.id = this.year + '-' + this.subCat;
     savedTest.questions = [];
+    savedTest.finishedAt = new Date();
     const testResults: any[] = [];
     for (const articleQuestion of this.articleWithQuestions || []) {
       for (const question of articleQuestion.questions) {
         const questionResult: QuestionResult = {
           questionId: question.id,
           text: question.text,
+          image: question.image,
           isCorrect: false,
           correctAnswer: question.correctAnswer,
           userAnswer: question.userAnswer,
           options: question.options,
         };
+        if (questionResult.image === undefined) {
+          questionResult.image = '';
+        }
+        if (questionResult.correctAnswer === undefined) {
+          questionResult.correctAnswer = 'Zrušena otazka';
+        }
+        if (questionResult.text === undefined && questionResult.image === '') {
+          questionResult.text = 'Zrušená otázka';
+        } else if (questionResult.text === undefined) {
+          questionResult.text = 'Riešenie otázky s obrázkom';
+        }
         if (questionResult.options === undefined) {
           questionResult.options = [];
         }

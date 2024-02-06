@@ -4,7 +4,7 @@
   border: 1px solid rgba(0, 0, 0, 0.163);
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  background-color: #FBFEF9;
+  background-color: #fbfef9;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,7 +16,7 @@
   background-size: cover;
   background-position: 50% 50%;
   background-repeat: no-repeat;
-  background-color: #5C89FF;
+  background-color: #5c89ff;
   width: clamp(20rem, 25rem, 35rem);
   height: clamp(15rem, 33rem, 45rem);
   padding: 2rem;
@@ -65,14 +65,12 @@ button {
   overflow: hidden;
   box-shadow: 1px 1px 5px rgb(114, 112, 112);
   font-weight: 400;
-
 }
 
 button:hover,
 button:focus {
   background-color: #c6d4ff;
 }
-
 
 .mid_section {
   display: flex;
@@ -92,6 +90,13 @@ button:focus {
 
 .user_cred {
   display: flex;
+  flex-direction: column;
+}
+
+.user_firstcred,
+.user_secondcred {
+  display: flex;
+  flex-direction: column;
 }
 
 @media (max-width: 375px) {
@@ -103,8 +108,8 @@ button:focus {
     flex-direction: column;
   }
 
-  .user_firstcred>input,
-  .user_secondcred>input {
+  .user_firstcred > input,
+  .user_secondcred > input {
     width: 100%;
   }
 }
