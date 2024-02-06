@@ -1,21 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SavedTestService } from '../service/saved-test-service/saved-test.service';
 import { SavedTest } from '../model/saved-test.model';
+import { DarkModeService } from '../dark-mode.service';
 
 @Component({
   selector: 'app-saved-tests-page',
   templateUrl: './saved-tests-page.component.html',
   styleUrls: ['./saved-tests-page.component.css'],
 })
-export class SavedTestsPageComponent {
+export class SavedTestsPageComponent implements OnInit {
   savedTests: SavedTest[] = [];
   selectedTest: SavedTest | null = null;
+  isDarkMode: boolean = false;
 
-  constructor(private savedTestService: SavedTestService) {}
+  constructor(private savedTestService: SavedTestService, private darkModeService: DarkModeService) {}
   ngOnInit(): void {
     if (localStorage.getItem('uid')) {
       this.loadSavedTests();
     }
+    this.darkModeService.isDarkMode$.subscribe((isDarkMode) => {
+      this.isDarkMode = isDarkMode;
+    });
   }
 
   async loadSavedTests() {

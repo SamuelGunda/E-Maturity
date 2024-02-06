@@ -12,7 +12,6 @@ import { AuthService } from '../auth.service';
 import { DarkModeService } from '../dark-mode.service';
 import { UserAccountService } from '../user-acc.service';
 
-
 export interface ModalData {
   score: number;
   total: number;
@@ -25,19 +24,19 @@ export interface ModalData {
   styleUrls: ['./test-page.component.css'],
 })
 
-export class TestPageComponent implements OnInit{
-isStarFilled = false;
-isDarkMode: boolean = false;
+export class TestPageComponent implements OnInit {
+  isStarFilled = false;
+  isDarkMode: boolean = false;
 
-toggleStar(question: Question): void {
-  question.isStarFilled = !question.isStarFilled;
+  toggleStar(question: Question): void {
+    question.isStarFilled = !question.isStarFilled;
 
-  if (question.isStarFilled) {
-    this.userAccountService.saveQuestion(question);
-  } else {
-    this.userAccountService.removeQuestion(question);
+    if (question.isStarFilled) {
+      this.userAccountService.saveQuestion(question);
+    } else {
+      this.userAccountService.removeQuestion(question);
+    }
   }
-}
 
   year: string | undefined;
   subCat: string | undefined;
@@ -64,6 +63,7 @@ toggleStar(question: Question): void {
             this.test = test;
             this.articleWithQuestions = this.getTestObject();
             console.log(this.articleWithQuestions);
+            this.fillStarsForSavedQuestions();
           });
         });
       } else {
@@ -71,11 +71,27 @@ toggleStar(question: Question): void {
       }
     });
   }
-  
+
   ngOnInit() {
     this.darkModeService.isDarkMode$.subscribe((isDarkMode) => {
       this.isDarkMode = isDarkMode;
     });
+  }
+
+  private fillStarsForSavedQuestions() {
+    if (this.articleWithQuestions) {
+      for (const articleQuestion of this.articleWithQuestions) {
+        for (const question of articleQuestion.questions) {
+          const savedQuestion = this.userAccountService
+            .savedQuestionsSubject.value.find(
+              (savedQ) => savedQ.id === question.id
+            );
+          if (savedQuestion) {
+            question.isStarFilled = true;
+          }
+        }
+      }
+    }
   }
   
   openDialog(): void {
