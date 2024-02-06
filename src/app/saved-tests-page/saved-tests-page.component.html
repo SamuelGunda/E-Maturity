@@ -17,7 +17,7 @@
           *ngFor="let question of selectedTest.questions"
         >
           <div class="question-container">
-            <p class="question-number">Otázka {{ question.questionId }}</p>
+            <p class="question_number" [innerHTML]="question.questionId"></p>
             <p class="text-container" [innerHTML]="question.text"></p>
             <div class="question_image_container">
               <img
