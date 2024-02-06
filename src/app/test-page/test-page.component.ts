@@ -2,7 +2,7 @@ import { Component, signal, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TestService } from '../service/test-service/test.service';
 import { Test } from '../model/test.model';
-import { Observable, of, switchMap } from 'rxjs';
+import { BehaviorSubject, Observable, of, switchMap, timer } from 'rxjs';
 import { Question } from '../model/question.model';
 import { ArticleQuestions } from '../model/article-questions.model';
 import { MatDialog } from '@angular/material/dialog';
@@ -11,6 +11,7 @@ import { QuestionResult, SavedTest } from '../model/saved-test.model';
 import { AuthService } from '../auth.service';
 import { DarkModeService } from '../dark-mode.service';
 import { UserAccountService } from '../user-acc.service';
+
 
 export interface ModalData {
   score: number;
@@ -25,8 +26,19 @@ export interface ModalData {
 })
 
 export class TestPageComponent implements OnInit {
+  
+  timeLeft: number = 60;
+  timeLeftBehavior: BehaviorSubject<number> = new BehaviorSubject(this.timeLeft);
+  timeLeft$ = this.timeLeftBehavior.asObservable();
+  interval: any;
+  subscribeTimer: any;
+  timerIsOn: boolean = false;
+  timerIsOnBehavior: BehaviorSubject<boolean> = new BehaviorSubject(this.timerIsOn);
+  timerIsOn$ = this.timerIsOnBehavior.asObservable();
   isStarFilled = false;
   isDarkMode: boolean = false;
+
+  
 
   toggleStar(question: Question): void {
     question.isStarFilled = !question.isStarFilled;
@@ -61,6 +73,9 @@ export class TestPageComponent implements OnInit {
         this.fetchTest().then((testData) => {
           testData.subscribe((test) => {
             this.test = test;
+            this.startTimer();
+            this.timerIsOn = true;
+            this.timerIsOnBehavior.next(this.timerIsOn);
             this.articleWithQuestions = this.getTestObject();
             console.log(this.articleWithQuestions);
             this.fillStarsForSavedQuestions();
@@ -71,6 +86,35 @@ export class TestPageComponent implements OnInit {
       }
     });
   }
+
+  oberserableTimer() {
+    const source = timer(1000, 2000);
+    const abc = source.subscribe(val => {
+      console.log(val, '-');
+      this.subscribeTimer = this.timeLeft - val;
+    });
+  }
+
+  startTimer() {
+    console.log("startTimer");
+    this.timerIsOn = true;
+    this.timerIsOnBehavior.next(this.timerIsOn);
+    this.interval = setInterval(() => {
+      if(this.timeLeft > 0) {
+        this.timeLeft--;
+        this.timeLeftBehavior.next(this.timeLeft);
+        console.log(this.timeLeft);
+        console.log(this.timerIsOn);
+      } else {
+        this.timeLeft = 60;
+      }
+    },1000)
+  }
+
+  pauseTimer() {
+    clearInterval(this.interval);
+  }
+
 
   ngOnInit() {
     this.darkModeService.isDarkMode$.subscribe((isDarkMode) => {
