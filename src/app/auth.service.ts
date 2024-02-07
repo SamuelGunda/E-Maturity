@@ -60,6 +60,7 @@ export class AuthService {
     localStorage.removeItem('rememberMe');
     localStorage.removeItem('User_info');
     localStorage.removeItem('uid');
+    localStorage.removeItem('savedQuestions');
     this.afAuth.signOut();
   }
 }

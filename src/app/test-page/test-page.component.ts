@@ -89,6 +89,9 @@ export class TestPageComponent implements OnInit {
           if (savedQuestion) {
             question.isStarFilled = true;
           }
+          else{
+            question.isStarFilled = false;
+          }
         }
       }
     }
