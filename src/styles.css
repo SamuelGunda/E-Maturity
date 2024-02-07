@@ -3,12 +3,12 @@
 
 :root {
   --main-bg-color-light: #FBFEF9;
-  --main-bg-color-dark: #464646;
+  --main-bg-color-dark: #333333;
   --border-color-light: #0000002a;
   --box-shadow-color-light: #00000080;
 
   --main-text-color-light: #3369f3;
-  --main-text-color-dark:  #3369f3;
+  --main-text-color-dark:  #FBFEF9;
 
   --inset-box-shadow-color-light: rgba(13, 13, 13, 0.5);
   --inset-box-shadow-color-dark: rgba(113, 113, 113, 0.5);
@@ -27,7 +27,6 @@
 
 
   --account-button-color-light: #3369f3;
-  --account-button-color-dark: #3369f3;
 
 
   --account-button-hover-color-light: #5987fd;

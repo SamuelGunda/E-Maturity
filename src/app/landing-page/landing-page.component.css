@@ -43,6 +43,11 @@
   color: var(--main-text-color-light);
 }
 
+
+.textare>h1.dark {
+  color: var(--main-text-color-dark);
+}
+
 /*Logo section*/
 
 #main_logo {
@@ -100,12 +105,15 @@
   background-color: var(--text-area-bg-light);
 }
 
+
 .main_card_textareas.dark {
   background-color: var(--text-area-bg-dark);
+  color: (--main-text-color-dark);
+  
 }
 
 p.dark {
-  color: var(--main-text-color-dark)
+  color: var(--main-text-color-dark);
 }
 
 #main_first_card {
