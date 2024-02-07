@@ -3,11 +3,9 @@
 
 :root {
   --main-bg-color-light: #FBFEF9;
-  --main-bg-color-dark: #202020;
+  --main-bg-color-dark: #464646;
   --border-color-light: #0000002a;
-  --border-color-dark: #ffffff38;
   --box-shadow-color-light: #00000080;
-  --box-shadow-color-dark: #ffffff45;
 
   --main-text-color-light: #3369f3;
   --main-text-color-dark:  #3369f3;

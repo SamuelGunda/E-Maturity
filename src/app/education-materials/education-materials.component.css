@@ -9,21 +9,20 @@
   border-radius: 10px;
   width: 100%;
   height: 100%;
-    display: flex;
+  display: flex;
   justify-content: space-around;
+  border: 1px solid var(--border-color-light);
 }
 
 .main_container.light {
 
   background-color: var(--main-bg-color-light);
-  border: 1px solid var(--border-color-light);
   box-shadow: 0 0 10px var(--box-shadow-color-light);
 
 }
 
 .main_container.dark {
   background-color: var(--main-bg-color-dark);
-  border: 1px solid var(--border-color-dark);
   box-shadow: 0 0 10px var(--inset-box-shadow-color-dark);
 }
 

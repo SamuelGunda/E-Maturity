@@ -13,19 +13,16 @@ header {
     flex-wrap: nowrap;
     font-size: 1.5rem;
     border-radius: 10px;
-    box-shadow: 0 0 10px var(--box-shadow-color-light);
+    border: 1px solid var(--border-color-light);
 }
 
 header.light {
     background-color: var(--main-bg-color-light);
-    border: 1px solid var(--border-color-light);
     box-shadow: 0 0 10px var(--box-shadow-color-light);
 }
 
 header.dark {
     background-color: var(--main-bg-color-dark);
-    border: 1px solid var(--border-color-dark);
-    box-shadow: 0 0 10px var(--box-shadow-color-dark);
 }
 
 

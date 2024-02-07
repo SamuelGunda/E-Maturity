@@ -7,19 +7,18 @@
   flex-flow: column;
   border-radius: 10px;
   width: 100%;
-  padding: 2% 20% 2% 20%;
+  padding: 2% 20% 2% 20%; 
+  box-shadow: 0 0 10px var(--box-shadow-color-light);
+  border: 1px solid var(--border-color-light);
+
 }
 
 #main_page_container.light {
   background-color: var(--main-bg-color-light);
-  border: 1px solid var(--border-color-light);
-  box-shadow: 0 0 10px var(--box-shadow-color-light);
 }
 
 #main_page_container.dark {
   background-color: var(--main-bg-color-dark);
-  border: 1px solid var(--border-color-dark);
-  box-shadow: 0 0 10px var(--box-shadow-color-dark);
 }
 
 .test {
