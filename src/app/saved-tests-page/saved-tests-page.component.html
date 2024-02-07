@@ -1,45 +1,76 @@
-<div class="saved-test-page-container" [class.light]="!isDarkMode" [class.dark]="isDarkMode">
+<div
+  class="saved-test-page-container"
+  [class.light]="!isDarkMode"
+  [class.dark]="isDarkMode"
+>
   <div class="inner-saved-test-page-container">
-    <div (click)="revealDetails(savedTest)" [ngClass]="{
+    <div
+      (click)="revealDetails(savedTest)"
+      [ngClass]="{
         'saved-test-container-open': selectedTest === savedTest,
-        'saved-test-container-closed': selectedTest !== savedTest 
-      }" *ngFor="let savedTest of savedTests" [class.selected]="selectedTest === savedTest">
+        'saved-test-container-closed': selectedTest !== savedTest
+      }"
+      *ngFor="let savedTest of savedTests"
+      [class.selected]="selectedTest === savedTest"
+    >
       <p class="test-name">{{ savedTest.testName }}</p>
 
       <div class="test-questions-container" *ngIf="selectedTest === savedTest">
-        <div class="question-content" *ngFor="let question of selectedTest.questions" [class.light]="!isDarkMode" [class.dark]="isDarkMode">
+        <div
+          class="question-content"
+          *ngFor="let question of selectedTest.questions"
+          [class.light]="!isDarkMode"
+          [class.dark]="isDarkMode"
+        >
           <div class="question-container">
             <p class="question_number" [innerHTML]="question.questionId"></p>
             <p class="text-container" [innerHTML]="question.text"></p>
             <div class="question_image_container">
-              <img *ngIf="question.image" class="question_image" [src]="question.image" />
+              <img
+                *ngIf="question.image"
+                class="question_image"
+                [src]="question.image"
+              />
             </div>
           </div>
           <div class="answers-container">
             <ng-container *ngIf="question.options?.length !== 0">
               <div *ngFor="let options of question.options">
-                <div class="answer-container" [ngClass]="{
+                <div
+                  class="answer-container"
+                  [ngClass]="{
                     'wrong-answer':
                       question.userAnswer === options &&
                       question.correctAnswer !== question.userAnswer,
                     'correct-answer': question.correctAnswer === options
-                  }">
+                  }"
+                >
                   <p [innerHTML]="options"></p>
                 </div>
               </div>
             </ng-container>
             <ng-container *ngIf="question.options?.length === 0">
               <div class="input-answer-container">
-                <span>Správna odpoveď:
-                  <p class="correct-answer" [innerHTML]="question.correctAnswer"></p>
+                <span
+                  >Správna odpoveď:
+                  <p
+                    class="correct-answer"
+                    [innerHTML]="question.correctAnswer"
+                  ></p>
                 </span>
-                <span>Vaša odpoveď:
-                  <p [ngClass]="{
+                <span
+                  >Vaša odpoveď:
+                  <p
+                    [ngClass]="{
                       'correct-answer':
-                        question.correctAnswer === question.userAnswer,
+                        question.correctAnswer === question.userAnswer ||
+                        question.correctAnswer.includes(question.userAnswer),
                       'wrong-answer':
+                        !question.correctAnswer.includes(question.userAnswer) &&
                         question.userAnswer !== question.correctAnswer
-                    }" [innerHTML]="question.userAnswer"></p>
+                    }"
+                    [innerHTML]="question.userAnswer"
+                  ></p>
                 </span>
               </div>
             </ng-container>

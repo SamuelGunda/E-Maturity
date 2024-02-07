@@ -13,7 +13,10 @@ export class SavedTestsPageComponent implements OnInit {
   selectedTest: SavedTest | null = null;
   isDarkMode: boolean = false;
 
-  constructor(private savedTestService: SavedTestService, private darkModeService: DarkModeService) {}
+  constructor(
+    private savedTestService: SavedTestService,
+    private darkModeService: DarkModeService,
+  ) {}
   ngOnInit(): void {
     if (localStorage.getItem('uid')) {
       this.loadSavedTests();
