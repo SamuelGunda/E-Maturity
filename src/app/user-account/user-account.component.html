@@ -1,14 +1,16 @@
 <div class="main_container" [class.light]="!isDarkMode" [class.dark]="isDarkMode">
     <div class="container">
-        <div class="icon_selector"></div>
-        <div class="cred_container">
-            <h1>{{ userName }}</h1>
-            <p>Košická akádemia softvérového vývoja</p>
+        <div class="user_cred">
+            <div class="icon_selector"></div>
+            <div class="cred_container">
+                <h1>{{ userName }}</h1>
+                <p>Košická akádemia softvérového vývoja</p>
+            </div>
         </div>
         <div class="modeSwitch" (click)="toggleDarkMode()">
             <button class="modeSwitchButton" [@toggleAnimation]="isDarkMode ? 'dark' : 'light'">
-                <img class="modeSwitch" src="assets/header_icons/{{ isDarkMode ? 'Sun.png' : 'Moon.png' }}"
-                    alt="mode switch">
+                <img class="modeSwitch" width="48px" height="48px"
+                    src="assets/header_icons/{{ isDarkMode ? 'Sun.png' : 'Moon.png' }}" alt="mode switch">
             </button>
         </div>
     </div>

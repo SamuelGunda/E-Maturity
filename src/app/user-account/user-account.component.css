@@ -26,26 +26,21 @@
 .container {
     display: flex;
     gap: 0.8rem;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.modeSwitch {
-    display: flex;
-    margin-left: auto;
-    width: 2rem;
-    height: 2rem;
-}
-
-.modeSwitch img {
-    object-fit: contain;
-    width: 100%;
-    height: 100%;
-}
 
 .modeSwitchButton {
     border: none;
     padding: 0;
     background: none;
     cursor: pointer;
+}
+
+.user_cred {
+    display: flex;
+    gap: 0.5rem;
 }
 
 .container,
