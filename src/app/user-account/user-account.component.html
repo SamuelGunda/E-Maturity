@@ -17,11 +17,16 @@
         <h2>História testov</h2>
     </div>
 
+    <h2>Uložené otázky</h2>
     <div class="question_container">
-        <h2>Uložené otázky</h2>
-        <div *ngFor="let savedQuestion of userAccountService.savedQuestions$ | async">
-            <p [innerHTML]="savedQuestion.text"></p>
-            <p [innerHTML]="savedQuestion.options"></p>
+        <div *ngFor="let savedQuestion of userAccountService.savedQuestions$ | async" class="question">
+            <div class="question_options">
+                <p [innerHTML]="savedQuestion.text" class="question_text"></p>
+                <p *ngFor="let option of savedQuestion.options" [innerHTML]="option" class="option"></p>
+            </div>
+            <div>
+                <p class="remove_question" (click)="removeQuestion(savedQuestion)">&#10005;</p>
+            </div>
         </div>
     </div>
 </div>

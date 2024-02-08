@@ -3,6 +3,7 @@ import { AuthService } from '../auth.service';
 import { DarkModeService } from '../dark-mode.service';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { UserAccountService } from '../user-acc.service';
+import { Question } from '../model/question.model';
 
 
 @Component({
@@ -41,5 +42,9 @@ export class UserAccountComponent implements OnInit {
 
   toggleDarkMode() {
     this.darkModeService.toggleDarkMode();
+  }
+
+  removeQuestion(question: Question) {
+    this.userAccountService.removeQuestion(question);
   }
 }

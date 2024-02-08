@@ -80,8 +80,8 @@ export class TestPageComponent implements OnInit {
 
   private fillStarsForSavedQuestions() {
     if (this.articleWithQuestions) {
-      for (const articleQuestion of this.articleWithQuestions) {
-        for (const question of articleQuestion.questions) {
+      for (let articleQuestion of this.articleWithQuestions) {
+        for (let question of articleQuestion.questions) {
           const savedQuestion = this.userAccountService
             .savedQuestionsSubject.value.find(
               (savedQ) => savedQ.id === question.id
