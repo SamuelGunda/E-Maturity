@@ -36,6 +36,11 @@
     padding: 0;
     background: none;
     cursor: pointer;
+    z-index: 1;
+}
+
+.modeSwitchButton>img {
+    z-index: 1;
 }
 
 .user_cred {
