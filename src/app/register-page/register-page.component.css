@@ -102,7 +102,6 @@ button:focus {
 
 .user_cred {
   display: flex;
-  flex-direction: column;
 }
 
 .user_firstcred,
@@ -120,8 +119,8 @@ button:focus {
     flex-direction: column;
   }
 
-  .user_firstcred > input,
-  .user_secondcred > input {
+  .user_firstcred>input,
+  .user_secondcred>input {
     width: 100%;
   }
 }

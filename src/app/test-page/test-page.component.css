@@ -98,7 +98,7 @@
 }
 
 .question_image {
-  max-width: 31rem;
+  max-width: 20rem;
 }
 
 .queston_with_star {
@@ -121,19 +121,31 @@
 }
 
 @media (max-width: 830px) {
-  .article>img {
+
+  .article>img,
+  .question_image {
     width: 25rem;
   }
 }
 
 @media (max-width: 670px) {
+
   #main_page_container {
     padding: 0;
+  }
+
+  .test {
+    border-radius: 10px;
   }
 }
 
 @media (max-width: 405px) {
+
   .article>img {
     width: 18rem;
+  }
+
+  .question_image {
+    width: 13rem;
   }
 }
