@@ -47,4 +47,8 @@ export class UserAccountComponent implements OnInit {
   removeQuestion(question: Question) {
     this.userAccountService.removeQuestion(question);
   }
+
+  getSelectedIcon(): string {
+    return this.userAccountService.getSelectedIcon();
+  }
 }

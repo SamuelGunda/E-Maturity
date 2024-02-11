@@ -39,4 +39,17 @@ export class UserAccountService {
       this.savedQuestionsSubject.next(savedQuestions);
     }
   }
+
+  selectedIcon!: string;
+
+  getAvailableIcons(): string[] {
+    return [
+      'assets/user_icons/boy.png',
+      'assets/user_icons/girl.png',
+      'assets/user_icons/default.png'
+    ];
+  }
+  getSelectedIcon(): string {
+    return this.selectedIcon || 'assets/user_icons/default.png';
+  }
 }
