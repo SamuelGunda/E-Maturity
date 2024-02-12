@@ -1,0 +1,22 @@
+.icon_selector {
+    position: relative;
+    cursor: pointer;
+}
+
+img {
+    width: 5rem;
+    height: 5rem;
+}
+
+.icon_selection>div>img:hover {
+    opacity: 70%;
+}
+
+.icon_selection {
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid var(--main-text-color-light);
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+}

@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
   headerfixes: boolean = false;
 
   @HostListener('window:scroll', []) onScroll() {
-    if (window.scrollY > 100) {
+    if (window.scrollY > 7 * 16) {
       this.headerfixes = true;
     } else {
       this.headerfixes = false;
@@ -34,6 +34,9 @@ export class AppComponent implements OnInit {
         .catch(() => {
           console.log('Error logging in from rememberMe');
         });
+    }
+    if (!this.authService.isLoggedIn) {
+      localStorage.removeItem('uid');
     }
   }
 }

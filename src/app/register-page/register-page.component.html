@@ -1,71 +1,28 @@
-<div
-  class="main_container"
-  [class.light]="!isDarkMode"
-  [class.dark]="isDarkMode"
->
+<div class="main_container" [class.light]="!isDarkMode" [class.dark]="isDarkMode">
   <div class="register_card">
     <div class="top_section">
       <div class="input_group">
         <div class="user_cred">
           <div class="user_firstcred">
             <label for="krstne">Krstné meno</label>
-            <input
-              [(ngModel)]="fname"
-              type="text"
-              name="krstne"
-              id="krstne"
-              class="register_cred"
-              required
-              placeholder="Zadaj svoje krstné meno"
-            />
+            <input [(ngModel)]="fname" type="text" name="krstne" id="krstne" class="register_cred" required
+              placeholder="Ján" />
           </div>
           <div class="user_secondcred">
             <label for="priezv">Priezvisko</label>
-            <input
-              [(ngModel)]="lname"
-              type="text"
-              name="priezv"
-              id="priezv"
-              class="register_cred"
-              required
-              placeholder="Zadaj svoje priezvisko"
-            />
+            <input [(ngModel)]="lname" type="text" name="priezv" id="priezv" class="register_cred" required
+              placeholder="Novák" />
           </div>
         </div>
         <label for="email">E-mail</label>
-        <input
-          [(ngModel)]="email"
-          type="email"
-          name="email"
-          id="email"
-          class="register_cred"
-          required
-          [ngClass]="{ 'error-border': emailError, noborder: !emailError }"
-          placeholder="Zadaj svoj e-mail"
-        />
-
+        <input [(ngModel)]="email" type="email" name="email" id="email" class="register_cred" required
+          [ngClass]="{ 'error-border': emailError, noborder: !emailError }" placeholder="jan.novak@email.com" />
         <label for="heslo">Heslo</label>
-        <input
-          [(ngModel)]="password"
-          type="password"
-          name="heslo"
-          id="heslo"
-          class="register_cred"
-          required
-          [ngClass]="{ 'error-border': pswdError, noborder: !pswdError }"
-          placeholder="Zadaj svoje heslo"
-        />
+        <input [(ngModel)]="password" type="password" name="heslo" id="heslo" class="register_cred" required
+          [ngClass]="{ 'error-border': pswdError, noborder: !pswdError }" placeholder="Zadajte heslo" />
         <label for="hesloKontrola">Kontrola hesla</label>
-        <input
-          [(ngModel)]="passwordCheck"
-          type="password"
-          name="hesloKontrola"
-          id="hesloKontrola"
-          class="register_cred"
-          [ngClass]="{ 'error-border': pswdError, noborder: !pswdError }"
-          required
-          placeholder="Zopakujte svoje heslo"
-        />
+        <input [(ngModel)]="passwordCheck" type="password" name="hesloKontrola" id="hesloKontrola" class="register_cred"
+          [ngClass]="{ 'error-border': pswdError, noborder: !pswdError }" required placeholder="Zopakujte heslo" />
       </div>
     </div>
     <div class="mid_section">
