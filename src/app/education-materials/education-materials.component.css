@@ -113,3 +113,10 @@ a:focus {
     align-items: center;
   }
 }
+
+@media (max-width: 400px) {
+  button {
+    width: 14rem;
+    font-size: 1.5rem;
+  }
+}
