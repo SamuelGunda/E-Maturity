@@ -25,6 +25,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { SavedTestsPageComponent } from './saved-tests-page/saved-tests-page.component';
 import { IconSelectorComponent } from './icon-selector/icon-selector.component';
+import { TestPageComponent } from './test-page/test-page.component';
 
 @NgModule({
   declarations: [
