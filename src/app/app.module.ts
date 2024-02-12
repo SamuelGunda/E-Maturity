@@ -26,6 +26,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { SavedTestsPageComponent } from './saved-tests-page/saved-tests-page.component';
 import { IconSelectorComponent } from './icon-selector/icon-selector.component';
 import { TestPageComponent } from './test-page/test-page.component';
+import { TimeFormatPipe } from './service/timer-service/time-format.pipe';
+
 
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ import { TestPageComponent } from './test-page/test-page.component';
     ModalWindowComponent,
     SavedTestsPageComponent,
     IconSelectorComponent,
+    TimeFormatPipe
   ],
   imports: [
     BrowserModule,

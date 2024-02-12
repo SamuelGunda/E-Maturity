@@ -36,7 +36,7 @@ export class TestPageComponent implements OnInit {
   articleWithQuestions: ArticleQuestions[] | undefined;
   score: number = 0;
   total: number = 0;
-  timeLeft: number = 0;
+  timeLeft: number = 90 * 60;
   timerIsOn: boolean = false;
 
   ngOnInit() {
@@ -92,7 +92,7 @@ export class TestPageComponent implements OnInit {
       if(this.timeLeft > 0) {
         this.timeLeft--;
       } else {
-        this.timeLeft = 60;
+        this.timeLeft = 90 * 60;
       }
       this.timerService.setTimeLeft(this.timeLeft);
     },1000)
@@ -101,8 +101,6 @@ export class TestPageComponent implements OnInit {
   pauseTimer() {
     clearInterval(this.interval);
   }
-
-
 
 
   private fillStarsForSavedQuestions() {
