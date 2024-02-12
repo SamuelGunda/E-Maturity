@@ -13,6 +13,7 @@ export class SavedTestsPageComponent implements OnInit {
   savedTests: SavedTest[] = [];
   selectedTest: SavedTest | null = null;
   isDarkMode: boolean = false;
+  isLoading: boolean = true;
   authService: AuthService;
 
   constructor(
@@ -23,9 +24,11 @@ export class SavedTestsPageComponent implements OnInit {
     this.authService = authService;
   }
   ngOnInit(): void {
-    if (localStorage.getItem('uid')) {
+    setTimeout(() => {
       this.loadSavedTests();
-    }
+      this.isLoading = false;
+    }, 1500);
+
     this.darkModeService.isDarkMode$.subscribe((isDarkMode) => {
       this.isDarkMode = isDarkMode;
     });

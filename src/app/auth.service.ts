@@ -21,7 +21,7 @@ export class AuthService {
     const provider = new GoogleAuthProvider();
     signInWithPopup(getAuth(), provider);
   }
-  
+
   googleSignOut() {
     signOut(getAuth());
   }

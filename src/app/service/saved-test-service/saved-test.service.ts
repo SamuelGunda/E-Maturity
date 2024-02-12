@@ -68,10 +68,26 @@ export class SavedTestService {
       const sortedTests = savedTests.sort(
         (a, b) => b.finishedAt.getTime() - a.finishedAt.getTime(),
       );
+      this.removeOldestTest(uid);
       return sortedTests;
     } catch (error) {
       console.error('Error getting saved tests:', error);
       throw error;
     }
+  }
+
+  removeOldestTest(uid: string) {
+    const userCollectionRef = collection(this.firestore, 'users');
+    const documentByUidRef = doc(userCollectionRef, uid);
+    const savedTestsCollectionRef = collection(documentByUidRef, 'savedTests');
+    getDocs(savedTestsCollectionRef).then((querySnapshot) => {
+      if (querySnapshot.size > 10) {
+        const sortedTests = querySnapshot.docs.sort(
+          (a, b) => a.data()['finishedAt'] - b.data()['finishedAt'],
+        );
+        const oldestTest = sortedTests[0];
+        console.log('Oldest test:', oldestTest);
+      }
+    });
   }
 }
