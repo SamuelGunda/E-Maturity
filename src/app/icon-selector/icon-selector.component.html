@@ -1,0 +1,9 @@
+<div class="icon_selector" (click)="toggleIconSelection()">
+    <img [src]="getSelectedIcon()" alt="Vyber ikonku" />
+
+    <div *ngIf="showIconSelection" class="icon_selection">
+        <div *ngFor="let icon of availableIcons">
+            <img [src]="icon" alt="Icon" (click)="selectIcon(icon)" [class.selected]="icon === userServ.selectedIcon" />
+        </div>
+    </div>
+</div>

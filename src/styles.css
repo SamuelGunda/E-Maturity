@@ -3,14 +3,12 @@
 
 :root {
   --main-bg-color-light: #FBFEF9;
-  --main-bg-color-dark: #202020;
+  --main-bg-color-dark: #333333;
   --border-color-light: #0000002a;
-  --border-color-dark: #ffffff38;
   --box-shadow-color-light: #00000080;
-  --box-shadow-color-dark: #ffffff45;
 
   --main-text-color-light: #3369f3;
-  --main-text-color-dark:  #3369f3;
+  --main-text-color-dark: #FBFEF9;
 
   --inset-box-shadow-color-light: rgba(13, 13, 13, 0.5);
   --inset-box-shadow-color-dark: rgba(113, 113, 113, 0.5);
@@ -29,7 +27,6 @@
 
 
   --account-button-color-light: #3369f3;
-  --account-button-color-dark: #3369f3;
 
 
   --account-button-hover-color-light: #5987fd;
@@ -44,7 +41,7 @@
 
 
   --button-white-bg-light: #FBFEF9;
-  --button-white-bg-dark:  #1d2a34;
+  --button-white-bg-dark: #1d2a34;
 }
 
 html {
@@ -61,7 +58,7 @@ html {
 body {
   height: 100%;
   padding: 2%;
-  background: linear-gradient(109.6deg, #06b7f9 11.2%, #194aec 91.1%);
+  background: linear-gradient(100deg, #06b7f9 11.2%, #194aec 91.1%);
 }
 
 html,

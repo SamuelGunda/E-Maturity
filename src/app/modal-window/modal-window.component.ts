@@ -4,13 +4,14 @@ import { ModalData } from '../test-page/test-page.component';
 import { TestService } from '../service/test-service/test.service';
 import { AuthService } from '../auth.service';
 import { DarkModeService } from '../dark-mode.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-modal-window',
   templateUrl: './modal-window.component.html',
   styleUrls: ['./modal-window.component.css'],
 })
-export class ModalWindowComponent implements OnInit{
+export class ModalWindowComponent implements OnInit {
   authService: AuthService;
   isDarkMode: boolean = false;
 
@@ -19,7 +20,8 @@ export class ModalWindowComponent implements OnInit{
     @Inject(MAT_DIALOG_DATA) public data: ModalData,
     private testService: TestService,
     authService: AuthService,
-    private darkModeService: DarkModeService
+    private darkModeService: DarkModeService,
+    private router: Router,
   ) {
     this.authService = authService;
   }
@@ -27,8 +29,17 @@ export class ModalWindowComponent implements OnInit{
     this.darkModeService.isDarkMode$.subscribe((isDarkMode) => {
       this.isDarkMode = isDarkMode;
     });
+    this.onSave();
   }
-  onNoClick(): void {
+  onClick(): void {
+    this.dialogRef.close();
+  }
+
+  homepageRedirect(): void {
+    window.scrollTo({
+      top: 100,
+      behavior: 'auto',
+    });
     this.dialogRef.close();
   }
   onSave(): void {
@@ -40,6 +51,5 @@ export class ModalWindowComponent implements OnInit{
       return;
     }
     this.testService.saveUserTest(uid, this.data.savedTest);
-    this.dialogRef.close();
   }
 }

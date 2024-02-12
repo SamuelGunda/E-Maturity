@@ -9,22 +9,27 @@
   border-radius: 10px;
   width: 100%;
   height: 100%;
-    display: flex;
+  display: flex;
   justify-content: space-around;
+  border: 1px solid var(--border-color-light);
+  box-shadow: 0 0 10px var(--box-shadow-color-light);
 }
 
 .main_container.light {
-
   background-color: var(--main-bg-color-light);
-  border: 1px solid var(--border-color-light);
-  box-shadow: 0 0 10px var(--box-shadow-color-light);
-
 }
 
 .main_container.dark {
   background-color: var(--main-bg-color-dark);
-  border: 1px solid var(--border-color-dark);
-  box-shadow: 0 0 10px var(--inset-box-shadow-color-dark);
+}
+
+.inner-page-container {
+  display: flex;
+  justify-content: space-evenly;
+  box-shadow: inset 0 0 12px var(--box-shadow-color-light);
+  margin: 1.5rem;
+  border-radius: 10px;
+  width: 100%;
 }
 
 button {
@@ -41,9 +46,7 @@ button {
   cursor: pointer;
   font-size: 2rem;
   text-align: center;
-  color: white;
   border: none;
-
 }
 
 p {
@@ -72,7 +75,6 @@ button:hover:before {
 }
 
 .mat>a {
-
   font-size: 1rem;
 }
 
@@ -96,7 +98,25 @@ a {
   font-weight: bold;
 }
 
+a.dark {
+  color: var(--main-text-color-dark);
+}
+
 a:hover,
 a:focus {
   color: var(--account-button-hover-color-light);
+}
+
+@media (max-width: 1024px) {
+  .inner-page-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 400px) {
+  button {
+    width: 14rem;
+    font-size: 1.5rem;
+  }
 }

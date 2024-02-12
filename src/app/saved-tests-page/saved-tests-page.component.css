@@ -7,7 +7,7 @@
   border-radius: 10px;
   display: flex;
   flex-flow: column;
-  border: 1px solid rgba(0, 0, 0, 0.163);
+  border: 1px solid var(--border-color-light);
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   min-height: 100%;
@@ -36,7 +36,7 @@
 }
 
 .saved-test-container-closed {
-  border: 0.1rem rgb(104, 135, 240) solid;
+  border: 0.1rem var(--main-blue-color) solid;
   height: 3.5rem;
   width: 60%;
   margin: 1rem 0 0 1rem;
@@ -95,6 +95,7 @@
 .saved-test-container-closed:hover.dark {
   background-color: var(--main-bg-color-dark);
 }
+
 .question-content.dark {
   border: 1px solid rgba(255, 255, 255, 0.288);
 }

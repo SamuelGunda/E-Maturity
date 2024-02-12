@@ -15,18 +15,15 @@ export class UserAccountService {
   constructor() {
     this.loadSavedQuestionsFromLocalStorage();
   }
-
   saveQuestion(question: Question) {
-    const savedQuestions = this.savedQuestionsSubject.value;
     question.isSaved = true;
-    this.savedQuestionsSubject.next([...savedQuestions, question]);
-    this.saveQuestionsToLocalStorage(savedQuestions);
+    this.savedQuestionsSubject.next([...this.savedQuestionsSubject.value, question]);
+    this.saveQuestionsToLocalStorage(this.savedQuestionsSubject.value);
   }
-
+  
   removeQuestion(question: Question) {
-    const savedQuestions = this.savedQuestionsSubject.value;
     question.isSaved = false;
-    const updatedQuestions = savedQuestions.filter((q) => q.id !== question.id);
+    const updatedQuestions = this.savedQuestionsSubject.value.filter((q) => q.id !== question.id);
     this.savedQuestionsSubject.next(updatedQuestions);
     this.saveQuestionsToLocalStorage(updatedQuestions);
   }
@@ -41,5 +38,18 @@ export class UserAccountService {
       const savedQuestions = JSON.parse(savedQuestionsJson);
       this.savedQuestionsSubject.next(savedQuestions);
     }
+  }
+
+  selectedIcon!: string;
+
+  getAvailableIcons(): string[] {
+    return [
+      'assets/user_icons/boy.png',
+      'assets/user_icons/girl.png',
+      'assets/user_icons/default.png'
+    ];
+  }
+  getSelectedIcon(): string {
+    return this.selectedIcon || 'assets/user_icons/default.png';
   }
 }

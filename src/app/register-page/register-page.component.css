@@ -5,11 +5,10 @@
 
 .main_container {
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  background-color: #fbfef9;
+  border: 1px solid var(--border-color-light);
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   padding: 2rem;
   border-radius: 10px;
   width: 100%;
@@ -31,7 +30,7 @@
   background-repeat: no-repeat;
   background-color: var(--auth-bg-color-light);
   width: clamp(20rem, 25rem, 35rem);
-  height: clamp(15rem, 33rem, 45rem);
+  height: clamp(15rem, 34rem, 50rem);
   padding: 2rem;
   border-radius: 10px;
   box-shadow: 3px 3px 10px 3px var(--box-shadow-color-light);
@@ -87,7 +86,9 @@ button:focus {
 
 .mid_section {
   display: flex;
+  text-align: center;
   justify-content: center;
+  align-items: center;
   font-size: 1.1rem;
   color: var(--main-error-message-light);
   font-weight: 800;
@@ -103,7 +104,6 @@ button:focus {
 
 .user_cred {
   display: flex;
-  flex-direction: column;
 }
 
 .user_firstcred,
@@ -112,17 +112,27 @@ button:focus {
   flex-direction: column;
 }
 
-@media (max-width: 375px) {
-  .register_cred {
-    font-size: 0.7rem;
+@media (max-width: 1024px) {
+  :host(app-register-page) {
+    height: auto;
+    padding-bottom: 1rem;
+  }
+}
+
+@media (max-width: 426px) {
+  .register_card {
+    width: 40rem;
   }
 
   .user_cred {
     flex-direction: column;
   }
+}
 
-  .user_firstcred > input,
-  .user_secondcred > input {
+@media (max-width: 375px) {
+
+  .user_firstcred>input,
+  .user_secondcred>input {
     width: 100%;
   }
 }

@@ -61,7 +61,6 @@ export class RegisterPageComponent implements OnInit {
     } else {
       this.emailError = false;
     }
-
     this.service
       .register(this.email, this.password, this.fname, this.lname)
       .then((res) => {
