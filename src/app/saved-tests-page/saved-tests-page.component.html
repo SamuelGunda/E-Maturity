@@ -40,8 +40,10 @@
                   class="answer-container"
                   [ngClass]="{
                     'wrong-answer':
-                      question.userAnswer === options &&
-                      question.correctAnswer !== question.userAnswer,
+                      (question.userAnswer === options &&
+                        question.correctAnswer !== question.userAnswer) ||
+                      (question.userAnswer === 'Nevyplnene' &&
+                        question.correctAnswer !== options),
                     'correct-answer': question.correctAnswer === options
                   }"
                 >

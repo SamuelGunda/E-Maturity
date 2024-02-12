@@ -1,12 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  collection,
-  doc,
-  Firestore,
-  getDoc,
-  getDocs,
-  setDoc,
-} from '@angular/fire/firestore';
+import { collection, doc, Firestore, getDocs } from '@angular/fire/firestore';
 import { QuestionResult, SavedTest } from '../../model/saved-test.model';
 
 @Injectable({
@@ -72,7 +65,10 @@ export class SavedTestService {
         savedTests.push(savedTest);
         console.log('Saved test:', savedTest);
       });
-      return savedTests;
+      const sortedTests = savedTests.sort(
+        (a, b) => b.finishedAt.getTime() - a.finishedAt.getTime(),
+      );
+      return sortedTests;
     } catch (error) {
       console.error('Error getting saved tests:', error);
       throw error;

@@ -4,7 +4,7 @@ import { AuthService } from './auth.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
   title(title: any) {
@@ -12,11 +12,10 @@ export class AppComponent implements OnInit {
   }
   headerfixes: boolean = false;
 
-  @HostListener('window:scroll', []) onScroll(){
-    if(window.scrollY > 100){
+  @HostListener('window:scroll', []) onScroll() {
+    if (window.scrollY > 100) {
       this.headerfixes = true;
-    }
-    else{
+    } else {
       this.headerfixes = false;
     }
   }
@@ -27,12 +26,13 @@ export class AppComponent implements OnInit {
     const rememberedUser = localStorage.getItem('rememberMe');
     if (rememberedUser) {
       const user = JSON.parse(rememberedUser);
-      this.authService.login(user.email, user.password, true)
+      this.authService
+        .login(user.email, user.password, true)
         .then(() => {
-          console.log("User logged in from rememberMe");
+          console.log('User logged in from rememberMe');
         })
         .catch(() => {
-          console.log("Error logging in from rememberMe");
+          console.log('Error logging in from rememberMe');
         });
     }
   }

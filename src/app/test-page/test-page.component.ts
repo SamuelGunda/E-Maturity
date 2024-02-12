@@ -23,7 +23,6 @@ export interface ModalData {
   templateUrl: './test-page.component.html',
   styleUrls: ['./test-page.component.css'],
 })
-
 export class TestPageComponent implements OnInit {
   isStarFilled = false;
   isDarkMode: boolean = false;
@@ -52,7 +51,7 @@ export class TestPageComponent implements OnInit {
     public dialog: MatDialog,
     public authService: AuthService,
     private darkModeService: DarkModeService,
-    private userAccountService: UserAccountService
+    private userAccountService: UserAccountService,
   ) {
     this.route.params.subscribe((params) => {
       if (params && params['subCat'] && params['year']) {
@@ -82,22 +81,22 @@ export class TestPageComponent implements OnInit {
     if (this.articleWithQuestions) {
       for (const articleQuestion of this.articleWithQuestions) {
         for (const question of articleQuestion.questions) {
-          const savedQuestion = this.userAccountService
-            .savedQuestionsSubject.value.find(
-              (savedQ) => savedQ.id === question.id
+          const savedQuestion =
+            this.userAccountService.savedQuestionsSubject.value.find(
+              (savedQ) => savedQ.id === question.id,
             );
           if (savedQuestion) {
             question.isStarFilled = true;
-          }
-          else{
+          } else {
             question.isStarFilled = false;
           }
         }
       }
     }
   }
-  
+
   openDialog(): void {
+    this.scrollTop();
     const savedTest = this.checkAnswers();
 
     const dialogRef = this.dialog.open(ModalWindowComponent, {
@@ -223,5 +222,12 @@ export class TestPageComponent implements OnInit {
     this.score = score;
     this.total = total;
     console.log(`Score: ${score}/${total}`);
+  }
+
+  scrollTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'instant',
+    });
   }
 }
