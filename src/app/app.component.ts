@@ -29,10 +29,8 @@ export class AppComponent implements OnInit {
       this.authService
         .login(user.email, user.password, true)
         .then(() => {
-          console.log('User logged in from rememberMe');
         })
         .catch(() => {
-          console.log('Error logging in from rememberMe');
         });
     }
     if (!this.authService.isLoggedIn) {

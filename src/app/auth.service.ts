@@ -15,6 +15,8 @@ export class AuthService {
   constructor(private afAuth: AngularFireAuth) {
     // @ts-ignore
     this.userData = afAuth.authState;
+    this.afAuth.setPersistence('session');
+    this.checkAuthState();
   }
 
   googleSignIn() {
@@ -50,7 +52,6 @@ export class AuthService {
     if (rememberMe) {
       localStorage.setItem('rememberMe', JSON.stringify({ email, password }));
     } else {
-      localStorage.removeItem('rememberMe');
     }
     localStorage.setItem('uid', uid);
   }
@@ -61,5 +62,15 @@ export class AuthService {
     localStorage.removeItem('User_info');
     localStorage.removeItem('uid');
     this.afAuth.signOut();
+  }
+
+  checkAuthState(): void {
+    this.afAuth.authState.subscribe((user) => {
+      if (user) {
+        this.isLoggedIn = true;
+      } else {
+        this.isLoggedIn = false;
+      }
+    });
   }
 }
