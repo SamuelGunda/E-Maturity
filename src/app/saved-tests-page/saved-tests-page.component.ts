@@ -35,9 +35,11 @@ export class SavedTestsPageComponent implements OnInit {
   }
 
   async loadSavedTests() {
+    const seassionUserId = sessionStorage.getItem("firebase:authUser:AIzaSyDrXz37bgp6zYCw-X9eKtQlg2Q6j4tjDMI:[DEFAULT]");
     try {
       const uid = localStorage.getItem('uid');
-      if (!uid) {
+      const  suid = seassionUserId;
+      if (!uid || !suid) {
         console.error('Uid is not set. User is not logged in.');
         return;
       }

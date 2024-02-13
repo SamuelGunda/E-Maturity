@@ -1,0 +1,95 @@
+[debug] [2024-02-13T07:43:47.235Z] ----------------------------------------------------------------------
+[debug] [2024-02-13T07:43:47.240Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\rasti\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2024-02-13T07:43:47.241Z] CLI Version:   13.2.1
+[debug] [2024-02-13T07:43:47.242Z] Platform:      win32
+[debug] [2024-02-13T07:43:47.242Z] Node Version:  v18.19.0
+[debug] [2024-02-13T07:43:47.251Z] Time:          Tue Feb 13 2024 08:43:47 GMT+0100 (stredoeurópsky štandardný čas)
+[debug] [2024-02-13T07:43:47.252Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-02-13T07:43:47.462Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-02-13T07:43:47.464Z] > authorizing via signed-in user (rastislavpacut250@gmail.com)
+[debug] [2024-02-13T07:43:47.464Z] [iam] checking project maturity-project for permissions ["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-02-13T07:43:47.469Z] > refreshing access token with scopes: []
+[debug] [2024-02-13T07:43:47.474Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2024-02-13T07:43:47.475Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-02-13T07:43:47.823Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2024-02-13T07:43:47.824Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-02-13T07:43:47.844Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/maturity-project:testIamPermissions [none]
+[debug] [2024-02-13T07:43:47.844Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/maturity-project:testIamPermissions x-goog-quota-user=projects/maturity-project
+[debug] [2024-02-13T07:43:47.845Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/maturity-project:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-02-13T07:43:48.779Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/maturity-project:testIamPermissions 200
+[debug] [2024-02-13T07:43:48.779Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/maturity-project:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-02-13T07:43:48.784Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/maturity-project [none]
+[debug] [2024-02-13T07:43:49.101Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/maturity-project 200
+[debug] [2024-02-13T07:43:49.101Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/maturity-project {"projectId":"maturity-project","projectNumber":"759368949191","displayName":"maturity project","name":"projects/maturity-project","resources":{"hostingSite":"maturity-project","realtimeDatabaseInstance":"maturity-project-default-rtdb","storageBucket":"maturity-project.appspot.com","locationId":"europe-west"},"state":"ACTIVE","etag":"1_366e7a3a-7168-49ca-9796-b4d5c33d6355"}
+[debug] [2024-02-13T07:44:07.368Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/maturity-project/sites pageToken=&pageSize=10
+[debug] [2024-02-13T07:44:08.667Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/maturity-project/sites 200
+[debug] [2024-02-13T07:44:08.668Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/maturity-project/sites {"sites":[{"name":"projects/maturity-project/sites/maturity-project","defaultUrl":"https://maturity-project.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2024-02-13T07:44:08.671Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/maturity-project/sites 
+[debug] [2024-02-13T07:44:09.900Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/maturity-project/sites 200
+[debug] [2024-02-13T07:44:09.900Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/maturity-project/sites {"sites":[{"name":"projects/maturity-project/sites/maturity-project","defaultUrl":"https://maturity-project.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2024-02-13T07:44:09.901Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/maturity-project/webApps/-/config [none]
+[debug] [2024-02-13T07:44:10.742Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/maturity-project/webApps/-/config 200
+[debug] [2024-02-13T07:44:10.743Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/maturity-project/webApps/-/config {"projectId":"maturity-project","appId":"1:759368949191:web:a326a11500d8e4c152cde2","databaseURL":"https://maturity-project-default-rtdb.europe-west1.firebasedatabase.app","storageBucket":"maturity-project.appspot.com","locationId":"europe-west","apiKey":"AIzaSyDrXz37bgp6zYCw-X9eKtQlg2Q6j4tjDMI","authDomain":"maturity-project.firebaseapp.com","messagingSenderId":"759368949191","measurementId":"G-CJJD6MK3D8"}
+[debug] [2024-02-13T07:45:15.089Z] SyntaxError: Unexpected end of JSON input
+    at JSON.parse (<anonymous>)
+    at findDependency (C:\Users\rasti\AppData\Roaming\npm\node_modules\firebase-tools\lib\frameworks\utils.js:188:23)
+    at discover (C:\Users\rasti\AppData\Roaming\npm\node_modules\firebase-tools\lib\frameworks\vite\index.js:51:54)
+    at async C:\Users\rasti\AppData\Roaming\npm\node_modules\firebase-tools\lib\frameworks\vite\index.js:38:55
+    at async discover (C:\Users\rasti\AppData\Roaming\npm\node_modules\firebase-tools\lib\frameworks\index.js:46:32)
+    at async prepareFrameworks (C:\Users\rasti\AppData\Roaming\npm\node_modules\firebase-tools\lib\frameworks\index.js:188:25)
+    at async deploy (C:\Users\rasti\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\index.js:55:13)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2024-02-13T07:57:58.072Z] ----------------------------------------------------------------------
+[debug] [2024-02-13T07:57:58.079Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\rasti\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2024-02-13T07:57:58.080Z] CLI Version:   13.2.1
+[debug] [2024-02-13T07:57:58.081Z] Platform:      win32
+[debug] [2024-02-13T07:57:58.082Z] Node Version:  v18.19.0
+[debug] [2024-02-13T07:57:58.085Z] Time:          Tue Feb 13 2024 08:57:58 GMT+0100 (stredoeurópsky štandardný čas)
+[debug] [2024-02-13T07:57:58.085Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-02-13T07:57:58.326Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-02-13T07:57:58.328Z] > authorizing via signed-in user (rastislavpacut250@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\rasti\Desktop\schoolProjectWeb\project\a
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2024-02-13T07:58:08.872Z] Using project from CLI flag: maturity-project
+[debug] [2024-02-13T07:58:08.879Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/maturity-project [none]
+[debug] [2024-02-13T07:58:09.423Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/maturity-project 200
+[debug] [2024-02-13T07:58:09.423Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/maturity-project {"projectId":"maturity-project","projectNumber":"759368949191","displayName":"maturity project","name":"projects/maturity-project","resources":{"hostingSite":"maturity-project","realtimeDatabaseInstance":"maturity-project-default-rtdb","storageBucket":"maturity-project.appspot.com","locationId":"europe-west"},"state":"ACTIVE","etag":"1_366e7a3a-7168-49ca-9796-b4d5c33d6355"}
+[info] i  Using project maturity-project (maturity project) 
+[info] 
+=== Hosting Setup
+[debug] [2024-02-13T07:58:09.436Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/maturity-project [none]
+[debug] [2024-02-13T07:58:09.785Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/maturity-project 200
+[debug] [2024-02-13T07:58:09.785Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/maturity-project {"projectId":"maturity-project","projectNumber":"759368949191","displayName":"maturity project","name":"projects/maturity-project","resources":{"hostingSite":"maturity-project","realtimeDatabaseInstance":"maturity-project-default-rtdb","storageBucket":"maturity-project.appspot.com","locationId":"europe-west"},"state":"ACTIVE","etag":"1_366e7a3a-7168-49ca-9796-b4d5c33d6355"}
+[debug] [2024-02-13T07:59:18.418Z] SyntaxError: Unexpected end of JSON input
+    at JSON.parse (<anonymous>)
+    at findDependency (C:\Users\rasti\AppData\Roaming\npm\node_modules\firebase-tools\lib\frameworks\utils.js:188:23)
+    at discover (C:\Users\rasti\AppData\Roaming\npm\node_modules\firebase-tools\lib\frameworks\vite\index.js:51:54)
+    at async C:\Users\rasti\AppData\Roaming\npm\node_modules\firebase-tools\lib\frameworks\vite\index.js:38:55
+    at async discover (C:\Users\rasti\AppData\Roaming\npm\node_modules\firebase-tools\lib\frameworks\index.js:46:32)
+    at async doSetup (C:\Users\rasti\AppData\Roaming\npm\node_modules\firebase-tools\lib\init\features\hosting\index.js:54:11)
+    at async init (C:\Users\rasti\AppData\Roaming\npm\node_modules\firebase-tools\lib\init\index.js:37:9)
+[error] 
+[error] Error: An unexpected error has occurred.
