@@ -108,7 +108,7 @@
 
 .main_card_textareas.dark {
   background-color: var(--text-area-bg-dark);
-  color: (--main-text-color-dark);
+  color: var(--main-text-color-dark);
   
 }
 
