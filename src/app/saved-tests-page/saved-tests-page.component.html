@@ -12,6 +12,9 @@
         <div></div>
       </div>
     </div>
+    <div *ngIf="isSavedTestsEmpty && !isLoading" class="empty-saved-tests">
+      <p>Žiadne uložené testy</p>
+    </div>
     <div
       (click)="revealDetails(savedTest)"
       [ngClass]="{

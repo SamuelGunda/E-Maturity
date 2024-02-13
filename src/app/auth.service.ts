@@ -2,8 +2,12 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Observable } from 'rxjs';
 import firebase from 'firebase/compat';
-import { signInWithPopup, signOut, GoogleAuthProvider, getAuth} from "firebase/auth";
-
+import {
+  signInWithPopup,
+  signOut,
+  GoogleAuthProvider,
+  getAuth,
+} from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -48,20 +52,23 @@ export class AuthService {
       return;
     }
     const uid = userCredential.user.uid;
+    localStorage.setItem('uid', uid);
+    localStorage.setItem('User_info', JSON.stringify(userCredential.user));
     this.isLoggedIn = true;
     if (rememberMe) {
       localStorage.setItem('rememberMe', JSON.stringify({ email, password }));
     } else {
+      localStorage.removeItem('rememberMe');
     }
-    localStorage.setItem('uid', uid);
   }
 
   logout() {
     this.isLoggedIn = false;
-    localStorage.removeItem('rememberMe');
-    localStorage.removeItem('User_info');
-    localStorage.removeItem('uid');
-    this.afAuth.signOut();
+    this.afAuth.signOut().then((r) => {
+      // localStorage.removeItem('rememberMe');
+      localStorage.removeItem('User_info');
+      localStorage.removeItem('uid');
+    });
   }
 
   checkAuthState(): void {
