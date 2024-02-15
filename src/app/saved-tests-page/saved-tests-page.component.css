@@ -82,12 +82,12 @@
   font-size: 1rem;
   font-weight: bold;
   padding: 1rem 0 0;
+  color: var(--main-text-color-light);
 }
 
 .saved-test-container-open>.test-name.dark {
   color: var(--main-text-color-dark);
 }
-
 .saved-test-container-closed:hover {
   width: calc(100% - 2rem);
   opacity: 85%;
@@ -103,6 +103,7 @@
 
 .question-content.dark {
   border: 1px solid rgba(255, 255, 255, 0.288);
+  color: var(--main-text-color-dark);
 }
 
 .test-questions-container {
@@ -114,6 +115,7 @@
 }
 
 .question-content {
+  color: black;
   display: flex;
   border: 1px solid black;
   width: 100%;
