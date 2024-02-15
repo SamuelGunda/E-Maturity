@@ -62,11 +62,15 @@ export class RegisterPageComponent implements OnInit {
       this.emailError = false;
     }
     this.service
-      .register(this.email, this.password, this.fname, this.lname)
-      .then((res) => {
-        this.router.navigate(['']);
-      })
-      .catch((err) => {
-      });
+    .register(this.email, this.password, this.fname, this.lname)
+    .then((res) => {
+      this.router.navigate(['']);
+    })
+    .catch((err) => {
+      if (err.code === 'auth/email-already-in-use') {
+        this.errorMessage = 'Tento email je už registrovaný';
+        this.emailError = true;
+      }
+    });
   }
 }
