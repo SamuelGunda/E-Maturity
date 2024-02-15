@@ -1,8 +1,4 @@
-<div
-  class="main_container"
-  [class.light]="!isDarkMode"
-  [class.dark]="isDarkMode"
->
+<div class="main_container" [class.light]="!isDarkMode" [class.dark]="isDarkMode">
   <h2 mat-dialog-title [class.light]="!isDarkMode" [class.dark]="isDarkMode">
     Výsledok
   </h2>
@@ -18,12 +14,7 @@
         Domovská stránka
       </button>
 
-      <button
-        *ngIf="authService.isLoggedIn"
-        mat-button
-        (click)="onClick()"
-        routerLink="/saved-tests-page"
-      >
+      <button *ngIf="authService.isLoggedIn" mat-button (click)="onClick()" routerLink="/saved-tests-page">
         Detaily testu
       </button>
     </mat-dialog-actions>

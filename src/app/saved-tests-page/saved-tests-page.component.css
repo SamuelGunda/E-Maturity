@@ -17,6 +17,7 @@
 .saved-test-page-container.light {
   border: 1px solid rgba(0, 0, 0, 0.163);
   background-color: var(--main-bg-color-light);
+  color: var(--main-text-color-dark);
 }
 
 .saved-test-page-container.dark {
