@@ -1,8 +1,18 @@
-<div
-  class="main_container"
-  [class.light]="!isDarkMode"
-  [class.dark]="isDarkMode"
->
+<div class="main_container" [class.light]="!isDarkMode" [class.dark]="isDarkMode">
+  <div class="years_headline">
+    <div *ngIf="subCat === 'mat'">
+      <h1>Matematika</h1>
+      <p></p>
+    </div>
+    <div *ngIf="subCat === 'sk'">
+      <h1>Slovenský jazyk</h1>
+      <p></p>
+    </div>
+    <div *ngIf="subCat === 'aj'">
+      <h1>Anglický jazyk</h1>
+      <p>Pripravuje sa</p>
+    </div>
+  </div>
   <div *ngIf="years" class="main_page_container">
     <a *ngFor="let year of years" [routerLink]="['/test-page', subCat, year]">
       {{ year }}
