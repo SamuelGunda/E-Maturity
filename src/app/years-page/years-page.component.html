@@ -2,15 +2,26 @@
   <div class="years_headline">
     <div *ngIf="subCat === 'mat'">
       <h1>Matematika</h1>
-      <p></p>
+      <ul>
+        <li>Test obashuje 30 úloh</li>
+        <li>Na vypracovanie testu máte 150 minút</li>
+        <li>Pri riešenie úloh zaškrtnete políčko alebo napíšete odpoveď (poprosím píšte desatinné čísla písať s čiarkou
+          a záporne hodnoty spolu)</li>
+      </ul>
     </div>
     <div *ngIf="subCat === 'sk'">
       <h1>Slovenský jazyk</h1>
-      <p></p>
+      <ul>
+        <li>Test obashuje 64 úloh</li>
+        <li>Na vypracovanie testu máte 64 minút</li>
+        <li>Pri riešenie úloh zaškrtnete políčko alebo napíšete odpoveď (poprosím píšte s diakritikou)</li>
+      </ul>
     </div>
     <div *ngIf="subCat === 'aj'">
       <h1>Anglický jazyk</h1>
-      <p>Pripravuje sa</p>
+      <ul>
+        <li>Testy pre anglický jazyk sa pripravujú</li>
+      </ul>
     </div>
   </div>
   <div *ngIf="years" class="main_page_container">
