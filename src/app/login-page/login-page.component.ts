@@ -35,8 +35,9 @@ export class LoginPageComponent implements OnInit{
   }
 
   signInWithGoogle(){
-    this.service.googleSignIn();
-    this.router.navigate(['/login']);
+    this.service.googleSignIn()
+    .then(() => this.router.navigate(['']))
+    .catch(() => this.error = true);
   }
   ngOnInit() {
     this.darkModeService.isDarkMode$.subscribe((isDarkMode) => {

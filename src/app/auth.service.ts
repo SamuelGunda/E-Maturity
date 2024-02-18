@@ -2,8 +2,14 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Observable } from 'rxjs';
 import firebase from 'firebase/compat';
-import { signInWithPopup, signOut, GoogleAuthProvider, getAuth} from "firebase/auth";
-
+import {
+  signInWithPopup,
+  signOut,
+  GoogleAuthProvider,
+  getAuth,
+  signInWithRedirect,
+  UserCredential,
+} from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -17,11 +23,22 @@ export class AuthService {
     this.userData = afAuth.authState;
   }
 
-  googleSignIn() {
+  googleSignIn(): Promise<UserCredential> {
     const provider = new GoogleAuthProvider();
-    signInWithPopup(getAuth(), provider);
+    return signInWithPopup(getAuth(), provider)
+      .then((result: UserCredential) => {
+        localStorage.setItem('uid', result.user?.uid);
+        console.log(result);
+        this.isLoggedIn = true;
+        return result;
+      })
+      .catch((error) => {
+        console.log(error);
+        return {} as UserCredential;
+      });
   }
   
+
   googleSignOut() {
     signOut(getAuth());
   }
@@ -40,7 +57,7 @@ export class AuthService {
   async login(email: string, password: string, rememberMe: boolean) {
     const userCredential = await this.afAuth.signInWithEmailAndPassword(
       email,
-      password,
+      password
     );
     if (!userCredential.user) {
       return;
