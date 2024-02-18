@@ -156,6 +156,12 @@ button>p {
     transform: scale(1.2);
 }
 
+.time-display button {
+    width: 150px !important;
+    display: flex;
+    justify-content: center;
+}
+
 @media (max-width: 425px) {
 
     header {
