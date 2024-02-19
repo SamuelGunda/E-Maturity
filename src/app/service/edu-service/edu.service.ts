@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { Firestore, collection, doc, getDoc, getDocs } from '@angular/fire/firestore';
 import { Observable, forkJoin, from, map } from 'rxjs';
 
-Injectable({
-  providedIn: 'root'
-})
 export interface eduMaterials {
   id: string;
   text: string;
   url: string;
 }
+@Injectable({
+  providedIn: 'root',
+})
 export class EduService {
   constructor(private firestore: Firestore) { }
 
