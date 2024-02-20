@@ -1,5 +1,6 @@
 :host(app-education-materials) {
-  height: calc(100% - 6rem);
+  min-height: calc(100% - 6rem);
+  height: auto;
   width: 100%;
 }
 
@@ -11,7 +12,7 @@
   justify-content: space-around;
   border: 1px solid var(--border-color-light);
   box-shadow: 0 0 10px var(--box-shadow-color-light);
-  min-height: 100%;
+  height: 100%;
 }
 
 .main_container.light {

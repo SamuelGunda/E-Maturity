@@ -1,7 +1,7 @@
 <div class="main_container" [class.light]="!isDarkMode" [class.dark]="isDarkMode">
   <div class="inner-page-container">
     <div class="subjects" value="sjl">
-      <button (click)="showSjlNotes = !showSjlNotes">
+      <button (click)="toggleShowSjlNotes()">
         <p>Slovenský jazyk</p>
       </button>
       <div *ngIf="showSjlNotes">
@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="subjects" value="anj">
-      <button (click)="showAnjNotes = !showAnjNotes">
+      <button (click)="toggleShowAnjNotes()">
         <p>Anglický jazyk</p>
       </button>
       <div *ngIf="showAnjNotes">
