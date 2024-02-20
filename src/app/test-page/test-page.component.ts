@@ -45,6 +45,10 @@ export class TestPageComponent implements OnInit {
     });
   }
 
+  ngOnDestroy() {
+    this.pauseTimer();
+  }
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -85,23 +89,27 @@ export class TestPageComponent implements OnInit {
 
   startTimer() {
     console.log('timer started');
+    this.timerService.setTimeLeft(90*60);
     this.timerIsOn = true;
+    if (this.timerIsOn) {
     this.timerService.setTimerIsOn(this.timerIsOn);
     console.log("startTimer");
     this.interval = setInterval(() => {
+      this.timerService.setTimeLeft(this.timeLeft);
       if(this.timeLeft > 0) {
         this.timeLeft--;
       } else {
         this.timeLeft = 90 * 60;
       }
-      this.timerService.setTimeLeft(this.timeLeft);
     },1000)
+  }
   }
 
   pauseTimer() {
     clearInterval(this.interval);
+    this.timerIsOn = false;
+    this.timerService.setTimerIsOn(this.timerIsOn);
   }
-
 
   private fillStarsForSavedQuestions() {
     if (this.articleWithQuestions) {
@@ -129,7 +137,7 @@ export class TestPageComponent implements OnInit {
     const dialogRef = this.dialog.open(ModalWindowComponent, {
       data: { score: this.score, total: this.total, savedTest: savedTest },
     });
-
+    this.pauseTimer();
     dialogRef.afterClosed().subscribe((result) => {
       console.log('The dialog was closed');
     });

@@ -23,4 +23,8 @@ export class TimerService {
   getTimeLeft() {
     return this.timeLeft.asObservable();
   }
+
+  getCurrentTimeLeft() {
+    return this.timeLeft.getValue();
+  }
 }

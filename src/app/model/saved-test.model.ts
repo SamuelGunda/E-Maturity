@@ -12,4 +12,5 @@ export interface SavedTest {
   testName: string;
   finishedAt: Date;
   questions: QuestionResult[];
+  timeLeft: number;
 }

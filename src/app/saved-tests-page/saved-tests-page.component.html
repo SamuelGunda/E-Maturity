@@ -24,7 +24,7 @@
       *ngFor="let savedTest of savedTests"
       [class.selected]="selectedTest === savedTest"
     >
-      <p class="test-name" [class.light]="!isDarkMode" [class.dark]="isDarkMode">{{ savedTest.testName }}</p>
+      <p class="test-name" [class.light]="!isDarkMode" [class.dark]="isDarkMode">{{ savedTest.testName + ' Čas: ' + (savedTest.timeLeft | timeFormat)  }}</p>
 
       <div class="test-questions-container" *ngIf="selectedTest === savedTest">
         <div
