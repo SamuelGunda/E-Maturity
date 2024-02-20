@@ -12,6 +12,9 @@
         <div></div>
       </div>
     </div>
+    <div *ngIf="isSavedTestsEmpty && !isLoading" class="empty-saved-tests">
+      <p>Žiadne uložené testy</p>
+    </div>
     <div
       (click)="revealDetails(savedTest)"
       [ngClass]="{
@@ -21,7 +24,7 @@
       *ngFor="let savedTest of savedTests"
       [class.selected]="selectedTest === savedTest"
     >
-      <p class="test-name">{{ savedTest.testName }}</p>
+      <p class="test-name" [class.light]="!isDarkMode" [class.dark]="isDarkMode">{{ savedTest.testName }}</p>
 
       <div class="test-questions-container" *ngIf="selectedTest === savedTest">
         <div

@@ -2,7 +2,7 @@
     <header id="main_header" [class.light]="!isDarkMode" [class.dark]="isDarkMode">
         <div class="burger_menu" (click)="onToggleNav()" [ngClass]="{ 'expanded': buttonExpanded }"><span></span></div>
         <div class="headline" id="header_title">
-            <img src="assets/logo.png" alt="" width="100px" height="100px">
+            <img onclick="location.href='/'" src="assets/logo.png" alt="" width="100px" height="100px">
         </div>
         <div *ngIf="!authService.isLoggedIn" class="buttons" id="but">
             <button class="register" id="header_reg_button" routerLink="/login">
@@ -20,4 +20,5 @@
     </header>
 
 </div>
+<div class="time-display" *ngIf="timerIsOn"><button>Čas: {{timeLeft | timeFormat}}</button></div>
 <app-navbar id="navbar"></app-navbar>

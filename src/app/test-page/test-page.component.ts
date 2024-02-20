@@ -1,8 +1,8 @@
-import { Component, signal, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TestService } from '../service/test-service/test.service';
 import { Test } from '../model/test.model';
-import { Observable, of, switchMap } from 'rxjs';
+import { Observable, timer } from 'rxjs';
 import { Question } from '../model/question.model';
 import { ArticleQuestions } from '../model/article-questions.model';
 import { MatDialog } from '@angular/material/dialog';
@@ -11,6 +11,8 @@ import { QuestionResult, SavedTest } from '../model/saved-test.model';
 import { AuthService } from '../auth.service';
 import { DarkModeService } from '../dark-mode.service';
 import { UserAccountService } from '../user-acc.service';
+import {TimerService} from "../service/timer-service/timer.service";
+
 
 export interface ModalData {
   score: number;
@@ -24,25 +26,24 @@ export interface ModalData {
   styleUrls: ['./test-page.component.css'],
 })
 export class TestPageComponent implements OnInit {
+  interval: any;
+  subscribeTimer: any;
   isStarFilled = false;
   isDarkMode: boolean = false;
-
-  toggleStar(question: Question): void {
-    question.isStarFilled = !question.isStarFilled;
-
-    if (question.isStarFilled) {
-      this.userAccountService.saveQuestion(question);
-    } else {
-      this.userAccountService.removeQuestion(question);
-    }
-  }
-
   year: string | undefined;
   subCat: string | undefined;
   test: Test | undefined;
   articleWithQuestions: ArticleQuestions[] | undefined;
   score: number = 0;
   total: number = 0;
+  timeLeft: number = 90 * 60;
+  timerIsOn: boolean = false;
+
+  ngOnInit() {
+    this.darkModeService.isDarkMode$.subscribe((isDarkMode) => {
+      this.isDarkMode = isDarkMode;
+    });
+  }
 
   constructor(
     private route: ActivatedRoute,
@@ -52,11 +53,13 @@ export class TestPageComponent implements OnInit {
     public authService: AuthService,
     private darkModeService: DarkModeService,
     private userAccountService: UserAccountService,
+    private timerService: TimerService
   ) {
     this.route.params.subscribe((params) => {
       if (params && params['subCat'] && params['year']) {
         this.subCat = params['subCat'];
         this.year = params['year'];
+        this.startTimer();
         this.fetchTest().then((testData) => {
           testData.subscribe((test) => {
             this.test = test;
@@ -71,11 +74,34 @@ export class TestPageComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    this.darkModeService.isDarkMode$.subscribe((isDarkMode) => {
-      this.isDarkMode = isDarkMode;
-    });
+  toggleStar(question: Question): void {
+    question.isStarFilled = !question.isStarFilled;
+    if (question.isStarFilled) {
+      this.userAccountService.saveQuestion(question);
+    } else {
+      this.userAccountService.removeQuestion(question);
+    }
   }
+
+  startTimer() {
+    console.log('timer started');
+    this.timerIsOn = true;
+    this.timerService.setTimerIsOn(this.timerIsOn);
+    console.log("startTimer");
+    this.interval = setInterval(() => {
+      if(this.timeLeft > 0) {
+        this.timeLeft--;
+      } else {
+        this.timeLeft = 90 * 60;
+      }
+      this.timerService.setTimeLeft(this.timeLeft);
+    },1000)
+  }
+
+  pauseTimer() {
+    clearInterval(this.interval);
+  }
+
 
   private fillStarsForSavedQuestions() {
     if (this.articleWithQuestions) {
@@ -94,6 +120,7 @@ export class TestPageComponent implements OnInit {
       }
     }
   }
+
 
   openDialog(): void {
     this.scrollTop();
@@ -176,29 +203,29 @@ export class TestPageComponent implements OnInit {
           questionResult.userAnswer = 'Nevyplnene';
         }
         if (question.text === 'Zrušená otázka') {
-          // console.log(`Question ${question.id} is cancelled.`);
+          // console.log(Question ${question.id} is cancelled.);
           questionResult.isCorrect = true;
         } else {
           if (question.correctAnswer instanceof Array) {
             for (const correctAnswer of question.correctAnswer) {
               if (question.userAnswer === correctAnswer) {
-                // console.log(`Question ${question.id} is correct!`);
+                // console.log(Question ${question.id} is correct!);
                 questionResult.isCorrect = true;
                 break;
               }
             }
             if (!questionResult.isCorrect) {
               // console.log(
-              //   `Question ${question.id} is incorrect. Correct answer is ${question.correctAnswer}.`,
+              //   Question ${question.id} is incorrect. Correct answer is ${question.correctAnswer}.,
               // );
             }
           } else {
             if (question.userAnswer === question.correctAnswer) {
-              // console.log(`Question ${question.id} is correct!`);
+              // console.log(Question ${question.id} is correct!);
               questionResult.isCorrect = true;
             } else {
               // console.log(
-              //   `Question ${question.id} is incorrect. Correct answer is ${question.correctAnswer}.`,
+              //   Question ${question.id} is incorrect. Correct answer is ${question.correctAnswer}.,
               // );
             }
           }

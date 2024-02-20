@@ -25,6 +25,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { SavedTestsPageComponent } from './saved-tests-page/saved-tests-page.component';
 import { IconSelectorComponent } from './icon-selector/icon-selector.component';
+import { TestPageComponent } from './test-page/test-page.component';
+import { TimeFormatPipe } from './service/timer-service/time-format.pipe';
+import { EduService } from './service/edu-service/edu.service';
+
 
 @NgModule({
   declarations: [
@@ -35,6 +39,7 @@ import { IconSelectorComponent } from './icon-selector/icon-selector.component';
     ModalWindowComponent,
     SavedTestsPageComponent,
     IconSelectorComponent,
+    TimeFormatPipe
   ],
   imports: [
     BrowserModule,
@@ -53,7 +58,7 @@ import { IconSelectorComponent } from './icon-selector/icon-selector.component';
     MatInputModule,
     MatButtonModule,
   ],
-  providers: [],
+  providers: [TestPageComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

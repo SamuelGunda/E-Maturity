@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TestService } from '../service/test-service/test.service';
-import { Test } from '../model/test.model';
 import { Observable } from 'rxjs';
 import { DarkModeService } from '../dark-mode.service';
 

@@ -11,6 +11,7 @@ import { AuthService } from '../auth.service';
 })
 export class SavedTestsPageComponent implements OnInit {
   savedTests: SavedTest[] = [];
+  isSavedTestsEmpty: boolean = true;
   selectedTest: SavedTest | null = null;
   isDarkMode: boolean = false;
   isLoading: boolean = true;
@@ -24,10 +25,11 @@ export class SavedTestsPageComponent implements OnInit {
     this.authService = authService;
   }
   ngOnInit(): void {
-    setTimeout(() => {
-      this.loadSavedTests();
-      this.isLoading = false;
-    }, 1500);
+    this.loadSavedTests().then((r) => (this.isLoading = false));
+    // setTimeout(() => {
+    //   this.loadSavedTests();
+    //   this.isLoading = false;
+    // }, 200);
 
     this.darkModeService.isDarkMode$.subscribe((isDarkMode) => {
       this.isDarkMode = isDarkMode;
@@ -43,7 +45,10 @@ export class SavedTestsPageComponent implements OnInit {
       }
       this.savedTests = await this.savedTestService.getSavedTests(uid);
       if (this.savedTests.length > 0) {
+        this.isSavedTestsEmpty = false;
         this.revealDetails(this.savedTests[0]);
+      } else {
+        this.isSavedTestsEmpty = true;
       }
     } catch (error) {
       console.error('Error loading saved tests:', error);

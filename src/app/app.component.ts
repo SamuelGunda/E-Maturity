@@ -23,18 +23,18 @@ export class AppComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
   ngOnInit() {
-    const rememberedUser = localStorage.getItem('rememberMe');
-    if (rememberedUser) {
-      const user = JSON.parse(rememberedUser);
-      this.authService
-        .login(user.email, user.password, true)
-        .then(() => {
-        })
-        .catch(() => {
-        });
-    }
-    if (!this.authService.isLoggedIn) {
-      localStorage.removeItem('uid');
-    }
+    // const rememberedUser = localStorage.getItem('rememberMe');
+    // if (rememberedUser) {
+    //   const user = JSON.parse(rememberedUser);
+    //   this.authService
+    //     .login(user.email, user.password, true)
+    //     .then(() => {
+    //     })
+    //     .catch(() => {
+    //     });
+    // }
+    // if (!this.authService.isLoggedIn) {
+    //   localStorage.removeItem('uid');
+    // }
   }
 }

@@ -41,4 +41,3 @@ testem.log
 .DS_Store
 Thumbs.db
 /src/app/environments/
-/ck --full --no-reflogs --unreachable --lost-found

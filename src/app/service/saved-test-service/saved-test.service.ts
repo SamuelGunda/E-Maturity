@@ -1,5 +1,11 @@
 import { Injectable } from '@angular/core';
-import { collection, doc, Firestore, getDocs } from '@angular/fire/firestore';
+import {
+  collection,
+  deleteDoc,
+  doc,
+  Firestore,
+  getDocs,
+} from '@angular/fire/firestore';
 import { QuestionResult, SavedTest } from '../../model/saved-test.model';
 
 @Injectable({
@@ -68,7 +74,9 @@ export class SavedTestService {
       const sortedTests = savedTests.sort(
         (a, b) => b.finishedAt.getTime() - a.finishedAt.getTime(),
       );
-      this.removeOldestTest(uid);
+      if (sortedTests.length > 10) {
+        this.removeOldestTest(uid);
+      }
       return sortedTests;
     } catch (error) {
       console.error('Error getting saved tests:', error);
@@ -76,18 +84,31 @@ export class SavedTestService {
     }
   }
 
-  removeOldestTest(uid: string) {
+  async removeOldestTest(uid: string) {
     const userCollectionRef = collection(this.firestore, 'users');
     const documentByUidRef = doc(userCollectionRef, uid);
     const savedTestsCollectionRef = collection(documentByUidRef, 'savedTests');
-    getDocs(savedTestsCollectionRef).then((querySnapshot) => {
-      if (querySnapshot.size > 10) {
-        const sortedTests = querySnapshot.docs.sort(
-          (a, b) => a.data()['finishedAt'] - b.data()['finishedAt'],
-        );
-        const oldestTest = sortedTests[0];
-        console.log('Oldest test:', oldestTest);
-      }
+    const querySnapshot = await getDocs(savedTestsCollectionRef);
+    const allTests: any = [];
+    querySnapshot.docs.forEach((doc) => {
+      allTests.push({
+        id: doc.id,
+        data: doc.data(),
+      });
     });
+    const sortedTests = allTests.sort(
+      (a: any, b: any) => a.data.finishedAt.seconds - b.data.finishedAt.seconds,
+    );
+    console.log('All tests:', allTests);
+    console.log('Sorted tests:', sortedTests);
+
+    while (sortedTests.length > 10) {
+      const oldestTest = sortedTests[0];
+      console.log('Oldest test:', oldestTest);
+      const id = oldestTest.id;
+      console.log('Oldest test id:', id);
+      await deleteDoc(doc(savedTestsCollectionRef, id));
+      sortedTests.shift();
+    }
   }
 }

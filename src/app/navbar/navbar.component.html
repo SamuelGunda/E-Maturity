@@ -1,34 +1,26 @@
 <nav id="nav_menu" class="navmenu" [class.light]="!isDarkMode" [class.dark]="isDarkMode">
   <ul class="main" [class.light]="!isDarkMode" [class.dark]="isDarkMode">
     <li class="menuitem" id="nav_menu_home" routerLink="/" [class.light]="!isDarkMode" [class.dark]="isDarkMode">
-      <img src="assets/icons/home.png" alt="" width="28px" height="28px"/>Domov
+      <img src="assets/icons/home.png" alt="" width="28px" height="28px" />Domov
     </li>
-    <ul id="nav_menu_tests" class="expandable_ul" (click)="changeSubCat()" [class.light]="!isDarkMode" [class.dark]="isDarkMode">
-      <img
-        src="assets/icons/tests.png"
-        alt=""
-        width="28px"
-        height="28px"
-      />Maturitné testy
+    <ul id="nav_menu_tests" class="expandable_ul" (click)="changeSubCat()" [class.light]="!isDarkMode"
+      [class.dark]="isDarkMode">
+      <img src="assets/icons/tests.png" alt="" width="28px" height="28px" />Maturitné testy
     </ul>
     <div [ngClass]="{ displayed: displayed, hidden: !displayed }">
       <li (click)="addSubCat('sk')" class="types" [class.light]="!isDarkMode" [class.dark]="isDarkMode">
         Slovenský jazyk a literatúra
       </li>
-      <li (click)="addSubCat('aj')" class="types" [class.light]="!isDarkMode" [class.dark]="isDarkMode">Anglický jazyk</li>
+      <li (click)="addSubCat('aj')" class="types" [class.light]="!isDarkMode" [class.dark]="isDarkMode">Anglický jazyk
+      </li>
       <li (click)="addSubCat('mat')" class="types" [class.light]="!isDarkMode" [class.dark]="isDarkMode">Matematika</li>
     </div>
     <li id="nav_menu_scripts" routerLink="/education-materials" [class.light]="!isDarkMode" [class.dark]="isDarkMode">
-      <img
-        src="assets/icons/notes.png"
-        alt=""
-        width="28px"
-        height="28px"
-      />Učebné materiály
+      <img src="assets/icons/notes.png" alt="" width="28px" height="28px" />Učebné materiály
     </li>
     <li id="nav_menu_savedtests" routerLink="/saved-tests-page" [class.light]="!isDarkMode" [class.dark]="isDarkMode">
       <img src="assets/icons/saved.png" alt="" width="28px" height="28px" />
-      Uložené testy
+      História testov
     </li>
   </ul>
 </nav>

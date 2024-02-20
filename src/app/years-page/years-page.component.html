@@ -1,8 +1,29 @@
-<div
-  class="main_container"
-  [class.light]="!isDarkMode"
-  [class.dark]="isDarkMode"
->
+<div class="main_container" [class.light]="!isDarkMode" [class.dark]="isDarkMode">
+  <div class="years_headline" [class.light]="!isDarkMode" [class.dark]="isDarkMode">
+    <div *ngIf="subCat === 'mat'">
+      <h1>Matematika</h1>
+      <ul>
+        <li>Test obashuje 30 úloh.</li>
+        <li>Na vypracovanie testu máte 150 minút. (čas sa spustí po kliknutí na test)</li>
+        <li>Pri riešenie úloh zaškrtnete políčko alebo napíšete odpoveď. (poprosím píšte desatinné čísla písať s čiarkou
+          a záporne hodnoty spolu)</li>
+      </ul>
+    </div>
+    <div *ngIf="subCat === 'sk'">
+      <h1>Slovenský jazyk a literatúra</h1>
+      <ul>
+        <li>Test obashuje 64 úloh.</li>
+        <li>Na vypracovanie testu máte 100 minút. (čas sa spustí po kliknutí na test)</li>
+        <li>Pri riešenie úloh zaškrtnete políčko alebo napíšete odpoveď. (poprosím píšte s diakritikou)</li>
+      </ul>
+    </div>
+    <div *ngIf="subCat === 'aj'">
+      <h1>Anglický jazyk</h1>
+      <ul>
+        <li>Testy pre anglický jazyk sa pripravujú</li>
+      </ul>
+    </div>
+  </div>
   <div *ngIf="years" class="main_page_container">
     <a *ngFor="let year of years" [routerLink]="['/test-page', subCat, year]">
       {{ year }}

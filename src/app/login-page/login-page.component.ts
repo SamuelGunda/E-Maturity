@@ -3,13 +3,12 @@ import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { DarkModeService } from '../dark-mode.service';
 
-
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.css'],
 })
-export class LoginPageComponent implements OnInit{
+export class LoginPageComponent implements OnInit {
   submitted = false;
   name: string = '';
   password: string = '';
@@ -17,8 +16,11 @@ export class LoginPageComponent implements OnInit{
   rememberMe: boolean = false;
   isDarkMode: boolean = false;
 
-
-  constructor(private router: Router, private service: AuthService, private darkModeService: DarkModeService) {}
+  constructor(
+    private router: Router,
+    private service: AuthService,
+    private darkModeService: DarkModeService,
+  ) {}
 
   submit() {
     this.submitted = true;
@@ -29,18 +31,27 @@ export class LoginPageComponent implements OnInit{
   }
 
   login() {
-    this.service.login(this.name, this.password, this.rememberMe)
+    this.service
+      .login(this.name, this.password, this.rememberMe)
       .then(() => this.router.navigate(['']))
-      .catch(() => this.error = true);
+      .catch(() => (this.error = true));
   }
 
   signInWithGoogle(){
-    this.service.googleSignIn();
-    this.router.navigate(['/login']);
+    this.service.googleSignIn()
+    .then(() => this.router.navigate(['']))
+    .catch(() => this.error = true);
   }
   ngOnInit() {
     this.darkModeService.isDarkMode$.subscribe((isDarkMode) => {
       this.isDarkMode = isDarkMode;
     });
+    const savedUser = localStorage.getItem('rememberMe');
+    if (savedUser) {
+      const user = JSON.parse(savedUser);
+      console.log(user);
+      this.name = user.email;
+      this.password = user.password;
+    }
   }
 }
