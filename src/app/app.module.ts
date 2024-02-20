@@ -27,6 +27,7 @@ import { SavedTestsPageComponent } from './saved-tests-page/saved-tests-page.com
 import { IconSelectorComponent } from './icon-selector/icon-selector.component';
 import { TestPageComponent } from './test-page/test-page.component';
 import { TimeFormatPipe } from './service/timer-service/time-format.pipe';
+import { EduService } from './service/edu-service/edu.service';
 
 
 @NgModule({

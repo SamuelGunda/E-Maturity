@@ -1,5 +1,6 @@
 :host(app-education-materials) {
-  height: calc(100% - 6rem);
+  min-height: calc(100% - 6rem);
+  height: auto;
   width: 100%;
 }
 
@@ -8,11 +9,10 @@
   display: flex;
   border-radius: 10px;
   width: 100%;
-  height: 100%;
-  display: flex;
   justify-content: space-around;
   border: 1px solid var(--border-color-light);
   box-shadow: 0 0 10px var(--box-shadow-color-light);
+  height: 100%;
 }
 
 .main_container.light {
@@ -68,6 +68,12 @@ button:before {
 
 button:hover:before {
   width: 101%;
+}
+
+.subjects {
+  max-width: 18rem;
+  max-height: 36rem;
+  gap: 1rem;
 }
 
 .mat {

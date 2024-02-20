@@ -1,29 +1,32 @@
 <div class="main_container" [class.light]="!isDarkMode" [class.dark]="isDarkMode">
   <div class="inner-page-container">
     <div class="subjects" value="sjl">
-      <button (click)="showSjlNotes = !showSjlNotes">
+      <button (click)="toggleShowSjlNotes()">
         <p>Slovenský jazyk</p>
       </button>
       <div *ngIf="showSjlNotes">
         <ul>
-          <li>
-            <a href="https://firebasestorage.googleapis.com/v0/b/maturity-project.appspot.com/o/Education_materials%2FSJL%2FMATURITN%C3%89-OKRUHY-SJL.pdf?alt=media&token=a596082a-0380-4607-9e53-8f79b2def309"
-              target="_blank" [class.light]="!isDarkMode" [class.dark]="isDarkMode"><img src="/assets/pdf_icon.png"
-                alt="pdf_icon" />SJL_MATURITNE_OKRUHY</a>
-          </li>
-          <li>
-            <a href="https://firebasestorage.googleapis.com/v0/b/maturity-project.appspot.com/o/Education_materials%2FSJL%2FRozbory-diel-SJL.pdf?alt=media&token=795e20b5-5345-4ea0-aea3-49553fb7d547"
-              target="_blank" [class.light]="!isDarkMode" [class.dark]="isDarkMode"><img src="/assets/pdf_icon.png"
-                alt="pdf_icon" />Rozbory diel</a>
+          <li *ngFor="let material of sjlMaterials">
+            <a [href]="material.url" target="_blank" [class.light]="!isDarkMode" [class.dark]="isDarkMode">
+              <img src="/assets/pdf_icon.png" alt="pdf_icon" /> {{ material.text }}
+            </a>
           </li>
         </ul>
       </div>
     </div>
     <div class="subjects" value="anj">
-      <button (click)="showAnjNotes = !showAnjNotes">
+      <button (click)="toggleShowAnjNotes()">
         <p>Anglický jazyk</p>
       </button>
-      <div *ngIf="showAnjNotes"></div>
+      <div *ngIf="showAnjNotes">
+        <ul>
+          <li *ngFor="let material of anjMaterials">
+            <a [href]="material.url" target="_blank" [class.light]="!isDarkMode" [class.dark]="isDarkMode">
+              <img src="/assets/pdf_icon.png" alt="pdf_icon" /> {{ material.text }}
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
     <div class="subjects" value="math">
       <button (click)="showMatNotes = !showMatNotes">
