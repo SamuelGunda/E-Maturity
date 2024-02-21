@@ -9,7 +9,6 @@
     box-shadow: var(--box-shadow-color-light);
     padding: 2rem;
     height: 100%;
-
 }
 
 .main_container.light {
@@ -49,9 +48,9 @@
 }
 
 .container,
-.test_container,
+.saved_test,
 .question_container {
-    border-bottom: 1px solid #213d85;
+    border-bottom: 2.3px solid #213d85;
     padding-bottom: 1rem;
     margin-bottom: 0.6rem;
 }
@@ -70,11 +69,21 @@
     gap: 0.6rem;
 }
 
-.tests-container {
+.tests_container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 0.8rem;
+    padding: 2rem 0 2rem 0;
+}
+
+
+.test_item>p {
+    padding: 0.5rem;
+    border-radius: 10px;
+    background-color: var(--main-text-color-light);
+    color: var(--main-text-color-dark);
+    cursor: pointer;
 }
 
 .question {

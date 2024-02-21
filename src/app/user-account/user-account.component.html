@@ -15,9 +15,9 @@
         </div>
     </div>
     <h2>História testov</h2>
-    <div class="saved-test">
-        <div *ngIf="savedTests$ | async as savedTests" class="tests-container">
-            <div *ngFor="let savedTest of savedTests" class="test-item">
+    <div class="saved_test">
+        <div *ngIf="savedTests$ | async as savedTests" class="tests_container">
+            <div *ngFor="let savedTest of savedTests" class="test_item" routerLink="/saved-tests-page">
                 <p>{{ savedTest.testName }}</p>
             </div>
         </div>

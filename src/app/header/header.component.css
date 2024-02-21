@@ -157,9 +157,9 @@ button>p {
 }
 
 .time-display button {
-    width: 150px !important;
-    display: flex;
-    justify-content: center;
+    width: 150px;
+    position: absolute;
+    margin-top: 1rem;
 }
 
 @media (max-width: 425px) {

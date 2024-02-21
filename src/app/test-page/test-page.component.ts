@@ -36,7 +36,7 @@ export class TestPageComponent implements OnInit {
   articleWithQuestions: ArticleQuestions[] | undefined;
   score: number = 0;
   total: number = 0;
-  timeLeft: number = 90 * 60;
+  timeLeft: number = 100 * 60;
   timerIsOn: boolean = false;
 
   ngOnInit() {
@@ -89,7 +89,7 @@ export class TestPageComponent implements OnInit {
 
   startTimer() {
     console.log('timer started');
-    this.timerService.setTimeLeft(90*60);
+    this.timerService.setTimeLeft(100*60);
     this.timerIsOn = true;
     if (this.timerIsOn) {
     this.timerService.setTimerIsOn(this.timerIsOn);
@@ -98,8 +98,12 @@ export class TestPageComponent implements OnInit {
       this.timerService.setTimeLeft(this.timeLeft);
       if(this.timeLeft > 0) {
         this.timeLeft--;
-      } else {
-        this.timeLeft = 90 * 60;
+      } 
+      else if(this.timeLeft == 0){
+        this.openDialog();
+      } 
+      else {
+        this.timeLeft = 100 * 60;
       }
     },1000)
   }

@@ -119,7 +119,7 @@ export class TestService {
     const documentRef = doc(dataCollection, uid);
     const savedTestsCollectionRef = collection(documentRef, 'savedTests');
     const savedTestDocumentRef = doc(savedTestsCollectionRef);
-    savedTest.timeLeft = 90*60 -this.timerService.getCurrentTimeLeft();
+    savedTest.timeLeft = 100*60 -this.timerService.getCurrentTimeLeft();
     setDoc(savedTestDocumentRef, savedTest);
   }
 }
