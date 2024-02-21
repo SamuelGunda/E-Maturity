@@ -70,6 +70,13 @@
     gap: 0.6rem;
 }
 
+.tests-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.8rem;
+}
+
 .question {
     display: flex;
     justify-content: space-between;

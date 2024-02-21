@@ -14,8 +14,13 @@
             </button>
         </div>
     </div>
-    <div class="test_container">
-        <h2>História testov</h2>
+    <h2>História testov</h2>
+    <div class="saved-test">
+        <div *ngIf="savedTests$ | async as savedTests" class="tests-container">
+            <div *ngFor="let savedTest of savedTests" class="test-item">
+                <p>{{ savedTest.testName }}</p>
+            </div>
+        </div>
     </div>
 
     <h2>Uložené otázky</h2>

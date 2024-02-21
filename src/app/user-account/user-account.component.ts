@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { DarkModeService } from '../dark-mode.service';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { UserAccountService } from '../user-acc.service';
 import { Question } from '../model/question.model';
+import { Observable } from 'rxjs';
+import { SavedTest } from '../model/saved-test.model';
+import { SavedTestService } from '../service/saved-test-service/saved-test.service';
 
 
 @Component({
@@ -26,10 +29,11 @@ export class UserAccountComponent implements OnInit {
   userName: string = '';
   isDarkMode: boolean = false;
 
-  constructor(private authService: AuthService, private darkModeService: DarkModeService, public userAccountService: UserAccountService) { }
 
-  ngOnInit() {
-    this.authService.userData.subscribe(user => {
+  constructor(private authService: AuthService, private darkModeService: DarkModeService, public userAccountService: UserAccountService, public savedTestService : SavedTestService) {}
+    
+    ngOnInit() {
+      this.authService.userData.subscribe(user => {
       if (user) {
         this.userName = user.displayName || '';
       }
@@ -44,6 +48,8 @@ export class UserAccountComponent implements OnInit {
     this.darkModeService.toggleDarkMode();
   }
 
+  savedTests$: Observable<SavedTest[]> = this.userAccountService.getSavedTests();
+  
   removeQuestion(question: Question) {
     this.userAccountService.removeQuestion(question);
   }

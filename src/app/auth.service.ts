@@ -15,6 +15,10 @@ import {
   providedIn: 'root',
 })
 export class AuthService {
+  getUserId() {
+    const uid = localStorage.getItem("uid")
+    return uid;
+  }
   isLoggedIn = false;
   userData: Observable<firebase.User>;
 

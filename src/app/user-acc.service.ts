@@ -1,7 +1,9 @@
 
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, from, of } from 'rxjs';
 import { Question } from 'src/app/model/question.model';
+import { SavedTest } from './model/saved-test.model';
+import { SavedTestService } from './service/saved-test-service/saved-test.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +14,7 @@ export class UserAccountService {
 
   private localStorageKey = 'savedQuestions';
 
-  constructor() {
+  constructor(public savedTestService : SavedTestService) {
     this.loadSavedQuestionsFromLocalStorage();
   }
   saveQuestion(question: Question) {
@@ -51,5 +53,14 @@ export class UserAccountService {
   }
   getSelectedIcon(): string {
     return this.selectedIcon || 'assets/user_icons/default.png';
+  }
+
+  getSavedTests(): Observable<SavedTest[]> {
+    const userId = localStorage.getItem('uid');
+    if (userId !== null) {
+      return from(this.savedTestService.getSavedTests(userId));
+    } else {
+      return of([]);
+    }
   }
 }
