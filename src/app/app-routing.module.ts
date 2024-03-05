@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LandingPageComponent } from './landing-page/landing-page.component';
-import { LoginPageComponent } from './login-page/login-page.component';
-import { RegisterPageComponent } from './register-page/register-page.component';
-import { YearsPageComponent } from './years-page/years-page.component';
-import { TestPageComponent } from './test-page/test-page.component';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-import { UserAccountComponent } from './user-account/user-account.component';
-import { EducationMaterialsComponent } from './education-materials/education-materials.component';
-import { SavedTestsPageComponent } from './saved-tests-page/saved-tests-page.component';
+import { LandingPageComponent } from './components/User-components/landing-page/landing-page.component';
+import { LoginPageComponent } from './components/User-components/login-page/login-page.component';
+import { RegisterPageComponent } from './components/User-components/register-page/register-page.component';
+import { YearsPageComponent } from './components/test-components/years-page/years-page.component';
+import { TestPageComponent } from './components/test-components/test-page/test-page.component';
+import { ForgotPasswordComponent } from './components/User-components/forgot-password/forgot-password.component';
+import { UserAccountComponent } from './components/User-components/user-account/user-account.component';
+import { EducationMaterialsComponent } from './components/Util-components/education-materials/education-materials.component';
+import { SavedTestsPageComponent } from './components/test-components/saved-tests-page/saved-tests-page.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },

@@ -9,8 +9,8 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 import { environment } from './environments/environment';
-import { HeaderComponent } from './header/header.component';
-import { NavbarComponent } from './navbar/navbar.component';
+import { HeaderComponent } from './components/Util-components/header/header.component';
+import { NavbarComponent } from './components/Util-components/navbar/navbar.component';
 import { NgOptimizedImage } from '@angular/common';
 
 import { HttpClientModule } from '@angular/common/http';
@@ -20,15 +20,14 @@ import initializeApp = firebase.initializeApp;
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
-import { ModalWindowComponent } from './modal-window/modal-window.component';
+import { ModalWindowComponent } from './components/Util-components/modal-window/modal-window.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { SavedTestsPageComponent } from './saved-tests-page/saved-tests-page.component';
-import { IconSelectorComponent } from './icon-selector/icon-selector.component';
-import { TestPageComponent } from './test-page/test-page.component';
+import { SavedTestsPageComponent } from './components/test-components/saved-tests-page/saved-tests-page.component';
+import { IconSelectorComponent } from './components/Util-components/icon-selector/icon-selector.component';
+import { TestPageComponent } from './components/test-components/test-page/test-page.component';
 import { TimeFormatPipe } from './service/timer-service/time-format.pipe';
 import { EduService } from './service/edu-service/edu.service';
-
 
 @NgModule({
   declarations: [
@@ -39,7 +38,7 @@ import { EduService } from './service/edu-service/edu.service';
     ModalWindowComponent,
     SavedTestsPageComponent,
     IconSelectorComponent,
-    TimeFormatPipe
+    TimeFormatPipe,
   ],
   imports: [
     BrowserModule,
