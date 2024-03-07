@@ -1,38 +1,59 @@
-<div class="main_container" [class.light]="!isDarkMode" [class.dark]="isDarkMode">
-    <div class="container">
-        <div class="user_cred">
-            <app-icon-selector></app-icon-selector>
-            <div class="cred_container">
-                <h1>{{ userName }}</h1>
-                <p>Košická akádemia softvérového vývoja</p>
-            </div>
-        </div>
-        <div class="modeSwitch" (click)="toggleDarkMode()">
-            <button class="modeSwitchButton" [@toggleAnimation]="isDarkMode ? 'dark' : 'light'">
-                <img class="modeSwitch" width="48px" height="48px"
-                    src="assets/header_icons/{{ isDarkMode ? 'Sun.png' : 'Moon.png' }}" alt="mode switch">
-            </button>
-        </div>
+<div class="main_container">
+  <div class="container">
+    <div class="user_cred">
+      <app-icon-selector></app-icon-selector>
+      <div class="cred_container">
+        <h1>{{ userName }}</h1>
+        <p>Košická akádemia softvérového vývoja</p>
+      </div>
     </div>
-    <h2>História testov</h2>
-    <div class="saved_test">
-        <div *ngIf="savedTests$ | async as savedTests" class="tests_container">
-            <div *ngFor="let savedTest of savedTests" class="test_item" routerLink="/saved-tests-page">
-                <p>{{ savedTest.testName }}</p>
-            </div>
-        </div>
+    <div class="modeSwitch" (click)="toggleDarkMode()">
+      <button
+        class="modeSwitchButton"
+        [@toggleAnimation]="isDarkMode ? 'dark' : 'light'"
+      >
+        <img
+          class="modeSwitch"
+          width="48px"
+          height="48px"
+          src="assets/header_icons/{{ isDarkMode ? 'Sun.png' : 'Moon.png' }}"
+          alt="mode switch"
+        />
+      </button>
     </div>
+  </div>
+  <h2>História testov</h2>
+  <div class="saved_test">
+    <div *ngIf="savedTests$ | async as savedTests" class="tests_container">
+      <div
+        *ngFor="let savedTest of savedTests"
+        class="test_item"
+        routerLink="/saved-tests-page"
+      >
+        <p>{{ savedTest.testName }}</p>
+      </div>
+    </div>
+  </div>
 
-    <h2>Uložené otázky</h2>
-    <div class="question_container">
-        <div *ngFor="let savedQuestion of userAccountService.savedQuestions$ | async" class="question">
-            <div class="question_options">
-                <p [innerHTML]="savedQuestion.text" class="question_text"></p>
-                <p *ngFor="let option of savedQuestion.options" [innerHTML]="option" class="option"></p>
-            </div>
-            <div>
-                <p class="remove_question" (click)="removeQuestion(savedQuestion)">&#10005;</p>
-            </div>
-        </div>
+  <h2>Uložené otázky</h2>
+  <div class="question_container">
+    <div
+      *ngFor="let savedQuestion of userAccountService.savedQuestions$ | async"
+      class="question"
+    >
+      <div class="question_options">
+        <p [innerHTML]="savedQuestion.text" class="question_text"></p>
+        <p
+          *ngFor="let option of savedQuestion.options"
+          [innerHTML]="option"
+          class="option"
+        ></p>
+      </div>
+      <div>
+        <p class="remove_question" (click)="removeQuestion(savedQuestion)">
+          &#10005;
+        </p>
+      </div>
     </div>
+  </div>
 </div>

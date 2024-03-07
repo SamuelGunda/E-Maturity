@@ -59,12 +59,14 @@ export class HeaderComponent implements OnInit {
 
   onToggleNav(): void {
     const navbar = document.getElementById('navbar') as HTMLElement;
+    const header = document.getElementById('main_header') as HTMLElement;
 
     if (navbar.style.display === 'block') {
       navbar.style.display = 'none';
       this.buttonExpanded = !this.buttonExpanded;
     } else {
       navbar.style.display = 'block';
+      header.style.borderBottomLeftRadius = '0';
       this.buttonExpanded = !this.buttonExpanded;
     }
   }
@@ -83,6 +85,10 @@ export class HeaderComponent implements OnInit {
       const navbar = document.getElementById('navbar') as HTMLElement;
       navbar.style.display = 'none';
       this.buttonExpanded = false;
+    }
+    if (!this.buttonExpanded) {
+      const header = document.getElementById('main_header') as HTMLElement;
+      header.style.borderBottomLeftRadius = '10px';
     }
   }
 }

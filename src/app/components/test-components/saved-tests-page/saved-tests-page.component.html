@@ -1,8 +1,4 @@
-<div
-  class="saved-test-page-container"
-  [class.light]="!isDarkMode"
-  [class.dark]="isDarkMode"
->
+<div class="saved-test-page-container">
   <div class="inner-saved-test-page-container">
     <div class="loading">
       <div *ngIf="isLoading" class="lds-ellipsis">
@@ -24,14 +20,14 @@
       *ngFor="let savedTest of savedTests"
       [class.selected]="selectedTest === savedTest"
     >
-      <p class="test-name" [class.light]="!isDarkMode" [class.dark]="isDarkMode">{{ savedTest.testName + ' Čas: ' + (savedTest.timeLeft | timeFormat)  }}</p>
+      <p class="test-name">
+        {{ savedTest.testName + " Čas: " + (savedTest.timeLeft | timeFormat) }}
+      </p>
 
       <div class="test-questions-container" *ngIf="selectedTest === savedTest">
         <div
           class="question-content"
           *ngFor="let question of selectedTest.questions"
-          [class.light]="!isDarkMode"
-          [class.dark]="isDarkMode"
         >
           <div class="question-container">
             <p class="question_number" [innerHTML]="question.questionId"></p>

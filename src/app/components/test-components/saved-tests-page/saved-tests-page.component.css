@@ -1,6 +1,5 @@
-:host(app-saved-tests-page) {
-  width: 100%;
-  height: calc(100% - 6rem);
+:host{
+  @apply w-full h-5/6;
 }
 
 .saved-test-page-container {

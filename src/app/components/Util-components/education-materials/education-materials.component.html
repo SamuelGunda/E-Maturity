@@ -1,4 +1,4 @@
-<div class="main_container" [class.light]="!isDarkMode" [class.dark]="isDarkMode">
+<div class="main_container">
   <div class="inner-page-container">
     <div class="subjects" value="sjl">
       <button (click)="toggleShowSjlNotes()">
@@ -7,8 +7,9 @@
       <div *ngIf="showSjlNotes">
         <ul>
           <li *ngFor="let material of sjlMaterials">
-            <a [href]="material.url" target="_blank" [class.light]="!isDarkMode" [class.dark]="isDarkMode">
-              <img src="/assets/pdf_icon.png" alt="pdf_icon" /> {{ material.text }}
+            <a [href]="material.url" target="_blank">
+              <img src="/assets/pdf_icon.png" alt="pdf_icon" />
+              {{ material.text }}
             </a>
           </li>
         </ul>
@@ -21,8 +22,9 @@
       <div *ngIf="showAnjNotes">
         <ul>
           <li *ngFor="let material of anjMaterials">
-            <a [href]="material.url" target="_blank" [class.light]="!isDarkMode" [class.dark]="isDarkMode">
-              <img src="/assets/pdf_icon.png" alt="pdf_icon" /> {{ material.text }}
+            <a [href]="material.url" target="_blank">
+              <img src="/assets/pdf_icon.png" alt="pdf_icon" />
+              {{ material.text }}
             </a>
           </li>
         </ul>
@@ -33,9 +35,11 @@
         <p>Matematika</p>
       </button>
       <div class="mat" *ngIf="showMatNotes">
-        <a href="https://firebasestorage.googleapis.com/v0/b/maturity-project.appspot.com/o/Education_materials%2FMAT%2Fteoria_matematiky.pdf?alt=media&token=14532f18-a7e9-441b-a750-7f83ad1de88a"
-          target="_blank" [class.light]="!isDarkMode" [class.dark]="isDarkMode"><img src="/assets/pdf_icon.png"
-            alt="pdf_icon" />Teória matematiky</a>
+        <a
+          href="https://firebasestorage.googleapis.com/v0/b/maturity-project.appspot.com/o/Education_materials%2FMAT%2Fteoria_matematiky.pdf?alt=media&token=14532f18-a7e9-441b-a750-7f83ad1de88a"
+          target="_blank"
+          ><img src="/assets/pdf_icon.png" alt="pdf_icon" />Teória matematiky</a
+        >
       </div>
     </div>
   </div>

@@ -1,24 +1,56 @@
-<div class="container">
-    <header id="main_header" [class.light]="!isDarkMode" [class.dark]="isDarkMode">
-        <div class="burger_menu" (click)="onToggleNav()" [ngClass]="{ 'expanded': buttonExpanded }"><span></span></div>
-        <div class="headline" id="header_title">
-            <img onclick="location.href='/'" src="assets/logo.png" alt="" width="100px" height="100px">
-        </div>
-        <div *ngIf="!authService.isLoggedIn" class="buttons" id="but">
-            <button class="register" id="header_reg_button" routerLink="/login">
-                <p>Účet</p>
-            </button>
-        </div>
-        <div *ngIf="authService.isLoggedIn" class="logged_icons">
-            <p routerLink="/user-account"><img src="assets/header_icons/userprofile.png" alt="user_profile_icon"
-                    width="38px" height="38px"></p>
-            <p routerLink="" (click)="onLogout()"><img src="assets/header_icons/logout.png" alt="logout_icon"
-                    width="38px" height="38px">
-            </p>
+<header
+  id="main_header"
+  class="h-24 flex justify-between px-4 items-center border border-blue-500 rounded-lg bg-ang-main_bg"
+>
+  <div
+    class="w-16 hover:cursor-pointer h-[4rem] flex items-center justify-center"
+    (click)="onToggleNav()"
+    [class.expanded]="buttonExpanded"
+  >
+    <span
+      class="transition-all bg-ang-main_btn w-11 h-1.5 rounded-lg hover:cursor-pointer block relative after:transition-all after:bg-ang-main_btn after:w-11 after:h-1.5 after:block after:absolute after:content-[''] after:left-0 after:top-3.5 after:rounded-lg before:transition-all before:bg-ang-main_btn before:w-11 before:h-1.5 before:block before:absolute before:content-[''] before:left-0 before:-top-3.5 before:rounded-lg"
+    ></span>
+  </div>
+  <div>
+    <img src="assets/logo.png" alt="" width="100px" height="100px" />
+  </div>
+  <div *ngIf="!authService.isLoggedIn" id="but">
+    <button
+      class="px-10 py-1.5 border-2 bg-ang-main_btn border-ang-border_main rounded-lg hover:cursor-pointer overflow-hidden hover:opacity-90 transition shadow-md"
+      id="header_reg_button"
+      routerLink="/login"
+    >
+      <p class="text-ang-text_white font-medium">Účet</p>
+    </button>
+  </div>
+  <div *ngIf="authService.isLoggedIn" class="flex gap-8">
+    <p
+      routerLink="/user-account"
+      class="hover:cursor-pointer hover:scale-110 transition duration-250"
+    >
+      <img
+        src="assets/header_icons/userprofile.png"
+        alt="user_profile_icon"
+        width="38px"
+        height="38px"
+      />
+    </p>
+    <p
+      routerLink=""
+      (click)="onLogout()"
+      class="hover:cursor-pointer hover:scale-110 transition duration-250"
+    >
+      <img
+        src="assets/header_icons/logout.png"
+        alt="logout_icon"
+        width="38px"
+        height="38px"
+      />
+    </p>
+  </div>
+</header>
 
-        </div>
-    </header>
-
+<div class="time-display" *ngIf="timerIsOn">
+  <button>Čas: {{ timeLeft | timeFormat }}</button>
 </div>
-<div class="time-display" *ngIf="timerIsOn"><button>Čas: {{timeLeft | timeFormat}}</button></div>
 <app-navbar id="navbar"></app-navbar>
