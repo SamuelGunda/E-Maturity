@@ -5,16 +5,27 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-@layer components{
-  :host{
-    @apply w-full h-5/6;
-  }
-}
 
 @layer components {
+  :host{
+    @apply w-full ;
+  }
   app-navbar li,
   app-navbar .expandable_ul {
     @apply text-lg shadow-lg border-b-2 border-slate-400 flex items-center pl-[20%] h-12 gap-2 hover:cursor-pointer hover:bg-ang-main_btn
+  }
+  .inner-container{
+    @apply flex m-5 rounded-lg w-full border border-ang-border_main
+  }
+}
+
+@layer components{
+  app-landing-page .main_card_containers{
+    @apply flex flex-col items-center justify-around text-base h-80  w-min rounded-lg px-2 m-2 hover:scale-105 transition
+  }
+
+  app-landing-page .main_card_textareas{
+    @apply rounded-lg h-48 py-1 lg:h-44 w-40 lg:w-52 bg-ang-main_bg flex justify-center text-center
   }
 }
 
@@ -73,7 +84,6 @@ html {
 }
 
 body {
-  padding: 2%;
   background: linear-gradient(90deg, #06b7f9 11.2%, #194aec 91.1%);
 }
 

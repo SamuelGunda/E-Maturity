@@ -3,12 +3,12 @@
   class="h-24 flex justify-between px-4 items-center border border-blue-500 rounded-lg bg-ang-main_bg"
 >
   <div
-    class="w-16 hover:cursor-pointer h-[4rem] flex items-center justify-center"
+    class="w-20 hover:cursor-pointer h-[4rem] flex items-center justify-center"
     (click)="onToggleNav()"
     [class.expanded]="buttonExpanded"
   >
     <span
-      class="transition-all bg-ang-main_btn w-11 h-1.5 rounded-lg hover:cursor-pointer block relative after:transition-all after:bg-ang-main_btn after:w-11 after:h-1.5 after:block after:absolute after:content-[''] after:left-0 after:top-3.5 after:rounded-lg before:transition-all before:bg-ang-main_btn before:w-11 before:h-1.5 before:block before:absolute before:content-[''] before:left-0 before:-top-3.5 before:rounded-lg"
+      class="transition-all ease-in-out delay-[180ms] before:delay-[260ms] after:delay-100 bg-ang-main_btn w-11 h-1.5 rounded-lg hover:cursor-pointer block relative after:transition-all after:bg-ang-main_btn after:w-11 after:h-1.5 after:block after:absolute after:content-[''] after:left-0 after:top-3.5 after:rounded-lg before:transition-all before:bg-ang-main_btn before:w-11 before:h-1.5 before:block before:absolute before:content-[''] before:left-0 before:-top-3.5 before:rounded-lg"
     ></span>
   </div>
   <div>
@@ -16,14 +16,14 @@
   </div>
   <div *ngIf="!authService.isLoggedIn" id="but">
     <button
-      class="px-10 py-1.5 border-2 bg-ang-main_btn border-ang-border_main rounded-lg hover:cursor-pointer overflow-hidden hover:opacity-90 transition shadow-md"
+      class="w-20 px-12 flex justify-center py-2 border-2 bg-ang-main_btn border-ang-border_main rounded-lg hover:cursor-pointer overflow-hidden hover:opacity-90 transition shadow-md"
       id="header_reg_button"
       routerLink="/login"
     >
       <p class="text-ang-text_white font-medium">Účet</p>
     </button>
   </div>
-  <div *ngIf="authService.isLoggedIn" class="flex gap-8">
+  <div *ngIf="authService.isLoggedIn" class="flex gap-6">
     <p
       routerLink="/user-account"
       class="hover:cursor-pointer hover:scale-110 transition duration-250"
