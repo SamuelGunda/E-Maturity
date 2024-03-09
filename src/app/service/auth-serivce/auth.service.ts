@@ -16,7 +16,7 @@ import {
 })
 export class AuthService {
   getUserId() {
-    const uid = localStorage.getItem("uid")
+    const uid = localStorage.getItem('uid');
     return uid;
   }
   isLoggedIn = false;
@@ -43,7 +43,6 @@ export class AuthService {
         return {} as UserCredential;
       });
   }
-  
 
   googleSignOut() {
     signOut(getAuth());
@@ -63,7 +62,7 @@ export class AuthService {
   async login(email: string, password: string, rememberMe: boolean) {
     const userCredential = await this.afAuth.signInWithEmailAndPassword(
       email,
-      password
+      password,
     );
     if (!userCredential.user) {
       return;

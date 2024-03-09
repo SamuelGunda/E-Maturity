@@ -16,7 +16,7 @@ export class ForgotPasswordComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private darkModeService: DarkModeService
+    private darkModeService: DarkModeService,
   ) {}
 
   ngOnInit() {
@@ -42,7 +42,7 @@ export class ForgotPasswordComponent implements OnInit {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.error(
-          `Error sending password reset email: ${errorCode} - ${errorMessage}`
+          `Error sending password reset email: ${errorCode} - ${errorMessage}`,
         );
       }
     }

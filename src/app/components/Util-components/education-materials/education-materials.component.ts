@@ -23,7 +23,7 @@ export class EducationMaterialsComponent implements OnInit {
     private darkModeService: DarkModeService,
     private eduService: EduService,
     private renderer: Renderer2,
-    private el: ElementRef
+    private el: ElementRef,
   ) {}
 
   ngOnInit() {
@@ -43,19 +43,19 @@ export class EducationMaterialsComponent implements OnInit {
       this.renderer.setStyle(
         this.el.nativeElement.querySelector('.main_container'),
         'height',
-        '119rem'
+        '119rem',
       );
     } else if (this.showAnjNotes) {
       this.renderer.setStyle(
         this.el.nativeElement.querySelector('.main_container'),
         'height',
-        '92rem'
+        '92rem',
       );
     } else {
       this.renderer.setStyle(
         this.el.nativeElement.querySelector('.main_container'),
         'height',
-        '100%'
+        '100%',
       );
     }
   }
@@ -66,7 +66,7 @@ export class EducationMaterialsComponent implements OnInit {
         this.renderer.setStyle(
           this.el.nativeElement.querySelector('.main_container'),
           'height',
-          '119rem'
+          '119rem',
         );
       }
     }
@@ -75,20 +75,20 @@ export class EducationMaterialsComponent implements OnInit {
         this.renderer.setStyle(
           this.el.nativeElement.querySelector('.main_container'),
           'height',
-          '92rem'
+          '92rem',
         );
       }
     } else if (this.showSjlNotes) {
       this.renderer.setStyle(
         this.el.nativeElement.querySelector('.main_container'),
         'height',
-        '119rem'
+        '119rem',
       );
     } else {
       this.renderer.setStyle(
         this.el.nativeElement.querySelector('.main_container'),
         'height',
-        '100%'
+        '100%',
       );
     }
   }

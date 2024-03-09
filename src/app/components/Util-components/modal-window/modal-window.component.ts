@@ -21,7 +21,7 @@ export class ModalWindowComponent implements OnInit {
     private testService: TestService,
     authService: AuthService,
     private darkModeService: DarkModeService,
-    private router: Router
+    private router: Router,
   ) {
     this.authService = authService;
   }

@@ -14,12 +14,17 @@ module.exports = {
       },
       colors:{ 
         ang: {
+          gradient_from : "#06b7f9",
+          gradient_to : "#194aec",
           main_bg : '#FBFEF9',
           text_main : '#3369f3',
           text_white : '#FBFEF9',
           border_main : '#3369f3',
           main_btn : '#3369f3',
         }
+      },
+      boxShadow: {
+        inner_sh: 'inset 0 0 12px gray',
       }
     },
   },

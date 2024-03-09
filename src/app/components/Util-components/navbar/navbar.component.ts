@@ -13,7 +13,7 @@ export class NavbarComponent {
 
   constructor(
     private router: Router,
-    private darkModeService: DarkModeService
+    private darkModeService: DarkModeService,
   ) {}
   ngOnInit() {
     this.darkModeService.isDarkMode$.subscribe((isDarkMode) => {

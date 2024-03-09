@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     private darkModeService: DarkModeService,
     testPage: TestPageComponent,
-    private timerService: TimerService
+    private timerService: TimerService,
   ) {
     this.authService = authService;
     this.testPage = testPage;

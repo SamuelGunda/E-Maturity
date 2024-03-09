@@ -1,70 +1,74 @@
-<div class="main_container">
-  <div class="login_card">
-    <div class="top_section">
-      <div class="input_group">
-        <label for="meno">Prihlasovaci email</label>
-        <input
-          (ngModelChange)="newInput()"
-          type="text"
-          [(ngModel)]="name"
-          name="meno"
-          id="meno"
-          class="login_cred"
-          required
-          [ngClass]="{ 'error-border': error }"
-          placeholder="Zadaj svoj email na prihlasenie"
-        />
-
-        <label for="heslo">Heslo</label>
-        <input
-          (ngModelChange)="newInput()"
-          type="password"
-          [(ngModel)]="password"
-          name="heslo"
-          id="heslo"
-          class="login_cred"
-          required
-          [ngClass]="{ 'error-border': error }"
-          placeholder="Zadaj svoje heslo"
-        />
-      </div>
-
-      <div class="utils">
-        <button class="forgot-password" routerLink="/forgot-password">
-          Zabudnuté heslo
-        </button>
-
-        <div class="remember">
-          <label for="rememberMe">zapamätaj si ma</label>
+<div
+  class="bg-ang-main_bg rounded-lg h-full flex w-full border border-ang-border_main"
+>
+  <div class="inner-container justify-center items-center">
+    <div class="login_card">
+      <div class="top_section">
+        <div class="input_group">
+          <label for="meno">Prihlasovaci email</label>
           <input
-            type="checkbox"
-            name="rememberMe"
-            id="rememberMe"
-            [(ngModel)]="rememberMe"
+            (ngModelChange)="newInput()"
+            type="text"
+            [(ngModel)]="name"
+            name="meno"
+            id="meno"
+            class="login_cred"
+            required
+            [ngClass]="{ 'error-border': error }"
+            placeholder="Zadaj svoj email na prihlasenie"
+          />
+
+          <label for="heslo">Heslo</label>
+          <input
+            (ngModelChange)="newInput()"
+            type="password"
+            [(ngModel)]="password"
+            name="heslo"
+            id="heslo"
+            class="login_cred"
+            required
+            [ngClass]="{ 'error-border': error }"
+            placeholder="Zadaj svoje heslo"
           />
         </div>
-      </div>
-    </div>
-    <div class="error_message_on" [ngClass]="{ error_message: !error }">
-      <p>Nesprávne zadané údaje</p>
-    </div>
-    <div class="mid_section">
-      <button (click)="signInWithGoogle()" class="login-button">
-        <img
-          src="assets/googleicon.png"
-          alt="googleicon"
-          width="32px"
-          height="32px"
-        />
-        Prihlásiť sa cez google
-      </button>
-    </div>
 
-    <div class="bot_section">
-      <button (click)="login()" type="submit" class="bot_button">
-        Prihlásiť
-      </button>
-      <button routerLink="/register" class="bot_button">Zaregistrovať</button>
+        <div class="utils">
+          <button class="forgot-password" routerLink="/forgot-password">
+            Zabudnuté heslo
+          </button>
+
+          <div class="remember">
+            <label for="rememberMe">zapamätaj si ma</label>
+            <input
+              type="checkbox"
+              name="rememberMe"
+              id="rememberMe"
+              [(ngModel)]="rememberMe"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="error_message_on" [ngClass]="{ error_message: !error }">
+        <p>Nesprávne zadané údaje</p>
+      </div>
+      <div class="mid_section">
+        <button (click)="signInWithGoogle()" class="login-button">
+          <img
+            src="assets/googleicon.png"
+            alt="googleicon"
+            width="32px"
+            height="32px"
+          />
+          Prihlásiť sa cez google
+        </button>
+      </div>
+
+      <div class="bot_section">
+        <button (click)="login()" type="submit" class="bot_button">
+          Prihlásiť
+        </button>
+        <button routerLink="/register" class="bot_button">Zaregistrovať</button>
+      </div>
     </div>
   </div>
 </div>

@@ -56,7 +56,7 @@ export class TestPageComponent implements OnInit {
     public authService: AuthService,
     private darkModeService: DarkModeService,
     private userAccountService: UserAccountService,
-    private timerService: TimerService
+    private timerService: TimerService,
   ) {
     this.route.params.subscribe((params) => {
       if (params && params['subCat'] && params['year']) {
@@ -118,7 +118,7 @@ export class TestPageComponent implements OnInit {
         for (const question of articleQuestion.questions) {
           const savedQuestion =
             this.userAccountService.savedQuestionsSubject.value.find(
-              (savedQ) => savedQ.id === question.id
+              (savedQ) => savedQ.id === question.id,
             );
           if (savedQuestion) {
             question.isStarFilled = true;

@@ -18,7 +18,10 @@ import { TimerService } from '../timer-service/timer.service';
   providedIn: 'root',
 })
 export class TestService {
-  constructor(private firestore: Firestore, private timerService: TimerService) {}
+  constructor(
+    private firestore: Firestore,
+    private timerService: TimerService,
+  ) {}
 
   getTestsYears(subCat: string): Observable<string[]> {
     const dataCollection = collection(this.firestore, 'test');
@@ -119,7 +122,7 @@ export class TestService {
     const documentRef = doc(dataCollection, uid);
     const savedTestsCollectionRef = collection(documentRef, 'savedTests');
     const savedTestDocumentRef = doc(savedTestsCollectionRef);
-    savedTest.timeLeft = 100*60 -this.timerService.getCurrentTimeLeft();
+    savedTest.timeLeft = 100 * 60 - this.timerService.getCurrentTimeLeft();
     setDoc(savedTestDocumentRef, savedTest);
   }
 }

@@ -11,7 +11,10 @@ export class IconSelectorComponent implements OnInit {
   showIconSelection = false;
   availableIcons: string[] | undefined;
 
-  constructor(public userServ: UserAccountService, private er: ElementRef) {}
+  constructor(
+    public userServ: UserAccountService,
+    private er: ElementRef,
+  ) {}
 
   @HostListener('document:click', ['$event'])
   handleClick(event: Event): void {
@@ -46,7 +49,7 @@ export class IconSelectorComponent implements OnInit {
 
     if (!this.userServ.selectedIcon) {
       this.availableIcons = this.availableIcons.filter(
-        (icon) => icon !== this.defaultIcon
+        (icon) => icon !== this.defaultIcon,
       );
     }
   }

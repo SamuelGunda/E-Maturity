@@ -20,7 +20,7 @@ export class SavedTestsPageComponent implements OnInit {
   constructor(
     private savedTestService: SavedTestService,
     private darkModeService: DarkModeService,
-    authService: AuthService
+    authService: AuthService,
   ) {
     this.authService = authService;
   }

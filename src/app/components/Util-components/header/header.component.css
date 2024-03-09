@@ -1,18 +1,17 @@
 app-navbar {
-    display: none;
-    position: fixed;
-    z-index: 1000;
+  display: none;
+  position: fixed;
+  z-index: 1000;
 }
-.expanded>span,
-.expanded>span::before,
-.expanded>span::after {
-    border-radius: 5px;
-    width: 6px;
+.expanded > span,
+.expanded > span::before,
+.expanded > span::after {
+  border-radius: 5px;
+  width: 6px;
 }
-
 
 .time-display button {
-    width: 150px;
-    position: absolute;
-    margin-top: 1rem;
+  width: 150px;
+  position: absolute;
+  margin-top: 1rem;
 }

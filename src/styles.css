@@ -5,94 +5,66 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-
 @layer components {
-  :host{
-    @apply w-full ;
+  :host {
+    @apply w-full;
   }
   app-navbar li,
   app-navbar .expandable_ul {
-    @apply text-lg shadow-lg border-b-2 border-slate-400 flex items-center pl-[20%] h-12 gap-2 hover:cursor-pointer hover:bg-ang-main_btn
+    @apply text-lg shadow-lg border-b` border-ang-border_main flex items-center pl-[20%] h-12 gap-2 hover:cursor-pointer hover:bg-ang-main_btn;
   }
-  .inner-container{
-    @apply flex m-5 rounded-lg w-full border border-ang-border_main
+  .inner-container {
+    @apply flex m-5 rounded-lg w-full shadow-inner_sh;
   }
 }
 
-@layer components{
-  app-landing-page .main_card_containers{
-    @apply flex flex-col items-center justify-around text-base h-80  w-min rounded-lg px-2 m-2 hover:scale-105 transition
+@layer components {
+  app-landing-page .main_card_containers {
+    @apply flex flex-col items-center justify-around text-base h-[22rem] w-min rounded-lg px-2 m-2 hover:scale-105 transition;
   }
 
-  app-landing-page .main_card_textareas{
-    @apply rounded-lg h-48 py-1 lg:h-44 w-40 lg:w-52 bg-ang-main_bg flex justify-center text-center
+  app-landing-page .main_card_textareas {
+    @apply rounded-lg h-48 py-1 lg:h-44 w-40 lg:w-52 bg-ang-main_bg flex justify-center text-center;
   }
 }
 
 :root {
-  --main-bg-color-light: #FBFEF9;
+  --main-bg-color-light: #fbfef9;
   --main-bg-color-dark: #333333;
   --border-color-light: #0000002a;
   --box-shadow-color-light: #00000080;
 
   --main-text-color-light: #3369f3;
-  --main-text-color-dark: #FBFEF9;
+  --main-text-color-dark: #fbfef9;
 
   --inset-box-shadow-color-light: rgba(13, 13, 13, 0.5);
   --inset-box-shadow-color-dark: rgba(113, 113, 113, 0.5);
 
-
-  --text-area-bg-light: #FBFEF9;
+  --text-area-bg-light: #fbfef9;
   --text-area-bg-dark: #1c1e21;
-
 
   --test-border-color-light: #00000080;
   --test-border-color-dark: #ffffff80;
 
-
   --account-border-color-light: #6887f0;
   --account-border-color-dark: #ffffff;
 
-
   --account-button-color-light: #3369f3;
 
-
   --account-button-hover-color-light: #5987fd;
-
 
   --main-blue-color: #3369f3;
 
   --main-error-message-light: rgb(229, 34, 34);
 
+  --auth-bg-color-light: #5c89ff;
 
-  --auth-bg-color-light: #5C89FF;
-
-
-  --button-white-bg-light: #FBFEF9;
+  --button-white-bg-light: #fbfef9;
   --button-white-bg-dark: #1d2a34;
 }
-
-html {
-  scroll-behavior: smooth;
-}
-
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
-}
-
-body {
-  background: linear-gradient(90deg, #06b7f9 11.2%, #194aec 91.1%);
-}
-
-html,
-body {
-  height: auto;
-}
-
-body {
-  margin: 0;
-  font-family: "Helvetica Neue", sans-serif;
 }

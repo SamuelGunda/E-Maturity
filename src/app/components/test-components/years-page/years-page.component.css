@@ -48,7 +48,6 @@
   color: var(--account-border-color-dark);
 }
 
-
 .years_headline div {
   display: flex;
   gap: 1rem;
@@ -75,7 +74,7 @@
   padding-bottom: 2rem;
 }
 
-.main_page_container>a {
+.main_page_container > a {
   width: 10rem;
   height: 2.5rem;
   background-color: var(--main-blue-color);
@@ -88,7 +87,7 @@
   font-size: 1.2rem;
 }
 
-.main_page_container>a:hover,
-.main_page_container>a:focus {
+.main_page_container > a:hover,
+.main_page_container > a:focus {
   opacity: 85%;
 }

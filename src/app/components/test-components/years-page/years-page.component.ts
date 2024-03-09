@@ -18,7 +18,7 @@ export class YearsPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private testService: TestService,
-    private darkModeService: DarkModeService
+    private darkModeService: DarkModeService,
   ) {
     this.loading = true;
     this.route.params.subscribe((params) => {
@@ -32,7 +32,7 @@ export class YearsPageComponent implements OnInit {
           },
           (error) => {
             console.error('Error fetching tests:', error);
-          }
+          },
         );
       }
     });

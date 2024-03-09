@@ -47,8 +47,7 @@ export class SavedTestService {
             ' vypracovaný: ' +
             data['finishedAt'].toDate().toLocaleDateString('sk-SK', dateFormat),
 
-            timeLeft:
-            data['timeLeft'],
+          timeLeft: data['timeLeft'],
           questions: data['questions']
             .map((question: any) => {
               if (question.text === 'Zrušená otázka') {

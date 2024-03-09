@@ -1,4 +1,4 @@
 export class Answer {
-    questionId!: number;
-    response!: string;
+  questionId!: number;
+  response!: string;
 }

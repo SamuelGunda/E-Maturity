@@ -28,7 +28,7 @@ export class UserAccountService {
   removeQuestion(question: Question) {
     question.isSaved = false;
     const updatedQuestions = this.savedQuestionsSubject.value.filter(
-      (q) => q.id !== question.id
+      (q) => q.id !== question.id,
     );
     this.savedQuestionsSubject.next(updatedQuestions);
     this.saveQuestionsToLocalStorage(updatedQuestions);

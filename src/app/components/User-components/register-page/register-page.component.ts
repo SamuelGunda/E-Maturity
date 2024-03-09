@@ -22,7 +22,7 @@ export class RegisterPageComponent implements OnInit {
   constructor(
     private router: Router,
     private service: AuthService,
-    private darkModeService: DarkModeService
+    private darkModeService: DarkModeService,
   ) {}
 
   ngOnInit() {

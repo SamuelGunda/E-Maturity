@@ -1,5 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, doc, getDoc, getDocs } from '@angular/fire/firestore';
+import {
+  Firestore,
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+} from '@angular/fire/firestore';
 import { Observable, from, map } from 'rxjs';
 
 export interface eduMaterials {
@@ -11,15 +17,15 @@ export interface eduMaterials {
   providedIn: 'root',
 })
 export class EduService {
-  constructor(private firestore: Firestore) { }
+  constructor(private firestore: Firestore) {}
 
   getFile(subject: string): Observable<eduMaterials[]> {
     const dataCollection = collection(this.firestore, 'edu_materials');
     const documentRef = doc(dataCollection, 'Subjects');
     const subjectCollectionRef = collection(documentRef, subject);
 
-  
-      return from(
+    return (
+      from(
         getDoc(documentRef).then((snapshot) => {
           if (snapshot.exists()) {
             return snapshot.id;
@@ -40,5 +46,6 @@ export class EduService {
           return materials.sort((a, b) => a.id.localeCompare(b.id));
         }),
       )
-  }  
-}  
+    );
+  }
+}

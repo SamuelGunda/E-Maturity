@@ -24,13 +24,13 @@ import { SavedTestService } from '../../../service/saved-test-service/saved-test
         'dark',
         style({
           transform: 'rotate(180deg)',
-        })
+        }),
       ),
       state(
         'light',
         style({
           transform: 'rotate(0deg)',
-        })
+        }),
       ),
       transition('dark <=> light', animate('0.3s ease-in-out')),
     ]),
@@ -44,7 +44,7 @@ export class UserAccountComponent implements OnInit {
     private authService: AuthService,
     private darkModeService: DarkModeService,
     public userAccountService: UserAccountService,
-    public savedTestService: SavedTestService
+    public savedTestService: SavedTestService,
   ) {}
 
   ngOnInit() {
