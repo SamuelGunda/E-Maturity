@@ -1,45 +1,75 @@
-<div class="main_container">
-  <div class="inner-page-container">
-    <div class="subjects" value="sjl">
-      <button (click)="toggleShowSjlNotes()">
-        <p>Slovenský jazyk</p>
+<div
+  class="bg-ang-main_bg rounded-lg h-auto min-h-full flex justify-evenly w-full border border-ang-border_main"
+>
+  <div
+    class="flex flex-wrap justify-around sm:m-5 sm:p-4 sm:rounded-lg sm:shadow-inner_sh sm:w-full gap-2"
+  >
+    <div>
+      <button
+        (click)="toggleShowSjlNotes()"
+        class="border border-ang-border_main rounded-lg mt-4 bg-ang-main_btn text-ang-text_white px-4 py-2 md:px-8 hover:opacity-85"
+      >
+        Slovenský jazyk
       </button>
-      <div *ngIf="showSjlNotes">
-        <ul>
-          <li *ngFor="let material of sjlMaterials">
-            <a [href]="material.url" target="_blank">
-              <img src="/assets/pdf_icon.png" alt="pdf_icon" />
+      <div *ngIf="showSjlNotes" class="flex flex-col w-40">
+        <div *ngFor="let material of sjlMaterials">
+          <a
+            [href]="material.url"
+            target="_blank"
+            class="flex items-center text-xs py-1 gap-2"
+          >
+            <img src="/assets/pdf_icon.png" alt="pdf_icon" class="h-6 w-auto" />
+            <p class="text-ang-text_main font-semibold hover:opacity-85">
               {{ material.text }}
-            </a>
-          </li>
-        </ul>
+            </p>
+          </a>
+        </div>
       </div>
     </div>
-    <div class="subjects" value="anj">
-      <button (click)="toggleShowAnjNotes()">
-        <p>Anglický jazyk</p>
+
+    <div>
+      <button
+        (click)="toggleShowAnjNotes()"
+        class="border border-ang-border_main rounded-lg mt-4 bg-ang-main_btn text-ang-text_white px-4 py-2 md:px-8 hover:opacity-85"
+      >
+        Anglický jazyk
       </button>
-      <div *ngIf="showAnjNotes">
-        <ul>
-          <li *ngFor="let material of anjMaterials">
-            <a [href]="material.url" target="_blank">
-              <img src="/assets/pdf_icon.png" alt="pdf_icon" />
+      <div *ngIf="showAnjNotes" class="flex flex-col w-20">
+        <div *ngFor="let material of anjMaterials">
+          <a
+            [href]="material.url"
+            target="_blank"
+            class="flex items-center text-xs py-1 gap-2"
+          >
+            <img src="/assets/pdf_icon.png" alt="pdf_icon" class="h-6 w-auto" />
+            <p class="text-ang-text_main font-semibold hover:opacity-85">
               {{ material.text }}
-            </a>
-          </li>
-        </ul>
+            </p>
+          </a>
+        </div>
       </div>
     </div>
-    <div class="subjects" value="math">
-      <button (click)="showMatNotes = !showMatNotes">
-        <p>Matematika</p>
+
+    <div>
+      <button
+        (click)="toggleShowMatNotes()"
+        class="border border-ang-border_main rounded-lg mt-4 bg-ang-main_btn text-ang-text_white px-4 py-2 md:px-8 hover:opacity-85"
+      >
+        Matematika
       </button>
-      <div class="mat" *ngIf="showMatNotes">
-        <a
-          href="https://firebasestorage.googleapis.com/v0/b/maturity-project.appspot.com/o/Education_materials%2FMAT%2Fteoria_matematiky.pdf?alt=media&token=14532f18-a7e9-441b-a750-7f83ad1de88a"
-          target="_blank"
-          ><img src="/assets/pdf_icon.png" alt="pdf_icon" />Teória matematiky</a
-        >
+      <div *ngIf="showMatNotes" class="flex flex-col w-20">
+        <div *ngFor="let material of matMaterials">
+          <a
+            [href]="material.url"
+            target="_blank"
+            class="flex items-center text-xs py-1 gap-2"
+          >
+            <img src="/assets/pdf_icon.png" alt="pdf_icon" class="h-6 w-auto" />
+            <p class="text-ang-text_main font-semibold hover:opacity-85">
+              {{ material.text }}
+            </p>
+          </a>
+        </div>
       </div>
     </div>
   </div>
