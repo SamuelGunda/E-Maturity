@@ -20,7 +20,6 @@ import initializeApp = firebase.initializeApp;
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
-import { ModalWindowComponent } from './components/Util-components/modal-window/modal-window.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { SavedTestsPageComponent } from './components/test-components/saved-tests-page/saved-tests-page.component';
@@ -35,7 +34,6 @@ import { EduService } from './service/edu-service/edu.service';
     HeaderComponent,
     NavbarComponent,
     routingComponent,
-    ModalWindowComponent,
     SavedTestsPageComponent,
     IconSelectorComponent,
     TimeFormatPipe,

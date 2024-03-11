@@ -1,10 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  HostListener,
-  OnInit,
-  Input,
-} from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
 import { AuthService } from '../../../service/auth-serivce/auth.service';
 import { NavigationEnd, Router } from '@angular/router';
 import { DarkModeService } from '../../../service/dark-mode-serivce/dark-mode.service';

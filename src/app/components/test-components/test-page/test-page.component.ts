@@ -6,7 +6,6 @@ import { Observable, timer } from 'rxjs';
 import { Question } from '../../../model/question.model';
 import { ArticleQuestions } from '../../../model/article-questions.model';
 import { MatDialog } from '@angular/material/dialog';
-import { ModalWindowComponent } from '../../Util-components/modal-window/modal-window.component';
 import { QuestionResult, SavedTest } from '../../../model/saved-test.model';
 import { AuthService } from '../../../service/auth-serivce/auth.service';
 import { DarkModeService } from '../../../service/dark-mode-serivce/dark-mode.service';
@@ -98,7 +97,7 @@ export class TestPageComponent implements OnInit {
         if (this.timeLeft > 0) {
           this.timeLeft--;
         } else if (this.timeLeft == 0) {
-          this.openDialog();
+          this.showDialog();
         } else {
           this.timeLeft = 100 * 60;
         }
@@ -128,19 +127,6 @@ export class TestPageComponent implements OnInit {
         }
       }
     }
-  }
-
-  openDialog(): void {
-    this.scrollTop();
-    const savedTest = this.checkAnswers();
-
-    const dialogRef = this.dialog.open(ModalWindowComponent, {
-      data: { score: this.score, total: this.total, savedTest: savedTest },
-    });
-    this.pauseTimer();
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
-    });
   }
 
   isTextInput(question: Question): boolean {
@@ -264,5 +250,18 @@ export class TestPageComponent implements OnInit {
       top: 0,
       behavior: 'instant',
     });
+  }
+  showDialog() {
+    let dialog = document.getElementById('dialog');
+    dialog?.classList.remove('hidden');
+    dialog?.classList.add('opacity-1');
+    dialog?.classList.add('flex');
+
+    const savedTest = this.checkAnswers();
+    this.pauseTimer();
+  }
+  get formattedPercentage(): string {
+    const percentage = (this.score / this.total) * 100;
+    return ` ${percentage.toFixed(2)}%`;
   }
 }

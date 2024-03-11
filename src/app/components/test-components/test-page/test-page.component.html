@@ -60,5 +60,38 @@
       </div>
     </div>
   </div>
-  <button mat-raised-button (click)="openDialog()">Vyhodnotenie</button>
+  <button
+    (click)="showDialog()"
+    class="border-2 border-ang-border_main mt-2 py-2 px-6 bg-ang-main_btn text-ang-text_white rounded-lg hover:opacity-85 transition"
+  >
+    Vyhodnotenie
+  </button>
+  <div
+    id="dialog"
+    class="fixed left-0 top-0 w-screen h-screen bg-opacity-40 bg-black justify-center items-center hidden"
+  >
+    <div
+      class="bg-ang-main_bg border border-ang-border_main p-8 w-4/6 rounded-lg max-w-[32rem]"
+    >
+      <div
+        class="flex justify-center items-center flex-col gap-4 text-sm md:text-base"
+      >
+        <h1>Vyhodnotenie</h1>
+        <p>V teste ste dosiahli:</p>
+        <p [innerText]="formattedPercentage"></p>
+      </div>
+      <div class="flex justify-around text-xs md:text-base gap-2 pt-4">
+        <button
+          class="text-sm border border-ang-border_main py-1 px-2 rounded-lg bg-ang-main_btn text-ang-text_white hover:opacity-85"
+        >
+          Domovská stránka
+        </button>
+        <button
+          class="border border-ang-border_main py-1 px-2 rounded-lg bg-ang-main_btn text-ang-text_white hover:opacity-85"
+        >
+          Detaily testu
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
