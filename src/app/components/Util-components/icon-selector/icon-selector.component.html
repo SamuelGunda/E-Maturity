@@ -1,9 +1,17 @@
-<div class="icon_selector" (click)="toggleIconSelection()">
-  <img [src]="getSelectedIcon()" alt="Vyber ikonku" />
+<div class="relative hover:cursor-pointer" (click)="toggleIconSelection()">
+  <img
+    [src]="getSelectedIcon()"
+    class="w-20 h-20 hover:opacity-85"
+    alt="Vyber ikonku"
+  />
 
-  <div *ngIf="showIconSelection" class="icon_selection">
+  <div
+    *ngIf="showIconSelection"
+    class="icon_selection absolute bg-ang-main_bg border border-ang-border_main flex flex-wrap rounded-sm mt-4"
+  >
     <div *ngFor="let icon of availableIcons">
       <img
+        class="w-20 h-20 hover:opacity-85"
         [src]="icon"
         alt="Icon"
         (click)="selectIcon(icon)"

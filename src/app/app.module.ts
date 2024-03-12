@@ -1,4 +1,3 @@
-// app.module.ts
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -26,7 +25,6 @@ import { SavedTestsPageComponent } from './components/test-components/saved-test
 import { IconSelectorComponent } from './components/Util-components/icon-selector/icon-selector.component';
 import { TestPageComponent } from './components/test-components/test-page/test-page.component';
 import { TimeFormatPipe } from './service/timer-service/time-format.pipe';
-import { EduService } from './service/edu-service/edu.service';
 
 @NgModule({
   declarations: [
