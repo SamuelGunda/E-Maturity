@@ -1,13 +1,5 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../service/auth-serivce/auth.service';
-import { DarkModeService } from '../../../service/dark-mode-serivce/dark-mode.service';
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition,
-} from '@angular/animations';
 import { UserAccountService } from '../../../service/user-acc-service/user-acc.service';
 import { Question } from '../../../model/question.model';
 import { Observable } from 'rxjs';
@@ -18,23 +10,6 @@ import { SavedTestService } from '../../../service/saved-test-service/saved-test
   selector: 'app-user-account',
   templateUrl: './user-account.component.html',
   styleUrls: ['./user-account.component.css'],
-  animations: [
-    trigger('toggleAnimation', [
-      state(
-        'dark',
-        style({
-          transform: 'rotate(180deg)',
-        }),
-      ),
-      state(
-        'light',
-        style({
-          transform: 'rotate(0deg)',
-        }),
-      ),
-      transition('dark <=> light', animate('0.3s ease-in-out')),
-    ]),
-  ],
 })
 export class UserAccountComponent implements OnInit {
   userName: string = '';
@@ -42,7 +17,6 @@ export class UserAccountComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private darkModeService: DarkModeService,
     public userAccountService: UserAccountService,
     public savedTestService: SavedTestService,
   ) {}
@@ -53,14 +27,6 @@ export class UserAccountComponent implements OnInit {
         this.userName = user.displayName || '';
       }
     });
-
-    this.darkModeService.isDarkMode$.subscribe((isDarkMode) => {
-      this.isDarkMode = isDarkMode;
-    });
-  }
-
-  toggleDarkMode() {
-    this.darkModeService.toggleDarkMode();
   }
 
   savedTests$: Observable<SavedTest[]> =
