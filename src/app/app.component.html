@@ -1,8 +1,5 @@
-<div class="flex flex-col gap-3 h-screen p-6">
-  <app-header
-    (scroll)="onScroll()"
-    [ngClass]="headerfixes ? 'fixed' : 'notfixed'"
-  ></app-header>
+<div class="flex flex-col gap-3 min-h-screen p-6">
+  <app-header class="sticky w-full top-0 z-50"></app-header>
   <div class="flex-1 bg-ang-main_bg rounded-lg basis-1 h-fit">
     <router-outlet></router-outlet>
   </div>

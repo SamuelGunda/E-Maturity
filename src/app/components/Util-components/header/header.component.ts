@@ -54,13 +54,21 @@ export class HeaderComponent implements OnInit {
   onToggleNav(): void {
     const navbar = document.getElementById('navbar') as HTMLElement;
     const header = document.getElementById('main_header') as HTMLElement;
+    const screenWidth = window.innerWidth;
 
-    if (navbar.style.display === 'block') {
+    if (navbar.style.display === 'flex') {
       navbar.style.display = 'none';
+      header.style.borderRadius = '8px';
       this.buttonExpanded = !this.buttonExpanded;
     } else {
-      navbar.style.display = 'block';
-      header.style.borderBottomLeftRadius = '0';
+      navbar.style.display = 'flex';
+      if (screenWidth <= 320) {
+        header.style.borderBottomLeftRadius = '0';
+        header.style.borderBottomRightRadius = '0';
+      } else {
+        header.style.borderRadius = '8px';
+        header.style.borderBottomLeftRadius = '0';
+      }
       this.buttonExpanded = !this.buttonExpanded;
     }
   }
