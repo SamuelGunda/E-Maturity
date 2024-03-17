@@ -39,4 +39,17 @@ export class UserAccountComponent implements OnInit {
   getSelectedIcon(): string {
     return this.userAccountService.getSelectedIcon();
   }
+  selectedFile: File | null = null;
+
+  onFileSelected(event: any): void {
+    this.selectedFile = event.target.files[0];
+  }
+
+  sendData(): void {
+    if (this.selectedFile) {
+      this.userAccountService.sendData(this.selectedFile);
+    } else {
+      console.error('No file selected.');
+    }
+  }
 }

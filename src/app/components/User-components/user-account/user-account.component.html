@@ -1,6 +1,4 @@
-<div
-  class="bg-ang-main_bg rounded-lg h-full flex w-full border border-ang-border_main"
->
+<div class="outer_container">
   <div class="inner_container flex-col p-2 text-ang-text_main">
     <div
       class="flex flex-col items-center gap-2 border-b border-ang-border_main"
@@ -55,3 +53,5 @@
     </div>
   </div>
 </div>
+<input type="file" (change)="onFileSelected($event)" class="w-80 h-8 border" />
+<button (click)="sendData()">Send data</button>
