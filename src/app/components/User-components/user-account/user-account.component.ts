@@ -14,6 +14,7 @@ import { SavedTestService } from '../../../service/saved-test-service/saved-test
 export class UserAccountComponent implements OnInit {
   userName: string = '';
   isDarkMode: boolean = false;
+  darkMode: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -50,6 +51,17 @@ export class UserAccountComponent implements OnInit {
       this.userAccountService.sendData(this.selectedFile);
     } else {
       console.error('No file selected.');
+    }
+  }
+
+  darkToggle = document.querySelector('.toggle_dark');
+
+  toggleDark() {
+    this.darkMode = !this.darkMode;
+    if (this.darkMode) {
+      document.documentElement.classList.toggle('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
     }
   }
 }
