@@ -2,7 +2,6 @@ import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
 import { AuthService } from '../../../service/auth-serivce/auth.service';
 import { NavigationEnd, Router } from '@angular/router';
 import { DarkModeService } from '../../../service/dark-mode-serivce/dark-mode.service';
-import { TestPageComponent } from '../../test-components/test-page/test-page.component';
 import { TimerService } from '../../../service/timer-service/timer.service';
 
 @Component({
@@ -14,7 +13,6 @@ export class HeaderComponent implements OnInit {
   buttonExpanded: any = false;
   authService: AuthService;
   isDarkMode: boolean = false;
-  testPage: TestPageComponent;
   timerIsOn: boolean = false;
   timeLeft: number = 0;
 
@@ -23,11 +21,9 @@ export class HeaderComponent implements OnInit {
     private el: ElementRef,
     private router: Router,
     private darkModeService: DarkModeService,
-    testPage: TestPageComponent,
     private timerService: TimerService,
   ) {
     this.authService = authService;
-    this.testPage = testPage;
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.closeNavbar();

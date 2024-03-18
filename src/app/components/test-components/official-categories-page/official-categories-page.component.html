@@ -17,7 +17,7 @@
           <li>Zrušené otázky sa Vám pripočítavajú za bod automaticky</li>
         </ul>
       </div>
-      <div *ngIf="subCat === 'sk'">
+      <div *ngIf="subCat === 'sjl'">
         <h1>Slovenský jazyk a literatúra</h1>
         <ul>
           <li>Test obsahuje 64 úloh.</li>
@@ -32,7 +32,7 @@
           <li>Zrušené otázky sa Vám pripočítavajú za bod automaticky</li>
         </ul>
       </div>
-      <div *ngIf="subCat === 'aj'">
+      <div *ngIf="subCat === 'anj'">
         <h1>Anglický jazyk</h1>
         <ul>
           <li>Testy pre anglický jazyk sa pripravujú</li>
@@ -40,7 +40,7 @@
       </div>
     </div>
     <div *ngIf="years" class="main_page_container">
-      <a *ngFor="let year of years" [routerLink]="['/test-page', subCat, year]">
+      <a *ngFor="let year of years" [routerLink]="['/official-test', subCat, year]">
         {{ year }}
       </a>
     </div>
