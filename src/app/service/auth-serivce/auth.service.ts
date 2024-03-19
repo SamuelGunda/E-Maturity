@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Observable } from 'rxjs';
 import firebase from 'firebase/compat';
+import { CookieService } from 'ngx-cookie';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+
 import {
   signInWithPopup,
   signOut,
@@ -22,11 +25,28 @@ export class AuthService {
   isLoggedIn = false;
   userData: Observable<firebase.User>;
 
-  constructor(private afAuth: AngularFireAuth) {
+  constructor(private afAuth: AngularFireAuth, private cookieService: CookieService, private firestore: AngularFirestore) {
     // @ts-ignore
     this.userData = afAuth.authState;
     this.afAuth.setPersistence('session');
     this.checkAuthState();
+    this.initializeTokenListener();
+  }
+
+  initializeTokenListener() {
+    this.afAuth.onIdTokenChanged((user) => {
+      if (user) {
+        user.getIdToken(true).then((idToken) => {
+          // New token
+          console.log(idToken);
+          
+          // If "Remember Me" is checked, store the new token in a cookie
+          if (this.cookieService.get('rememberMe')) {
+            this.cookieService.put('token', idToken);
+          }
+        });
+      }
+    });
   }
 
   googleSignIn(): Promise<UserCredential> {
@@ -68,14 +88,28 @@ export class AuthService {
       return;
     }
     const uid = userCredential.user.uid;
-    localStorage.setItem('uid', uid);
-    localStorage.setItem('User_info', JSON.stringify(userCredential.user));
     this.isLoggedIn = true;
-    if (rememberMe) {
-      localStorage.setItem('rememberMe', JSON.stringify({ email, password }));
-    } else {
-      localStorage.removeItem('rememberMe');
-    }
+  
+    // Generate the token
+    userCredential.user.getIdToken(true).then((idToken) => {
+      // Here is your ID token
+      console.log(idToken);
+      
+      // Send the token to Firestore
+      this.firestore.collection('users').doc(uid).set({
+        token: idToken
+      }, { merge: true });
+  
+      // If "Remember Me" is checked, store the token in a cookie
+      if (rememberMe) {
+        this.cookieService.put('token', idToken);
+      } else {
+        this.cookieService.remove('token');
+      }
+    }).catch((error) => {
+      // Handle error
+      console.log(error);
+    });
   }
 
   logout() {
