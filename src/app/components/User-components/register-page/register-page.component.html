@@ -1,78 +1,80 @@
-<div class="main_container">
-  <div class="register_card">
-    <div class="top_section">
-      <div class="input_group">
-        <div class="user_cred">
-          <div class="user_firstcred">
-            <label for="krstne">Krstné meno</label>
-            <input
-              [(ngModel)]="fname"
-              type="text"
-              name="krstne"
-              id="krstne"
-              class="register_cred"
-              required
-              placeholder="Ján"
-            />
+<div class="outer_container">
+  <div class="inner_container justify-center items-center">
+    <div class="border border-ang-border_main">
+      <div class="top_section">
+        <div class="input_group">
+          <div class="user_cred">
+            <div class="user_firstcred">
+              <label for="krstne">Krstné meno</label>
+              <input
+                [(ngModel)]="fname"
+                type="text"
+                name="krstne"
+                id="krstne"
+                class="register_cred"
+                required
+                placeholder="Ján"
+              />
+            </div>
+            <div class="user_secondcred">
+              <label for="priezv">Priezvisko</label>
+              <input
+                [(ngModel)]="lname"
+                type="text"
+                name="priezv"
+                id="priezv"
+                class="register_cred"
+                required
+                placeholder="Novák"
+              />
+            </div>
           </div>
-          <div class="user_secondcred">
-            <label for="priezv">Priezvisko</label>
-            <input
-              [(ngModel)]="lname"
-              type="text"
-              name="priezv"
-              id="priezv"
-              class="register_cred"
-              required
-              placeholder="Novák"
-            />
-          </div>
+          <label for="email">E-mail</label>
+          <input
+            [(ngModel)]="email"
+            type="email"
+            name="email"
+            id="email"
+            class="register_cred"
+            required
+            [ngClass]="{ 'error-border': emailError, noborder: !emailError }"
+            placeholder="jan.novak@email.com"
+          />
+          <label for="heslo">Heslo</label>
+          <input
+            [(ngModel)]="password"
+            type="password"
+            name="heslo"
+            id="heslo"
+            class="register_cred"
+            required
+            [ngClass]="{ 'error-border': pswdError, noborder: !pswdError }"
+            placeholder="Zadajte heslo"
+          />
+          <label for="hesloKontrola">Kontrola hesla</label>
+          <input
+            [(ngModel)]="passwordCheck"
+            type="password"
+            name="hesloKontrola"
+            id="hesloKontrola"
+            class="register_cred"
+            [ngClass]="{ 'error-border': pswdError, noborder: !pswdError }"
+            required
+            placeholder="Zopakujte heslo"
+          />
         </div>
-        <label for="email">E-mail</label>
-        <input
-          [(ngModel)]="email"
-          type="email"
-          name="email"
-          id="email"
-          class="register_cred"
-          required
-          [ngClass]="{ 'error-border': emailError, noborder: !emailError }"
-          placeholder="jan.novak@email.com"
-        />
-        <label for="heslo">Heslo</label>
-        <input
-          [(ngModel)]="password"
-          type="password"
-          name="heslo"
-          id="heslo"
-          class="register_cred"
-          required
-          [ngClass]="{ 'error-border': pswdError, noborder: !pswdError }"
-          placeholder="Zadajte heslo"
-        />
-        <label for="hesloKontrola">Kontrola hesla</label>
-        <input
-          [(ngModel)]="passwordCheck"
-          type="password"
-          name="hesloKontrola"
-          id="hesloKontrola"
-          class="register_cred"
-          [ngClass]="{ 'error-border': pswdError, noborder: !pswdError }"
-          required
-          placeholder="Zopakujte heslo"
-        />
       </div>
-    </div>
-    <div class="mid_section">
-      {{ errorMessage }}
-    </div>
-    <div class="bot_section">
-      <button class="login" id="register_log_button" routerLink="/login">
-        <p>Späť na prihlásenie</p>
-      </button>
-      <button>
-        <p (click)="register()">Založ účet</p>
-      </button>
+      <div class="mid_section">
+        {{ errorMessage }}
+      </div>
+      <div class="bot_section">
+        <button class="login" id="register_log_button" routerLink="/login">
+          <p>Späť na prihlásenie</p>
+        </button>
+        <button>
+          <p (click)="register()">Založ účet</p>
+        </button>
+      </div>
     </div>
   </div>
 </div>

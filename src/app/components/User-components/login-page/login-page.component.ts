@@ -15,6 +15,9 @@ export class LoginPageComponent implements OnInit {
   error: boolean = false;
   rememberMe: boolean = false;
   isDarkMode: boolean = false;
+  isStudent: boolean = true;
+  teacherName: string = '';
+  teacherPassword: string = '';
 
   constructor(
     private router: Router,
@@ -54,5 +57,11 @@ export class LoginPageComponent implements OnInit {
       this.name = user.email;
       this.password = user.password;
     }
+  }
+  changeToTeacher() {
+    this.isStudent = true;
+  }
+  changeToStudent() {
+    this.isStudent = false;
   }
 }
