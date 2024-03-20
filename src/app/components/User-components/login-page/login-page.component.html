@@ -1,86 +1,123 @@
 <div class="outer_container">
   <div class="inner_container justify-center items-center">
     <div
-      class="flex flex-col items-center justify-center border gap-4 border-ang-border_main py-3 mx-2 rounded-lg max-w-[30rem] w-full bg-gradient-to-b from-ang-gradient_from to-ang-gradient_to"
+      class="flex md:h-[32rem] flex-col items-center justify-between border gap-4 border-ang-border_main py-4 m-2 rounded-lg max-w-[30rem] w-full bg-gradient-to-t from-ang-gradient_from to-ang-gradient_to"
     >
       <div class="flex justify-evenly w-full items-center">
-        <button (click)="changeToTeacher()">ab</button>
-        <button (click)="changeToStudent()">sa</button>
+        <button
+          [ngClass]="{ 'scale-125': isStudent }"
+          (click)="changeToTeacher()"
+          class="w-20 h-20 border border-ang-border_main rounded-3xl p-2 transition-all"
+        >
+          <img src="/assets/login_icons/student.png" alt="student_login" />
+        </button>
+        <button
+          [ngClass]="{ 'scale-125': !isStudent }"
+          (click)="changeToStudent()"
+          class="w-20 h-20 border border-ang-border_main rounded-3xl p-2 transition-all"
+        >
+          <img src="/assets/login_icons/teacher.png" alt="teacher_login" />
+        </button>
       </div>
-      {{ isStudent }}
 
-      <div class="flex flex-col gap-2" *ngIf="isStudent">
-        <label for="meno">Prihlasovaci email</label>
+      <div
+        class="flex flex-col text-center md:items-center gap-2 w-full px-2"
+        *ngIf="isStudent"
+      >
+        <label for="meno" class="text-xl font-semibold text-ang-text_white"
+          >Prihlasovaci email</label
+        >
         <input
           (ngModelChange)="newInput()"
           type="text"
           [(ngModel)]="name"
           name="meno"
+          [class]="{ 'border-red-700': error }"
           id="meno"
           required
-          [ngClass]="{ 'error-border': error }"
-          placeholder="Zadaj svoj email na prihlasenie"
+          class="py-1 px-2 rounded-md border border-ang-border_main md:w-72"
+          placeholder="Zadaj svoj email"
         />
 
-        <label for="heslo">Heslo</label>
+        <label for="heslo" class="text-xl font-semibold text-ang-text_white"
+          >Heslo</label
+        >
         <input
           (ngModelChange)="newInput()"
           type="password"
           [(ngModel)]="password"
           name="heslo"
+          [class]="{ 'border-red-700': error }"
           id="heslo"
           required
-          [ngClass]="{ 'error-border': error }"
+          class="py-1 px-2 rounded-md border border-ang-border_main md:w-72"
           placeholder="Zadaj svoje heslo"
         />
       </div>
 
       <div class="flex flex-col gap-2" *ngIf="!isStudent">
-        <label for="ucitel">Učiteľské meno</label>
+        <label for="ucitel" class="text-xl font-semibold text-ang-text_white"
+          >Učiteľské meno</label
+        >
         <input
           (ngModelChange)="newInput()"
           type="text"
           [(ngModel)]="teacherName"
           name="ucitel"
+          [class]="{ 'border-red-700': error }"
           id="ucitel"
           required
-          [ngClass]="{ 'error-border': error }"
+          class="py-1 px-2 rounded-md border border-ang-border_main md:w-72"
           placeholder="Zadaj svoje učiteľské meno"
         />
 
-        <label for="ucitel_heslo">Učiteľské heslo</label>
+        <label
+          for="ucitel_heslo"
+          class="text-xl font-semibold text-ang-text_white"
+          >Učiteľské heslo</label
+        >
         <input
           (ngModelChange)="newInput()"
           type="password"
           [(ngModel)]="teacherPassword"
           name="ucitel_heslo"
+          [class]="{ 'border-red-700': error }"
           id="ucitel_heslo"
           required
-          [ngClass]="{ 'error-border': error }"
+          class="py-1 px-2 rounded-md border border-ang-border_main md:w-72"
           placeholder="Zadaj svoje heslo"
         />
       </div>
 
-      <div class="flex justify-between">
-        <button class="forgot-password" routerLink="/forgot-password">
-          Zabudnuté heslo
-        </button>
+      <div
+        class="flex text-sm justify-evenly items-start w-full md:px-16 text-ang-text_white font-semibold"
+      >
+        <button routerLink="/forgot-password">Zabudnuté heslo</button>
 
-        <div class="remember">
-          <label for="rememberMe">zapamätaj si ma</label>
+        <div class="flex items-center gap-1">
+          <label for="rememberMe" class="hover:opacity-95 hover:cursor-pointer"
+            >zapamätaj si ma</label
+          >
           <input
             type="checkbox"
             name="rememberMe"
+            class="mt-1"
             id="rememberMe"
             [(ngModel)]="rememberMe"
           />
         </div>
       </div>
-      <div class="error_message_on" [ngClass]="{ error_message: !error }">
+      <div
+        class="opacity-0 font-semibold text-xl"
+        [class]="{ 'text-red-600': error, 'opacity-100': error }"
+      >
         <p>Nesprávne zadané údaje</p>
       </div>
-      <div class="mid_section" *ngIf="isStudent">
-        <button (click)="signInWithGoogle()" class="login-button">
+      <div *ngIf="isStudent">
+        <button
+          (click)="signInWithGoogle()"
+          class="flex items-center gap-2 mx-1 px-3 py-2 rounded-lg bg-ang-text_white hover:opacity-95 border border-ang-text_white"
+        >
           <img
             src="assets/googleicon.png"
             alt="googleicon"
@@ -91,14 +128,27 @@
         </button>
       </div>
 
-      <div class="bot_section" *ngIf="isStudent">
-        <button (click)="login()" type="submit" class="bot_button">
+      <div class="flex justify-evenly items-center w-full" *ngIf="isStudent">
+        <button
+          (click)="login()"
+          type="submit"
+          class="border border-ang-border_main px-3 py-2 text-ang-text_white font-semibold hover:opacity-85 rounded-lg bg-ang-main_btn"
+        >
           Prihlásiť
         </button>
-        <button routerLink="/register" class="bot_button">Zaregistrovať</button>
+        <button
+          routerLink="/register"
+          class="border border-ang-border_main px-3 py-2 text-ang-text_white font-semibold hover:opacity-85 rounded-lg bg-ang-main_btn"
+        >
+          Registrácia
+        </button>
       </div>
       <div *ngIf="!isStudent">
-        <button (click)="login()" type="submit" class="bot_button">
+        <button
+          (click)="login()"
+          type="submit"
+          class="border border-ang-border_main px-4 py-2 text-ang-text_white font-semibold hover:opacity-85 rounded-lg bg-ang-main_btn"
+        >
           Prihlásiť
         </button>
       </div>

@@ -9,7 +9,6 @@ module.exports = {
         second_landing_page_card: "url('/assets/card2_wave_coloured.jpg')",
         third_landing_page_card: "url('/assets/card3_wave_coloured.jpg')",
         fourth_landing_page_card: "url('/assets/card4_wave_coloured.jpg')",
-        login_bg: "url(/assets/waves_login.png)",
       },
       colors: {
         zinc: {
