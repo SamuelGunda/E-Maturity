@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Observable } from 'rxjs';
 import firebase from 'firebase/compat';
@@ -25,7 +25,11 @@ export class AuthService {
   isLoggedIn = false;
   userData: Observable<firebase.User>;
 
-  constructor(private afAuth: AngularFireAuth, private cookieService: CookieService, private firestore: AngularFirestore) {
+  constructor(
+    private afAuth: AngularFireAuth,
+    private cookieService: CookieService,
+    private firestore: AngularFirestore,
+  ) {
     // @ts-ignore
     this.userData = afAuth.authState;
     this.afAuth.setPersistence('session');
@@ -33,16 +37,55 @@ export class AuthService {
     this.initializeTokenListener();
   }
 
+  checkToken() {
+    console.log('ngOnInit() start');
+    const token = this.cookieService.get('token');
+
+    if (!token) {
+      console.log('No token found');
+      return;
+    }
+    console.log('Token found');
+    const uid = this.cookieService.get('uid');
+    if (!uid) {
+      console.log('No uid found');
+      return;
+    }
+    console.log('Uid found');
+    this.firestore
+      .collection('users')
+      .doc(uid)
+      .get()
+      .toPromise()
+      .then((doc) => {
+        if (doc && doc.exists) {
+          console.log('Document data:', doc.data());
+          const data = doc.data() as any; // casted it to (any)
+          if (data && data.token === token) {
+            console.log('Token is valid');
+            this.isLoggedIn = true;
+          }
+        }
+      })
+      .catch((error) => {
+        console.log('Error getting document:', error);
+      });
+  }
+
   initializeTokenListener() {
+    console.log('initializeTokenListener() start');
     this.afAuth.onIdTokenChanged((user) => {
       if (user) {
         user.getIdToken(true).then((idToken) => {
           // New token
           console.log(idToken);
-          
-          // If "Remember Me" is checked, store the new token in a cookie
+
+          // If Remember Me is checked, store the new token in a cookie
           if (this.cookieService.get('rememberMe')) {
+            console.log('Storing new token in cookie' + idToken);
             this.cookieService.put('token', idToken);
+            console.log('Storing new uid in cookie' + user.uid);
+            this.cookieService.put('uid', user.uid);
           }
         });
       }
@@ -89,27 +132,32 @@ export class AuthService {
     }
     const uid = userCredential.user.uid;
     this.isLoggedIn = true;
-  
+
     // Generate the token
-    userCredential.user.getIdToken(true).then((idToken) => {
-      // Here is your ID token
-      console.log(idToken);
-      
-      // Send the token to Firestore
-      this.firestore.collection('users').doc(uid).set({
-        token: idToken
-      }, { merge: true });
-  
-      // If "Remember Me" is checked, store the token in a cookie
-      if (rememberMe) {
-        this.cookieService.put('token', idToken);
-      } else {
-        this.cookieService.remove('token');
-      }
-    }).catch((error) => {
-      // Handle error
-      console.log(error);
-    });
+    userCredential.user
+      .getIdToken(true)
+      .then((idToken) => {
+        // Send the token to Firestore
+        this.firestore.collection('users').doc(uid).set(
+          {
+            token: idToken,
+          },
+          { merge: true },
+        );
+
+        // If Remember Me is checked store the token in a cookie
+        if (rememberMe) {
+          this.cookieService.put('token', idToken);
+          this.cookieService.put('uid', uid);
+        } else {
+          // Removes the toke if Remember me is not checked
+          this.cookieService.remove('token');
+          this.cookieService.remove('uid');
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   logout() {
