@@ -28,7 +28,7 @@
                 placeholder="Sem napíšte svoju odpoveď"
             />
           </div>
-<!--          English questions based on 2 options -->
+<!--          Questions based on 2 options -->
           <div *ngIf="question.question_type === 'select_twice'">
             <div *ngFor="let option_1 of question.options_1">
               <input
@@ -48,6 +48,10 @@
               />
               <label [for]="option_2 + question.id" [innerHTML]="option_2"></label>
             </div>
+          </div>
+<!--          Question canceled -->
+          <div *ngIf="question.question_type === 'canceled'">
+            <p>Question canceled by NUCEM</p>
           </div>
 <!--          Questions end -->
         </div>
