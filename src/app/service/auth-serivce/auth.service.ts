@@ -77,12 +77,11 @@ export class AuthService {
     this.afAuth.onIdTokenChanged((user) => {
       if (user) {
         user.getIdToken(true).then((idToken) => {
-          // New token
           console.log(idToken);
 
-          // If Remember Me is checked, store the new token in a cookie
           if (this.cookieService.get('rememberMe')) {
             console.log('Storing new token in cookie' + idToken);
+            
             this.cookieService.put('token', idToken);
             console.log('Storing new uid in cookie' + user.uid);
             this.cookieService.put('uid', user.uid);
@@ -122,6 +121,7 @@ export class AuthService {
       });
   }
 
+
   async login(email: string, password: string, rememberMe: boolean) {
     const userCredential = await this.afAuth.signInWithEmailAndPassword(
       email,
@@ -133,7 +133,6 @@ export class AuthService {
     const uid = userCredential.user.uid;
     this.isLoggedIn = true;
 
-    // Generate the token
     userCredential.user
       .getIdToken(true)
       .then((idToken) => {
@@ -144,13 +143,10 @@ export class AuthService {
           },
           { merge: true },
         );
-
-        // If Remember Me is checked store the token in a cookie
         if (rememberMe) {
           this.cookieService.put('token', idToken);
           this.cookieService.put('uid', uid);
         } else {
-          // Removes the toke if Remember me is not checked
           this.cookieService.remove('token');
           this.cookieService.remove('uid');
         }
