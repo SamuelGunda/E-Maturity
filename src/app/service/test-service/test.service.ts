@@ -14,8 +14,6 @@ export class TestService {
     private firestore: Firestore,
   ) { }
 
-
-  // Get the years of the tests for a given subcategory
   getTestsYears(subCat: string): Observable<string[]> {
 
     const testsCollection = collection(this.firestore, 'tests');
@@ -26,6 +24,7 @@ export class TestService {
         const years: string[] = [];
         console.log(querySnapshot);
         querySnapshot.forEach((doc) => {
+          console.log(doc.id);
           years.push(doc.id);
         });
         return years;
@@ -54,7 +53,7 @@ export class TestService {
               });
               return {
                 questions: questions,
-                articleUrl: doc.data()["article_url"],
+                article_url: doc.data()["article_url"],
               } as Section;
             }),
           );
