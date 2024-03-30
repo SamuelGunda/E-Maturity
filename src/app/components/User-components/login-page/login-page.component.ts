@@ -39,6 +39,19 @@ export class LoginPageComponent implements OnInit {
       .then(() => this.router.navigate(['']))
       .catch(() => (this.error = true));
   }
+  async teacherLogin() {
+    const loggedIn = await this.service.teacherLogin(
+      this.teacherName,
+      this.teacherPassword,
+    );
+    if (loggedIn) {
+      this.router.navigate(['']);
+      this.service.teacherLogged = true;
+    } else {
+      console.error('Invalid credentials');
+      this.service.teacherLogged = false;
+    }
+  }
 
   signInWithGoogle() {
     this.service

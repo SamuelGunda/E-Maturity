@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Observable } from 'rxjs';
+import { Observable, first, map, of, switchMap } from 'rxjs';
 import firebase from 'firebase/compat';
 import {
   signInWithPopup,
   signOut,
   GoogleAuthProvider,
   getAuth,
-  signInWithRedirect,
   UserCredential,
 } from 'firebase/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Teacher } from 'src/app/model/teacher';
 
 @Injectable({
   providedIn: 'root',
@@ -20,9 +21,13 @@ export class AuthService {
     return uid;
   }
   isLoggedIn = false;
+  teacherLogged: boolean = false;
   userData: Observable<firebase.User>;
 
-  constructor(private afAuth: AngularFireAuth) {
+  constructor(
+    private afAuth: AngularFireAuth,
+    private firestore: AngularFirestore,
+  ) {
     // @ts-ignore
     this.userData = afAuth.authState;
     this.afAuth.setPersistence('session');
@@ -59,6 +64,25 @@ export class AuthService {
       });
   }
 
+  async teacherLogin(username: string, password: string): Promise<boolean> {
+    const teachers = await this.firestore
+      .collection<Teacher>('Teachers', (ref) =>
+        ref.where('teacherName', '==', username).limit(1),
+      )
+      .valueChanges({ idField: 'id' })
+      .pipe(first())
+      .toPromise();
+
+    if (teachers && teachers.length > 0) {
+      const teacher = teachers[0];
+      if (teacher.teacherPassword === password) {
+        this.teacherLogged = true;
+        return true;
+      }
+    }
+    return false;
+  }
+
   async login(email: string, password: string, rememberMe: boolean) {
     const userCredential = await this.afAuth.signInWithEmailAndPassword(
       email,
@@ -80,10 +104,12 @@ export class AuthService {
 
   logout() {
     this.isLoggedIn = false;
-    this.afAuth.signOut().then((r) => {
-      // localStorage.removeItem('rememberMe');
+    this.teacherLogged = false;
+    this.afAuth.signOut().then(() => {
       localStorage.removeItem('User_info');
       localStorage.removeItem('uid');
+
+      this.teacherLogged = false;
     });
   }
 

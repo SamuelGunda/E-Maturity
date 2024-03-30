@@ -14,7 +14,10 @@
   <div>
     <img src="assets/logo.png" alt="" width="100px" height="100px" />
   </div>
-  <div *ngIf="!authService.isLoggedIn" id="but">
+  <div
+    *ngIf="!authService.isLoggedIn && authService.teacherLogged == false"
+    id="but"
+  >
     <button
       class="w-20 px-12 flex justify-center py-2 border-2 bg-ang-main_btn border-ang-border_main rounded-lg hover:cursor-pointer overflow-hidden hover:opacity-90 transition shadow-md"
       id="header_reg_button"
@@ -23,7 +26,11 @@
       <p class="text-ang-text_white font-medium">Účet</p>
     </button>
   </div>
-  <div *ngIf="authService.isLoggedIn" class="flex gap-6">
+
+  <div
+    *ngIf="authService.isLoggedIn || authService.teacherLogged == true"
+    class="flex gap-6"
+  >
     <p
       routerLink="/user-account"
       class="hover:cursor-pointer hover:scale-110 transition duration-250"
