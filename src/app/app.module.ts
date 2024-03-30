@@ -25,6 +25,13 @@ import { SavedTestsPageComponent } from './components/test-components/saved-test
 import { IconSelectorComponent } from './components/Util-components/icon-selector/icon-selector.component';
 import { TestPageComponent } from './components/test-components/test-page/test-page.component';
 import { TimeFormatPipe } from './service/timer-service/time-format.pipe';
+import {
+  CookieService,
+  CookieOptionsProvider,
+  CookieOptions,
+  CookieModule,
+} from 'ngx-cookie';
+import { AuthService } from './service/auth-serivce/auth.service';
 
 @NgModule({
   declarations: [
@@ -52,8 +59,14 @@ import { TimeFormatPipe } from './service/timer-service/time-format.pipe';
     MatDialogModule,
     MatInputModule,
     MatButtonModule,
+    CookieModule.forRoot(),
   ],
-  providers: [TestPageComponent],
+  providers: [
+    TestPageComponent,
+    AuthService,
+    CookieService,
+    { provide: CookieOptionsProvider, useValue: {} as CookieOptions },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

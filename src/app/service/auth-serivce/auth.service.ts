@@ -1,7 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Observable, first, map, of, switchMap } from 'rxjs';
 import firebase from 'firebase/compat';
+import { CookieService } from 'ngx-cookie';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+
 import {
   signInWithPopup,
   signOut,
@@ -9,7 +12,6 @@ import {
   getAuth,
   UserCredential,
 } from 'firebase/auth';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Teacher } from 'src/app/model/teacher';
 
 @Injectable({
@@ -26,12 +28,68 @@ export class AuthService {
 
   constructor(
     private afAuth: AngularFireAuth,
+    private cookieService: CookieService,
     private firestore: AngularFirestore,
   ) {
     // @ts-ignore
     this.userData = afAuth.authState;
     this.afAuth.setPersistence('session');
     this.checkAuthState();
+    this.initializeTokenListener();
+  }
+
+  checkToken() {
+    console.log('ngOnInit() start');
+    const token = this.cookieService.get('token');
+
+    if (!token) {
+      console.log('No token found');
+      return;
+    }
+    console.log('Token found');
+    const uid = this.cookieService.get('uid');
+    if (!uid) {
+      console.log('No uid found');
+      return;
+    }
+    console.log('Uid found');
+    this.firestore
+      .collection('users')
+      .doc(uid)
+      .get()
+      .toPromise()
+      .then((doc) => {
+        if (doc && doc.exists) {
+          console.log('Document data:', doc.data());
+          const data = doc.data() as any; // casted it to (any)
+          if (data && data.token === token) {
+            console.log('Token is valid');
+            this.isLoggedIn = true;
+          }
+        }
+      })
+      .catch((error) => {
+        console.log('Error getting document:', error);
+      });
+  }
+
+  initializeTokenListener() {
+    console.log('initializeTokenListener() start');
+    this.afAuth.onIdTokenChanged((user) => {
+      if (user) {
+        user.getIdToken(true).then((idToken) => {
+          console.log(idToken);
+
+          if (this.cookieService.get('rememberMe')) {
+            console.log('Storing new token in cookie' + idToken);
+
+            this.cookieService.put('token', idToken);
+            console.log('Storing new uid in cookie' + user.uid);
+            this.cookieService.put('uid', user.uid);
+          }
+        });
+      }
+    });
   }
 
   googleSignIn(): Promise<UserCredential> {
@@ -92,14 +150,29 @@ export class AuthService {
       return;
     }
     const uid = userCredential.user.uid;
-    localStorage.setItem('uid', uid);
-    localStorage.setItem('User_info', JSON.stringify(userCredential.user));
     this.isLoggedIn = true;
-    if (rememberMe) {
-      localStorage.setItem('rememberMe', JSON.stringify({ email, password }));
-    } else {
-      localStorage.removeItem('rememberMe');
-    }
+
+    userCredential.user
+      .getIdToken(true)
+      .then((idToken) => {
+        // Send the token to Firestore
+        this.firestore.collection('users').doc(uid).set(
+          {
+            token: idToken,
+          },
+          { merge: true },
+        );
+        if (rememberMe) {
+          this.cookieService.put('token', idToken);
+          this.cookieService.put('uid', uid);
+        } else {
+          this.cookieService.remove('token');
+          this.cookieService.remove('uid');
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   logout() {
