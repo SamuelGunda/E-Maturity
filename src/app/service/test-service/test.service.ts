@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { forkJoin, from, map, Observable, switchMap } from "rxjs";
-import { collection, doc, Firestore, getDocs } from "@angular/fire/firestore";
-import { Test } from "src/app/model/new-models/test.model";
-import { Question } from "src/app/model/new-models/question.model";
-import { Section } from "src/app/model/new-models/section.model";
+import { collection, doc, Firestore, getDoc, getDocs } from "@angular/fire/firestore";
+import { Test } from "src/app/model/test-parts/test.model";
+import { Question } from "src/app/model/test-parts/question.model";
+import { Section } from "src/app/model/test-parts/section.model";
+import { TestResult } from "../../model/test-results-parts/test-result.model";
+import { Result } from "../../model/test-results-parts/result.model";
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +34,7 @@ export class TestService {
     );
   }
 
-  getTest(subCat: string, year: string): Observable<Test> {
+  getTest(subCat: string, year: string, showAnswers: boolean): Observable<Test> {
     const testsCollection = collection(this.firestore, 'tests');
     const officialTests = doc(testsCollection, 'official_tests');
     const subCatCollection = collection(officialTests, subCat);
@@ -46,9 +48,13 @@ export class TestService {
           return from(getDocs(questionsCollection)).pipe(
             map((questionSnapshot) => {
               const questions: Question[] = questionSnapshot.docs.map((qDoc) => {
+                const data = qDoc.data();
+                if (!showAnswers) {
+                  delete data["answer"];
+                }
                 return {
                   id: qDoc.id,
-                  ...qDoc.data(),
+                  ...data,
                 } as Question;
               });
               return {
@@ -68,5 +74,44 @@ export class TestService {
     );
   }
 
+  getTestResult(testResults: TestResult): Observable<TestResult>{
+    return new Observable<TestResult>((observer) => {
+      this.getTest(testResults.subCat, testResults.year, true).subscribe(
+        (data: Test) => {
+          const test = data;
+          const sections = test.sections;
+
+          for (let i = 0; i < sections.length; i++) {
+            const section = sections[i];
+            const resultSection = testResults.sections[i];
+
+            for (let j = 0; j < section.questions.length; j++) {
+              const question = section.questions[j];
+              const result = resultSection.results[j];
+              result.result = this.compareUserAndCorrectAnswer(question, result);
+              if (result.result) {
+                testResults.score++;
+              }
+            }
+          }
+
+          observer.next(testResults);
+          observer.complete();
+        },
+        (error) => {
+          observer.error(error);
+        }
+      );
+    });
+  }
+
+  compareUserAndCorrectAnswer(question: Question, result: Result) {
+
+    if (Array.isArray(question.answer)) {
+      return question.answer.includes(result.userAnswer)
+    }
+
+    return question.answer === result.userAnswer;
+  }
 }
 

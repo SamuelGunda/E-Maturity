@@ -9,42 +9,46 @@
           <p [innerHTML]="question.id"></p>
           <p *ngIf="question.text" [innerHTML]="question.text"></p>
           <img *ngIf="question.image_url" [src]="question.image_url" />
-<!--          Typical questions with radio buttons -->
+<!--          Questions with radio buttons -->
           <div *ngIf="question.question_type === 'select_one'">
             <div *ngFor="let option of question.options">
               <input
                   [name]="question.id"
                   type="radio"
                   [value]="option"
-                  [id]="option"
+                  [id]="option + question.id"
+                  [(ngModel)]="question.user_answer"
               />
-              <label [for]="option" [innerHTML]="option"></label>
+              <label [for]="option + question.id" [innerHTML]="option"></label>
             </div>
           </div>
-<!--          Typical questions with input answers -->
+<!--          Questions with input answers -->
           <div *ngIf="question.question_type === 'input'">
             <input
                 type="text"
                 placeholder="Sem napíšte svoju odpoveď"
+                [(ngModel)]="question.user_answer"
             />
           </div>
 <!--          Questions based on 2 options -->
           <div *ngIf="question.question_type === 'select_twice'">
             <div *ngFor="let option_1 of question.options_1">
               <input
-                [name]="question.id"
+                [name]="question.id + 'option_1'"
                 type="radio"
                 [value]="option_1"
                 [id]="option_1 + question.id"
+                [(ngModel)]="question.user_answer_option_1"
               />
               <label [for]="option_1 + question.id" [innerHTML]="option_1"></label>
             </div>
             <div *ngFor="let option_2 of question.options_2">
               <input
-                [name]="question.id"
+                [name]="question.id + 'option_2' "
                 type="radio"
                 [value]="option_2"
                 [id]="option_2 + question.id"
+                [(ngModel)]="question.user_answer_option_2"
               />
               <label [for]="option_2 + question.id" [innerHTML]="option_2"></label>
             </div>
@@ -65,4 +69,6 @@
   <div *ngIf="subCat === 'mat'">
     <span>toto je mat</span>
   </div>
+
+  <button (click)="submitTest()">Odoslať test</button>
 </div>
