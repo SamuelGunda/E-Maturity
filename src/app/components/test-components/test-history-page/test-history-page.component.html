@@ -1,0 +1,40 @@
+<div class="test-history-page-container">
+  <div class="inner-test-history-page-container">
+    <div class="loading">
+      <div *ngIf="isLoading" class="lds-ellipsis">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <div *ngIf="!isLoading && !isSavedTestsEmpty" class="test-history-page-header">
+      <div class="test-history-page-header-title">
+        <h1>História testov</h1>
+        <div *ngFor="let test of savedTests" >
+          <div (click)="(test.showResults = !test.showResults) && selectTest(test)">
+            <h2>{{"Test " + test.subCat.toUpperCase() + " " + test.year}}</h2>
+            <h3>{{"Vyhotovený " + test.finishedAt + ", s úspešnosťou: " + test.percentageScore + "%"}}</h3>
+            <div *ngIf="test.showResults">
+              <div *ngFor="let section of test.sections; let i = index">
+                <div *ngFor="let result of section.results; let j = index">
+                  <div *ngIf="result.userAnswer != 'Nevyplnené'">
+                    <p>{{result.id}}</p>
+                    <p>{{selectedTest.sections[i].questions[j].text}}</p>
+                    <p>{{result.userAnswer}}</p>
+                    <p>{{result.result}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!isLoading && isSavedTestsEmpty" class="test-history-page-header">
+      <div class="test-history-page-header-title">
+        <h1>Žiadne uložené testy</h1>
+      </div>
+    </div>
+  </div>
+</div>

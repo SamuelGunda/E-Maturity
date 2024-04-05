@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../service/auth-serivce/auth.service';
 import { UserAccountService } from '../../../service/user-acc-service/user-acc.service';
-import { Question } from '../../../model/question.model';
 import { Observable } from 'rxjs';
-import { SavedTest } from '../../../model/saved-test.model';
-import { SavedTestService } from '../../../service/saved-test-service/saved-test.service';
 
 @Component({
   selector: 'app-user-account',
@@ -18,7 +15,6 @@ export class UserAccountComponent implements OnInit {
   constructor(
     private authService: AuthService,
     public userAccountService: UserAccountService,
-    public savedTestService: SavedTestService,
   ) {}
 
   ngOnInit() {
@@ -27,16 +23,5 @@ export class UserAccountComponent implements OnInit {
         this.userName = user.displayName || '';
       }
     });
-  }
-
-  savedTests$: Observable<SavedTest[]> =
-    this.userAccountService.getSavedTests();
-
-  removeQuestion(question: Question) {
-    this.userAccountService.removeQuestion(question);
-  }
-
-  getSelectedIcon(): string {
-    return this.userAccountService.getSelectedIcon();
   }
 }

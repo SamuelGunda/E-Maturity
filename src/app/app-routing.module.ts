@@ -8,6 +8,7 @@ import { OfficialTestPageComponent } from "./components/test-components/official
 import { ForgotPasswordComponent } from './components/User-components/forgot-password/forgot-password.component';
 import { UserAccountComponent } from './components/User-components/user-account/user-account.component';
 import { EducationMaterialsComponent } from './components/Util-components/education-materials/education-materials.component';
+import { TestHistoryPageComponent } from "./components/test-components/test-history-page/test-history-page.component";
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'login', component: LoginPageComponent },
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'official-test/:subCat/:year', component: OfficialTestPageComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'user-account', component: UserAccountComponent },
-  { path: 'education-materials', component: EducationMaterialsComponent }
+  { path: 'education-materials', component: EducationMaterialsComponent },
+  { path: 'test-history', component: TestHistoryPageComponent }
 ];
 
 @NgModule({
@@ -35,4 +37,5 @@ export const routingComponent = [
   OfficialCategoriesPageComponent,
   OfficialTestPageComponent,
   EducationMaterialsComponent,
+  TestHistoryPageComponent
 ];

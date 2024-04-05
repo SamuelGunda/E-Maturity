@@ -22,9 +22,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { IconSelectorComponent } from './components/Util-components/icon-selector/icon-selector.component';
-import { TimeFormatPipe } from './service/timer-service/time-format.pipe';
 import { OfficialTestPageComponent } from './components/test-components/official-test-page/official-test-page.component';
 import { OfficialCategoriesPageComponent } from './components/test-components/official-categories-page/official-categories-page.component';
+import { TestHistoryPageComponent } from './components/test-components/test-history-page/test-history-page.component';
 
 @NgModule({
   declarations: [
@@ -33,9 +33,9 @@ import { OfficialCategoriesPageComponent } from './components/test-components/of
     NavbarComponent,
     routingComponent,
     IconSelectorComponent,
-    TimeFormatPipe,
     OfficialTestPageComponent,
     OfficialCategoriesPageComponent,
+    TestHistoryPageComponent,
   ],
   imports: [
     BrowserModule,

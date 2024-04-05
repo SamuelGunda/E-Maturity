@@ -1,14 +1,24 @@
 export interface Question {
   id: string;
   text?: string;
-  image_url?: string;
+  imageUrl?: string;
   answer: string | string[];
-  options?: string[];
-  user_answer?: any;
-  question_type: string;
 
-  options_1?: string [];
+  /* Question types:
+  select - radio buttons,
+  select_twice - 2 sets of radio buttons,
+  input - type-out answer,
+  input_twice - type-out two different values,
+  cancelled - question was cancelled by NUCEM,
+   */
+  questionType: string;
+
+  options?: string[];
   options_2?: string [];
-  user_answer_option_1: string;
-  user_answer_option_2: string;
+
+  userAnswer?: any;
+  userAnswer_2?: string;
+
+
+
 }

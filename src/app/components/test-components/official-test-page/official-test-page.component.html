@@ -1,6 +1,7 @@
 <div *ngIf="test">
 <!--  ANJ Test-->
   <div *ngIf="subCat === 'anj'">
+    <div id="timer">{{ display }}</div>
     <div *ngFor="let section of test.sections">
       <div>
         <img [src]="section.article_url"/>
@@ -8,37 +9,37 @@
         <div *ngFor="let question of section.questions">
           <p [innerHTML]="question.id"></p>
           <p *ngIf="question.text" [innerHTML]="question.text"></p>
-          <img *ngIf="question.image_url" [src]="question.image_url" />
+          <img *ngIf="question.imageUrl" [src]="question.imageUrl" />
 <!--          Questions with radio buttons -->
-          <div *ngIf="question.question_type === 'select_one'">
+          <div *ngIf="question.questionType === 'select'">
             <div *ngFor="let option of question.options">
               <input
                   [name]="question.id"
                   type="radio"
                   [value]="option"
                   [id]="option + question.id"
-                  [(ngModel)]="question.user_answer"
+                  [(ngModel)]="question.userAnswer"
               />
               <label [for]="option + question.id" [innerHTML]="option"></label>
             </div>
           </div>
 <!--          Questions with input answers -->
-          <div *ngIf="question.question_type === 'input'">
+          <div *ngIf="question.questionType === 'input'">
             <input
                 type="text"
                 placeholder="Sem napíšte svoju odpoveď"
-                [(ngModel)]="question.user_answer"
+                [(ngModel)]="question.userAnswer"
             />
           </div>
 <!--          Questions based on 2 options -->
-          <div *ngIf="question.question_type === 'select_twice'">
-            <div *ngFor="let option_1 of question.options_1">
+          <div *ngIf="question.questionType === 'select_twice'">
+            <div *ngFor="let option_1 of question.options">
               <input
                 [name]="question.id + 'option_1'"
                 type="radio"
                 [value]="option_1"
                 [id]="option_1 + question.id"
-                [(ngModel)]="question.user_answer_option_1"
+                [(ngModel)]="question.userAnswer"
               />
               <label [for]="option_1 + question.id" [innerHTML]="option_1"></label>
             </div>
@@ -48,13 +49,26 @@
                 type="radio"
                 [value]="option_2"
                 [id]="option_2 + question.id"
-                [(ngModel)]="question.user_answer_option_2"
+                [(ngModel)]="question.userAnswer_2"
               />
               <label [for]="option_2 + question.id" [innerHTML]="option_2"></label>
             </div>
           </div>
+<!--          Question based on 2 inputs -->
+          <div *ngIf="question.questionType === 'input_twice'">
+            <input
+              type="text"
+              placeholder="Sem napíšte prvú odpoveď"
+              [(ngModel)]="question.userAnswer"
+            />
+            <input
+              type="text"
+              placeholder="Sem napíšte druhú odpoveď"
+              [(ngModel)]="question.userAnswer_2"
+            />
+          </div>
 <!--          Question canceled -->
-          <div *ngIf="question.question_type === 'canceled'">
+          <div *ngIf="question.questionType === 'canceled'">
             <p>Question canceled by NUCEM</p>
           </div>
 <!--          Questions end -->
@@ -70,5 +84,59 @@
     <span>toto je mat</span>
   </div>
 
-  <button (click)="submitTest()">Odoslať test</button>
+  <button (click)="submitTest()"
+          class="border-2 border-ang-border_main mt-2 py-2 px-6 bg-ang-main_btn text-ang-text_white rounded-lg hover:opacity-85 transition"
+  >Vyhodnotiť test</button>
+
+<!--</div>-->
+<!--<div *ngIf="testResults && finished">-->
+<!--  <h1>Výsledok vášho testu</h1>-->
+<!--  <p>{{testResults.percentageScore}}%</p>-->
+<!--  <div *ngFor="let section of testResults.sections">-->
+<!--    <div *ngFor="let result of section.results">-->
+<!--      <div *ngIf="result.userAnswer !== 'Nevyplnené' ">-->
+<!--        <p [innerHTML]="result.id"></p>-->
+<!--        <p [innerHTML]="result.userAnswer"></p>-->
+<!--        <p [innerHTML]="result.result"></p>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  <button-->
+<!--    (click)="showDialog()"-->
+<!--    class="border-2 border-ang-border_main mt-2 py-2 px-6 bg-ang-main_btn text-ang-text_white rounded-lg hover:opacity-85 transition"-->
+<!--  >-->
+<!--    Vyhodnotenie-->
+<!--  </button>-->
+
+  <div id="dialog"
+       *ngIf="testResults"
+    class="fixed left-0 top-0 w-screen h-screen bg-opacity-40 bg-black justify-center items-center flex"
+  >
+    <div
+      class="bg-ang-main_bg border border-ang-border_main p-8 w-4/6 rounded-lg max-w-[32rem]"
+    >
+      <div
+        class="flex justify-center items-center flex-col gap-4 text-sm md:text-base"
+      >
+        <h1>Vyhodnotenie</h1>
+        <p>V teste ste dosiahli:</p>
+        <p [innerText]="testResults.percentageScore"></p>
+      </div>
+      <div class="flex justify-around text-xs md:text-base gap-2 pt-4">
+        <button
+          routerLink="/"
+          class="text-sm border border-ang-border_main py-1 px-2 rounded-lg bg-ang-main_btn text-ang-text_white hover:opacity-85"
+        >
+          Domovská stránka
+        </button>
+        <button
+          routerLink="/test-history"
+          class="border border-ang-border_main py-1 px-2 rounded-lg bg-ang-main_btn text-ang-text_white hover:opacity-85"
+        >
+          Detaily testu
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

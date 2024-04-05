@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { forkJoin, from, map, Observable, switchMap } from "rxjs";
-import { collection, doc, Firestore, getDoc, getDocs } from "@angular/fire/firestore";
+import { collection, doc, Firestore, getDoc, getDocs, setDoc } from "@angular/fire/firestore";
 import { Test } from "src/app/model/test-parts/test.model";
 import { Question } from "src/app/model/test-parts/question.model";
 import { Section } from "src/app/model/test-parts/section.model";
@@ -14,7 +14,8 @@ export class TestService {
 
   constructor(
     private firestore: Firestore,
-  ) { }
+  ) {
+  }
 
   getTestsYears(subCat: string): Observable<string[]> {
 
@@ -54,12 +55,19 @@ export class TestService {
                 }
                 return {
                   id: qDoc.id,
-                  ...data,
+                  text: data["text"],
+                  imageUrl: data["image_url"],
+                  answer: data["answer"],
+                  questionType: data["question_type"],
+                  options: data["options"],
+                  options_2: data["options_2"],
+                  userAnswer: "",
+                  userAnswer_2: "",
                 } as Question;
               });
               return {
                 questions: questions,
-                article_url: doc.data()["article_url"],
+                articleUrl: doc.data()["article_url"],
               } as Section;
             }),
           );
@@ -69,23 +77,26 @@ export class TestService {
       map((sections) => {
         return {
           sections: sections,
+          subCat: subCat,
+          year: year,
         } as Test;
       }),
     );
   }
 
-  getTestResult(testResults: TestResult): Observable<TestResult>{
+  async getTestResult(testResults: TestResult): Promise<Observable<TestResult>> {
     return new Observable<TestResult>((observer) => {
       this.getTest(testResults.subCat, testResults.year, true).subscribe(
         (data: Test) => {
           const test = data;
           const sections = test.sections;
-
+          let questionNumber = 0;
           for (let i = 0; i < sections.length; i++) {
             const section = sections[i];
             const resultSection = testResults.sections[i];
 
             for (let j = 0; j < section.questions.length; j++) {
+              questionNumber++;
               const question = section.questions[j];
               const result = resultSection.results[j];
               result.result = this.compareUserAndCorrectAnswer(question, result);
@@ -93,6 +104,16 @@ export class TestService {
                 testResults.score++;
               }
             }
+          }
+
+          testResults.percentageScore = Math.round((testResults.score / questionNumber) * 10000) / 100;
+
+          const uid = localStorage.getItem('uid');
+
+          if (uid) {
+            this.saveFinishedTest(uid, testResults);
+          } else {
+            console.error("User is not logged in");
           }
 
           observer.next(testResults);
@@ -105,13 +126,20 @@ export class TestService {
     });
   }
 
-  compareUserAndCorrectAnswer(question: Question, result: Result) {
+  private compareUserAndCorrectAnswer(question: Question, result: Result) {
 
     if (Array.isArray(question.answer)) {
       return question.answer.includes(result.userAnswer)
     }
-
     return question.answer === result.userAnswer;
+  }
+
+  private saveFinishedTest(uid: string, finishedTest: TestResult): void {
+    const dataCollection = collection(this.firestore, 'users');
+    const documentRef = doc(dataCollection, uid);
+    const savedTestsCollectionRef = collection(documentRef, 'savedTests');
+    const savedTestDocumentRef = doc(savedTestsCollectionRef);
+    setDoc(savedTestDocumentRef, finishedTest).then(r => console.log(r)).catch(e => console.log(e));
   }
 }
 
