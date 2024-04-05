@@ -19,7 +19,7 @@
           <li>Zrušené otázky sa Vám pripočítavajú za bod automaticky</li>
         </ul>
       </div>
-      <div *ngIf="subCat === 'sk'">
+      <div *ngIf="subCat === 'sjl'">
         <h1 class="text-2xl sm:text-3xl font-bold text-ang-text_main">
           Slovenský jazyk a literatúra
         </h1>
@@ -36,7 +36,7 @@
           <li>Zrušené otázky sa Vám pripočítavajú za bod automaticky</li>
         </ul>
       </div>
-      <div *ngIf="subCat === 'aj'">
+      <div *ngIf="subCat === 'anj'">
         <h1 class="text-2xl sm:text-3xl font-bold text-ang-text_main">
           Anglický jazyk
         </h1>
@@ -51,7 +51,7 @@
     >
       <a
         *ngFor="let year of years"
-        [routerLink]="['/test-page', subCat, year]"
+        [routerLink]="['/official-test', subCat, year]"
         class="border border-ang-border_main py-2 px-8 rounded-lg bg-ang-main_btn text-ang-text_white hover:opacity-85 transition-all"
       >
         {{ year }}

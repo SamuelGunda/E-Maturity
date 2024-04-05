@@ -26,6 +26,6 @@ export class NavbarComponent {
 
   addSubCat(subCat: string) {
     console.log(subCat);
-    this.router.navigate(['/years-page/' + subCat]);
+    this.router.navigate(['/official-categories/' + subCat]);
   }
 }
