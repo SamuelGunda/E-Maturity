@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { TestHistoryService } from "../../../service/test-history-service/test-history.service";
 import { TestResult } from "../../../model/test-results-parts/test-result.model";
 import { Test } from "../../../model/test-parts/test.model";
+import { CookieService } from "ngx-cookie";
 
 @Component({
   selector: 'app-test-history-page',
@@ -15,7 +16,7 @@ export class TestHistoryPageComponent {
   originalTests: Test[] = [];
   selectedTest: Test = {} as Test;
 
-  constructor(private testHistoryService: TestHistoryService) {
+  constructor(private testHistoryService: TestHistoryService, private cookieService: CookieService) {
     this.savedTests.forEach(test => {
       test.showResults = false;
     });
@@ -27,7 +28,7 @@ export class TestHistoryPageComponent {
 
   async fetchTestsFromUserHistory() {
     try {
-      const uid = localStorage.getItem('uid');
+      const uid = this.cookieService.get('uid');
       if (!uid) {
         console.error('Uid is not set. User is not logged in.');
         return;

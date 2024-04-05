@@ -25,7 +25,6 @@ import { IconSelectorComponent } from './components/Util-components/icon-selecto
 import { OfficialTestPageComponent } from './components/test-components/official-test-page/official-test-page.component';
 import { OfficialCategoriesPageComponent } from './components/test-components/official-categories-page/official-categories-page.component';
 import { TestHistoryPageComponent } from './components/test-components/test-history-page/test-history-page.component';
-import { TestPageComponent } from './components/test-components/test-page/test-page.component';
 import {
   CookieService,
   CookieOptionsProvider,

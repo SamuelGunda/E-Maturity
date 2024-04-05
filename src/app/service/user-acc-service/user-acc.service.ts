@@ -10,12 +10,12 @@ import * as XLSX from 'xlsx';
   providedIn: 'root',
 })
 export class UserAccountService {
-  public savedQuestionsSubject = new BehaviorSubject<Question[]>([]);
-  savedQuestions$ = this.savedQuestionsSubject.asObservable();
 
   private localStorageKey = 'savedQuestions';
 
-  constructor() {}
+  constructor(
+    private firestore: AngularFirestore,
+  ) {}
 
   selectedIcon!: string;
 
@@ -28,15 +28,6 @@ export class UserAccountService {
   }
   getSelectedIcon(): string {
     return this.selectedIcon || 'assets/user_icons/default.png';
-  }
-
-  getSavedTests(): Observable<SavedTest[]> {
-    const userId = localStorage.getItem('uid');
-    if (userId !== null) {
-      return from(this.savedTestService.getSavedTests(userId));
-    } else {
-      return of([]);
-    }
   }
 
   async sendData(file: File): Promise<void> {

@@ -87,28 +87,6 @@
   <button (click)="submitTest()"
           class="border-2 border-ang-border_main mt-2 py-2 px-6 bg-ang-main_btn text-ang-text_white rounded-lg hover:opacity-85 transition"
   >Vyhodnotiť test</button>
-
-<!--</div>-->
-<!--<div *ngIf="testResults && finished">-->
-<!--  <h1>Výsledok vášho testu</h1>-->
-<!--  <p>{{testResults.percentageScore}}%</p>-->
-<!--  <div *ngFor="let section of testResults.sections">-->
-<!--    <div *ngFor="let result of section.results">-->
-<!--      <div *ngIf="result.userAnswer !== 'Nevyplnené' ">-->
-<!--        <p [innerHTML]="result.id"></p>-->
-<!--        <p [innerHTML]="result.userAnswer"></p>-->
-<!--        <p [innerHTML]="result.result"></p>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-
-<!--  <button-->
-<!--    (click)="showDialog()"-->
-<!--    class="border-2 border-ang-border_main mt-2 py-2 px-6 bg-ang-main_btn text-ang-text_white rounded-lg hover:opacity-85 transition"-->
-<!--  >-->
-<!--    Vyhodnotenie-->
-<!--  </button>-->
-
   <div id="dialog"
        *ngIf="testResults"
     class="fixed left-0 top-0 w-screen h-screen bg-opacity-40 bg-black justify-center items-center flex"

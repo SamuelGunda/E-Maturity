@@ -44,6 +44,12 @@ export class OfficialTestPageComponent {
     this.timer();
   }
 
+  /*
+  * Function to fetch the test from the server,
+  * based on the subcategory and the year
+  * - Samuel
+   */
+
   private fetchTest(): Observable<Test> {
     if (this.subCat && this.year) {
       return this.testService.getTest(this.subCat, this.year, false);
@@ -54,6 +60,14 @@ export class OfficialTestPageComponent {
       });
     }
   }
+
+  /*
+  * Function to submit the test,
+  * it creates a TestResult object and fills it with the user's answers.
+  * If the user didn't answer the question, it fills it with "Nevyplnené",
+  * then sends it to the server to be saved
+  * - Samuel
+  * **/
 
   protected async submitTest() {
     if (this.test) {
@@ -117,6 +131,13 @@ export class OfficialTestPageComponent {
     }
   }
 
+  /*
+  * Function to get the time limit for the test,
+  * based on the subcategory and the level of the test
+  * - Samuel
+  * **/
+
+
   private getTime() {
     switch (this.subCat) {
       case "anj": {
@@ -145,6 +166,13 @@ export class OfficialTestPageComponent {
     }
   }
 
+  /*
+  * Redone timer function for the test,
+  * countdowns the time for the test, at the end
+  * it stops the timer and submits the test
+  * - Samuel
+  * **/
+
   private async timer(time: number = this.getTime()) {
     let seconds: number = time * 60;
     let textSec: any = "0";
@@ -164,7 +192,7 @@ export class OfficialTestPageComponent {
       this.display = `${prefix}${Math.floor(seconds / 60)}:${textSec}`;
 
       if (seconds == 0) {
-        console.log("finished");
+        this.submitTest();
         clearInterval(timer);
       }
     }, 1000);
