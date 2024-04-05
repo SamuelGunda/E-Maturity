@@ -24,6 +24,7 @@ export class AuthService {
   }
   isLoggedIn = false;
   teacherLogged: boolean = false;
+  adminLogged: boolean = false;
   userData: Observable<firebase.User>;
 
   constructor(
@@ -122,6 +123,25 @@ export class AuthService {
       });
   }
 
+  async adminLogin(teacherName: string, teacherPassword: string) {
+    const teachers = await this.firestore
+      .collection<Teacher>('admins', (ref) =>
+        ref.where('adminName', '==', teacherName).limit(1),
+      )
+      .valueChanges({ idField: 'id' })
+      .pipe(first())
+      .toPromise();
+
+    if (teachers && teachers.length > 0) {
+      const teacher = teachers[0];
+      if (teacher.teacherPassword === teacherPassword) {
+        this.adminLogged = true;
+        return true;
+      }
+    }
+    return false;
+  }
+
   async teacherLogin(username: string, password: string): Promise<boolean> {
     const teachers = await this.firestore
       .collection<Teacher>('Teachers', (ref) =>
@@ -178,9 +198,10 @@ export class AuthService {
   logout() {
     this.isLoggedIn = false;
     this.teacherLogged = false;
+    this.adminLogged = false;
     this.afAuth.signOut().then(() => {
-      localStorage.removeItem('User_info');
-      localStorage.removeItem('uid');
+      this.cookieService.remove('uid');
+      this.cookieService.remove('token');
 
       this.teacherLogged = false;
     });

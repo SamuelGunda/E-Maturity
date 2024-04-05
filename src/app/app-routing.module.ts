@@ -9,6 +9,7 @@ import { ForgotPasswordComponent } from './components/User-components/forgot-pas
 import { UserAccountComponent } from './components/User-components/user-account/user-account.component';
 import { EducationMaterialsComponent } from './components/Util-components/education-materials/education-materials.component';
 import { SavedTestsPageComponent } from './components/test-components/saved-tests-page/saved-tests-page.component';
+import { AdminDashboardComponent } from './components/User-components/admin-dashboard/admin-dashboard.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'user-account', component: UserAccountComponent },
   { path: 'education-materials', component: EducationMaterialsComponent },
   { path: 'saved-tests-page', component: SavedTestsPageComponent },
+  { path: 'dashboard', component: AdminDashboardComponent },
 ];
 
 @NgModule({
@@ -38,4 +40,5 @@ export const routingComponent = [
   TestPageComponent,
   YearsPageComponent,
   EducationMaterialsComponent,
+  AdminDashboardComponent,
 ];
