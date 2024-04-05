@@ -35,6 +35,7 @@ export class TestHistoryService {
           subCat: data["subCat"],
           year: data["year"],
           finishedAt: this.formatDate(data["finishedAt"]),
+          timeTaken: data["timeTaken"],
           score: data["score"],
           percentageScore: data["percentageScore"],
           sections: data["sections"].map((sectionResult: any) => {

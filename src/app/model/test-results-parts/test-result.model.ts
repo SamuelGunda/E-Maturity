@@ -5,6 +5,7 @@ export interface TestResult {
   subCat: string;
   year: string;
   finishedAt: string;
+  timeTaken: string;
   score: number;
   percentageScore: number;
   sections: SectionResult[];

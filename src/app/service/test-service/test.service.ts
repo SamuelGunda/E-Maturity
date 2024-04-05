@@ -6,6 +6,7 @@ import { Question } from "src/app/model/test-parts/question.model";
 import { Section } from "src/app/model/test-parts/section.model";
 import { TestResult } from "../../model/test-results-parts/test-result.model";
 import { Result } from "../../model/test-results-parts/result.model";
+import { CookieService } from "ngx-cookie";
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class TestService {
 
   constructor(
     private firestore: Firestore,
+    private cookieService: CookieService,
   ) {
   }
 
@@ -108,7 +110,7 @@ export class TestService {
 
           testResults.percentageScore = Math.round((testResults.score / questionNumber) * 10000) / 100;
 
-          const uid = localStorage.getItem('uid');
+          const uid = this.cookieService.get('uid');
 
           if (uid) {
             this.saveFinishedTest(uid, testResults);

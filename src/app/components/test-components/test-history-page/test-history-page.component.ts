@@ -11,10 +11,10 @@ import { CookieService } from "ngx-cookie";
 })
 export class TestHistoryPageComponent {
   isLoading: boolean = true;
-  isSavedTestsEmpty: boolean = true;
-  savedTests: TestResult[] = [];
-  originalTests: Test[] = [];
-  selectedTest: Test = {} as Test;
+  isSavedTestsEmpty: boolean = true; // If there are no saved tests, this will be true
+  savedTests: TestResult[] = []; // The saved tests from the user's history
+  originalTests: Test[] = []; // The original tests with full questions and answers
+  selectedTest: Test = {} as Test; // Used to display the selected test on front-end
 
   constructor(private testHistoryService: TestHistoryService, private cookieService: CookieService) {
     this.savedTests.forEach(test => {
@@ -25,6 +25,12 @@ export class TestHistoryPageComponent {
   ngOnInit(): void {
     this.fetchTestsFromUserHistory().then((r) => (this.isLoading = false));
   }
+
+  /*
+  * Fetches the tests from the user's history
+  * and sets the savedTests and originalTests arrays
+  * - Samuel
+   */
 
   async fetchTestsFromUserHistory() {
     try {
@@ -49,6 +55,11 @@ export class TestHistoryPageComponent {
       console.error('Error loading saved tests:', error);
     }
   }
+
+  /*
+  * Selects a test to display on the front-end
+  * - Samuel
+   */
 
   selectTest(test: TestResult) {
     for (const ogTest of this.originalTests) {

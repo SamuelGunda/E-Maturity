@@ -13,8 +13,8 @@
         <h1>História testov</h1>
         <div *ngFor="let test of savedTests" >
           <div (click)="(test.showResults = !test.showResults) && selectTest(test)">
-            <h2>{{"Test " + test.subCat.toUpperCase() + " " + test.year}}</h2>
-            <h3>{{"Vyhotovený " + test.finishedAt + ", s úspešnosťou: " + test.percentageScore + "%"}}</h3>
+            <h2>{{"Test " + test.subCat.toUpperCase() + " " + test.year + " z " + test.finishedAt}}</h2>
+            <h3>{{"Vyhotovený za " + test.timeTaken + ", s úspešnosťou: " + test.percentageScore + "%"}}</h3>
             <div *ngIf="test.showResults">
               <div *ngFor="let section of test.sections; let i = index">
                 <div *ngFor="let result of section.results; let j = index">
