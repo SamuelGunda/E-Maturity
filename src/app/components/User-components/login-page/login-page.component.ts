@@ -15,6 +15,9 @@ export class LoginPageComponent implements OnInit {
   error: boolean = false;
   rememberMe: boolean = false;
   isDarkMode: boolean = false;
+  isStudent: boolean = true;
+  teacherName: string = '';
+  teacherPassword: string = '';
 
   constructor(
     private router: Router,
@@ -36,6 +39,19 @@ export class LoginPageComponent implements OnInit {
       .then(() => this.router.navigate(['']))
       .catch(() => (this.error = true));
   }
+  async teacherLogin() {
+    const loggedIn = await this.service.teacherLogin(
+      this.teacherName,
+      this.teacherPassword,
+    );
+    if (loggedIn) {
+      this.router.navigate(['']);
+      this.service.teacherLogged = true;
+    } else {
+      console.error('Invalid credentials');
+      this.service.teacherLogged = false;
+    }
+  }
 
   signInWithGoogle() {
     this.service
@@ -54,5 +70,11 @@ export class LoginPageComponent implements OnInit {
       this.name = user.email;
       this.password = user.password;
     }
+  }
+  changeToTeacher() {
+    this.isStudent = true;
+  }
+  changeToStudent() {
+    this.isStudent = false;
   }
 }

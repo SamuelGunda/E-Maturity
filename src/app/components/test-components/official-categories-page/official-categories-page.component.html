@@ -1,8 +1,10 @@
-<div class="main_container">
-  <div id="main_page_inner_container">
-    <div class="years_headline">
+<div class="outer_container">
+  <div class="inner_container flex-col justify-evenly items-center py-4">
+    <div class="text-center">
       <div *ngIf="subCat === 'mat'">
-        <h1>Matematika</h1>
+        <h1 class="text-2xl sm:text-3xl font-bold text-ang-text_main">
+          Matematika
+        </h1>
         <ul>
           <li>Test obsahuje 30 úloh.</li>
           <li>
@@ -18,7 +20,9 @@
         </ul>
       </div>
       <div *ngIf="subCat === 'sjl'">
-        <h1>Slovenský jazyk a literatúra</h1>
+        <h1 class="text-2xl sm:text-3xl font-bold text-ang-text_main">
+          Slovenský jazyk a literatúra
+        </h1>
         <ul>
           <li>Test obsahuje 64 úloh.</li>
           <li>
@@ -33,14 +37,23 @@
         </ul>
       </div>
       <div *ngIf="subCat === 'anj'">
-        <h1>Anglický jazyk</h1>
+        <h1 class="text-2xl sm:text-3xl font-bold text-ang-text_main">
+          Anglický jazyk
+        </h1>
         <ul>
           <li>Testy pre anglický jazyk sa pripravujú</li>
         </ul>
       </div>
     </div>
-    <div *ngIf="years" class="main_page_container">
-      <a *ngFor="let year of years" [routerLink]="['/official-test', subCat, year]">
+    <div
+      *ngIf="years"
+      class="flex gap-4 flex-wrap items-center justify-center px-2"
+    >
+      <a
+        *ngFor="let year of years"
+        [routerLink]="['/official-test', subCat, year]"
+        class="border border-ang-border_main py-2 px-8 rounded-lg bg-ang-main_btn text-ang-text_white hover:opacity-85 transition-all"
+      >
         {{ year }}
       </a>
     </div>
