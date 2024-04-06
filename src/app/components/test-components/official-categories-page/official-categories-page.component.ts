@@ -1,12 +1,12 @@
-import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { TestService } from "src/app/service/test-service/test.service";
-import { Observable } from "rxjs";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { TestService } from 'src/app/service/test-service/test.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-official-categories-page',
   templateUrl: './official-categories-page.component.html',
-  styleUrls: ['./official-categories-page.component.css']
+  styleUrls: ['./official-categories-page.component.css'],
 })
 export class OfficialCategoriesPageComponent {
   subCat: string | undefined;
@@ -34,7 +34,12 @@ export class OfficialCategoriesPageComponent {
     });
   }
 
-  // Fetch the years of the tests for the given subcategory
+  /*
+   * Function to fetch the test years from the service,
+   * based on the subcategory
+   * - Samuel
+   */
+
   private fetchTestYears(): Observable<string[]> {
     if (this.subCat) {
       return this.testService.getTestsYears(this.subCat);
@@ -46,4 +51,3 @@ export class OfficialCategoriesPageComponent {
     }
   }
 }
-

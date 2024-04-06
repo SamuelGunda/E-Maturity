@@ -1,18 +1,17 @@
 import { Component } from '@angular/core';
-import { Test } from "../../../model/test-parts/test.model";
-import { TestService} from "../../../service/test-service/test.service";
-import { ActivatedRoute } from "@angular/router";
-import { async, Observable } from "rxjs";
-import { TestResult } from "../../../model/test-results-parts/test-result.model";
-import { Result } from "../../../model/test-results-parts/result.model";
-import { SectionResult } from "../../../model/test-results-parts/section-result.model";
+import { Test } from '../../../model/test-parts/test.model';
+import { TestService } from '../../../service/test-service/test.service';
+import { ActivatedRoute } from '@angular/router';
+import { async, Observable } from 'rxjs';
+import { TestResult } from '../../../model/test-results-parts/test-result.model';
+import { Result } from '../../../model/test-results-parts/result.model';
+import { SectionResult } from '../../../model/test-results-parts/section-result.model';
 
 @Component({
   selector: 'app-official-test-page',
   templateUrl: './official-test-page.component.html',
-  styleUrls: ['./official-test-page.component.css']
+  styleUrls: ['./official-test-page.component.css'],
 })
-
 export class OfficialTestPageComponent {
   year: string | undefined;
   subCat: string | undefined;
@@ -43,9 +42,9 @@ export class OfficialTestPageComponent {
   }
 
   /*
-  * Function to fetch the test from the service,
-  * based on the subcategory and the year
-  * - Samuel
+   * Function to fetch the test from the service,
+   * based on the subcategory and the year
+   * - Samuel
    */
 
   private fetchTest(): Observable<Test> {
@@ -60,44 +59,53 @@ export class OfficialTestPageComponent {
   }
 
   /*
-  * Function to submit the test,
-  * it creates a TestResult object and fills it with the user's answers.
-  * If the user didn't answer the question, it fills it with "Nevyplnené",
-  * then sends it to the server to be saved
-  * - Samuel
-  * **/
+   * Function to submit the test,
+   * it creates a TestResult object and fills it with the user's answers.
+   * If the user didn't answer the question, it fills it with "Nevyplnené",
+   * then sends it to the server to be saved
+   * - Samuel
+   */
 
   protected async submitTest() {
     if (this.test) {
-
       let testResults: TestResult = {
-        subCat: this.subCat || "",
-        year: this.year || "",
+        subCat: this.subCat || '',
+        year: this.year || '',
         finishedAt: new Date().toISOString(),
         timeTaken: this.getRemainingTimeInSeconds(),
         score: 0,
         percentageScore: 0,
-        sections: []
+        sections: [],
       };
 
       for (const section of this.test.sections) {
         const sectionResult: Result[] = [];
 
         for (const question of section.questions) {
-
-          if (question.questionType === "select_twice" || question.questionType === "input_twice") {
-            if (question.userAnswer === undefined || question.userAnswer_2 === undefined
-              || question.userAnswer === "" || question.userAnswer_2 === "") {
-              question.userAnswer = "Nevyplnené";
-            } else if (question.questionType === "select_twice") {
-              question.userAnswer = question.userAnswer + "-" + question.userAnswer_2;
-            } else if (question.questionType === "input_twice") {
-              question.userAnswer = question.userAnswer.trim() + ", " + question.userAnswer_2.trim();
+          if (
+            question.questionType === 'select_twice' ||
+            question.questionType === 'input_twice'
+          ) {
+            if (
+              question.userAnswer === undefined ||
+              question.userAnswer_2 === undefined ||
+              question.userAnswer === '' ||
+              question.userAnswer_2 === ''
+            ) {
+              question.userAnswer = 'Nevyplnené';
+            } else if (question.questionType === 'select_twice') {
+              question.userAnswer =
+                question.userAnswer + '-' + question.userAnswer_2;
+            } else if (question.questionType === 'input_twice') {
+              question.userAnswer =
+                question.userAnswer.trim() +
+                ', ' +
+                question.userAnswer_2.trim();
             }
           }
 
-          if (question.userAnswer === undefined || question.userAnswer === "") {
-            question.userAnswer = "Nevyplnené";
+          if (question.userAnswer === undefined || question.userAnswer === '') {
+            question.userAnswer = 'Nevyplnené';
           }
 
           const result: Result = {
@@ -109,7 +117,7 @@ export class OfficialTestPageComponent {
         }
 
         const sectionResults: SectionResult = {
-          results: sectionResult
+          results: sectionResult,
         };
         testResults.sections.push(sectionResults);
       }
@@ -118,59 +126,59 @@ export class OfficialTestPageComponent {
           this.testResults = result;
         },
         (error) => {
-          console.error("Error updating test results:", error);
-        }
+          console.error('Error updating test results:', error);
+        },
       );
     }
   }
 
   /*
-  * Function to get the time limit for the test,
-  * based on the subcategory and the level of the test
-  * - Samuel
-  * **/
+   * Function to get the time limit for the test,
+   * based on the subcategory and the level of the test
+   * - Samuel
+   */
 
   private getTime() {
     switch (this.subCat) {
-      case "anj": {
-        const level = this.year?.split("-")[1];
-        if (level === "B1") {
+      case 'anj': {
+        const level = this.year?.split('-')[1];
+        if (level === 'B1') {
           return 100;
-        } else if (level === "B2") {
+        } else if (level === 'B2') {
           return 120;
-        } else if (level === "C1") {
+        } else if (level === 'C1') {
           return 150;
         } else {
-          console.error("Unknown level");
+          console.error('Unknown level');
           return 0;
         }
       }
-      case "sjl": {
+      case 'sjl': {
         return 100;
       }
-      case "mat": {
+      case 'mat': {
         return 150;
       }
       default: {
-        console.error("Unknown subCat");
+        console.error('Unknown subCat');
         return 0;
       }
     }
   }
 
   /*
-  * Redone timer function for the test,
-  * countdowns the time for the test, at the end
-  * it stops the timer and submits the test
-  * - Samuel
-  * **/
+   * Redone timer function for the test,
+   * countdowns the time for the test, at the end
+   * it stops the timer and submits the test
+   * - Samuel
+   */
 
   private async timer(time: number = this.getTime()) {
     let seconds: number = time * 60;
-    let textSec: any = "0";
+    let textSec: any = '0';
     let statSec: number = 60;
 
-    const prefix = time < 10 ? "0" : "";
+    const prefix = time < 10 ? '0' : '';
 
     const timer = setInterval(() => {
       seconds--;
@@ -178,7 +186,7 @@ export class OfficialTestPageComponent {
       else statSec = 59;
 
       if (statSec < 10) {
-        textSec = "0" + statSec;
+        textSec = '0' + statSec;
       } else textSec = statSec;
 
       this.display = `${prefix}${Math.floor(seconds / 60)}:${textSec}`;
@@ -191,13 +199,13 @@ export class OfficialTestPageComponent {
   }
 
   /*
-  * Function to get the remaining time in seconds,
-  * based on the display time
-  * - Samuel
+   * Function to get the remaining time in seconds,
+   * based on the display time
+   * - Samuel
    */
 
   private getRemainingTimeInSeconds() {
-    const displayParts = this.display.split(":");
+    const displayParts = this.display.split(':');
     const minutes = parseInt(displayParts[0]);
     const seconds = parseInt(displayParts[1]);
     const remainingTime = minutes * 60 + seconds;
@@ -205,6 +213,10 @@ export class OfficialTestPageComponent {
     let timeTakenInSeconds = totalTime - remainingTime; // Calculate time taken
     const timeTakenInMinutes = Math.floor(timeTakenInSeconds / 60);
     timeTakenInSeconds = timeTakenInSeconds % 60;
-    return timeTakenInMinutes + ":" + (timeTakenInSeconds < 10 ? "0" + timeTakenInSeconds : timeTakenInSeconds);
+    return (
+      timeTakenInMinutes +
+      ':' +
+      (timeTakenInSeconds < 10 ? '0' + timeTakenInSeconds : timeTakenInSeconds)
+    );
   }
 }

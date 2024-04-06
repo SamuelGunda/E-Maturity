@@ -1,7 +1,7 @@
-import { Section } from "./section.model";
+import { Section } from './section.model';
 
 export interface Test {
-  sections: Section[];
-  subCat: string;
-  year: string;
+  sections: Section[]; // The sections of the test.
+  subCat: string; // The subcategory of the test.
+  year: string; // The year of the test.
 }

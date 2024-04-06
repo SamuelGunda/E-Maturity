@@ -16,6 +16,16 @@ export class TestHistoryService {
     private testService: TestService,
   ) {}
 
+  /*
+   * Fetches the saved tests from the user's history
+   * and returns the saved tests and the original tests.
+   * The original tests are the full tests with all information on questions and answers.
+   * Saved tests are collections of the user's results.
+   * Saved tests are sorted by the date they were finished.
+   * If the user has more than 10 saved tests, the oldest ones are removed from the database.
+   * - Samuel
+   */
+
   async getSavedTests(uid: string) {
     try {
       const originalAndResultList: any[] = [];
@@ -81,6 +91,12 @@ export class TestHistoryService {
     }
   }
 
+  /*
+   * Formats the date string to be in the format "YYYY-MM-DD HH:MM"
+   * - Samuel
+   */
+
+
   private formatDate(dateString: string): string {
     const date = new Date(dateString);
     const year = date.getFullYear();
@@ -91,6 +107,11 @@ export class TestHistoryService {
 
     return `${year}-${month}-${day} ${hours}:${minutes}`;
   }
+
+  /*
+   * Removes the oldest test from the user's history
+   * - Samuel
+   */
 
   private async removeOldestTest(uid: string) {
     try {
