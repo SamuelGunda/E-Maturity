@@ -64,6 +64,7 @@ export class TestService {
     const subCatCollection = collection(officialTests, subCat);
     const testDoc = doc(subCatCollection, year);
     const sectionsCollection = collection(testDoc, 'sections');
+    let audioUrl = '';
 
     return from(getDocs(sectionsCollection)).pipe(
       switchMap((querySnapshot) => {
@@ -94,6 +95,7 @@ export class TestService {
                 return {
                   questions: questions,
                   articleUrl: doc.data()['article_url'],
+                  audioUrl: doc.data()['audio_url'],
                 } as Section;
               }),
             );

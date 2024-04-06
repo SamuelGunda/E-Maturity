@@ -12,21 +12,37 @@
       <div class="test-history-page-header-title">
         <h1>História testov</h1>
         <div *ngFor="let test of savedTests" >
-          <div (click)="(test.showResults = !test.showResults) && selectTest(test)">
+
+          <div>
             <h2>{{"Test " + test.subCat.toUpperCase() + " " + test.year + " z " + test.finishedAt}}</h2>
             <h3>{{"Vyhotovený za " + test.timeTaken + ", s úspešnosťou: " + test.percentageScore + "%"}}</h3>
             <div *ngIf="test.showResults">
+              <div (click)="(test.showResults = !test.showResults) && selectTest(test)">
+                  <div *ngIf="!test.showResults">Open</div>
+                  <div *ngIf="test.showResults">Close</div>
+              </div>
               <div *ngFor="let section of test.sections; let i = index">
                 <div *ngFor="let result of section.results; let j = index">
                   <div *ngIf="result.userAnswer != 'Nevyplnené'">
                     <p>{{result.id}}</p>
                     <p>{{selectedTest.sections[i].questions[j].text}}</p>
-                    <p>{{result.userAnswer}}</p>
+                    <div *ngFor="let option of selectedTest.sections[i].questions[j].options">
+                      <p>{{option}}</p>
+                    </div>
+                    <p>Vaša odpoveď:</p>
+                    <span *ngIf="result.result; else wrongAnswer" [ngStyle]="{'color': 'lime'}">{{result.userAnswer}}</span>
+                    <ng-template #wrongAnswer>
+                      <span [ngStyle]="{'color': 'red'}">{{result.userAnswer}}</span>
+                    </ng-template>
                     <p>{{result.result}}</p>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
+          <div *ngIf="!test.showResults" (click)="(test.showResults = !test.showResults) && selectTest(test)">
+              <div *ngIf="!test.showResults">Open</div>
+              <div *ngIf="test.showResults">Close</div>
           </div>
         </div>
       </div>

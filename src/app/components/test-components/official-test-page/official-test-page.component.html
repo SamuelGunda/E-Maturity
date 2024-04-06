@@ -4,7 +4,26 @@
     <div id="timer">{{ display }}</div>
     <div *ngFor="let section of test.sections">
       <div>
-        <img [src]="section.article_url"/>
+        <div *ngIf="section.articleUrl">
+          <div *ngIf="isString(section.articleUrl)">
+            <!-- Convert single string into an array -->
+            <div *ngFor="let sectionImage of [section.articleUrl]">
+              <img [src]="sectionImage" />
+            </div>
+          </div>
+          <div *ngIf="isArray(section.articleUrl)">
+            <!-- Render multiple images -->
+            <div *ngFor="let sectionImage of section.articleUrl">
+              <img [src]="sectionImage" />
+            </div>
+          </div>
+          <div *ngIf="section.audioUrl">
+            <audio controls>
+              <source [src]="section.audioUrl" type="audio/mpeg" />
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+        </div>
 <!--        Questions start -->
         <div *ngFor="let question of section.questions">
           <p [innerHTML]="question.id"></p>

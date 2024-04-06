@@ -19,6 +19,14 @@ export class OfficialTestPageComponent {
   testResults: TestResult | undefined;
   display: any;
 
+  isString(value: any): boolean {
+    return typeof value === 'string';
+  }
+
+  isArray(value: any): boolean {
+    return Array.isArray(value);
+  }
+
   constructor(
     private route: ActivatedRoute,
     private testService: TestService,

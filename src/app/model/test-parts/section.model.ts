@@ -1,6 +1,10 @@
 import { Question } from './question.model';
 
 export interface Section {
-  questions: Question[]; // The questions of the section.
-  article_url?: string; // The url of the article for the section.
+  // The questions of the section.
+  questions: Question[];
+  // The u// rl of the articles for the section.
+  articleUrl?: string[];
+  // The url of the audio for the listening section.
+  audioUrl?: string;
 }
