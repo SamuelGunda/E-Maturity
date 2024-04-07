@@ -4,3 +4,30 @@ input {
   margin: 10px;
   border: 1px solid black;
 }
+
+h1 {
+  font-size: 1.5rem;
+  margin: 10px;
+}
+
+h2 {
+  font-size: 1.2rem;
+  margin: 10px;
+}
+
+label {
+  margin: 10px;
+}
+
+button {
+  margin: 10px;
+  padding: 2px 4px;
+  background-color: #06b7f9;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+#subCat-window {
+  margin-top: 10px;
+}

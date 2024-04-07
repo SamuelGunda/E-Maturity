@@ -10,7 +10,7 @@ import { Question } from "../../../model/test-parts/question.model";
   styleUrls: ['./official-test-constructor-page.component.css'],
 })
 export class OfficialTestConstructorPageComponent implements OnInit {
-  year: string | undefined;
+  year: string = '';
   subCat: string | undefined;
   testForm!: FormGroup;
 
@@ -45,7 +45,11 @@ export class OfficialTestConstructorPageComponent implements OnInit {
           url: ['', Validators.required],
         }),
       ]),
-      questions: this.fb.array([]),
+      questions: this.fb.array([
+        this.fb.group({
+          questionJson: ['', Validators.required],
+        }),
+      ]),
     }));
   }
 
@@ -64,4 +68,24 @@ export class OfficialTestConstructorPageComponent implements OnInit {
     });
     this.getArticleUrls(sectionIndex).push(articleUrl);
   }
+
+  removeArticleUrl(sectionIndex: number, articleUrlIndex: number) {
+    this.getArticleUrls(sectionIndex).removeAt(articleUrlIndex);
+  }
+
+  getQuestions(sectionIndex: number) {
+    return (this.sections.at(sectionIndex) as FormGroup).get('questions') as FormArray;
+  }
+
+  addQuestion(sectionIndex: number) {
+    const question = this.fb.group({
+      questionJson: ['', Validators.required],
+    });
+    this.getQuestions(sectionIndex).push(question);
+  }
+
+  removeQuestion(sectionIndex: number, questionIndex: number) {
+    this.getQuestions(sectionIndex).removeAt(questionIndex);
+  }
+
 }

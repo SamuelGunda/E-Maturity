@@ -1,29 +1,41 @@
-<p>official-test-constructor-page works!</p>
 <div>
   <div>
-    <label for="subCat">Kategória</label>
-    <select id="subCat" [(ngModel)]="subCat" required>
-      <option value="anj">Angličtina</option>
-      <option value="mat">Matematika</option>
-      <option value="sjl">Slovenčina</option>
-    </select>
-    <label for="year"></label>
-    <input id="year" [value]="year" required />
-
+    <div id="subCat-window">
+      <label for="subCat">Sub-Cat</label>
+      <select id="subCat" [(ngModel)]="subCat" required>
+        <option value="anj">Angličtina</option>
+        <option value="mat">Matematika</option>
+        <option value="sjl">Slovenčina</option>
+      </select>
+    </div>
+    <div>
+      <label for="year">Year</label>
+      <input id="year" [value]="year" placeholder="Required"/>
+    </div>
 
     <form [formGroup]="testForm">
       <div formArrayName="sections">
         <div *ngFor="let section of sections.controls; let sectionIndex = index" [formGroupName]="sectionIndex">
-          <p>Section: {{sectionIndex + 1}}</p>
+          <h1>Section: {{sectionIndex + 1}}</h1>
+<!-- IN DIV UNDER ARTICLES-->
           <div formArrayName="articleUrls">
+            <h2 *ngIf="getArticleUrls(sectionIndex).length > 0">Articles:</h2>
             <div *ngFor="let articleUrl of getArticleUrls(sectionIndex).controls; let articleIndex = index" [formGroupName]="articleIndex">
-              <p>Article: {{articleIndex + 1}}</p>
-              <label>Article URL:</label>
-              <input type="text" formControlName="url">
+              <input type="text" formControlName="url" placeholder="Article: {{articleIndex + 1}}">
+              <button type="button" (click)="removeArticleUrl(sectionIndex, articleIndex)">Remove article</button>
             </div>
             <button type="button" (click)="addArticleUrl(sectionIndex)">Add article</button>
           </div>
 
+<!--          IN DIV UNDER QUESTIONS-->
+          <div formArrayName="questions">
+
+            <div *ngFor="let question of getQuestions(sectionIndex).controls; let questionIndex = index" [formGroupName]="questionIndex">
+              <input type="text" formControlName="questionJson" placeholder="Questions: {{questionIndex + 1}}">
+              <button type="button" (click)="removeQuestion(sectionIndex, questionIndex)">Remove question</button>
+            </div>
+            <button type="button" (click)="addQuestion(sectionIndex)">Add question</button>
+          </div>
           <button type="button" (click)="removeSection(sectionIndex)">Remove section</button>
         </div>
       </div>
