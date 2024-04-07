@@ -183,11 +183,11 @@ export class AuthService {
           { merge: true },
         );
         if (rememberMe) {
-          this.cookieService.put('token', idToken);
           this.cookieService.put('uid', uid);
+          this.cookieService.put('token', idToken);
         } else {
           this.cookieService.remove('token');
-          this.cookieService.remove('uid');
+          this.cookieService.put('uid', uid);
         }
       })
       .catch((error) => {
@@ -199,12 +199,9 @@ export class AuthService {
     this.isLoggedIn = false;
     this.teacherLogged = false;
     this.adminLogged = false;
-    this.afAuth.signOut().then(() => {
-      this.cookieService.remove('uid');
-      this.cookieService.remove('token');
-
-      this.teacherLogged = false;
-    });
+    this.cookieService.remove('uid');
+    this.cookieService.remove('token');
+    this.afAuth.signOut().then(() => {});
   }
 
   checkAuthState(): void {

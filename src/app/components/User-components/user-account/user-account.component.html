@@ -15,48 +15,6 @@
         </button>
       </div>
     </div>
-    <h2 class="text-center py-2 font-bold">História testov</h2>
-    <div class="border-b border-ang-border_main pb-4">
-      <div
-        *ngIf="savedTests$ | async as savedTests"
-        class="flex justify-around flex-col md:flex-row gap-2 items-center"
-      >
-        <div
-          *ngFor="let savedTest of savedTests"
-          routerLink="/saved-tests-page"
-        >
-          <p
-            class="text-center border border-ang-border_main rounded-lg px-4 py-2 hover:cursor-pointer hover:opacity-85 text-ang-text_white hover:scale-105 bg-ang-border_main transition-all"
-          >
-            {{ savedTest.testName }}
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <h2 class="text-center py-2 font-bold">Uložené otázky</h2>
-    <div class="border-b border-ang-border_main">
-      <div
-        class="flex justify-between items-center py-4 px-2"
-        *ngFor="let savedQuestion of userAccountService.savedQuestions$ | async"
-      >
-        <div>
-          <p class="font-bold" [innerHTML]="savedQuestion.text"></p>
-          <p
-            *ngFor="let option of savedQuestion.options"
-            [innerHTML]="option"
-          ></p>
-        </div>
-        <div>
-          <p
-            class="hover:scale-150 transition-all text-xl hover:cursor-pointer"
-            (click)="removeQuestion(savedQuestion)"
-          >
-            &#10005;
-          </p>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
 <input type="file" (change)="onFileSelected($event)" class="w-80 h-8 border" />
