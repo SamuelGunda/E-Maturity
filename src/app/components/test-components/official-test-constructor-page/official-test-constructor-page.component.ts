@@ -9,28 +9,33 @@ import { Question } from "../../../model/test-parts/question.model";
   templateUrl: './official-test-constructor-page.component.html',
   styleUrls: ['./official-test-constructor-page.component.css'],
 })
+
 export class OfficialTestConstructorPageComponent implements OnInit {
-  year: string = '';
-  subCat: string | undefined;
-  testForm!: FormGroup;
+  year!: string;
+  subCat!: string;
+  testForm = this.fb.group({
+    year: ['', Validators.required],
+    subCat: ['', Validators.required],
+    sections: this.fb.array([
+      this.fb.group({
+        sectionNumber: 1,
+        articleUrls: this.fb.array([
+          this.fb.group({
+            url: ['', Validators.required],
+          }),
+        ]),
+        questions: this.fb.array([
+          this.fb.group({
+            questionJson: ['', Validators.required],
+          }),
+        ]),
+      }),
+    ]),
+  });
 
   constructor(private fb: FormBuilder) {}
 
-  ngOnInit() {
-    this.testForm = this.fb.group({
-      sections: this.fb.array([
-        this.fb.group({
-          sectionNumber: 1,
-          articleUrls: this.fb.array([
-            this.fb.group({
-              url: ['', Validators.required],
-            }),
-          ]),
-          questions: this.fb.array([]),
-        }),
-      ]),
-    });
-  }
+  ngOnInit() {}
 
   get sections() {
     return this.testForm.get('sections') as FormArray;
@@ -88,4 +93,65 @@ export class OfficialTestConstructorPageComponent implements OnInit {
     this.getQuestions(sectionIndex).removeAt(questionIndex);
   }
 
+  onSubmit() {
+    console.log(this.testForm.value);
+    this.testFromIntoTestModel();
+  }
+
+  async testFromIntoTestModel() {
+    const sections = this.testForm.get('sections') as FormArray;
+    const test: Test = {
+      sections: [],
+      subCat: this.subCat,
+      year: this.year,
+    };
+    for (let i = 0; i < sections.length; i++) {
+      const section = sections.at(i) as FormGroup;
+      const articleUrls = section.get('articleUrls') as FormArray;
+      const questions = section.get('questions') as FormArray;
+      const newSection: Section = {
+        questions: [],
+        articleUrl: [],
+      };
+      for (let j = 0; j < articleUrls.length; j++) {
+        const articleUrl = articleUrls.at(j) as FormGroup;
+        // @ts-ignore
+        newSection.articleUrl.push(articleUrl.get('url').value);
+      }
+
+      for (let j = 0; j < questions.length; j++) {
+        const question = questions.at(j) as FormGroup;
+        // @ts-ignore
+        //newSection.questions.push(JSON.parse(question.get('questionJson').value));
+
+        newSection.questions.push(this.parseJson(JSON.parse(question.get('questionJson').value)));
+
+      }
+
+      test.sections.push(newSection);
+    }
+    console.log(test);
+  }
+
+  parseJson(json: any): Question[] {
+    const questions: Question[] = [];
+    for (const key in json) {
+      if (json.hasOwnProperty(key)) {
+        const questionJson = json[key];
+        const question: Question = {
+          id: key,
+          text: questionJson.text || undefined,
+          options: questionJson.options || undefined,
+          answer: questionJson.answer || undefined,
+          questionType: questionJson.question_type,
+          imageUrl: questionJson.imageUrl || undefined,
+          options_2: questionJson.options_2 || undefined,
+          userAnswer: '',
+          userAnswer_2: ''
+        };
+        questions.push(question);
+      }
+    }
+    return questions;
+  }
 }
