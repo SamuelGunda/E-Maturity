@@ -6,13 +6,11 @@
       <div>
         <div *ngIf="section.articleUrl">
           <div *ngIf="isString(section.articleUrl)">
-            <!-- Convert single string into an array -->
             <div *ngFor="let sectionImage of [section.articleUrl]">
               <img [src]="sectionImage" />
             </div>
           </div>
           <div *ngIf="isArray(section.articleUrl)">
-            <!-- Render multiple images -->
             <div *ngFor="let sectionImage of section.articleUrl">
               <img [src]="sectionImage" />
             </div>

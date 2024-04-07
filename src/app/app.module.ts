@@ -32,6 +32,8 @@ import {
   CookieModule,
 } from 'ngx-cookie';
 import { AuthService } from './service/auth-serivce/auth.service';
+import { OfficialTestConstructorPageComponent } from './components/test-components/official-test-constructor-page/official-test-constructor-page.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,7 @@ import { AuthService } from './service/auth-serivce/auth.service';
     OfficialTestPageComponent,
     OfficialCategoriesPageComponent,
     TestHistoryPageComponent,
+    OfficialTestConstructorPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +64,7 @@ import { AuthService } from './service/auth-serivce/auth.service';
     MatInputModule,
     MatButtonModule,
     CookieModule.forRoot(),
+    ReactiveFormsModule,
   ],
   providers: [
     AuthService,
