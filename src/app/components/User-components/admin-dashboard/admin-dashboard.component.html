@@ -1,1 +1,7 @@
-<p>admin-dashboard works!</p>
+<div *ngIf="teacherInfo$ | async as teachers">
+  <h2 *ngIf="schoolName">{{ schoolName }}</h2>
+  <div *ngFor="let teacher of teachers">
+    <p>Teacher Name: {{ teacher.teacherName }}</p>
+    <p>Teacher Password: {{ teacher.teacherPassword }}</p>
+  </div>
+</div>
