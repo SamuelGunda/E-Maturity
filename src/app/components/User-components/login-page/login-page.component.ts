@@ -18,6 +18,8 @@ export class LoginPageComponent implements OnInit {
   isStudent: boolean = true;
   teacherName: string = '';
   teacherPassword: string = '';
+  loggedIn: boolean = false;
+  adminLogin: boolean = false;
 
   constructor(
     private router: Router,
@@ -40,16 +42,26 @@ export class LoginPageComponent implements OnInit {
       .catch(() => (this.error = true));
   }
   async teacherLogin() {
-    const loggedIn = await this.service.teacherLogin(
-      this.teacherName,
-      this.teacherPassword,
-    );
-    if (loggedIn) {
+    if (this.teacherName !== 'admin') {
+      this.loggedIn = await this.service.teacherLogin(
+        this.teacherName,
+        this.teacherPassword,
+      );
+    } else {
+      const adminLogin = await this.service.adminLogin(
+        this.teacherName,
+        this.teacherPassword,
+      );
+    }
+    if (this.loggedIn) {
       this.router.navigate(['']);
       this.service.teacherLogged = true;
+      this.service.adminLogged = false;
     } else {
-      console.error('Invalid credentials');
+      this.router.navigate(['/dashboard']);
+      console.log('ADMIN LOG');
       this.service.teacherLogged = false;
+      this.service.adminLogged = true;
     }
   }
 

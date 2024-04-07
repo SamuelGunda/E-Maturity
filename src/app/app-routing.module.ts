@@ -8,6 +8,8 @@ import { OfficialTestPageComponent } from './components/test-components/official
 import { ForgotPasswordComponent } from './components/User-components/forgot-password/forgot-password.component';
 import { UserAccountComponent } from './components/User-components/user-account/user-account.component';
 import { EducationMaterialsComponent } from './components/Util-components/education-materials/education-materials.component';
+import { AdminDashboardComponent } from './components/User-components/admin-dashboard/admin-dashboard.component';
+
 import { TestHistoryPageComponent } from './components/test-components/test-history-page/test-history-page.component';
 import { OfficialTestConstructorPageComponent } from './components/test-components/official-test-constructor-page/official-test-constructor-page.component';
 const routes: Routes = [
@@ -23,6 +25,7 @@ const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'user-account', component: UserAccountComponent },
   { path: 'education-materials', component: EducationMaterialsComponent },
+  { path: 'dashboard', component: AdminDashboardComponent },
   { path: 'test-history', component: TestHistoryPageComponent },
   {
     path: 'official-test-constructor',
@@ -45,6 +48,7 @@ export const routingComponent = [
   OfficialCategoriesPageComponent,
   OfficialTestPageComponent,
   EducationMaterialsComponent,
+  AdminDashboardComponent,
   TestHistoryPageComponent,
   OfficialTestConstructorPageComponent,
 ];
