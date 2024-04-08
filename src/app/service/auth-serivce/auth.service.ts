@@ -13,6 +13,7 @@ import {
   UserCredential,
 } from 'firebase/auth';
 import { Teacher } from 'src/app/model/teacher';
+import { Admin } from 'src/app/model/admin';
 
 @Injectable({
   providedIn: 'root',
@@ -123,23 +124,37 @@ export class AuthService {
       });
   }
 
-  async adminLogin(teacherName: string, teacherPassword: string) {
-    const teachers = await this.firestore
-      .collection<Teacher>('admins', (ref) =>
-        ref.where('adminName', '==', teacherName).limit(1),
+  /**
+   * Function for admin login, when admin logs in using teacher tab in login section it looks inside of a database
+   * and matches admin based on a password, if the admin is correct it pulls out schoolName and it assigns it
+   * to admin model for dashboard
+   * Rastislav Pačut
+   */
+  schoolName: string = '';
+  async adminLogin(adminName: string, adminPassword: string): Promise<boolean> {
+    const admins = await this.firestore
+      .collection<Admin>('admins', (ref) =>
+        ref.where('adminPassword', '==', adminPassword).limit(1),
       )
       .valueChanges({ idField: 'id' })
       .pipe(first())
       .toPromise();
 
-    if (teachers && teachers.length > 0) {
-      const teacher = teachers[0];
-      if (teacher.teacherPassword === teacherPassword) {
-        this.adminLogged = true;
+    if (admins) {
+      const admin = admins[0];
+      if (admin.adminPassword === adminPassword) {
+        this.schoolName = admin.schoolName;
         return true;
       }
     }
     return false;
+  }
+  /**
+   * Function for getting school name for dashboard
+   * Rastislav Pačut
+   */
+  getSchoolName(): string {
+    return this.schoolName;
   }
 
   async teacherLogin(username: string, password: string): Promise<boolean> {

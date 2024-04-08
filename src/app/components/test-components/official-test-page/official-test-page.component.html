@@ -1,5 +1,5 @@
 <div *ngIf="test">
-<!--  ANJ Test-->
+  <!--  ANJ Test-->
   <div *ngIf="subCat === 'anj'">
     <div id="timer">{{ display }}</div>
     <div *ngFor="let section of test.sections">
@@ -22,33 +22,33 @@
             </audio>
           </div>
         </div>
-<!--        Questions start -->
+        <!--        Questions start -->
         <div *ngFor="let question of section.questions">
           <p [innerHTML]="question.id"></p>
           <p *ngIf="question.text" [innerHTML]="question.text"></p>
           <img *ngIf="question.imageUrl" [src]="question.imageUrl" />
-<!--          Questions with radio buttons -->
+          <!--          Questions with radio buttons -->
           <div *ngIf="question.questionType === 'select'">
             <div *ngFor="let option of question.options">
               <input
-                  [name]="question.id"
-                  type="radio"
-                  [value]="option"
-                  [id]="option + question.id"
-                  [(ngModel)]="question.userAnswer"
+                [name]="question.id"
+                type="radio"
+                [value]="option"
+                [id]="option + question.id"
+                [(ngModel)]="question.userAnswer"
               />
               <label [for]="option + question.id" [innerHTML]="option"></label>
             </div>
           </div>
-<!--          Questions with input answers -->
+          <!--          Questions with input answers -->
           <div *ngIf="question.questionType === 'input'">
             <input
-                type="text"
-                placeholder="Sem napíšte svoju odpoveď"
-                [(ngModel)]="question.userAnswer"
+              type="text"
+              placeholder="Sem napíšte svoju odpoveď"
+              [(ngModel)]="question.userAnswer"
             />
           </div>
-<!--          Questions based on 2 options -->
+          <!--          Questions based on 2 options -->
           <div *ngIf="question.questionType === 'select_twice'">
             <div *ngFor="let option_1 of question.options">
               <input
@@ -58,20 +58,26 @@
                 [id]="option_1 + question.id"
                 [(ngModel)]="question.userAnswer"
               />
-              <label [for]="option_1 + question.id" [innerHTML]="option_1"></label>
+              <label
+                [for]="option_1 + question.id"
+                [innerHTML]="option_1"
+              ></label>
             </div>
             <div *ngFor="let option_2 of question.options_2">
               <input
-                [name]="question.id + 'option_2' "
+                [name]="question.id + 'option_2'"
                 type="radio"
                 [value]="option_2"
                 [id]="option_2 + question.id"
                 [(ngModel)]="question.userAnswer_2"
               />
-              <label [for]="option_2 + question.id" [innerHTML]="option_2"></label>
+              <label
+                [for]="option_2 + question.id"
+                [innerHTML]="option_2"
+              ></label>
             </div>
           </div>
-<!--          Question based on 2 inputs -->
+          <!--          Question based on 2 inputs -->
           <div *ngIf="question.questionType === 'input_twice'">
             <input
               type="text"
@@ -84,16 +90,16 @@
               [(ngModel)]="question.userAnswer_2"
             />
           </div>
-<!--          Question canceled -->
+          <!--          Question canceled -->
           <div *ngIf="question.questionType === 'canceled'">
             <p>Question canceled by NUCEM</p>
           </div>
-<!--          Questions end -->
+          <!--          Questions end -->
         </div>
       </div>
     </div>
   </div>
-<!--  SJL Test-->
+  <!--  SJL Test-->
   <div *ngIf="subCat === 'sjl'">
     <span>toto je slovencina</span>
   </div>
@@ -101,11 +107,15 @@
     <span>toto je mat</span>
   </div>
 
-  <button (click)="submitTest()"
-          class="border-2 border-ang-border_main mt-2 py-2 px-6 bg-ang-main_btn text-ang-text_white rounded-lg hover:opacity-85 transition"
-  >Vyhodnotiť test</button>
-  <div id="dialog"
-       *ngIf="testResults"
+  <button
+    (click)="submitTest()"
+    class="border-2 border-ang-border_main mt-2 py-2 px-6 bg-ang-main_btn text-ang-text_white rounded-lg hover:opacity-85 transition"
+  >
+    Vyhodnotiť test
+  </button>
+  <div
+    id="dialog"
+    *ngIf="testResults"
     class="fixed left-0 top-0 w-screen h-screen bg-opacity-40 bg-black justify-center items-center flex"
   >
     <div
