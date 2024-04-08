@@ -36,7 +36,6 @@ export class TestHistoryService {
       const userCollectionRef = collection(this.firestore, 'users');
       const documentByUidRef = doc(userCollectionRef, uid);
       const savedTestsCollectionRef = collection(documentByUidRef, 'savedTests');
-
       const querySnapshot = await getDocs(savedTestsCollectionRef);
 
       querySnapshot.forEach((doc) => {
@@ -81,7 +80,6 @@ export class TestHistoryService {
           return sortedTests;
         });
       }
-      // return sortedTests;
       originalAndResultList.push(sortedTests);
       originalAndResultList.push(fullTestList);
       return originalAndResultList;
@@ -119,6 +117,7 @@ export class TestHistoryService {
       const documentByUidRef = doc(userCollectionRef, uid);
       const savedTestsCollectionRef = collection(documentByUidRef, 'savedTests');
       const querySnapshot = await getDocs(savedTestsCollectionRef);
+
       const allTests: any[] = [];
 
       querySnapshot.docs.forEach((doc) => {

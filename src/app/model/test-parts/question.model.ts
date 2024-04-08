@@ -3,15 +3,17 @@ export interface Question {
   text?: string; // The text of the question.
   imageUrl?: string; // The url of the image for the question.
   answer: string | string[]; // The correct answer to the question.
-  questionType: string;
 
   /* Question types:
-   * select - radio buttons,
-   * select_twice - 2 sets of radio buttons,
-   * input - type-out answer,
-   * input_twice - type-out 2 different values,
-   * cancelled - question was cancelled by NUCEM,
-   */
+  * select - radio buttons,
+  * select_twice - 2 sets of radio buttons,
+  * input - type-out answer,
+  * input_twice - type-out 2 different values,
+  * cancelled - question was cancelled by NUCEM,
+  */
+
+  questionType: string;
+  question_type?: string; // Used for saving to Firestore.
 
   options?: string[]; // The options for the question.
   options_2?: string[]; // The options for the question, if it has 2 sets of options.

@@ -2,7 +2,7 @@ import { Question } from './question.model';
 
 export interface Section {
   // The firestore document name of the section.
-  sectionId?: number;
+  sectionId?: string;
   // The questions assigned to the section.
   questions: Question[];
   // The storage url of the articles for the section.

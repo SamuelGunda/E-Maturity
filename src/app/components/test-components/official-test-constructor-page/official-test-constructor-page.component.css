@@ -5,6 +5,19 @@ input {
   border: 1px solid black;
 }
 
+select {
+  height: 2rem;
+  margin: 10px;
+  border: 1px solid black;
+}
+
+textarea {
+  width: 80%;
+  height: 15rem;
+  margin: 10px;
+  border: 1px solid black;
+}
+
 h1 {
   font-size: 1.5rem;
   margin: 10px;
@@ -28,6 +41,19 @@ button {
   border-radius: 5px;
 }
 
+.addButton {
+  background-color: #61c430;
+}
+
+.removeButton {
+  background-color: #c23e3e;
+}
+
 #subCat-window {
   margin-top: 10px;
+}
+
+.articleSection, .questionSection {
+  margin: 20px 10px;
+  border: #06b7f9 1px solid;
 }

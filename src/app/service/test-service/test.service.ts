@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { forkJoin, from, map, Observable, switchMap } from 'rxjs';
 import {
+  addDoc,
   collection,
   doc,
   Firestore,
   getDoc,
   getDocs,
-  setDoc,
-} from '@angular/fire/firestore';
+  setDoc
+} from "@angular/fire/firestore";
 import { Test } from 'src/app/model/test-parts/test.model';
 import { Question } from 'src/app/model/test-parts/question.model';
 import { Section } from 'src/app/model/test-parts/section.model';
@@ -84,7 +85,7 @@ export class TestService {
                       text: data['text'],
                       imageUrl: data['image_url'],
                       answer: data['answer'],
-                      questionType: data['question_type'],
+                      questionType: data['questionType'],
                       options: data['options'],
                       options_2: data['options_2'],
                       userAnswer: '',
@@ -196,5 +197,41 @@ export class TestService {
     setDoc(savedTestDocumentRef, finishedTest)
       .then((r) => console.log(r))
       .catch((e) => console.log(e));
+  }
+
+  async addOfficialTestToFirestore(test: Test) {
+    const testsCollection = collection(this.firestore, 'tests');
+    const documentRef = doc(testsCollection, 'official_tests');
+    const categoryCollection = collection(documentRef, test.subCat);
+
+    const newTestDoc = doc(categoryCollection, test.year);
+    await setDoc(newTestDoc, {});
+
+    for (let i = 0; i < test.sections.length; i++) {
+      const section = test.sections[i];
+      const sectionDoc = doc(collection(newTestDoc, 'sections'), section.sectionId);
+      await setDoc(sectionDoc, { /* section data */ });
+
+      for (let j = 0; j < section.questions.length; j++) {
+        const question = section.questions[j];
+        console.log(question);
+
+
+        const questionDoc = doc(collection(sectionDoc, 'questions'), question.id);
+        await setDoc(questionDoc, question);
+      }
+    }
+  }
+
+  IAmTrying() {
+    const testsCollection = collection(this.firestore, 'tests');
+    const documentRef = doc(testsCollection, 'official_tests');
+    const categoryCollection = collection(documentRef, 'anj');
+    // add new document with id '2021'
+    const newDoc = doc(categoryCollection, '2021');
+
+    setDoc(newDoc, {}).then(r => console.log(r)).catch(e => console.log(e));
+
+
   }
 }
