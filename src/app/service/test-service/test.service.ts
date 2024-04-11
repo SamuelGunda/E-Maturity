@@ -86,6 +86,7 @@ export class TestService {
                       imageUrl: data['image_url'],
                       answer: data['answer'],
                       questionType: data['questionType'],
+                      question_type: data['question_type'],
                       options: data['options'],
                       options_2: data['options_2'],
                       userAnswer: '',
