@@ -34,6 +34,7 @@ import {
 import { AuthService } from './service/auth-serivce/auth.service';
 import { OfficialTestConstructorPageComponent } from './components/test-components/official-test-constructor-page/official-test-constructor-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CustomTestConstructorComponent } from './components/test-components/custom-test-constructor/custom-test-constructor.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     OfficialCategoriesPageComponent,
     TestHistoryPageComponent,
     OfficialTestConstructorPageComponent,
+    CustomTestConstructorComponent,
   ],
   imports: [
     BrowserModule,

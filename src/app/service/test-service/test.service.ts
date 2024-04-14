@@ -223,16 +223,4 @@ export class TestService {
       }
     }
   }
-
-  IAmTrying() {
-    const testsCollection = collection(this.firestore, 'tests');
-    const documentRef = doc(testsCollection, 'official_tests');
-    const categoryCollection = collection(documentRef, 'anj');
-    // add new document with id '2021'
-    const newDoc = doc(categoryCollection, '2021');
-
-    setDoc(newDoc, {}).then(r => console.log(r)).catch(e => console.log(e));
-
-
-  }
 }

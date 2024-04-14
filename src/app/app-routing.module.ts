@@ -12,6 +12,9 @@ import { AdminDashboardComponent } from './components/User-components/admin-dash
 
 import { TestHistoryPageComponent } from './components/test-components/test-history-page/test-history-page.component';
 import { OfficialTestConstructorPageComponent } from './components/test-components/official-test-constructor-page/official-test-constructor-page.component';
+import {
+  CustomTestConstructorComponent
+} from "./components/test-components/custom-test-constructor/custom-test-constructor.component";
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'login', component: LoginPageComponent },
@@ -31,6 +34,7 @@ const routes: Routes = [
     path: 'official-test-constructor',
     component: OfficialTestConstructorPageComponent,
   },
+  {path: 'custom-test-constructor', component: CustomTestConstructorComponent}
 ];
 
 @NgModule({
@@ -51,4 +55,5 @@ export const routingComponent = [
   AdminDashboardComponent,
   TestHistoryPageComponent,
   OfficialTestConstructorPageComponent,
+  CustomTestConstructorComponent,
 ];
