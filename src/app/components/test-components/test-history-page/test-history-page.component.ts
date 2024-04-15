@@ -3,6 +3,7 @@ import { TestHistoryService } from '../../../service/test-history-service/test-h
 import { TestResult } from '../../../model/test-results-parts/test-result.model';
 import { Test } from '../../../model/test-parts/test.model';
 import { CookieService } from 'ngx-cookie';
+import { finalize, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-test-history-page',
@@ -10,7 +11,7 @@ import { CookieService } from 'ngx-cookie';
   styleUrls: ['./test-history-page.component.css'],
 })
 export class TestHistoryPageComponent {
-  isLoading: boolean = true; // If the page is loading, this will be true
+  isLoading: boolean = false; // If the page is loading, this will be true
   isSavedTestsEmpty: boolean = true; // If there are no saved tests, this will be true
   savedTests: TestResult[] = []; // The saved tests from the user's history
   originalTests: Test[] = []; // The original tests with full questions and answers
@@ -26,7 +27,7 @@ export class TestHistoryPageComponent {
   }
 
   ngOnInit(): void {
-    this.fetchTestsFromUserHistory().then((r) => (this.isLoading = false));
+    this.fetchTestsFromUserHistory();
   }
 
   /*
@@ -35,24 +36,32 @@ export class TestHistoryPageComponent {
    * - Samuel
    */
 
-  async fetchTestsFromUserHistory() {
+  fetchTestsFromUserHistory() {
     try {
       const uid = this.cookieService.get('uid');
       if (!uid) {
         console.error('Uid is not set. User is not logged in.');
         return;
       }
+      this.testHistoryService
+        .removeOldestTest(uid)
+        .pipe(switchMap(() => this.testHistoryService.getSavedTests(uid)))
+        .subscribe({
+          next: (tests) => {
+            this.savedTests = tests[0];
+            this.originalTests = tests[1];
+            console.log('Tests:', tests);
 
-      const tests = await this.testHistoryService.getSavedTests(uid);
-      this.savedTests = tests[0];
-      this.originalTests = tests[1];
-      console.log('Tests:', tests);
+            if (this.savedTests.length > 0) {
+              this.isSavedTestsEmpty = false;
+            }
 
-      if (this.savedTests.length > 0) {
-        this.isSavedTestsEmpty = false;
-      }
-
-      console.log('Saved tests:', this.savedTests);
+            console.log('Saved tests:', this.savedTests);
+          },
+          error: (error) => {
+            console.error('Error loading saved tests:', error);
+          },
+        });
     } catch (error) {
       console.error('Error loading saved tests:', error);
     }
