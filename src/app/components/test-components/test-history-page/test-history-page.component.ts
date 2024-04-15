@@ -73,11 +73,13 @@ export class TestHistoryPageComponent {
    */
 
   selectTest(test: TestResult) {
+    console.log('Test:', test);
     for (const ogTest of this.originalTests) {
+      console.log('Original test:', ogTest);
       if (ogTest.subCat === test.subCat && ogTest.year === test.year) {
         this.selectedTest = ogTest;
+        console.log('Selected test:', this.selectedTest);
       }
-      break;
     }
   }
 }
