@@ -161,7 +161,7 @@
           <p *ngIf="question.text" [innerHTML]="question.text"></p>
           <img *ngIf="question.imageUrl" [src]="question.imageUrl" />
           <!--          Questions with input answers -->
-          <div *ngIf="question.question_type === 'input'">
+          <div *ngIf="question.questionType === 'input'">
             <input
               type="text"
               placeholder="Sem napíšte svoju odpoveď"
@@ -169,7 +169,7 @@
             />
           </div>
           <!--          Questions with radio buttons -->
-          <div *ngIf="question.question_type === 'select_one'">
+          <div *ngIf="question.questionType === 'select_one'">
             <div *ngFor="let option of question.options">
               <input
                 [name]="question.id"
@@ -182,7 +182,7 @@
             </div>
           </div>
           <!--          Question canceled -->
-          <div *ngIf="question.question_type === 'canceled'">
+          <div *ngIf="question.questionType === 'canceled'">
             <p>Question canceled by NUCEM</p>
           </div>
           <!--          Questions end -->
