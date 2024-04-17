@@ -1,8 +1,12 @@
 export interface Question {
-  id: string; // The id of the question.
-  text?: string; // The text of the question.
-  imageUrl?: string; // The url of the image for the question.
-  answer: string | string[]; // The correct answer to the question.
+  // The id of the question.
+  id: string;
+  // The text of the question.
+  text?: string;
+  // The url of the image for the question.
+  imageUrl?: string;
+  // The correct answer to the question.
+  answer: string | string[];
 
   /* Question types:
   * select - radio buttons,
@@ -11,13 +15,13 @@ export interface Question {
   * input_twice - type-out 2 different values,
   * cancelled - question was cancelled by NUCEM,
   */
-
   questionType: string;
-  question_type?: string; // Used for saving to Firestore.
-
-  options?: string[]; // The options for the question.
-  options_2?: string[]; // The options for the question, if it has 2 sets of options.
-
-  userAnswer?: any; // The answer the user gave to the question.
-  userAnswer_2?: string; // The answer the user gave to the question, if it has 2 values to input.
+  // The options for the question.
+  options?: string[];
+  // The options for the question, if it has 2 sets of options.
+  options_2?: string[];
+  // The answer the user gave to the question.
+  userAnswer?: any;
+  // The answer the user gave to the question, if it has 2 values to input.
+  userAnswer_2?: string;
 }

@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, FormArray, Validators } from "@angular/forms";
 import { Test } from "../../../model/test-parts/test.model";
 import { Section } from "../../../model/test-parts/section.model";
 import { Question } from "../../../model/test-parts/question.model";
-import { collection, doc } from "@angular/fire/firestore";
 import { TestService } from "../../../service/test-service/test.service";
 
 @Component({
@@ -170,10 +169,5 @@ export class OfficialTestConstructorPageComponent implements OnInit {
       }
     }
     return questions;
-  }
-
-  help() {
-    alert('This is the help function');
-    this.testService.IAmTrying();
   }
 }

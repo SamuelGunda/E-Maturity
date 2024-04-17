@@ -1,16 +1,22 @@
 import { Injectable } from '@angular/core';
-import { collection, deleteDoc, doc, Firestore, getDocs } from "@angular/fire/firestore";
-import { TestResult } from "../../model/test-results-parts/test-result.model";
-import { SectionResult } from "../../model/test-results-parts/section-result.model";
-import { Result } from "../../model/test-results-parts/result.model";
-import { TestService } from "../test-service/test.service";
-import { Test } from "../../model/test-parts/test.model";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  Firestore,
+  getDocs,
+} from '@angular/fire/firestore';
+import { TestResult } from '../../model/test-results-parts/test-result.model';
+import { SectionResult } from '../../model/test-results-parts/section-result.model';
+import { Result } from '../../model/test-results-parts/result.model';
+import { TestService } from '../test-service/test.service';
+import { Test } from '../../model/test-parts/test.model';
+import { BehaviorSubject, finalize, from, map, Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TestHistoryService {
-
   constructor(
     private firestore: Firestore,
     private testService: TestService,
@@ -26,74 +32,67 @@ export class TestHistoryService {
    * - Samuel
    */
 
-  async getSavedTests(uid: string) {
-    try {
-      const originalAndResultList: any[] = [];
-      const fullTestList: Test[] = [];
-      const inList: String[] = [];
-      const savedTests: TestResult[] = [];
+  getSavedTests(uid: string): Observable<any[]> {
+    const userCollectionRef = collection(this.firestore, 'users');
+    const documentByUidRef = doc(userCollectionRef, uid);
+    const savedTestsCollectionRef = collection(documentByUidRef, 'savedTests');
 
-      const userCollectionRef = collection(this.firestore, 'users');
-      const documentByUidRef = doc(userCollectionRef, uid);
-      const savedTestsCollectionRef = collection(documentByUidRef, 'savedTests');
-      const querySnapshot = await getDocs(savedTestsCollectionRef);
+    return from(getDocs(savedTestsCollectionRef)).pipe(
+      map((querySnapshot) => {
+        const originalAndResultList: any[] = [];
+        const fullTestList: Test[] = [];
+        const inList: String[] = [];
+        const savedTests: TestResult[] = [];
 
-      querySnapshot.forEach((doc) => {
-        const data = doc.data();
-        const testResult: TestResult = {
-          subCat: data["subCat"],
-          year: data["year"],
-          finishedAt: this.formatDate(data["finishedAt"]),
-          timeTaken: data["timeTaken"],
-          score: data["score"],
-          percentageScore: data["percentageScore"],
-          sections: data["sections"].map((sectionResult: any) => {
-            return {
-              results: sectionResult["results"].map((result: any) => {
-                return {
-                  id: result["id"],
-                  userAnswer: result["userAnswer"],
-                  result: result["result"],
-                } as Result;
-              }),
-            } as SectionResult;
-          }),
-        };
-        savedTests.push(testResult);
-        if (!inList.includes(testResult.subCat + "-" + testResult.year)) {
-          inList.push(testResult.subCat + "-" + testResult.year);
-          this.testService.getTest(testResult.subCat, testResult.year, true)
-            .subscribe((test: Test) => {
-              fullTestList.push(test);
-            });
-        }
-      });
-
-      const sortedTests = savedTests.sort((a, b) => {
-        const dateA = new Date(a.finishedAt);
-        const dateB = new Date(b.finishedAt);
-        return dateB.getTime() - dateA.getTime();
-      });
-
-      if (sortedTests.length > 10) {
-        await this.removeOldestTest(uid).then(() => {
-          return sortedTests;
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          const testResult: TestResult = {
+            subCat: data['subCat'],
+            year: data['year'],
+            finishedAt: this.formatDate(data['finishedAt']),
+            timeTaken: data['timeTaken'],
+            score: data['score'],
+            percentageScore: data['percentageScore'],
+            sections: data['sections'].map((sectionResult: any) => {
+              return {
+                results: sectionResult['results'].map((result: any) => {
+                  return {
+                    id: result['id'],
+                    userAnswer: result['userAnswer'],
+                    result: result['result'],
+                  } as Result;
+                }),
+              } as SectionResult;
+            }),
+          };
+          savedTests.push(testResult);
+          if (!inList.includes(testResult.subCat + '-' + testResult.year)) {
+            inList.push(testResult.subCat + '-' + testResult.year);
+            this.testService
+              .getTest(testResult.subCat, testResult.year, true)
+              .subscribe((test: Test) => {
+                fullTestList.push(test);
+              });
+          }
         });
-      }
-      originalAndResultList.push(sortedTests);
-      originalAndResultList.push(fullTestList);
-      return originalAndResultList;
-    } catch (error) {
-      console.error('Error fetching saved tests:', error);
-      return [];
-    }
+
+        const sortedTests = savedTests.sort((a, b) => {
+          const dateA = new Date(a.finishedAt);
+          const dateB = new Date(b.finishedAt);
+          return dateB.getTime() - dateA.getTime();
+        });
+
+        originalAndResultList.push(sortedTests);
+        originalAndResultList.push(fullTestList);
+        return originalAndResultList;
+      }),
+    );
   }
 
   /*
    * Formats the date string to be in the format "YYYY-MM-DD HH:MM"
    * - Samuel
    */
-
 
   private formatDate(dateString: string): string {
     const date = new Date(dateString);
@@ -111,37 +110,47 @@ export class TestHistoryService {
    * - Samuel
    */
 
-  private async removeOldestTest(uid: string) {
-    try {
-      const userCollectionRef = collection(this.firestore, 'users');
-      const documentByUidRef = doc(userCollectionRef, uid);
-      const savedTestsCollectionRef = collection(documentByUidRef, 'savedTests');
-      const querySnapshot = await getDocs(savedTestsCollectionRef);
+  removeOldestTest(uid: string): Observable<boolean> {
+    const loading = new BehaviorSubject<boolean>(true);
 
-      const allTests: any[] = [];
+    const userCollectionRef = collection(this.firestore, 'users');
+    const documentByUidRef = doc(userCollectionRef, uid);
+    const savedTestsCollectionRef = collection(documentByUidRef, 'savedTests');
 
-      querySnapshot.docs.forEach((doc) => {
-        allTests.push({
-          id: doc.id,
-          data: doc.data(),
-        });
+    const allTests: any[] = [];
+
+    from(getDocs(savedTestsCollectionRef))
+      .pipe(finalize(() => loading.next(false)))
+      .subscribe({
+        next: (querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            allTests.push({ id: doc.id, data: doc.data() });
+          });
+
+          const sortedTests = allTests.sort((a, b) => {
+            const dateA = new Date(a.data.finishedAt);
+            const dateB = new Date(b.data.finishedAt);
+            return dateA.getTime() - dateB.getTime();
+          });
+
+          while (sortedTests.length > 10) {
+            const oldestTest = sortedTests.shift();
+            if (oldestTest) {
+              const oldestTestId = oldestTest.id;
+              const docRef = doc(savedTestsCollectionRef, oldestTestId);
+              from(deleteDoc(docRef)).subscribe({
+                next: () => console.log('Document successfully deleted!'),
+                error: (err) => console.error('Error deleting document: ', err),
+              });
+            }
+          }
+        },
+        error: (error) => {
+          console.error('Error fetching saved tests:', error);
+          loading.next(false);
+        },
       });
 
-      const sortedTests = allTests.sort((a, b) => {
-        const dateA = new Date(a.data.finishedAt);
-        const dateB = new Date(b.data.finishedAt);
-        return dateA.getTime() - dateB.getTime();
-      });
-
-      while (sortedTests.length > 10) {
-        const oldestTest = sortedTests.shift();
-        if (oldestTest) {
-          const oldestTestId = oldestTest.id;
-          await deleteDoc(doc(savedTestsCollectionRef, oldestTestId));
-        }
-      }
-    } catch (error) {
-      console.error('Error removing oldest test:', error);
-    }
+    return loading.asObservable();
   }
 }

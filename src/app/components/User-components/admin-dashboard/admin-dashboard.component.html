@@ -1,7 +1,41 @@
-<div *ngIf="teacherInfo$ | async as teachers">
-  <h2 *ngIf="schoolName">{{ schoolName }}</h2>
-  <div *ngFor="let teacher of teachers">
-    <p>Teacher Name: {{ teacher.teacherName }}</p>
-    <p>Teacher Password: {{ teacher.teacherPassword }}</p>
+<div class="outer_container">
+  <div
+    *ngIf="teacherInfo$ | async as teachers"
+    class="inner_container items-center flex-col"
+  >
+    <div class="flex items-center flex-col justify-center gap-4 w-full">
+      <h2 *ngIf="schoolName" class="p-4 text-ang-text_main text-2xl">
+        {{ schoolName }}
+      </h2>
+      <div
+        class="border-2 border-ang-border_main w-4/5 grid grid-cols-6 grid-flow-row"
+      >
+        <div class="col-span-6">
+          <div>
+            <input type="search" />
+            <button>
+              <img
+                src="/assets/accountsearch.png"
+                width="38px"
+                height="38px"
+                alt=""
+              />
+            </button>
+          </div>
+          <div></div>
+        </div>
+        <div class="flex justify-between items-center col-span-6">
+          <p>Učiteľské meno</p>
+          <p>Učiteľské heslo</p>
+        </div>
+        <div
+          *ngFor="let teacher of teachers"
+          class="flex justify-between items-center col-span-6"
+        >
+          <p>{{ teacher.teacherName }}</p>
+          <p>{{ teacher.teacherPassword }}</p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
