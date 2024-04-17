@@ -193,8 +193,45 @@
       </div>
     </div>
   </div>
+    <!--  MAT Test-->
   <div *ngIf="subCat === 'mat'">
-    <span>toto je mat</span>
+    <div id="timer">{{ display }}</div>
+    <div *ngFor="let section of test.sections">
+      <div>
+        <!--        Questions start -->
+        <div *ngFor="let question of section.questions">
+          <p [innerHTML]="question.id"></p>
+          <p *ngIf="question.text" [innerHTML]="question.text"></p>
+          <img *ngIf="question.imageUrl" [src]="question.imageUrl" />
+          <!--          Questions with input answers -->
+          <div *ngIf="question.question_type === 'input'">
+            <input
+              type="text"
+              placeholder="Sem napíšte svoju odpoveď"
+              [(ngModel)]="question.userAnswer"
+            />
+          </div>
+          <!--          Questions with radio buttons -->
+          <div *ngIf="question.question_type === 'select_one'">
+            <div *ngFor="let option of question.options">
+              <input
+                [name]="question.id"
+                type="radio"
+                [value]="option"
+                [id]="option + question.id"
+                [(ngModel)]="question.userAnswer"
+              />
+              <label [for]="option + question.id" [innerHTML]="option"></label>
+            </div>
+          </div>
+          <!--          Question canceled -->
+          <div *ngIf="question.question_type === 'canceled'">
+            <p>Question canceled by NUCEM</p>
+          </div>
+          <!--          Questions end -->
+        </div>
+      </div>
+    </div>
   </div>
 
   <button
