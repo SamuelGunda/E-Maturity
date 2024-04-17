@@ -7,8 +7,8 @@ import {
   Firestore,
   getDoc,
   getDocs,
-  setDoc
-} from "@angular/fire/firestore";
+  setDoc,
+} from '@angular/fire/firestore';
 import { Test } from 'src/app/model/test-parts/test.model';
 import { Question } from 'src/app/model/test-parts/question.model';
 import { Section } from 'src/app/model/test-parts/section.model';
@@ -83,10 +83,9 @@ export class TestService {
                     return {
                       id: qDoc.id,
                       text: data['text'],
-                      imageUrl: data['image_url'],
+                      imageUrl: data['imageUrl'],
                       answer: data['answer'],
                       questionType: data['questionType'],
-                      question_type: data['question_type'],
                       options: data['options'],
                       options_2: data['options_2'],
                       userAnswer: '',
@@ -210,15 +209,22 @@ export class TestService {
 
     for (let i = 0; i < test.sections.length; i++) {
       const section = test.sections[i];
-      const sectionDoc = doc(collection(newTestDoc, 'sections'), section.sectionId);
-      await setDoc(sectionDoc, { /* section data */ });
+      const sectionDoc = doc(
+        collection(newTestDoc, 'sections'),
+        section.sectionId,
+      );
+      await setDoc(sectionDoc, {
+        /* section data */
+      });
 
       for (let j = 0; j < section.questions.length; j++) {
         const question = section.questions[j];
         console.log(question);
 
-
-        const questionDoc = doc(collection(sectionDoc, 'questions'), question.id);
+        const questionDoc = doc(
+          collection(sectionDoc, 'questions'),
+          question.id,
+        );
         await setDoc(questionDoc, question);
       }
     }
