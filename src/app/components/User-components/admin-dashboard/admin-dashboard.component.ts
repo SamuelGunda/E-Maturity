@@ -12,11 +12,19 @@ import { AuthService } from 'src/app/service/auth-serivce/auth.service';
 export class AdminDashboardComponent implements OnInit {
   teacherInfo$: Observable<Teacher[]> | undefined;
   schoolName: string | undefined;
+  addWindow: boolean = false;
 
   constructor(
     private dashboardService: DashboardService,
     private authService: AuthService,
   ) {}
+
+  addNewTeacher() {
+    this.addWindow = true;
+  }
+  closeWindow() {
+    this.addWindow = false;
+  }
 
   async ngOnInit(): Promise<void> {
     if (this.authService.getSchoolName()) {

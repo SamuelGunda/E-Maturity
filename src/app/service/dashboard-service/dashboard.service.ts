@@ -34,6 +34,7 @@ export class DashboardService {
                 schoolName: schoolName,
                 teacherName: teacherData.teacherName,
                 teacherPassword: teacherData.teacherPassword,
+                email: teacherData.email,
               } as Teacher;
             });
           }),

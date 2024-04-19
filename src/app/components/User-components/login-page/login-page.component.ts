@@ -48,7 +48,7 @@ export class LoginPageComponent implements OnInit {
         this.teacherPassword,
       );
     } else {
-      const adminLogin = await this.service.adminLogin(
+      this.adminLogin = await this.service.adminLogin(
         this.teacherName,
         this.teacherPassword,
       );
@@ -57,6 +57,8 @@ export class LoginPageComponent implements OnInit {
       this.router.navigate(['']);
       this.service.teacherLogged = true;
       this.service.adminLogged = false;
+    } else if (!this.adminLogin) {
+      console.log('error'); // make this work future me!
     } else {
       this.router.navigate(['/dashboard']);
       this.service.teacherLogged = false;
