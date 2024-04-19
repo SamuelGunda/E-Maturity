@@ -27,7 +27,7 @@
             </button>
           </div>
           <div class="flex gap-2">
-            <button (click)="addNewTeacher()">
+            <button (click)="openAddWindow()">
               <span
                 class="material-symbols-outlined text-3xl text-ang-text_main hover:scale-110 transition-all"
               >
@@ -81,6 +81,7 @@
     <div class="flex flex-col gap-2">
       <label for="teacherName">Učiteľské meno</label>
       <input
+        [(ngModel)]="teacherData.teacherName"
         type="text"
         id="teacherName"
         class="border border-ang-border_main rounded-md p-1"
@@ -89,17 +90,20 @@
       <input
         type="text"
         id="teacherPassword"
+        [(ngModel)]="teacherData.teacherPassword"
         class="border border-ang-border_main rounded-md p-1"
       />
       <label for="teacherName">Učiteľský email</label>
       <input
         type="text"
         id="teacherMail"
+        [(ngModel)]="teacherData.email"
         class="border border-ang-border_main rounded-md p-1"
       />
     </div>
     <div class="flex justify-center items-center mt-4">
       <button
+        (click)="addNewTeacher()"
         class="border border-ang-border_main py-1 px-2 rounded-lg bg-ang-main_btn text-ang-text_white hover:opacity-85"
       >
         Vytvoriť

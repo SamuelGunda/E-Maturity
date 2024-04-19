@@ -58,7 +58,7 @@ export class LoginPageComponent implements OnInit {
       this.service.teacherLogged = true;
       this.service.adminLogged = false;
     } else if (!this.adminLogin) {
-      console.log('error'); // make this work future me!
+      console.log('Teacher login error');
     } else {
       this.router.navigate(['/dashboard']);
       this.service.teacherLogged = false;

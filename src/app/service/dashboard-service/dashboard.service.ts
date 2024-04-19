@@ -43,4 +43,16 @@ export class DashboardService {
       throw new Error('User not authenticated or schoolName not set');
     }
   }
+  addTeachersToDb(teacherData: {
+    teacherName: string;
+    teacherPassword: string;
+    email: string;
+  }) {
+    const schoolName = this.authSerivce.getSchoolName();
+    this.firestore
+      .collection('teachers')
+      .doc(schoolName)
+      .collection('teacherInfo')
+      .add(teacherData);
+  }
 }

@@ -169,7 +169,6 @@ export class AuthService {
     if (teachers && teachers.length > 0) {
       const teacher = teachers[0];
       if (teacher.teacherPassword === password) {
-        this.teacherLogged = true;
         return true;
       }
     }

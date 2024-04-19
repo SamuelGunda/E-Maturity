@@ -13,17 +13,25 @@ export class AdminDashboardComponent implements OnInit {
   teacherInfo$: Observable<Teacher[]> | undefined;
   schoolName: string | undefined;
   addWindow: boolean = false;
+  teacherData = {
+    teacherName: '',
+    teacherPassword: '',
+    email: '',
+  };
 
   constructor(
     private dashboardService: DashboardService,
     private authService: AuthService,
   ) {}
 
-  addNewTeacher() {
+  openAddWindow() {
     this.addWindow = true;
   }
   closeWindow() {
     this.addWindow = false;
+  }
+  addNewTeacher() {
+    this.dashboardService.addTeachersToDb(this.teacherData);
   }
 
   async ngOnInit(): Promise<void> {
