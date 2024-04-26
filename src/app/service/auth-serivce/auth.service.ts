@@ -98,9 +98,18 @@ export class AuthService {
     const provider = new GoogleAuthProvider();
     return signInWithPopup(getAuth(), provider)
       .then((result: UserCredential) => {
-        localStorage.setItem('uid', result.user?.uid);
         console.log(result);
         this.isLoggedIn = true;
+  
+        localStorage.setItem('uid', result.user?.uid);
+  
+        result.user?.getIdToken(true).then((idToken) => {
+          console.log('Storing new token in cookie' + idToken);
+          this.cookieService.put('token', idToken);
+          console.log('Storing new uid in cookie' + result.user?.uid);
+          this.cookieService.put('uid', result.user?.uid);
+        });
+  
         return result;
       })
       .catch((error) => {
@@ -108,6 +117,7 @@ export class AuthService {
         return {} as UserCredential;
       });
   }
+  
 
   googleSignOut() {
     signOut(getAuth());
