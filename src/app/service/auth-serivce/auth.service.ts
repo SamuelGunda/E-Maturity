@@ -1,6 +1,6 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Observable, first, map, of, switchMap } from 'rxjs';
+import { Observable } from 'rxjs';
 import firebase from 'firebase/compat';
 import { CookieService } from 'ngx-cookie';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
@@ -12,8 +12,7 @@ import {
   getAuth,
   UserCredential,
 } from 'firebase/auth';
-import { Teacher } from 'src/app/model/teacher';
-import { Admin } from 'src/app/model/admin';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -24,14 +23,13 @@ export class AuthService {
     return uid;
   }
   isLoggedIn = false;
-  teacherLogged: boolean = false;
-  adminLogged: boolean = false;
   userData: Observable<firebase.User>;
 
   constructor(
     private afAuth: AngularFireAuth,
     private cookieService: CookieService,
     private firestore: AngularFirestore,
+    private router: Router,
   ) {
     // @ts-ignore
     this.userData = afAuth.authState;
@@ -100,16 +98,16 @@ export class AuthService {
       .then((result: UserCredential) => {
         console.log(result);
         this.isLoggedIn = true;
-  
+
         localStorage.setItem('uid', result.user?.uid);
-  
+
         result.user?.getIdToken(true).then((idToken) => {
           console.log('Storing new token in cookie' + idToken);
           this.cookieService.put('token', idToken);
           console.log('Storing new uid in cookie' + result.user?.uid);
           this.cookieService.put('uid', result.user?.uid);
         });
-  
+
         return result;
       })
       .catch((error) => {
@@ -117,7 +115,6 @@ export class AuthService {
         return {} as UserCredential;
       });
   }
-  
 
   googleSignOut() {
     signOut(getAuth());
@@ -132,57 +129,6 @@ export class AuthService {
           displayName: `${fname} ${lname}`,
         });
       });
-  }
-
-  /**
-   * Function for admin login, when admin logs in using teacher tab in login section it looks inside of a database
-   * and matches admin based on a password, if the admin is correct it pulls out schoolName and it assigns it
-   * to admin model for dashboard
-   * Rastislav Pačut
-   */
-  schoolName: string = '';
-  async adminLogin(adminName: string, adminPassword: string): Promise<boolean> {
-    const admins = await this.firestore
-      .collection<Admin>('admins', (ref) =>
-        ref.where('adminPassword', '==', adminPassword).limit(1),
-      )
-      .valueChanges({ idField: 'id' })
-      .pipe(first())
-      .toPromise();
-
-    if (admins) {
-      const admin = admins[0];
-      if (admin.adminPassword === adminPassword) {
-        this.schoolName = admin.schoolName;
-        return true;
-      }
-    }
-    return false;
-  }
-  /**
-   * Function for getting school name for dashboard
-   * Rastislav Pačut
-   */
-  getSchoolName(): string {
-    return this.schoolName;
-  }
-
-  async teacherLogin(username: string, password: string): Promise<boolean> {
-    const teachers = await this.firestore
-      .collection<Teacher>('Teachers', (ref) =>
-        ref.where('teacherName', '==', username).limit(1),
-      )
-      .valueChanges({ idField: 'id' })
-      .pipe(first())
-      .toPromise();
-
-    if (teachers && teachers.length > 0) {
-      const teacher = teachers[0];
-      if (teacher.teacherPassword === password) {
-        return true;
-      }
-    }
-    return false;
   }
 
   async login(email: string, password: string, rememberMe: boolean) {
@@ -221,8 +167,7 @@ export class AuthService {
 
   logout() {
     this.isLoggedIn = false;
-    this.teacherLogged = false;
-    this.adminLogged = false;
+    this.router.navigateByUrl('/');
     this.cookieService.remove('uid');
     this.cookieService.remove('token');
     this.afAuth.signOut().then(() => {});
