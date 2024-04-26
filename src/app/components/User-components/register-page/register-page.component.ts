@@ -1,14 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../service/auth-serivce/auth.service';
-import { DarkModeService } from '../../../service/dark-mode-serivce/dark-mode.service';
 
 @Component({
   selector: 'app-register-page',
   templateUrl: './register-page.component.html',
   styleUrls: ['./register-page.component.css'],
 })
-export class RegisterPageComponent implements OnInit {
+export class RegisterPageComponent {
   fname: any;
   lname: any;
   email: any;
@@ -17,19 +16,12 @@ export class RegisterPageComponent implements OnInit {
   errorMessage: string = '';
   pswdError: boolean = false;
   emailError: boolean = false;
-  isDarkMode: boolean = false;
 
   constructor(
     private router: Router,
     private service: AuthService,
-    private darkModeService: DarkModeService,
   ) {}
 
-  ngOnInit() {
-    this.darkModeService.isDarkMode$.subscribe((isDarkMode) => {
-      this.isDarkMode = isDarkMode;
-    });
-  }
   isValidEmail(email: string): boolean {
     const emailRegex = /^[\w\-\.]+@([\w-]+\.)+[\w-]{2,}$/;
     return emailRegex.test(email);

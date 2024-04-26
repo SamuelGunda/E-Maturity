@@ -3,27 +3,7 @@
     <div
       class="flex md:h-[32rem] flex-col items-center justify-between border gap-4 border-ang-border_main py-4 m-2 rounded-lg max-w-[30rem] w-full bg-gradient-to-t from-ang-gradient_from to-ang-gradient_to"
     >
-      <div class="flex justify-evenly w-full items-center">
-        <button
-          [ngClass]="{ 'scale-125': isStudent }"
-          (click)="changeToTeacher()"
-          class="w-20 h-20 border border-ang-border_main rounded-3xl p-2 transition-all"
-        >
-          <img src="/assets/login_icons/student.png" alt="student_login" />
-        </button>
-        <button
-          [ngClass]="{ 'scale-125': !isStudent }"
-          (click)="changeToStudent()"
-          class="w-20 h-20 border border-ang-border_main rounded-3xl p-2 transition-all"
-        >
-          <img src="/assets/login_icons/teacher.png" alt="teacher_login" />
-        </button>
-      </div>
-
-      <div
-        class="flex flex-col text-center md:items-center gap-2 w-full px-2"
-        *ngIf="isStudent"
-      >
+      <div class="flex flex-col text-center md:items-center gap-2 w-full px-2">
         <label for="meno" class="text-xl font-semibold text-ang-text_white"
           >Prihlasovaci email</label
         >
@@ -54,41 +34,6 @@
           placeholder="Zadaj svoje heslo"
         />
       </div>
-
-      <div class="flex flex-col gap-2" *ngIf="!isStudent">
-        <label for="ucitel" class="text-xl font-semibold text-ang-text_white"
-          >Učiteľské meno</label
-        >
-        <input
-          (ngModelChange)="newInput()"
-          type="text"
-          [(ngModel)]="teacherName"
-          name="ucitel"
-          [class]="{ 'border-red-700': error }"
-          id="ucitel"
-          required
-          class="py-1 px-2 rounded-md border border-ang-border_main md:w-72"
-          placeholder="Zadaj svoje učiteľské meno"
-        />
-
-        <label
-          for="ucitel_heslo"
-          class="text-xl font-semibold text-ang-text_white"
-          >Učiteľské heslo</label
-        >
-        <input
-          (ngModelChange)="newInput()"
-          type="password"
-          [(ngModel)]="teacherPassword"
-          name="ucitel_heslo"
-          [class]="{ 'border-red-700': error }"
-          id="ucitel_heslo"
-          required
-          class="py-1 px-2 rounded-md border border-ang-border_main md:w-72"
-          placeholder="Zadaj svoje heslo"
-        />
-      </div>
-
       <div
         class="flex text-sm justify-evenly items-start w-full md:px-16 text-ang-text_white font-semibold"
       >
@@ -113,7 +58,7 @@
       >
         <p>Nesprávne zadané údaje</p>
       </div>
-      <div *ngIf="isStudent">
+      <div>
         <button
           (click)="signInWithGoogle()"
           class="flex items-center gap-2 mx-1 px-3 py-2 rounded-lg bg-ang-text_white hover:opacity-95 border border-ang-text_white"
@@ -128,7 +73,7 @@
         </button>
       </div>
 
-      <div class="flex justify-evenly items-center w-full" *ngIf="isStudent">
+      <div class="flex justify-evenly items-center w-full">
         <button
           (click)="login()"
           type="submit"
@@ -141,15 +86,6 @@
           class="border border-ang-border_main px-3 py-1 text-ang-gradient_to font-semibold hover:opacity-85 rounded-lg bg-ang-main_bg"
         >
           Registrácia
-        </button>
-      </div>
-      <div *ngIf="!isStudent">
-        <button
-          (click)="teacherLogin()"
-          type="submit"
-          class="border border-ang-border_main px-3 py-1 text-ang-gradient_to font-semibold hover:opacity-85 rounded-lg bg-ang-main_bg"
-        >
-          Prihlásiť
         </button>
       </div>
     </div>

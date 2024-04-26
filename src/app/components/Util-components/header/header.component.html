@@ -3,7 +3,6 @@
   class="h-24 relative flex justify-between px-4 items-center border border-blue-500 rounded-lg bg-ang-main_bg dark:bg-zinc-850"
 >
   <div
-    *ngIf="!authService.adminLogged"
     class="w-20 hover:cursor-pointer h-[4rem] flex items-center justify-center"
     (click)="onToggleNav()"
     [class.expanded]="buttonExpanded"
@@ -12,27 +11,10 @@
       class="transition-all ease-in-out delay-[180ms] before:delay-[260ms] after:delay-100 bg-ang-main_btn w-11 h-1.5 rounded-lg hover:cursor-pointer block relative after:transition-all after:bg-ang-main_btn after:w-11 after:h-1.5 after:block after:absolute after:content-[''] after:left-0 after:top-3.5 after:rounded-lg before:transition-all before:bg-ang-main_btn before:w-11 before:h-1.5 before:block before:absolute before:content-[''] before:left-0 before:-top-3.5 before:rounded-lg"
     ></span>
   </div>
-  <div *ngIf="authService.adminLogged">
-    <img
-      class="hover:cursor-pointer"
-      src="/assets/header_icons/dashboard.png"
-      routerLink="/dashboard"
-      alt="dashboardICon"
-      width="38px"
-      height="38px"
-    />
-  </div>
   <div>
     <img src="assets/logo.png" alt="" width="100px" height="100px" />
   </div>
-  <div
-    *ngIf="
-      !authService.isLoggedIn &&
-      authService.teacherLogged == false &&
-      authService.adminLogged == false
-    "
-    id="but"
-  >
+  <div *ngIf="!authService.isLoggedIn" id="but">
     <button
       class="w-20 px-12 flex justify-center py-2 border-2 bg-ang-main_btn border-ang-border_main rounded-lg hover:cursor-pointer overflow-hidden hover:opacity-90 transition shadow-md"
       id="header_reg_button"
@@ -42,16 +24,8 @@
     </button>
   </div>
 
-  <div
-    *ngIf="
-      authService.isLoggedIn ||
-      authService.teacherLogged ||
-      authService.adminLogged
-    "
-    class="flex gap-6"
-  >
+  <div *ngIf="authService.isLoggedIn" class="flex gap-6">
     <p
-      *ngIf="!authService.adminLogged"
       routerLink="/user-account"
       class="hover:cursor-pointer hover:scale-110 transition duration-250"
     >
