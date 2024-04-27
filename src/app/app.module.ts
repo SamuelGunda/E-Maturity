@@ -30,6 +30,7 @@ import {
 } from 'ngx-cookie';
 import { AuthService } from './service/auth-serivce/auth.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TosPageComponent } from './components/Util-components/tos-page/tos-page.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     NavbarComponent,
     routingComponent,
+    TosPageComponent,
   ],
   imports: [
     BrowserModule,

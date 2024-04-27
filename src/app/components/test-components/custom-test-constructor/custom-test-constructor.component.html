@@ -1,7 +1,6 @@
 <div>
   <div>
     <form [formGroup]="testForm">
-
       <div id="subCat-window">
         <label for="subCat">Kategória:</label>
         <select id="subCat" formControlName="subCat">
@@ -10,12 +9,16 @@
           <option value="sjl">Slovenčina</option>
           <option vaue="custom">Vlastná kategória</option>
         </select>
-        <input  />
+        <input />
       </div>
       <div>
         <label for="year">Rok:</label>
-        <input id="year" formControlName="year" placeholder=" Year"/>
-        <select *ngIf="testForm.get('subCat')?.value === 'anj'" id="level" formControlName="level">
+        <input id="year" formControlName="year" placeholder=" Year" />
+        <select
+          *ngIf="testForm.get('subCat')?.value === 'anj'"
+          id="level"
+          formControlName="level"
+        >
           <option value="B1">B1</option>
           <option value="B2">B2</option>
           <option value="C1">C1</option>
@@ -23,37 +26,92 @@
       </div>
 
       <div formArrayName="sections">
-        <div *ngFor="let section of sections.controls; let sectionIndex = index" [formGroupName]="sectionIndex">
-          <h1>Section: {{sectionIndex + 1}}</h1>
+        <div
+          *ngFor="let section of sections.controls; let sectionIndex = index"
+          [formGroupName]="sectionIndex"
+        >
+          <h1>Section: {{ sectionIndex + 1 }}</h1>
 
           <!--      IN DIV UNDER ARTICLES-->
           <div class="articleSection" formArrayName="articleUrls">
             <h2 *ngIf="getArticleUrls(sectionIndex).length > 0">Articles:</h2>
-            <div *ngFor="let articleUrl of getArticleUrls(sectionIndex).controls; let articleIndex = index" [formGroupName]="articleIndex">
-              <input type="text" formControlName="url" placeholder=" Article: {{articleIndex + 1}}">
-              <br>
-              <button class="removeButton" type="button" (click)="removeArticleUrl(sectionIndex, articleIndex)">Remove article</button>
+            <div
+              *ngFor="
+                let articleUrl of getArticleUrls(sectionIndex).controls;
+                let articleIndex = index
+              "
+              [formGroupName]="articleIndex"
+            >
+              <input
+                type="text"
+                formControlName="url"
+                placeholder=" Article: {{ articleIndex + 1 }}"
+              />
+              <br />
+              <button
+                class="removeButton"
+                type="button"
+                (click)="removeArticleUrl(sectionIndex, articleIndex)"
+              >
+                Remove article
+              </button>
             </div>
-            <button class="addButton" type="button" (click)="addArticleUrl(sectionIndex)">Add article</button>
+            <button
+              class="addButton"
+              type="button"
+              (click)="addArticleUrl(sectionIndex)"
+            >
+              Add article
+            </button>
           </div>
 
           <!--      IN DIV UNDER QUESTIONS-->
           <div class="questionSection" formArrayName="questions">
             <h2 *ngIf="getQuestions(sectionIndex).length > 0">Questions:</h2>
-            <div *ngFor="let question of getQuestions(sectionIndex).controls; let questionIndex = index" [formGroupName]="questionIndex">
-              <textarea formControlName="questionJson" placeholder=" Question: {{questionIndex + 1}}"></textarea>
-              <br>
-              <button class="removeButton" type="button" (click)="removeQuestion(sectionIndex, questionIndex)">Remove question</button>
+            <div
+              *ngFor="
+                let question of getQuestions(sectionIndex).controls;
+                let questionIndex = index
+              "
+              [formGroupName]="questionIndex"
+            >
+              <textarea
+                formControlName="questionJson"
+                placeholder=" Question: {{ questionIndex + 1 }}"
+              ></textarea>
+              <br />
+              <button
+                class="removeButton"
+                type="button"
+                (click)="removeQuestion(sectionIndex, questionIndex)"
+              >
+                Remove question
+              </button>
             </div>
-            <button class="addButton" type="button" (click)="addQuestion(sectionIndex)">Add question</button>
+            <button
+              class="addButton"
+              type="button"
+              (click)="addQuestion(sectionIndex)"
+            >
+              Add question
+            </button>
           </div>
 
-          <button class="removeButton" type="button" (click)="removeSection(sectionIndex)">Remove section</button>
+          <button
+            class="removeButton"
+            type="button"
+            (click)="removeSection(sectionIndex)"
+          >
+            Remove section
+          </button>
         </div>
       </div>
-      <button class="addButton" type="button" (click)="addSection()">Add section</button>
-
+      <button class="addButton" type="button" (click)="addSection()">
+        Add section
+      </button>
     </form>
-    <button type="submit" (click)="onSubmit()" [disabled]="testForm.invalid">Submit</button>
+    <button type="submit" (click)="onSubmit()" [disabled]="testForm.invalid">
+      Submit
+    </button>
   </div>
 </div>
