@@ -1,17 +1,15 @@
-import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener } from '@angular/core';
 import { AuthService } from '../../../service/auth-serivce/auth.service';
 import { NavigationEnd, Router } from '@angular/router';
-import { DarkModeService } from '../../../service/dark-mode-serivce/dark-mode.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   buttonExpanded: any = false;
   authService: AuthService;
-  isDarkMode: boolean = false;
   timerIsOn: boolean = false;
   timeLeft: number = 0;
 
@@ -19,19 +17,12 @@ export class HeaderComponent implements OnInit {
     authService: AuthService,
     private el: ElementRef,
     private router: Router,
-    private darkModeService: DarkModeService,
   ) {
     this.authService = authService;
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.closeNavbar();
       }
-    });
-  }
-
-  ngOnInit() {
-    this.darkModeService.isDarkMode$.subscribe((isDarkMode) => {
-      this.isDarkMode = isDarkMode;
     });
   }
 

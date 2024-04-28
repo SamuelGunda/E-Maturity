@@ -1,29 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
 import { Router } from '@angular/router';
-import { DarkModeService } from '../../../service/dark-mode-serivce/dark-mode.service';
 
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
   styleUrls: ['./forgot-password.component.css'],
 })
-export class ForgotPasswordComponent implements OnInit {
+export class ForgotPasswordComponent {
   email: string = '';
   isError: boolean = false;
   errorMessage: string = 'Nesprávny formát emailu.';
   isDarkMode: boolean = false;
 
-  constructor(
-    private router: Router,
-    private darkModeService: DarkModeService,
-  ) {}
-
-  ngOnInit() {
-    this.darkModeService.isDarkMode$.subscribe((isDarkMode) => {
-      this.isDarkMode = isDarkMode;
-    });
-  }
+  constructor(private router: Router) {}
 
   isValidEmail(): void {
     const emailRegex = /^[\w\-\.]+@([\w-]+\.)+[\w-]{2,}$/;

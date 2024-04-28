@@ -8,13 +8,11 @@ import { OfficialTestPageComponent } from './components/test-components/official
 import { ForgotPasswordComponent } from './components/User-components/forgot-password/forgot-password.component';
 import { UserAccountComponent } from './components/User-components/user-account/user-account.component';
 import { EducationMaterialsComponent } from './components/Util-components/education-materials/education-materials.component';
-import { AdminDashboardComponent } from './components/User-components/admin-dashboard/admin-dashboard.component';
 
 import { TestHistoryPageComponent } from './components/test-components/test-history-page/test-history-page.component';
 import { OfficialTestConstructorPageComponent } from './components/test-components/official-test-constructor-page/official-test-constructor-page.component';
-import {
-  CustomTestConstructorComponent
-} from "./components/test-components/custom-test-constructor/custom-test-constructor.component";
+import { CustomTestConstructorComponent } from './components/test-components/custom-test-constructor/custom-test-constructor.component';
+import { IconSelectorComponent } from './components/Util-components/icon-selector/icon-selector.component';
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'login', component: LoginPageComponent },
@@ -28,13 +26,16 @@ const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'user-account', component: UserAccountComponent },
   { path: 'education-materials', component: EducationMaterialsComponent },
-  { path: 'dashboard', component: AdminDashboardComponent },
   { path: 'test-history', component: TestHistoryPageComponent },
   {
     path: 'official-test-constructor',
     component: OfficialTestConstructorPageComponent,
   },
-  {path: 'custom-test-constructor', component: CustomTestConstructorComponent}
+  {
+    path: 'custom-test-constructor',
+    component: CustomTestConstructorComponent,
+  },
+  { path: 'icon-selector', component: IconSelectorComponent },
 ];
 
 @NgModule({
@@ -52,8 +53,8 @@ export const routingComponent = [
   OfficialCategoriesPageComponent,
   OfficialTestPageComponent,
   EducationMaterialsComponent,
-  AdminDashboardComponent,
   TestHistoryPageComponent,
   OfficialTestConstructorPageComponent,
   CustomTestConstructorComponent,
+  IconSelectorComponent,
 ];

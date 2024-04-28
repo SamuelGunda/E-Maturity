@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../service/auth-serivce/auth.service';
 import { Router } from '@angular/router';
-import { DarkModeService } from '../../../service/dark-mode-serivce/dark-mode.service';
 
 @Component({
   selector: 'app-login-page',
@@ -15,16 +14,11 @@ export class LoginPageComponent implements OnInit {
   error: boolean = false;
   rememberMe: boolean = false;
   isDarkMode: boolean = false;
-  isStudent: boolean = true;
-  teacherName: string = '';
-  teacherPassword: string = '';
   loggedIn: boolean = false;
-  adminLogin: boolean = false;
 
   constructor(
     private router: Router,
     private service: AuthService,
-    private darkModeService: DarkModeService,
   ) {}
 
   submit() {
@@ -41,30 +35,6 @@ export class LoginPageComponent implements OnInit {
       .then(() => this.router.navigate(['']))
       .catch(() => (this.error = true));
   }
-  async teacherLogin() {
-    if (this.teacherName !== 'admin') {
-      this.loggedIn = await this.service.teacherLogin(
-        this.teacherName,
-        this.teacherPassword,
-      );
-    } else {
-      this.adminLogin = await this.service.adminLogin(
-        this.teacherName,
-        this.teacherPassword,
-      );
-    }
-    if (this.loggedIn) {
-      this.router.navigate(['']);
-      this.service.teacherLogged = true;
-      this.service.adminLogged = false;
-    } else if (!this.adminLogin) {
-      console.log('Teacher login error');
-    } else {
-      this.router.navigate(['/dashboard']);
-      this.service.teacherLogged = false;
-      this.service.adminLogged = true;
-    }
-  }
 
   signInWithGoogle() {
     this.service
@@ -73,9 +43,6 @@ export class LoginPageComponent implements OnInit {
       .catch(() => (this.error = true));
   }
   ngOnInit() {
-    this.darkModeService.isDarkMode$.subscribe((isDarkMode) => {
-      this.isDarkMode = isDarkMode;
-    });
     const savedUser = localStorage.getItem('rememberMe');
     if (savedUser) {
       const user = JSON.parse(savedUser);
@@ -83,11 +50,5 @@ export class LoginPageComponent implements OnInit {
       this.name = user.email;
       this.password = user.password;
     }
-  }
-  changeToTeacher() {
-    this.isStudent = true;
-  }
-  changeToStudent() {
-    this.isStudent = false;
   }
 }
