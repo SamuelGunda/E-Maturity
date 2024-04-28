@@ -74,7 +74,7 @@ export class OfficialTestPageComponent {
    * - Samuel
    */
 
-  protected async submitTest() {
+  protected submitTest() {
     if (this.test) {
       let testResults: TestResult = {
         subCat: this.subCat || '',
@@ -129,7 +129,7 @@ export class OfficialTestPageComponent {
         };
         testResults.sections.push(sectionResults);
       }
-      (await this.testService.getTestResult(testResults)).subscribe(
+      this.testService.getTestResult(testResults).subscribe(
         (result: TestResult) => {
           this.testResults = result;
         },
@@ -181,7 +181,7 @@ export class OfficialTestPageComponent {
    * - Samuel
    */
 
-  private async timer(time: number = this.getTime()) {
+  private timer(time: number = this.getTime()) {
     let seconds: number = time * 60;
     let textSec: any = '0';
     let statSec: number = 60;

@@ -41,8 +41,10 @@
           <div class="questionSection" formArrayName="questions">
             <h2 *ngIf="getQuestions(sectionIndex).length > 0">Questions:</h2>
             <div *ngFor="let question of getQuestions(sectionIndex).controls; let questionIndex = index" [formGroupName]="questionIndex">
+
               <textarea formControlName="questionJson" placeholder=" Question: {{questionIndex + 1}}"></textarea>
               <br>
+
               <button class="removeButton" type="button" (click)="removeQuestion(sectionIndex, questionIndex)">Remove question</button>
             </div>
             <button class="addButton" type="button" (click)="addQuestion(sectionIndex)">Add question</button>

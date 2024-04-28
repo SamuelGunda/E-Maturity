@@ -123,9 +123,7 @@ export class TestService {
    * - Samuel
    */
 
-  async getTestResult(
-    testResults: TestResult,
-  ): Promise<Observable<TestResult>> {
+  getTestResult(testResults: TestResult): Observable<TestResult> {
     return new Observable<TestResult>((observer) => {
       this.getTest(testResults.subCat, testResults.year, true).subscribe(
         (data: Test) => {
