@@ -18,6 +18,12 @@
 }
 
 @layer components {
+  .selects {
+    @apply;
+  }
+}
+
+@layer components {
   app-landing-page .main_card_containers {
     @apply flex flex-col items-center justify-around text-base h-[22rem] w-min rounded-lg px-2 m-2 hover:scale-105 transition;
   }

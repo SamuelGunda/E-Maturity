@@ -1,231 +1,289 @@
-<div *ngIf="test">
-  <div id="timer">{{ display }}</div>
-  <!--  ANJ Test-->
+<div *ngIf="test" class="flex flex-col items-center">
+    <div id="timer">{{ display }}</div>
+    <!--  ANJ Test-->
 
-  <div *ngIf="subCat === 'anj'">
-    <div *ngFor="let section of test.sections">
-      <div>
-        <div *ngIf="section.articleUrl">
-          <div *ngIf="isString(section.articleUrl)">
-            <div *ngFor="let sectionImage of [section.articleUrl]">
-              <img [src]="sectionImage" />
+    <div *ngIf="subCat === 'anj'" class="flex flex-col items-center">
+        <div
+            *ngFor="let section of test.sections"
+            class="flex flex-col items-center max-w-[720px] text-sm sm:text-base px-2 md:px-0 md:border-x-2 md:border-ang-border_main"
+        >
+            <div>
+                <div *ngIf="section.articleUrl" class="pb-4">
+                    <div *ngIf="isString(section.articleUrl)">
+                        <div *ngFor="let sectionImage of [section.articleUrl]">
+                            <img [src]="sectionImage" />
+                        </div>
+                    </div>
+                    <div *ngIf="isArray(section.articleUrl)">
+                        <div *ngFor="let sectionImage of section.articleUrl">
+                            <img [src]="sectionImage" />
+                        </div>
+                    </div>
+                    <div
+                        *ngIf="section.audioUrl"
+                        class="flex items-center justify-center"
+                    >
+                        <audio controls>
+                            <source
+                                [src]="section.audioUrl"
+                                type="audio/mpeg"
+                            />
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                </div>
+                <!--        Questions start -->
+                <div
+                    *ngFor="let question of section.questions"
+                    class="py-4 px-4 border-b border-ang-border_main"
+                >
+                    <div class="flex gap-3 items-center pb-2">
+                        <p
+                            class="bg-slate-400 px-2 py-0.5"
+                            [innerHTML]="question.id"
+                        ></p>
+                        <p
+                            *ngIf="question.text"
+                            [innerHTML]="question.text"
+                        ></p>
+                        <img
+                            *ngIf="question.imageUrl"
+                            [src]="question.imageUrl"
+                        />
+                    </div>
+                    <!--          Questions with radio buttons -->
+                    <div *ngIf="question.questionType === 'select'">
+                        <div
+                            *ngFor="let option of question.options"
+                            class="flex gap-2"
+                        >
+                            <input
+                                [name]="question.id"
+                                type="radio"
+                                [value]="option"
+                                [id]="option + question.id"
+                                [(ngModel)]="question.userAnswer"
+                            />
+                            <label
+                                [for]="option + question.id"
+                                [innerHTML]="option"
+                            ></label>
+                        </div>
+                    </div>
+                    <!--          Questions with input answers -->
+                    <div *ngIf="question.questionType === 'input'">
+                        <input
+                            type="text"
+                            class="py-0.5 px-2 rounded-md border border-ang-border_main w-full"
+                            placeholder="Sem napíšte svoju odpoveď"
+                            [(ngModel)]="question.userAnswer"
+                        />
+                    </div>
+                    <!--          Questions based on 2 options -->
+                    <div
+                        *ngIf="question.questionType === 'select_twice'"
+                        class="flex flex-col gap-2"
+                    >
+                        <div class="flex items-center justify-evenly">
+                            <ng-container
+                                *ngFor="let option_1 of question.options"
+                            >
+                                <div>
+                                    <input
+                                        [name]="question.id + 'option_1'"
+                                        type="radio"
+                                        [value]="option_1"
+                                        [id]="option_1 + question.id"
+                                        [(ngModel)]="question.userAnswer"
+                                        class="mr-2"
+                                    />
+                                    <label
+                                        [for]="option_1 + question.id"
+                                        [innerHTML]="option_1"
+                                    ></label>
+                                </div>
+                            </ng-container>
+                        </div>
+                        <div class="flex items-center justify-evenly">
+                            <ng-container
+                                *ngFor="let option_2 of question.options_2"
+                            >
+                                <div>
+                                    <input
+                                        [name]="question.id + 'option_2'"
+                                        type="radio"
+                                        [value]="option_2"
+                                        [id]="option_2 + question.id"
+                                        [(ngModel)]="question.userAnswer_2"
+                                        class="mr-2"
+                                    />
+                                    <label
+                                        [for]="option_2 + question.id"
+                                        [innerHTML]="option_2"
+                                    ></label>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                    <!--          Question based on 2 inputs -->
+                    <div
+                        *ngIf="question.questionType === 'input_twice'"
+                        class="flex gap-4 flex-wrap"
+                    >
+                        <input
+                            type="text"
+                            class="py-0.5 px-2 rounded-md border border-ang-border_main w-full md:w-[48%]"
+                            placeholder="Sem napíšte prvú odpoveď"
+                            [(ngModel)]="question.userAnswer"
+                        />
+                        <input
+                            type="text"
+                            class="py-0.5 px-2 rounded-md border border-ang-border_main w-full md:w-[49.5%]"
+                            placeholder="Sem napíšte druhú odpoveď"
+                            [(ngModel)]="question.userAnswer_2"
+                        />
+                    </div>
+                    <!--          Question canceled -->
+                    <div *ngIf="question.questionType === 'canceled'">
+                        <p>Question canceled by NUCEM</p>
+                    </div>
+                    <!--          Questions end -->
+                </div>
             </div>
-          </div>
-          <div *ngIf="isArray(section.articleUrl)">
-            <div *ngFor="let sectionImage of section.articleUrl">
-              <img [src]="sectionImage" />
-            </div>
-          </div>
-          <div *ngIf="section.audioUrl">
-            <audio controls>
-              <source [src]="section.audioUrl" type="audio/mpeg" />
-              Your browser does not support the audio element.
-            </audio>
-          </div>
         </div>
-        <!--        Questions start -->
-        <div *ngFor="let question of section.questions">
-          <p [innerHTML]="question.id"></p>
-          <p *ngIf="question.text" [innerHTML]="question.text"></p>
-          <img *ngIf="question.imageUrl" [src]="question.imageUrl" />
-          <!--          Questions with radio buttons -->
-          <div *ngIf="question.questionType === 'select'">
-            <div *ngFor="let option of question.options">
-              <input
-                [name]="question.id"
-                type="radio"
-                [value]="option"
-                [id]="option + question.id"
-                [(ngModel)]="question.userAnswer"
-              />
-              <label [for]="option + question.id" [innerHTML]="option"></label>
-            </div>
-          </div>
-          <!--          Questions with input answers -->
-          <div *ngIf="question.questionType === 'input'">
-            <input
-              type="text"
-              placeholder="Sem napíšte svoju odpoveď"
-              [(ngModel)]="question.userAnswer"
-            />
-          </div>
-          <!--          Questions based on 2 options -->
-          <div *ngIf="question.questionType === 'select_twice'">
-            <div *ngFor="let option_1 of question.options">
-              <input
-                [name]="question.id + 'option_1'"
-                type="radio"
-                [value]="option_1"
-                [id]="option_1 + question.id"
-                [(ngModel)]="question.userAnswer"
-              />
-              <label
-                [for]="option_1 + question.id"
-                [innerHTML]="option_1"
-              ></label>
-            </div>
-            <div *ngFor="let option_2 of question.options_2">
-              <input
-                [name]="question.id + 'option_2'"
-                type="radio"
-                [value]="option_2"
-                [id]="option_2 + question.id"
-                [(ngModel)]="question.userAnswer_2"
-              />
-              <label
-                [for]="option_2 + question.id"
-                [innerHTML]="option_2"
-              ></label>
-            </div>
-          </div>
-          <!--          Question based on 2 inputs -->
-          <div *ngIf="question.questionType === 'input_twice'">
-            <input
-              type="text"
-              placeholder="Sem napíšte prvú odpoveď"
-              [(ngModel)]="question.userAnswer"
-            />
-            <input
-              type="text"
-              placeholder="Sem napíšte druhú odpoveď"
-              [(ngModel)]="question.userAnswer_2"
-            />
-          </div>
-          <!--          Question canceled -->
-          <div *ngIf="question.questionType === 'canceled'">
-            <p>Question canceled by NUCEM</p>
-          </div>
-          <!--          Questions end -->
-        </div>
-      </div>
     </div>
-  </div>
-  <!--  SJL Test-->
-  <div *ngIf="subCat === 'sjl'">
-    <div *ngFor="let section of test.sections">
-      <div>
-        <div *ngIf="section.articleUrl">
-          <div *ngIf="isString(section.articleUrl)">
-            <div *ngFor="let sectionImage of [section.articleUrl]">
-              <img [src]="sectionImage" />
+    <!--  SJL Test-->
+    <div *ngIf="subCat === 'sjl'">
+        <div *ngFor="let section of test.sections">
+            <div>
+                <div *ngIf="section.articleUrl">
+                    <div *ngIf="isString(section.articleUrl)">
+                        <div *ngFor="let sectionImage of [section.articleUrl]">
+                            <img [src]="sectionImage" />
+                        </div>
+                    </div>
+                    <div *ngIf="isArray(section.articleUrl)">
+                        <div *ngFor="let sectionImage of section.articleUrl">
+                            <img [src]="sectionImage" />
+                        </div>
+                    </div>
+                </div>
+                <!--        Questions start -->
+                <div *ngFor="let question of section.questions">
+                    <p [innerHTML]="question.id"></p>
+                    <p *ngIf="question.text" [innerHTML]="question.text"></p>
+                    <img *ngIf="question.imageUrl" [src]="question.imageUrl" />
+                    <!--          Questions with radio buttons -->
+                    <div *ngIf="question.questionType === 'select'">
+                        <div *ngFor="let option of question.options">
+                            <input
+                                [name]="question.id"
+                                type="radio"
+                                [value]="option"
+                                [id]="option + question.id"
+                                [(ngModel)]="question.userAnswer"
+                            />
+                            <label
+                                [for]="option + question.id"
+                                [innerHTML]="option"
+                            ></label>
+                        </div>
+                    </div>
+                    <!--          Questions with input answers -->
+                    <div *ngIf="question.questionType === 'input'">
+                        <input
+                            type="text"
+                            placeholder="Sem napíšte svoju odpoveď"
+                            [(ngModel)]="question.userAnswer"
+                        />
+                    </div>
+                    <!--          Question canceled -->
+                    <div *ngIf="question.questionType === 'canceled'">
+                        <p>Question canceled by NUCEM</p>
+                    </div>
+                    <!--          Questions end -->
+                </div>
             </div>
-          </div>
-          <div *ngIf="isArray(section.articleUrl)">
-            <div *ngFor="let sectionImage of section.articleUrl">
-              <img [src]="sectionImage" />
-            </div>
-          </div>
         </div>
-        <!--        Questions start -->
-        <div *ngFor="let question of section.questions">
-          <p [innerHTML]="question.id"></p>
-          <p *ngIf="question.text" [innerHTML]="question.text"></p>
-          <img *ngIf="question.imageUrl" [src]="question.imageUrl" />
-          <!--          Questions with radio buttons -->
-          <div *ngIf="question.questionType === 'select'">
-            <div *ngFor="let option of question.options">
-              <input
-                [name]="question.id"
-                type="radio"
-                [value]="option"
-                [id]="option + question.id"
-                [(ngModel)]="question.userAnswer"
-              />
-              <label [for]="option + question.id" [innerHTML]="option"></label>
-            </div>
-          </div>
-          <!--          Questions with input answers -->
-          <div *ngIf="question.questionType === 'input'">
-            <input
-              type="text"
-              placeholder="Sem napíšte svoju odpoveď"
-              [(ngModel)]="question.userAnswer"
-            />
-          </div>
-          <!--          Question canceled -->
-          <div *ngIf="question.questionType === 'canceled'">
-            <p>Question canceled by NUCEM</p>
-          </div>
-          <!--          Questions end -->
-        </div>
-      </div>
     </div>
-  </div>
     <!--  MAT Test-->
-  <div *ngIf="subCat === 'mat'">
-    <div *ngFor="let section of test.sections">
-      <div>
-        <!--        Questions start -->
-        <div *ngFor="let question of section.questions">
-          <p [innerHTML]="question.id"></p>
-          <p *ngIf="question.text" [innerHTML]="question.text"></p>
-          <img *ngIf="question.imageUrl" [src]="question.imageUrl" />
-          <!--          Questions with input answers -->
-          <div *ngIf="question.questionType === 'input'">
-            <input
-              type="text"
-              placeholder="Sem napíšte svoju odpoveď"
-              [(ngModel)]="question.userAnswer"
-            />
-          </div>
-          <!--          Questions with radio buttons -->
-          <div *ngIf="question.questionType === 'select'">
-            <div *ngFor="let option of question.options">
-              <input
-                [name]="question.id"
-                type="radio"
-                [value]="option"
-                [id]="option + question.id"
-                [(ngModel)]="question.userAnswer"
-              />
-              <label [for]="option + question.id" [innerHTML]="option"></label>
+    <div *ngIf="subCat === 'mat'">
+        <div *ngFor="let section of test.sections">
+            <div>
+                <!--        Questions start -->
+                <div *ngFor="let question of section.questions">
+                    <p [innerHTML]="question.id"></p>
+                    <p *ngIf="question.text" [innerHTML]="question.text"></p>
+                    <img *ngIf="question.imageUrl" [src]="question.imageUrl" />
+                    <!--          Questions with input answers -->
+                    <div *ngIf="question.questionType === 'input'">
+                        <input
+                            type="text"
+                            placeholder="Sem napíšte svoju odpoveď"
+                            [(ngModel)]="question.userAnswer"
+                        />
+                    </div>
+                    <!--          Questions with radio buttons -->
+                    <div *ngIf="question.questionType === 'select'">
+                        <div *ngFor="let option of question.options">
+                            <input
+                                [name]="question.id"
+                                type="radio"
+                                [value]="option"
+                                [id]="option + question.id"
+                                [(ngModel)]="question.userAnswer"
+                            />
+                            <label
+                                [for]="option + question.id"
+                                [innerHTML]="option"
+                            ></label>
+                        </div>
+                    </div>
+                    <!--          Question canceled -->
+                    <div *ngIf="question.questionType === 'canceled'">
+                        <p>Question canceled by NUCEM</p>
+                    </div>
+                    <!--          Questions end -->
+                </div>
             </div>
-          </div>
-          <!--          Question canceled -->
-          <div *ngIf="question.questionType === 'canceled'">
-            <p>Question canceled by NUCEM</p>
-          </div>
-          <!--          Questions end -->
         </div>
-      </div>
     </div>
-  </div>
 
-  <button
-    (click)="submitTest()"
-    class="border-2 border-ang-border_main mt-2 py-2 px-6 bg-ang-main_btn text-ang-text_white rounded-lg hover:opacity-85 transition"
-  >
-    Vyhodnotiť test
-  </button>
-  <div
-    id="dialog"
-    *ngIf="testResults"
-    class="fixed left-0 top-0 w-screen h-screen bg-opacity-40 bg-black justify-center items-center flex"
-  >
-    <div
-      class="bg-ang-main_bg border border-ang-border_main p-8 w-4/6 rounded-lg max-w-[32rem]"
+    <button
+        (click)="submitTest()"
+        class="border-2 border-ang-border_main my-2 py-2 px-6 bg-ang-main_btn text-ang-text_white rounded-lg hover:opacity-85 transition"
     >
-      <div
-        class="flex justify-center items-center flex-col gap-4 text-sm md:text-base"
-      >
-        <h1>Vyhodnotenie</h1>
-        <p>V teste ste dosiahli:</p>
-        <p [innerText]="testResults.percentageScore + '%'"></p>
-      </div>
-      <div class="flex justify-around text-xs md:text-base gap-2 pt-4">
-        <button
-          routerLink="/"
-          class="text-sm border border-ang-border_main py-1 px-2 rounded-lg bg-ang-main_btn text-ang-text_white hover:opacity-85"
+        Vyhodnotiť test
+    </button>
+    <div
+        id="dialog"
+        *ngIf="testResults"
+        class="fixed left-0 top-0 w-screen h-screen bg-opacity-40 bg-black justify-center items-center flex"
+    >
+        <div
+            class="bg-ang-main_bg border border-ang-border_main p-8 w-4/6 rounded-lg max-w-[32rem]"
         >
-          Domovská stránka
-        </button>
-        <button
-          routerLink="/test-history"
-          class="border border-ang-border_main py-1 px-2 rounded-lg bg-ang-main_btn text-ang-text_white hover:opacity-85"
-        >
-          Detaily testu
-        </button>
-      </div>
+            <div
+                class="flex justify-center items-center flex-col gap-4 text-sm md:text-base"
+            >
+                <h1>Vyhodnotenie</h1>
+                <p>V teste ste dosiahli:</p>
+                <p [innerText]="testResults.percentageScore + '%'"></p>
+            </div>
+            <div class="flex justify-around text-xs md:text-base gap-2 pt-4">
+                <button
+                    routerLink="/"
+                    class="text-sm border border-ang-border_main py-1 px-2 rounded-lg bg-ang-main_btn text-ang-text_white hover:opacity-85"
+                >
+                    Domovská stránka
+                </button>
+                <button
+                    routerLink="/test-history"
+                    class="border border-ang-border_main py-1 px-2 rounded-lg bg-ang-main_btn text-ang-text_white hover:opacity-85"
+                >
+                    Detaily testu
+                </button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
