@@ -6,27 +6,18 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AuthService } from './service/auth-serivce/auth.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+    constructor(private authService: AuthService) {}
 
-  constructor(
-    private cookieService: CookieService,
-    private router: Router,
-    private afAuth: AngularFireAuth,
-    private firestore: AngularFirestore,
-    private authService: AuthService,
-  ) {}
+    ngOnInit() {
+        this.authService.checkToken();
+    }
 
-  ngOnInit() {
-    this.authService.checkToken();
-  }
-
-
-  title(title: any) {
-    throw new Error('Method not implemented.');
-  }
+    title(title: any) {
+        throw new Error('Method not implemented.');
+    }
 }
-
