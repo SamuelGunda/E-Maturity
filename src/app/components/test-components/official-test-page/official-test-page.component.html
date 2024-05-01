@@ -1,4 +1,4 @@
-<div *ngIf="test" class="flex flex-col items-center">
+<div *ngIf="test" class="flex flex-col items-center dark:text-ang-text_white">
     <div id="timer">{{ display }}</div>
     <!--  ANJ Test-->
 
@@ -11,19 +11,25 @@
                 <div *ngIf="section.articleUrl" class="pb-4">
                     <div *ngIf="isString(section.articleUrl)">
                         <div *ngFor="let sectionImage of [section.articleUrl]">
-                            <img [src]="sectionImage" />
+                            <img
+                                [src]="sectionImage"
+                                class="w-[720px] object-cover h-full"
+                            />
                         </div>
                     </div>
                     <div *ngIf="isArray(section.articleUrl)">
                         <div *ngFor="let sectionImage of section.articleUrl">
-                            <img [src]="sectionImage" />
+                            <img
+                                [src]="sectionImage"
+                                class="w-[720px] object-cover h-full"
+                            />
                         </div>
                     </div>
                     <div
                         *ngIf="section.audioUrl"
                         class="flex items-center justify-center"
                     >
-                        <audio controls>
+                        <audio controls class="pt-4">
                             <source
                                 [src]="section.audioUrl"
                                 type="audio/mpeg"
@@ -47,6 +53,7 @@
                             [innerHTML]="question.text"
                         ></p>
                         <img
+                            class="w-[720px] object-cover h-full"
                             *ngIf="question.imageUrl"
                             [src]="question.imageUrl"
                         />

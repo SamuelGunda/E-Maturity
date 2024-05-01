@@ -1,67 +1,86 @@
 <div class="outer_container">
-  <div class="inner_container flex-col justify-evenly items-center py-4">
-    <div class="text-center">
-      <div *ngIf="subCat === 'mat'">
-        <h1 class="text-2xl sm:text-3xl font-bold text-ang-text_main">
-          Matematika
-        </h1>
-        <ul>
-          <li>Test obsahuje 30 úloh.</li>
-          <li>
-            Na vypracovanie testu máte 100 minút. (čas sa spustí po kliknutí na
-            test)
-          </li>
-          <li>
-            Pri riešenie úloh zaškrtnete políčko alebo napíšete odpoveď.
-            (poprosím píšte desatinné čísla s čiarkou a záporne hodnoty
-            spolu[4,5 ; -5])
-          </li>
-          <li>Zrušené otázky sa Vám pripočítavajú za bod automaticky</li>
-        </ul>
-      </div>
-      <div *ngIf="subCat === 'sjl'">
-        <h1 class="text-2xl sm:text-3xl font-bold text-ang-text_main">
-          Slovenský jazyk a literatúra
-        </h1>
-        <ul>
-          <li>Test obsahuje 64 úloh.</li>
-          <li>
-            Na vypracovanie testu máte 100 minút. (čas sa spustí po kliknutí na
-            test)
-          </li>
-          <li>
-            Pri riešenie úloh zaškrtnete políčko alebo napíšete odpoveď.
-            (poprosím píšte s diakritikou)
-          </li>
-          <li>Zrušené otázky sa Vám pripočítavajú za bod automaticky</li>
-        </ul>
-      </div>
-      <div *ngIf="subCat === 'anj'">
-        <h1 class="text-2xl sm:text-3xl font-bold text-ang-text_main">
-          Anglický jazyk
-        </h1>
-        <ul>
-          <li>Testy pre anglický jazyk sa pripravujú</li>
-        </ul>
-      </div>
+    <div class="inner_container flex-col justify-evenly items-center py-4">
+        <div class="text-center">
+            <div *ngIf="subCat === 'mat'">
+                <h1 class="text-2xl sm:text-3xl font-bold text-ang-text_main">
+                    Matematika
+                </h1>
+                <ul>
+                    <li>Test obsahuje 30 úloh.</li>
+                    <li>
+                        Na vypracovanie testu máte 100 minút. (čas sa spustí po
+                        kliknutí na test)
+                    </li>
+                    <li>
+                        Pri riešenie úloh zaškrtnete políčko alebo napíšete
+                        odpoveď. (poprosím píšte desatinné čísla s čiarkou a
+                        záporne hodnoty spolu[4,5 ; -5])
+                    </li>
+                    <li>
+                        Zrušené otázky sa Vám pripočítavajú za bod automaticky
+                    </li>
+                </ul>
+            </div>
+            <div *ngIf="subCat === 'sjl'">
+                <h1 class="text-2xl sm:text-3xl font-bold text-ang-text_main">
+                    Slovenský jazyk a literatúra
+                </h1>
+                <ul>
+                    <li>Test obsahuje 64 úloh.</li>
+                    <li>
+                        Na vypracovanie testu máte 100 minút. (čas sa spustí po
+                        kliknutí na test)
+                    </li>
+                    <li>
+                        Pri riešenie úloh zaškrtnete políčko alebo napíšete
+                        odpoveď. (poprosím píšte s diakritikou)
+                    </li>
+                    <li>
+                        Zrušené otázky sa Vám pripočítavajú za bod automaticky
+                    </li>
+                </ul>
+            </div>
+            <div *ngIf="subCat === 'anj'">
+                <h1
+                    class="text-2xl sm:text-3xl font-bold text-ang-text_main mb-4"
+                >
+                    Anglický jazyk
+                </h1>
+                <div class="flex gap-6 flex-col md:flex-row md:gap-10">
+                    <ul>
+                        <p class="text-center font-bold text-ang-text_main">
+                            B1 úroveň
+                        </p>
+                        <li>Testy z obsahujú 60 úloh</li>
+                        <li>Na vypracovanie testu máte 100 minút</li>
+                    </ul>
+                    <ul>
+                        <p class="text-center font-bold text-ang-text_main">
+                            B2 úroveň
+                        </p>
+                        <li>Testy z obsahujú 80 úloh</li>
+                        <li>Na vypracovanie testu máte 120 minút</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div
+            *ngIf="years"
+            class="flex gap-4 flex-wrap items-center justify-center px-2"
+        >
+            <a
+                *ngFor="let year of years"
+                [routerLink]="['/official-test', subCat, year]"
+                class="border border-ang-border_main py-2 px-8 rounded-lg bg-ang-main_btn text-ang-text_white hover:opacity-85 transition-all"
+            >
+                {{ year }}
+            </a>
+        </div>
+        <div *ngIf="(!years || years.length == 0) && !loading">
+            <p>no years</p>
+        </div>
+        <div *ngIf="loading">
+            <p>loading</p>
+        </div>
     </div>
-    <div
-      *ngIf="years"
-      class="flex gap-4 flex-wrap items-center justify-center px-2"
-    >
-      <a
-        *ngFor="let year of years"
-        [routerLink]="['/official-test', subCat, year]"
-        class="border border-ang-border_main py-2 px-8 rounded-lg bg-ang-main_btn text-ang-text_white hover:opacity-85 transition-all"
-      >
-        {{ year }}
-      </a>
-    </div>
-    <div *ngIf="(!years || years.length == 0) && !loading">
-      <p>no years</p>
-    </div>
-    <div *ngIf="loading">
-      <p>loading</p>
-    </div>
-  </div>
 </div>

@@ -5,43 +5,60 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
 @layer components {
-  app-navbar li,
-  app-navbar .expandable_ul {
-    @apply text-lg shadow-lg border-b border-ang-border_main flex items-center pl-[20%] h-12 gap-2 hover:cursor-pointer hover:bg-ang-main_btn;
-  }
-  .inner_container {
-    @apply flex m-4 rounded-lg w-full h-auto shadow-inner_sh dark:shadow-dark_sh dark:bg-zinc-850 dark:text-ang-text_white;
-  }
-  .outer_container {
-    @apply bg-ang-main_bg rounded-lg h-full flex w-full border border-ang-border_main dark:bg-zinc-850;
-  }
+    app-navbar li,
+    app-navbar .expandable_ul {
+        @apply text-lg shadow-lg border-b border-ang-border_main flex items-center pl-[20%] h-12 gap-2 hover:cursor-pointer hover:bg-ang-main_btn;
+    }
+    .inner_container {
+        @apply flex m-4 rounded-lg w-full h-auto shadow-inner_sh;
+    }
+    .outer_container {
+        @apply bg-ang-main_bg rounded-lg h-full flex w-full border border-ang-border_main;
+    }
 }
 
 @layer components {
-  .selects {
-    @apply;
-  }
+    .selects {
+        @apply;
+    }
 }
 
 @layer components {
-  app-landing-page .main_card_containers {
-    @apply flex flex-col items-center justify-around text-base h-[22rem] w-min rounded-lg px-2 m-2 hover:scale-105 transition;
-  }
+    app-landing-page .main_card_containers {
+        @apply flex flex-col items-center justify-around text-base h-[22rem] w-min rounded-lg px-2 m-2 hover:scale-105 transition;
+    }
 
-  app-landing-page .main_card_textareas {
-    @apply rounded-lg h-48 py-1 lg:h-44 w-40 lg:w-52 bg-ang-main_bg dark:text-zinc-850 flex justify-center text-center;
-  }
+    app-landing-page .main_card_textareas {
+        @apply rounded-lg h-48 py-1 lg:h-44 w-40 lg:w-52 bg-white  flex justify-center text-center;
+    }
 }
 
 @layer components {
-  app-years-page ul {
-    @apply text-left text-ang-text_main list-disc p-8;
-  }
+    app-years-page ul {
+        @apply text-left text-ang-text_main list-disc p-8;
+    }
+}
+
+@layer base {
+    :root {
+        --color-gradient_from: 196deg 95% 50%;
+        --color-gradient_to: 226deg 85% 51%;
+        --color-main_bg: 0deg 0% 99%;
+        --color-text_main: 213deg 100% 60%;
+        --color-text_white: 0deg 0% 99%;
+        --color-border_main: 213deg 100% 60%;
+        --color-main_btn: 213deg 100% 60%;
+    }
+
+    :root.dark {
+        --color-main_bg: 240deg 2% 22%;
+        --color-text_main: 0deg 0% 99%;
+    }
 }
 
 * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-family: "Montserrat", sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
 }
