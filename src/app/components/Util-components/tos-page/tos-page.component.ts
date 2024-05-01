@@ -1,15 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/service/auth-serivce/auth.service';
 
 @Component({
-  selector: 'app-tos-page',
-  templateUrl: './tos-page.component.html',
-  styleUrls: ['./tos-page.component.css'],
+    selector: 'app-tos-page',
+    templateUrl: './tos-page.component.html',
+    styleUrls: ['./tos-page.component.css'],
 })
-export class TosPageComponent {
-  constructor(public authService: AuthService) {}
-  windowShown: boolean = true;
-  hideWindow() {
-    this.windowShown = false;
-  }
+export class TosPageComponent implements OnInit {
+    constructor(public authService: AuthService) {}
+
+    ngOnInit(): void {
+        if (sessionStorage.getItem('acceptedWindow')) {
+            this.windowShown = false;
+        }
+    }
+
+    windowShown: boolean = true;
+
+    hideWindow() {
+        sessionStorage.setItem('acceptedWindow', 'true');
+        this.windowShown = false;
+    }
 }

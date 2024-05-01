@@ -160,29 +160,47 @@
         </div>
     </div>
     <!--  SJL Test-->
-    <div *ngIf="subCat === 'sjl'">
-        <div *ngFor="let section of test.sections">
+    <div *ngIf="subCat === 'sjl'" class="flex flex-col items-center">
+        <div
+            *ngFor="let section of test.sections"
+            class="flex flex-col items-center max-w-[720px] text-sm sm:text-base px-2 md:px-0 md:border-x-2 md:border-ang-border_main"
+        >
             <div>
-                <div *ngIf="section.articleUrl">
+                <div *ngIf="section.articleUrl" class="pb-4">
                     <div *ngIf="isString(section.articleUrl)">
                         <div *ngFor="let sectionImage of [section.articleUrl]">
-                            <img [src]="sectionImage" />
-                        </div>
-                    </div>
-                    <div *ngIf="isArray(section.articleUrl)">
-                        <div *ngFor="let sectionImage of section.articleUrl">
-                            <img [src]="sectionImage" />
+                            <img
+                                [src]="sectionImage"
+                                class="w-[720px] object-cover h-full dark:invert"
+                            />
                         </div>
                     </div>
                 </div>
                 <!--        Questions start -->
-                <div *ngFor="let question of section.questions">
-                    <p [innerHTML]="question.id"></p>
-                    <p *ngIf="question.text" [innerHTML]="question.text"></p>
-                    <img *ngIf="question.imageUrl" [src]="question.imageUrl" />
+                <div
+                    *ngFor="let question of section.questions"
+                    class="py-4 px-4 border-b border-ang-border_main"
+                >
+                    <div class="flex gap-3 items-center pb-2">
+                        <p
+                            class="bg-slate-400 px-2 py-0.5"
+                            [innerHTML]="question.id"
+                        ></p>
+                        <p
+                            *ngIf="question.text"
+                            [innerHTML]="question.text"
+                        ></p>
+                        <img
+                            *ngIf="question.imageUrl"
+                            [src]="question.imageUrl"
+                        />
+                    </div>
                     <!--          Questions with radio buttons -->
                     <div *ngIf="question.questionType === 'select'">
-                        <div *ngFor="let option of question.options">
+                        <div
+                            *ngFor="let option of question.options"
+                            class="flex gap-2"
+                        >
                             <input
                                 [name]="question.id"
                                 type="radio"
@@ -199,6 +217,7 @@
                     <!--          Questions with input answers -->
                     <div *ngIf="question.questionType === 'input'">
                         <input
+                            class="py-0.5 px-2 rounded-md border border-ang-border_main w-full"
                             type="text"
                             placeholder="Sem napíšte svoju odpoveď"
                             [(ngModel)]="question.userAnswer"
