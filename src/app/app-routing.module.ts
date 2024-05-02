@@ -13,48 +13,54 @@ import { TestHistoryPageComponent } from './components/test-components/test-hist
 import { OfficialTestConstructorPageComponent } from './components/test-components/official-test-constructor-page/official-test-constructor-page.component';
 import { CustomTestConstructorComponent } from './components/test-components/custom-test-constructor/custom-test-constructor.component';
 import { IconSelectorComponent } from './components/Util-components/icon-selector/icon-selector.component';
+import { NotFoundPageComponent } from './components/Util-components/not-found-page/not-found-page.component';
 const routes: Routes = [
-  { path: '', component: LandingPageComponent },
-  { path: 'login', component: LoginPageComponent },
-  { path: 'register', component: RegisterPageComponent },
-  { path: 'landing-page', component: LandingPageComponent },
-  {
-    path: 'official-categories/:subCat',
-    component: OfficialCategoriesPageComponent,
-  },
-  { path: 'official-test/:subCat/:year', component: OfficialTestPageComponent },
-  { path: 'forgot-password', component: ForgotPasswordComponent },
-  { path: 'user-account', component: UserAccountComponent },
-  { path: 'education-materials', component: EducationMaterialsComponent },
-  { path: 'test-history', component: TestHistoryPageComponent },
-  {
-    path: 'official-test-constructor',
-    component: OfficialTestConstructorPageComponent,
-  },
-  {
-    path: 'custom-test-constructor',
-    component: CustomTestConstructorComponent,
-  },
-  { path: 'icon-selector', component: IconSelectorComponent },
+    { path: '', component: LandingPageComponent },
+    { path: 'login', component: LoginPageComponent },
+    { path: 'register', component: RegisterPageComponent },
+    { path: 'landing-page', component: LandingPageComponent },
+    {
+        path: 'official-categories/:subCat',
+        component: OfficialCategoriesPageComponent,
+    },
+    {
+        path: 'official-test/:subCat/:year',
+        component: OfficialTestPageComponent,
+    },
+    { path: 'forgot-password', component: ForgotPasswordComponent },
+    { path: 'user-account', component: UserAccountComponent },
+    { path: 'education-materials', component: EducationMaterialsComponent },
+    { path: 'test-history', component: TestHistoryPageComponent },
+    {
+        path: 'official-test-constructor',
+        component: OfficialTestConstructorPageComponent,
+    },
+    {
+        path: 'custom-test-constructor',
+        component: CustomTestConstructorComponent,
+    },
+    { path: 'icon-selector', component: IconSelectorComponent },
+    { path: '**', component: NotFoundPageComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule],
 })
 export class AppRoutingModule {}
 export const routingComponent = [
-  LandingPageComponent,
-  LoginPageComponent,
-  RegisterPageComponent,
-  LandingPageComponent,
-  ForgotPasswordComponent,
-  UserAccountComponent,
-  OfficialCategoriesPageComponent,
-  OfficialTestPageComponent,
-  EducationMaterialsComponent,
-  TestHistoryPageComponent,
-  OfficialTestConstructorPageComponent,
-  CustomTestConstructorComponent,
-  IconSelectorComponent,
+    LandingPageComponent,
+    LoginPageComponent,
+    RegisterPageComponent,
+    LandingPageComponent,
+    ForgotPasswordComponent,
+    UserAccountComponent,
+    OfficialCategoriesPageComponent,
+    OfficialTestPageComponent,
+    EducationMaterialsComponent,
+    TestHistoryPageComponent,
+    OfficialTestConstructorPageComponent,
+    CustomTestConstructorComponent,
+    IconSelectorComponent,
+    NotFoundPageComponent,
 ];

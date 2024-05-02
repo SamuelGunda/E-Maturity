@@ -23,47 +23,47 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 
 import {
-  CookieService,
-  CookieOptionsProvider,
-  CookieOptions,
-  CookieModule,
+    CookieService,
+    CookieOptionsProvider,
+    CookieOptions,
+    CookieModule,
 } from 'ngx-cookie';
 import { AuthService } from './service/auth-serivce/auth.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TosPageComponent } from './components/Util-components/tos-page/tos-page.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    NavbarComponent,
-    routingComponent,
-    TosPageComponent,
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideFirestore(() => getFirestore()),
-    // FirestoreModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    // AngularFirestoreModule,
-    AngularFireAuthModule,
-    NgOptimizedImage,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatDialogModule,
-    MatInputModule,
-    MatButtonModule,
-    CookieModule.forRoot(),
-    ReactiveFormsModule,
-  ],
-  providers: [
-    AuthService,
-    CookieService,
-    { provide: CookieOptionsProvider, useValue: {} as CookieOptions },
-  ],
-  bootstrap: [AppComponent],
+    declarations: [
+        AppComponent,
+        HeaderComponent,
+        NavbarComponent,
+        routingComponent,
+        TosPageComponent,
+    ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        provideFirebaseApp(() => initializeApp(environment.firebase)),
+        provideFirestore(() => getFirestore()),
+        // FirestoreModule,
+        AngularFireModule.initializeApp(environment.firebase),
+        // AngularFirestoreModule,
+        AngularFireAuthModule,
+        NgOptimizedImage,
+        AppRoutingModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MatDialogModule,
+        MatInputModule,
+        MatButtonModule,
+        CookieModule.forRoot(),
+        ReactiveFormsModule,
+    ],
+    providers: [
+        AuthService,
+        CookieService,
+        { provide: CookieOptionsProvider, useValue: {} as CookieOptions },
+    ],
+    bootstrap: [AppComponent],
 })
 export class AppModule {}
