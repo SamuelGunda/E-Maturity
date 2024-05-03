@@ -1,5 +1,26 @@
-<div *ngIf="test" class="flex flex-col items-center dark:text-ang-text_white">
-    <div id="timer">{{ display }}</div>
+<div *ngIf="test" class="flex flex-col dark:text-ang-text_white relative">
+    <div
+        class="sticky top-[5rem] z-40 flex flex-col justify-center items-center"
+    >
+        <div
+            id="timer"
+            *ngIf="windowShown"
+            class="bg-ang-main_btn text-white w-[4.5rem] h-8 flex items-center justify-center text-xl rounded-b-md"
+        >
+            {{ display }}
+        </div>
+        <div
+            class="flex items-center justify-center text-white rounded-b-md bg-ang-main_btn w-10 h-4 border border-ang-border_main"
+        >
+            <span
+                class="material-symbols-outlined hover:cursor-pointer transition-all"
+                (click)="expandTimer()"
+                [ngClass]="{ 'rotate-180': windowShown }"
+            >
+                expand_more
+            </span>
+        </div>
+    </div>
     <!--  ANJ Test-->
 
     <div *ngIf="subCat === 'anj'" class="flex flex-col items-center">
