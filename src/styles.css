@@ -33,26 +33,20 @@
     }
 }
 
-@layer components {
-    app-years-page ul {
-        @apply text-left text-ang-text_main list-disc p-8;
-    }
-}
-
 @layer base {
     :root {
         --color-gradient_from: 196deg 95% 50%;
         --color-gradient_to: 226deg 85% 51%;
         --color-main_bg: 0deg 0% 99%;
-        --color-text_main: 213deg 100% 60%;
+        --color-text-blue: 213deg 100% 60%;
         --color-text_white: 0deg 0% 99%;
         --color-border_main: 213deg 100% 60%;
-        --color-main_btn: 213deg 100% 60%;
+        --color-btn_bg: 213deg 100% 60%;
     }
 
     :root.dark {
         --color-main_bg: 240deg 2% 22%;
-        --color-text_main: 0deg 0% 99%;
+        --color-text-blue: 0deg 0% 99%;
     }
 }
 

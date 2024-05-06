@@ -24,14 +24,14 @@ module.exports = {
 
                     main_bg: "hsl(var(--color-main_bg) / <alpha-value>)",
 
-                    text_main: "hsl(var(--color-text_main) / <alpha-value>)",
+                    text_main: "hsl(var(--color-text-blue) / <alpha-value>)",
 
                     text_white: "hsl(var(--color-text_white) / <alpha-value>)",
 
                     border_main:
                         "hsl(var(--color-border_main) / <alpha-value>)",
 
-                    main_btn: "hsl(var(--color-main_btn) / <alpha-value>)",
+                    main_btn: "hsl(var(--color-btn_bg) / <alpha-value>)",
                 },
             },
             boxShadow: {

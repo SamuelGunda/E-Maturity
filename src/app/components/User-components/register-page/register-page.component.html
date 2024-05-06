@@ -1,103 +1,103 @@
 <div class="outer_container">
-  <div class="inner_container items-center justify-center">
-    <div
-      class="bg-gradient-to-t from-ang-gradient_from to-ang-gradient_to p-8 rounded-lg text-white font-semibold"
-    >
-      <div class="flex py-2 gap-1">
-        <div class="flex flex-col w-full">
-          <label for="krstne">Meno</label>
-          <input
-            [(ngModel)]="fname"
-            type="text"
-            name="krstne"
-            id="krstne"
-            class="w-full p-1 border border-ang-border_main rounded-lg text-black"
-            required
-            placeholder="Ján"
-          />
-        </div>
-        <div class="flex flex-col w-full">
-          <label for="priezv">Priezvisko</label>
-          <input
-            [(ngModel)]="lname"
-            type="text"
-            name="priezv"
-            id="priezv"
-            class="w-full p-1 border border-ang-border_main rounded-lg text-black"
-            required
-            placeholder="Novák"
-          />
-        </div>
-      </div>
-      <div class="py-2">
-        <label for="email">E-mail</label>
-        <input
-          [(ngModel)]="email"
-          type="email"
-          name="email"
-          id="email"
-          class="w-full p-1 border border-ang-border_main rounded-lg text-black"
-          required
-          [ngClass]="{
-            'border-red-600': emailError
-          }"
-          placeholder="jan.novak@email.com"
-        />
-      </div>
-      <div class="py-2">
-        <label for="heslo">Heslo</label>
-        <input
-          [(ngModel)]="password"
-          type="password"
-          name="heslo"
-          id="heslo"
-          class="w-full border border-ang-border_main rounded-lg p-1 text-black"
-          required
-          [ngClass]="{
-            'border-red-600': pswdError
-          }"
-          placeholder="Zadajte heslo"
-        />
-      </div>
-      <div class="py-2">
-        <label for="hesloKontrola">Kontrola hesla</label>
-        <input
-          [(ngModel)]="passwordCheck"
-          type="password"
-          name="hesloKontrola"
-          id="hesloKontrola"
-          class="w-full border border-ang-border_main rounded-lg p-1 text-black"
-          [ngClass]="{
-            'border-red-600': pswdError
-          }"
-          required
-          placeholder="Zopakujte heslo"
-        />
-      </div>
+    <div class="inner_container items-center justify-center">
+        <div
+            class="bg-gradient-to-t from-ang-gradient_from to-ang-gradient_to p-8 rounded-lg text-white font-semibold"
+        >
+            <div class="flex py-2 gap-1">
+                <div class="flex flex-col w-full">
+                    <label for="krstne">Meno</label>
+                    <input
+                        [(ngModel)]="fname"
+                        type="text"
+                        name="krstne"
+                        id="krstne"
+                        class="w-full p-1 border border-ang-border_main rounded-lg text-black"
+                        required
+                        placeholder="Ján"
+                    />
+                </div>
+                <div class="flex flex-col w-full">
+                    <label for="priezv">Priezvisko</label>
+                    <input
+                        [(ngModel)]="lname"
+                        type="text"
+                        name="priezv"
+                        id="priezv"
+                        class="w-full p-1 border border-ang-border_main rounded-lg text-black"
+                        required
+                        placeholder="Novák"
+                    />
+                </div>
+            </div>
+            <div class="py-2">
+                <label for="email">E-mail</label>
+                <input
+                    [(ngModel)]="email"
+                    type="email"
+                    name="email"
+                    id="email"
+                    class="w-full p-1 border border-ang-border_main rounded-lg text-black"
+                    required
+                    [ngClass]="{
+                        'border-red-600': emailError
+                    }"
+                    placeholder="jan.novak@email.com"
+                />
+            </div>
+            <div class="py-2">
+                <label for="heslo">Heslo</label>
+                <input
+                    [(ngModel)]="password"
+                    type="password"
+                    name="heslo"
+                    id="heslo"
+                    class="w-full border border-ang-border_main rounded-lg p-1 text-black"
+                    required
+                    [ngClass]="{
+                        'border-red-600': pswdError
+                    }"
+                    placeholder="Zadajte heslo"
+                />
+            </div>
+            <div class="py-2">
+                <label for="hesloKontrola">Kontrola hesla</label>
+                <input
+                    [(ngModel)]="passwordCheck"
+                    type="password"
+                    name="hesloKontrola"
+                    id="hesloKontrola"
+                    class="w-full border border-ang-border_main rounded-lg p-1 text-black"
+                    [ngClass]="{
+                        'border-red-600': pswdError
+                    }"
+                    required
+                    placeholder="Zopakujte heslo"
+                />
+            </div>
 
-      <div
-        class="opacity-0 font-semibold text-xl flex items-center justify-center pt-4"
-        [ngClass]="{
-          'text-red-600': !pswdError || !emailError,
-          'opacity-100': !pswdError || !emailError
-        }"
-      >
-        {{ errorMessage }}
-      </div>
-      <div class="flex justify-between pt-10">
-        <button
-          class="border border-ang-border_main px-3 py-1 text-ang-gradient_to font-semibold hover:opacity-85 rounded-lg bg-ang-main_bg"
-          id="register_log_button"
-          routerLink="/login"
-        >
-          <p>Späť na prihlásenie</p>
-        </button>
-        <button
-          class="border border-ang-border_main px-3 py-1 text-ang-gradient_to font-semibold hover:opacity-85 rounded-lg bg-ang-main_bg"
-        >
-          <p (click)="register()">Založ účet</p>
-        </button>
-      </div>
+            <div
+                class="opacity-0 font-semibold text-xl flex items-center justify-center pt-4"
+                [ngClass]="{
+                    'text-red-600': !pswdError || !emailError,
+                    'opacity-100': !pswdError || !emailError
+                }"
+            >
+                {{ errorMessage }}
+            </div>
+            <div class="flex justify-between pt-10">
+                <button
+                    class="border border-ang-border_main px-3 py-1 text-ang-text_main font-semibold hover:opacity-85 rounded-lg bg-white"
+                    id="register_log_button"
+                    routerLink="/login"
+                >
+                    <p>Späť na prihlásenie</p>
+                </button>
+                <button
+                    class="border border-ang-border_main px-3 py-1 text-ang-text_main font-semibold hover:opacity-85 rounded-lg bg-white"
+                >
+                    <p (click)="register()">Založ účet</p>
+                </button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
