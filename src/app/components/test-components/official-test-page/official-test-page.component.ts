@@ -18,7 +18,7 @@ export class OfficialTestPageComponent {
     test: Test | undefined;
     testResults: TestResult | undefined;
     display: any;
-    windowShown: boolean = false;
+    windowShown: boolean = true;
 
     expandTimer() {
         this.windowShown = !this.windowShown;

@@ -9,11 +9,10 @@
             </div>
         </div>
         <div
-            *ngIf="!isLoading && !isSavedTestsEmpty"
+            *ngIf="!isLoading && authServ.isLoggedIn"
             class="test-history-page-header"
         >
             <div class="test-history-page-header-title">
-                <h1>História testov</h1>
                 <div *ngFor="let test of savedTests">
                     <div>
                         <h2>
