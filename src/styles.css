@@ -13,13 +13,7 @@
         @apply flex m-4 rounded-lg w-full h-auto shadow-inner_sh;
     }
     .outer_container {
-        @apply bg-ang-main_bg rounded-lg h-full flex w-full border border-ang-border_main;
-    }
-}
-
-@layer components {
-    .selects {
-        @apply;
+        @apply bg-ang-main_bg rounded-lg min-h-[28rem] h-full flex w-full border border-ang-border_main;
     }
 }
 

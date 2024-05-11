@@ -1,8 +1,4 @@
-import { Component } from '@angular/core';
-import { CookieService } from 'ngx-cookie';
-import { Router } from '@angular/router';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from './service/auth-serivce/auth.service';
 
 @Component({
@@ -10,7 +6,7 @@ import { AuthService } from './service/auth-serivce/auth.service';
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
     constructor(private authService: AuthService) {}
 
     ngOnInit() {
