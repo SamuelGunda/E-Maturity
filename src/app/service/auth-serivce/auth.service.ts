@@ -33,7 +33,7 @@ export class AuthService {
     ) {
         // @ts-ignore
         this.userData = afAuth.authState;
-        this.afAuth.setPersistence('session');
+        this.afAuth.setPersistence('local');
         this.checkAuthState();
         this.initializeTokenListener();
     }
@@ -41,7 +41,7 @@ export class AuthService {
     checkToken() {
         console.log('ngOnInit() start');
         const token = this.cookieService.get('token');
-
+    
         if (!token) {
             console.log('No token found');
             return;
