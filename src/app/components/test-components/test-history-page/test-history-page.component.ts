@@ -5,11 +5,23 @@ import { Test } from '../../../model/test-parts/test.model';
 import { CookieService } from 'ngx-cookie';
 import { switchMap } from 'rxjs';
 import { AuthService } from 'src/app/service/auth-serivce/auth.service';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
     selector: 'app-test-history-page',
     templateUrl: './test-history-page.component.html',
     styleUrls: ['./test-history-page.component.css'],
+    animations: [
+        trigger('fade', [
+            transition(':enter', [
+                style({ opacity: 0 }),
+                animate('0.5s ease-out', style({ opacity: 1 })),
+            ]),
+            transition(':leave', [
+                animate('0.2s ease-in', style({ opacity: 0 })),
+            ]),
+        ]),
+    ],
 })
 export class TestHistoryPageComponent {
     isLoading: boolean = false; // If the page is loading, this will be true
@@ -77,6 +89,7 @@ export class TestHistoryPageComponent {
      */
 
     selectTest(test: TestResult) {
+        console.log(this.originalTests);
         console.log('Test:', test);
         for (const ogTest of this.originalTests) {
             console.log('Original test:', ogTest);

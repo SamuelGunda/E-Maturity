@@ -1,5 +1,7 @@
-<div class="outer_container">
-    <div class="inner_container">
+<div class="outer_container justify-center px-2">
+    <div
+        class="md:inner_container pt-6 justify-center gap-4 dark:text-ang-text_white"
+    >
         <div class="loading">
             <div *ngIf="isLoading" class="lds-ellipsis">
                 <div></div>
@@ -12,9 +14,13 @@
             *ngIf="!isLoading && authServ.isLoggedIn"
             class="test-history-page-header"
         >
-            <div class="test-history-page-header-title">
-                <div *ngFor="let test of savedTests">
-                    <div>
+            <div *ngFor="let test of savedTests" class="py-4">
+                <div
+                    class="flex-col gap-4 items-center justify-center border border-ang-border_main max-w-[720px] rounded-md"
+                >
+                    <div
+                        class="px-12 py-2 text-center font-semibold text-ang-text_main"
+                    >
                         <h2>
                             {{
                                 "Test " +
@@ -34,98 +40,99 @@
                                     "%"
                             }}
                         </h3>
-                        <div *ngIf="test.showResults">
-                            <div
-                                (click)="
-                                    (test.showResults = !test.showResults) &&
-                                        selectTest(test)
-                                "
-                            >
-                                <div *ngIf="!test.showResults">Open</div>
-                                <div *ngIf="test.showResults">Close</div>
-                            </div>
+                    </div>
+                    <div *ngIf="test.showResults" class="px-2" [@fade]>
+                        <div
+                            *ngFor="let section of test.sections; let i = index"
+                        >
                             <div
                                 *ngFor="
-                                    let section of test.sections;
-                                    let i = index
+                                    let result of section.results;
+                                    let j = index
                                 "
                             >
                                 <div
-                                    *ngFor="
-                                        let result of section.results;
-                                        let j = index
-                                    "
+                                    *ngIf="result.userAnswer"
+                                    class="py-2 border-b border-ang-border_main"
                                 >
-                                    <div
-                                        *ngIf="
-                                            result.userAnswer != 'Nevyplnené'
-                                        "
-                                    >
-                                        <p>{{ result.id }}</p>
-                                        <p>
-                                            {{
+                                    <div class="flex gap-4 py-2 items-center">
+                                        <p
+                                            [innerHTML]="result.id"
+                                            class="bg-slate-400 px-2 py-0.5 h-fit"
+                                        ></p>
+                                        <p
+                                            [innerHTML]="
                                                 selectedTest.sections[i]
                                                     .questions[j].text
-                                            }}
-                                        </p>
-                                        <div
-                                            *ngFor="
-                                                let option of selectedTest
-                                                    .sections[i].questions[j]
-                                                    .options
                                             "
-                                        >
-                                            <p>{{ option }}</p>
-                                        </div>
-                                        <p>Vaša odpoveď:</p>
-                                        <span
-                                            *ngIf="
-                                                result.result;
-                                                else wrongAnswer
-                                            "
-                                            [ngStyle]="{ color: 'lime' }"
-                                            >{{ result.userAnswer }}</span
-                                        >
-                                        <ng-template #wrongAnswer>
-                                            <span
-                                                [ngStyle]="{ color: 'red' }"
-                                                >{{ result.userAnswer }}</span
-                                            >
-                                        </ng-template>
-                                        <p>{{ result.result }}</p>
+                                        ></p>
                                     </div>
+                                    <div
+                                        *ngFor="
+                                            let option of selectedTest.sections[
+                                                i
+                                            ].questions[j].options
+                                        "
+                                    >
+                                        <p
+                                            [innerHTML]="option"
+                                            class="py-0.5"
+                                        ></p>
+                                    </div>
+                                    <p>Vaša odpoveď:</p>
+                                    <span
+                                        [innerHTML]="result.userAnswer"
+                                        *ngIf="result.result; else wrongAnswer"
+                                        class="text-green-500"
+                                    ></span>
+                                    <ng-template #wrongAnswer>
+                                        <span
+                                            class="text-red-600"
+                                            [innerHTML]="result.userAnswer"
+                                        ></span>
+                                    </ng-template>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div
+                    class="text-center"
+                    (click)="
+                        (test.showResults = !test.showResults) &&
+                            selectTest(test)
+                    "
+                >
                     <div
                         *ngIf="!test.showResults"
-                        (click)="
-                            (test.showResults = !test.showResults) &&
-                                selectTest(test)
-                        "
+                        class="material-symbols-outlined bg-ang-main_btn rounded-b-lg px-3 hover:cursor-pointer text-white"
                     >
-                        <div *ngIf="!test.showResults">Open</div>
-                        <div *ngIf="test.showResults">Close</div>
+                        expand_more
+                    </div>
+                    <div
+                        *ngIf="test.showResults"
+                        class="material-symbols-outlined rotate-180 bg-ang-main_btn rounded-t-lg hover:cursor-pointer px-3 text-white"
+                    >
+                        expand_more
                     </div>
                 </div>
             </div>
         </div>
-        <div
-            class="flex items-center justify-center w-full"
-            *ngIf="!isLoading && !authServ.isLoggedIn"
-        >
-            <h1 class="text-2xl text-ang-text_main">
-                Pre ukladanie testov je potrebné sa prihlásiť.
-            </h1>
-        </div>
-        <div
-            *ngIf="isSavedTestsEmpty && authServ.isLoggedIn"
-            class="flex items-center justify-center w-full"
-        >
-            <h1 class="text-2xl text-ang-text_main">
-                Pre zobrazenie testov je potrebné vyplniť aspoň jeden test
-            </h1>
-        </div>
+    </div>
+    <div
+        class="flex items-center justify-center w-full"
+        *ngIf="!isLoading && !authServ.isLoggedIn"
+    >
+        <h1 class="text-2xl text-ang-text_main">
+            Pre ukladanie testov je potrebné sa prihlásiť.
+        </h1>
+    </div>
+    <div
+        *ngIf="isSavedTestsEmpty && authServ.isLoggedIn"
+        class="flex items-center justify-center w-full"
+    >
+        <h1 class="text-2xl text-ang-text_main">
+            Pre zobrazenie testov je potrebné vyplniť aspoň jeden test
+        </h1>
     </div>
 </div>
