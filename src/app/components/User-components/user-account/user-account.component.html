@@ -1,19 +1,141 @@
 <div class="outer_container">
-  <div class="inner_container flex-col p-2 text-ang-text_main">
-    <div
-      class="flex flex-col items-center gap-2 border-b border-ang-border_main"
-    >
-      <app-icon-selector class="min-w-20 min-h-20"></app-icon-selector>
-      <div class="flex flex-col text-center pb-2">
-        <h1 class="font-bold">{{ userName }}</h1>
-        <p class="font-semibold">Košická akádemia softvérového vývoja</p>
-        <button
-          class="border border-ang-border_main toggle_dark"
-          (click)="toggleDark()"
+    <div class="inner_container flex-col p-2 text-ang-text_main">
+        <div
+            class="flex flex-col items-center gap-2 border-b border-ang-border_main"
         >
-          Dark mode
-        </button>
-      </div>
+            <app-icon-selector class="min-w-20 min-h-20"></app-icon-selector>
+            <div class="flex flex-col text-center pb-2">
+                <h1 class="font-bold">{{ userName }}</h1>
+                <button
+                    class="border border-ang-border_main toggle_dark"
+                    (click)="toggleDark()"
+                >
+                    Dark mode
+                </button>
+            </div>
+        </div>
+        <div
+            class="text-center flex flex-col gap-8 py-8 dark:text-ang-text_white"
+        >
+            <h2 class="text-3xl">Slovenský jazyk a literatúra</h2>
+            <div class="mx-auto max-w-6xl w-full px-6 lg:px-8">
+                <dl
+                    class="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-3"
+                >
+                    <div class="mx-auto flex max-w-xs flex-col gap-y-4">
+                        <dt class="text-base leading-7 text-gray-600">
+                            Spravené testy
+                        </dt>
+                        <dd
+                            class="text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl"
+                        >
+                            44 million
+                        </dd>
+                    </div>
+                    <div class="mx-auto flex max-w-xs flex-col gap-y-4">
+                        <dt class="text-base leading-7 text-gray-600">
+                            Priemerná úspešnosť
+                        </dt>
+                        <dd
+                            class="text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl"
+                        >
+                            40%
+                        </dd>
+                    </div>
+                    <div class="mx-auto flex max-w-xs flex-col gap-y-4">
+                        <dt class="text-base leading-7 text-gray-600">
+                            New users annually
+                        </dt>
+                        <dd
+                            class="text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl"
+                        >
+                            46,000
+                        </dd>
+                    </div>
+                </dl>
+            </div>
+        </div>
+        <div
+            class="text-center flex flex-col gap-8 py-8 dark:text-ang-text_white"
+        >
+            <h2 class="text-3xl">Anglický jazyk</h2>
+            <div class="mx-auto max-w-6xl w-full px-6 lg:px-8">
+                <dl
+                    class="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-3"
+                >
+                    <div class="mx-auto flex max-w-xs flex-col gap-y-4">
+                        <dt class="text-base leading-7 text-gray-600">
+                            Spravené testy
+                        </dt>
+                        <dd
+                            class="text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl"
+                        >
+                            44 million
+                        </dd>
+                    </div>
+                    <div class="mx-auto flex max-w-xs flex-col gap-y-4">
+                        <dt class="text-base leading-7 text-gray-600">
+                            Priemerná úspešnosť
+                        </dt>
+                        <dd
+                            class="text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl"
+                        >
+                            40%
+                        </dd>
+                    </div>
+                    <div class="mx-auto flex max-w-xs flex-col gap-y-4">
+                        <dt class="text-base leading-7 text-gray-600">
+                            New users annually
+                        </dt>
+                        <dd
+                            class="text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl"
+                        >
+                            46,000
+                        </dd>
+                    </div>
+                </dl>
+            </div>
+        </div>
+        <div
+            class="text-center flex flex-col gap-8 py-8 dark:text-ang-text_white"
+        >
+            <h2 class="text-3xl">Matematika</h2>
+            <div class="mx-auto max-w-6xl w-full px-6 lg:px-8">
+                <dl
+                    class="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-3"
+                >
+                    <div class="mx-auto flex max-w-xs flex-col gap-y-4">
+                        <dt class="text-base leading-7 text-gray-600">
+                            Spravené testy
+                        </dt>
+                        <dd
+                            class="text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl"
+                        >
+                            44 million
+                        </dd>
+                    </div>
+                    <div class="mx-auto flex max-w-xs flex-col gap-y-4">
+                        <dt class="text-base leading-7 text-gray-600">
+                            Priemerná úspešnosť
+                        </dt>
+                        <dd
+                            class="text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl"
+                        >
+                            40%
+                        </dd>
+                    </div>
+                    <div class="mx-auto flex max-w-xs flex-col gap-y-4">
+                        <dt class="text-base leading-7 text-gray-600">
+                            New users annually
+                        </dt>
+                        <dd
+                            class="text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl"
+                        >
+                            46,000
+                        </dd>
+                    </div>
+                </dl>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
