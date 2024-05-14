@@ -1,10 +1,10 @@
 {
-    "projects": {
-        "default": "maturity-project"
-    },
-    "frameworks": {
-        "hosting": {
-            "vite": false
-        }
+  "projects": {
+    "default": "maturity-project"
+  },
+  "frameworks": {
+    "hosting": {
+      "vite": false
     }
+  }
 }
