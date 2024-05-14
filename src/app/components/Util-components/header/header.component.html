@@ -3,7 +3,7 @@
     class="h-[5rem] relative flex justify-between px-4 items-center border border-ang-border_main rounded-lg bg-ang-main_bg"
 >
     <div
-        class="w-[100px] hover:cursor-pointer h-[4rem] flex items-center justify-center"
+        class="w-20 hover:cursor-pointer h-[4rem] flex items-center justify-center"
         (click)="onToggleNav()"
         [class.expanded]="buttonExpanded"
     >
@@ -24,7 +24,7 @@
         </button>
     </div>
 
-    <div *ngIf="authService.isLoggedIn" class="max-w-[100px] flex gap-6">
+    <div *ngIf="authService.isLoggedIn" class="flex gap-6">
         <p
             routerLink="/user-account"
             class="hover:cursor-pointer hover:scale-110 transition duration-250"
