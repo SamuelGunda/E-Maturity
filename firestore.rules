@@ -6,7 +6,5 @@ service cloud.firestore {
       allow read: if true;
       allow write: if request.auth.uid == 'ZbWo5qHGmNOpQduzHk78HTsbDsn2' || request.auth != null;
     }
-    match /users/{userID} {
-      allow write: if request.auth != null;
   }
-}}
+}
