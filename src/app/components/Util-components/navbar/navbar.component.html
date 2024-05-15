@@ -17,9 +17,21 @@
                 alt=""
                 width="28px"
                 height="28px"
-            />Maturitné testy
+            />
+            <p>Maturitné testy</p>
+            <span
+                class="material-symbols-outlined transition-all"
+                [ngClass]="{
+                    'rotate-180': displayed
+                }"
+            >
+                keyboard_arrow_down
+            </span>
         </ul>
-        <div [ngClass]="{ displayed: displayed, hidden: !displayed }">
+        <div
+            [ngClass]="{ block: displayed, hidden: !displayed }"
+            class="transition-all"
+        >
             <li (click)="addSubCat('sjl')" class="text-sm h-8">
                 Slovenský jazyk a literatúra
             </li>

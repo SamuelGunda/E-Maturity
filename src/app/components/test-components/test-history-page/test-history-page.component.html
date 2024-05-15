@@ -118,21 +118,21 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div
-        class="flex items-center justify-center w-full"
-        *ngIf="!isLoading && !authServ.isLoggedIn"
-    >
-        <h1 class="text-2xl text-ang-text_main">
-            Pre ukladanie testov je potrebné sa prihlásiť.
-        </h1>
-    </div>
-    <div
-        *ngIf="isSavedTestsEmpty && authServ.isLoggedIn"
-        class="flex items-center justify-center w-full"
-    >
-        <h1 class="text-2xl text-ang-text_main">
-            Pre zobrazenie testov je potrebné vyplniť aspoň jeden test
-        </h1>
+        <div
+            class="flex items-center justify-center w-full"
+            *ngIf="!isLoading && !authServ.isLoggedIn"
+        >
+            <h1 class="text-2xl text-ang-text_main">
+                Pre ukladanie testov je potrebné sa prihlásiť.
+            </h1>
+        </div>
+        <div
+            *ngIf="isSavedTestsEmpty && authServ.isLoggedIn"
+            class="flex items-center justify-center w-full"
+        >
+            <h1 class="text-2xl text-ang-text_main">
+                Pre zobrazenie testov je potrebné vyplniť aspoň jeden test
+            </h1>
+        </div>
     </div>
 </div>
