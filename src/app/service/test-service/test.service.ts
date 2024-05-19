@@ -23,7 +23,7 @@ export class TestService {
   constructor(
     private firestore: Firestore,
     private cookieService: CookieService,
-  ) {}
+  ) { }
 
   /*
    * Function to fetch the years of the tests for the given subcategory
@@ -193,6 +193,25 @@ export class TestService {
     const savedTestsCollectionRef = collection(documentRef, 'savedTests');
     const savedTestDocumentRef = doc(savedTestsCollectionRef);
     setDoc(savedTestDocumentRef, finishedTest)
+      .then((r) => console.log(r))
+      .catch((e) => console.log(e));
+  }
+
+  saveTestStatistics(subCat: string, percentageScore: number, timeTaken: string): void {
+    const uid = this.cookieService.get('uid');
+    const dataCollection = collection(this.firestore, 'users');
+    const documentRef = doc(dataCollection, uid);
+    const userStatisticsCollectionRef = collection(documentRef, 'userStatistics');
+    const subjectDocumentRef = doc(userStatisticsCollectionRef, 'subjects')
+    const subjectCollectionRef = collection(subjectDocumentRef, subCat);
+    const newStatDocRef = doc(subjectCollectionRef);
+
+    const statisticsData = {
+      percentageScore: percentageScore,
+      timeTaken: timeTaken,
+    };
+
+    setDoc(newStatDocRef, statisticsData)
       .then((r) => console.log(r))
       .catch((e) => console.log(e));
   }

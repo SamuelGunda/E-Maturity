@@ -140,7 +140,8 @@ export class OfficialTestPageComponent {
             }
             this.testService.getTestResult(testResults).subscribe(
                 (result: TestResult) => {
-                    this.testResults = result;
+                    this.testResults = result,
+                    this.testService.saveTestStatistics(testResults.subCat, testResults.percentageScore, testResults.timeTaken);
                 },
                 (error) => {
                     console.error('Error updating test results:', error);
