@@ -7,7 +7,7 @@ class LoginPagePaths:
     ERROR_MESSAGE_LOGIN = '/html/body/app-root/div/div/app-login-page/div/div/div/div[3]/p'
     REMEMBER_ME_BUTTON = '//*[@id="rememberMe"]'
     REGISTRACIA_BUTTON = '/html/body/app-root/div/div/app-login-page/div/div/div/div[5]/button[2]'
-
+    FORGOT_PASSWORD_BUTTON = '/html/body/app-root/div/div/app-login-page/div/div/div/div[2]/button'
 
 class RegistrationPagePaths:
     NAME_INPUT = '//*[@id="krstne"]'
