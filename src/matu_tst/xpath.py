@@ -21,6 +21,7 @@ class RegistrationPagePaths:
 
 class HeaderPaths:
     PROFILE_BUTTON = '//*[@id="main_header"]/div[3]/p[1]/img'
+    LOG_OUT_BUTTON = '//*[@id="main_header"]/div[3]/p[2]/img'
 
 class cookies:
     COOKIES_BUTTON = '/html/body/app-root/div/div/app-tos-page/div/div/div/button'
