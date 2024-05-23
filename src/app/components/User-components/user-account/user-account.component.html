@@ -18,80 +18,21 @@
             class="text-center flex flex-col gap-8 py-8 dark:text-ang-text_white"
         >
             <h2 class="text-3xl">Slovenský jazyk a literatúra</h2>
-            <div class="mx-auto max-w-6xl w-full px-6 lg:px-8">
+            <div class="">
                 <dl
-                    class="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-3"
+                    class="flex flex-col lg:flex-row items-center justify-center gap-1"
                 >
-                    <div class="mx-auto flex max-w-xs flex-col gap-y-4">
-                        <dt class="text-base leading-7 text-gray-600">
-                            Spravené testy
-                        </dt>
-                        <dd
-                            class="text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl"
-                        >
-                        {{ sjlTestCount }}
-                        </dd>
+                    <div class="profileLeftCard">
+                        <dt class="text-xl">Spravené testy</dt>
+                        <dd class="text-lg">44 million</dd>
                     </div>
-                    <div class="mx-auto flex max-w-xs flex-col gap-y-4">
-                        <dt class="text-base leading-7 text-gray-600">
-                            Priemerná úspešnosť
-                        </dt>
-                        <dd
-                            class="text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl"
-                        >
-                        {{ sjlAveragePercentage }}
-                        </dd>
+                    <div class="profileMiddleCard">
+                        <dt class="text-xl">Priemerná úspešnosť</dt>
+                        <dd class="text-lg">40%</dd>
                     </div>
-                    <div class="mx-auto flex max-w-xs flex-col gap-y-4">
-                        <dt class="text-base leading-7 text-gray-600">
-                            Priemerný čas
-                        </dt>
-                        <dd
-                            class="text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl"
-                        >
-                        {{ sjlAverageTime }}
-                        </dd>
-                    </div>
-                </dl>
-            </div>
-        </div>
-        <div
-            class="text-center flex flex-col gap-8 py-8 dark:text-ang-text_white"
-        >
-            <h2 class="text-3xl">Anglický jazyk</h2>
-            <div class="mx-auto max-w-6xl w-full px-6 lg:px-8">
-                <dl
-                    class="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-3"
-                >
-                    <div class="mx-auto flex max-w-xs flex-col gap-y-4">
-                        <dt class="text-base leading-7 text-gray-600">
-                            Spravené testy
-                        </dt>
-                        <dd
-                            class="text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl"
-                        >
-                        {{ anjTestCount }}
-                        </dd>
-                    </div>
-                    <div class="mx-auto flex max-w-xs flex-col gap-y-4">
-                        <dt class="text-base leading-7 text-gray-600">
-                            Priemerná úspešnosť
-                        </dt>
-                        <dd
-                            class="text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl"
-                        >
-                        {{ anjAveragePercentage }}
-                        </dd>
-                    </div>
-                    <div class="mx-auto flex max-w-xs flex-col gap-y-4">
-                        <dt class="text-base leading-7 text-gray-600">
-                            Priemerný čas
-                        </dt>
-                        <dd
-                            class="text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl"
-                        >
-                        {{ anjAverageTime }}
-                        </dd>
+                    <div class="profileRightCard">
+                        <dt class="text-xl">New users annually</dt>
+                        <dd class="text-lg">46,000</dd>
                     </div>
                 </dl>
             </div>
@@ -100,42 +41,48 @@
             class="text-center flex flex-col gap-8 py-8 dark:text-ang-text_white"
         >
             <h2 class="text-3xl">Matematika</h2>
-            <div class="mx-auto max-w-6xl w-full px-6 lg:px-8">
+            <div class="">
                 <dl
-                    class="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-3"
+                    class="flex flex-col lg:flex-row items-center justify-center gap-1"
                 >
-                    <div class="mx-auto flex max-w-xs flex-col gap-y-4">
-                        <dt class="text-base leading-7 text-gray-600">
-                            Spravené testy
-                        </dt>
-                        <dd
-                            class="text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl"
-                        >
-                        {{ matTestCount }}
-                    </dd>
+                    <div class="profileLeftCard">
+                        <dt class="text-xl">Spravené testy</dt>
+                        <dd class="text-lg">44 million</dd>
                     </div>
-                    <div class="mx-auto flex max-w-xs flex-col gap-y-4">
-                        <dt class="text-base leading-7 text-gray-600">
-                            Priemerná úspešnosť
-                        </dt>
-                        <dd
-                            class="text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl"
-                        >
-                        {{ matAveragePercentage }}%
-                    </dd>
+                    <div class="profileMiddleCard">
+                        <dt class="text-xl">Priemerná úspešnosť</dt>
+                        <dd class="text-lg">40%</dd>
                     </div>
-                    <div class="mx-auto flex max-w-xs flex-col gap-y-4">
-                        <dt class="text-base leading-7 text-gray-600">
-                            Priemerný čas
-                        </dt>
-                        <dd
-                            class="text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl"
-                        >
-                        {{ matAverageTime }}
-                        </dd>
+                    <div class="profileRightCard">
+                        <dt class="text-xl">New users annually</dt>
+                        <dd class="text-lg">46,000</dd>
+                    </div>
+                </dl>
+            </div>
+        </div>
+        <div
+            class="text-center flex flex-col gap-8 py-8 dark:text-ang-text_white"
+        >
+            <h2 class="text-3xl">Anglický jazyk</h2>
+            <div class="">
+                <dl
+                    class="flex flex-col lg:flex-row items-center justify-center gap-1"
+                >
+                    <div class="profileLeftCard">
+                        <dt class="text-xl">Spravené testy</dt>
+                        <dd class="text-lg">44 million</dd>
+                    </div>
+                    <div class="profileMiddleCard">
+                        <dt class="text-xl">Priemerná úspešnosť</dt>
+                        <dd class="text-lg">40%</dd>
+                    </div>
+                    <div class="profileRightCard">
+                        <dt class="text-xl">New users annually</dt>
+                        <dd class="text-lg">46,000</dd>
                     </div>
                 </dl>
             </div>
         </div>
     </div>
 </div>
++
