@@ -134,5 +134,12 @@
                 Pre zobrazenie testov je potrebné vyplniť aspoň jeden test
             </h1>
         </div>
+        <span
+            *ngIf="isShow"
+            class="hover:cursor-pointer material-symbols-outlined fixed bottom-10 right-14 border border-ang-border_main rounded-full p-1 text-ang-text_main"
+            (click)="scrollTop()"
+        >
+            arrow_upward
+        </span>
     </div>
 </div>

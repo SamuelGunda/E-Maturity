@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { TestHistoryService } from '../../../service/test-history-service/test-history.service';
 import { TestResult } from '../../../model/test-results-parts/test-result.model';
 import { Test } from '../../../model/test-parts/test.model';
@@ -29,6 +29,8 @@ export class TestHistoryPageComponent {
     savedTests: TestResult[] = []; // The saved tests from the user's history
     originalTests: Test[] = []; // The original tests with full questions and answers
     selectedTest: Test = {} as Test; // Used to display the selected test on front-end
+    isShow: boolean | undefined;
+    topPosToStartShowing = 100;
 
     constructor(
         private testHistoryService: TestHistoryService,
@@ -42,6 +44,29 @@ export class TestHistoryPageComponent {
 
     ngOnInit(): void {
         this.fetchTestsFromUserHistory();
+    }
+
+    scrollTop() {
+        window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'smooth',
+        });
+    }
+
+    @HostListener('window:scroll')
+    checkScroll() {
+        const scrollPosition =
+            window.pageYOffset ||
+            document.documentElement.scrollTop ||
+            document.body.scrollTop ||
+            0;
+
+        if (scrollPosition >= this.topPosToStartShowing) {
+            this.isShow = true;
+        } else {
+            this.isShow = false;
+        }
     }
 
     /*

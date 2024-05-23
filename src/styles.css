@@ -17,15 +17,22 @@
     .outer_container {
         @apply bg-ang-main_bg rounded-lg min-h-[28rem] h-full flex w-full border border-ang-border_main;
     }
-}
 
-@layer components {
     app-landing-page .main_card_containers {
         @apply flex flex-col items-center justify-around text-base h-[22rem] w-min rounded-lg px-2 m-2 hover:scale-105 transition;
     }
 
     app-landing-page .main_card_textareas {
         @apply rounded-lg h-48 py-1 lg:h-44 w-40 lg:w-52 bg-white  flex justify-center text-center;
+    }
+    .profileLeftCard {
+        @apply bg-ang-gradient_to w-52 sm:w-64 bg-opacity-25 px-4 py-4 lg:w-72 rounded-t-lg lg:rounded-t-none lg:rounded-l-lg lg:rounded-tl-lg;
+    }
+    .profileMiddleCard {
+        @apply bg-ang-gradient_to bg-opacity-25 px-4 py-4 w-52 sm:w-64 lg:w-72;
+    }
+    .profileRightCard {
+        @apply bg-ang-gradient_to bg-opacity-25 px-4 py-4 w-52 sm:w-64 lg:w-72 rounded-b-lg lg:rounded-b-none lg:rounded-r-lg lg:rounded-br-lg;
     }
 }
 
