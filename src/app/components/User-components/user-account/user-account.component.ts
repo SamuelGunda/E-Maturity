@@ -4,6 +4,7 @@ import { UserAccountService } from '../../../service/user-acc-service/user-acc.s
 import { Observable, map } from 'rxjs';
 import { CookieService } from 'ngx-cookie';
 import { UserStatistic } from 'src/app/model/user-statistics';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-user-account',
@@ -37,9 +38,14 @@ export class UserAccountComponent implements OnInit {
         private authService: AuthService,
         public userAccountService: UserAccountService,
         private cookieService: CookieService,
+        private router: Router,
     ) {}
 
     ngOnInit() {
+        const uid = this.cookieService.get('uid');
+        if (!uid) {
+            this.router.navigateByUrl('/');
+        }
         this.authService.userData.subscribe((user) => {
             if (user) {
                 this.userName = user.displayName || '';

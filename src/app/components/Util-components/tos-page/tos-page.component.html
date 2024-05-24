@@ -1,24 +1,26 @@
 <div
-  *ngIf="windowShown && !authService.isLoggedIn"
-  class="flex items-center justify-center"
+    *ngIf="windowShown && !authService.isLoggedIn"
+    class="flex items-center justify-center"
 >
-  <div
-    class="fixed bottom-1 w-3/4 h-16 bg-ang-main_bg border border-ang-border_main rounded-lg overflow-y-scroll md:overflow-y-hidden p-1"
-  >
-    <div>
-      <p class="text-xs">
-        Naša webová aplikácia využíva súbory cookies, ktoré sú kľúčové pre jej
-        správne fungovanie a poskytujú nevyhnutné funkcie. Tieto súbory cookies
-        neslúžia na zbieranie vašich údajov na účely marketingu ani sledovania
-        vašich aktivít. Pokračovaním v používaní našej webovej aplikácie
-        vyjadrujete súhlas s používaním týchto nevyhnutných súborov cookies.
-      </p>
-      <button
-        (click)="hideWindow()"
-        class="float-right border border-ang-border_main rounded-lg px-1 py-0.5 text-ang-text_main text-sm hover:bg-ang-border_main hover:text-ang-text_white transition-all"
-      >
-        Prijať
-      </button>
+    <div
+        class="fixed bottom-1 w-3/4 h-16 bg-ang-main_bg border border-ang-border_main rounded-lg overflow-y-scroll md:overflow-y-hidden p-1"
+    >
+        <div>
+            <p class="text-xs">
+                Naša webová aplikácia využíva súbory cookies, ktoré sú kľúčové
+                pre jej správne fungovanie a poskytujú nevyhnutné funkcie. Tieto
+                súbory cookies neslúžia na zbieranie vašich údajov na účely
+                marketingu ani sledovania vašich aktivít. Pokračovaním v
+                používaní našej webovej aplikácie vyjadrujete súhlas s
+                používaním týchto nevyhnutných súborov cookies.
+            </p>
+            <button
+                id="acceptCookiesButton"
+                (click)="hideWindow()"
+                class="float-right border border-ang-border_main rounded-lg px-1 py-0.5 text-ang-text_main text-sm hover:bg-ang-border_main hover:text-ang-text_white transition-all"
+            >
+                Prijať
+            </button>
+        </div>
     </div>
-  </div>
 </div>
