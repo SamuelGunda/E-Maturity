@@ -17,12 +17,15 @@ export class UserAccountComponent implements OnInit {
   sjlStatistics$: Observable<{ averagePercentage: number; averageTime: string; }> | undefined;
   anjStatistics$: Observable<{ averagePercentage: number; averageTime: string; }> | undefined;
   matStatistics$: Observable<{ averagePercentage: number; averageTime: string; }> | undefined;
+
   sjlTestCount: number = 0;
   anjTestCount: number = 0;
   matTestCount: number = 0;
+
   sjlAveragePercentage: number = 0;
   anjAveragePercentage: number = 0;
   matAveragePercentage: number = 0;
+
   sjlAverageTime: string = '00:00:00';
   anjAverageTime: string = '00:00:00';
   matAverageTime: string = '00:00:00';
@@ -42,21 +45,21 @@ export class UserAccountComponent implements OnInit {
           this.userAccountService.getTestCountBySubject(uid, 'sjl').subscribe(count => this.sjlTestCount = count);
           this.userAccountService.getTestCountBySubject(uid, 'anj').subscribe(count => this.anjTestCount = count);
           this.userAccountService.getTestCountBySubject(uid, 'mat').subscribe(count => this.matTestCount = count);
-          this.sjlStatistics$ = this.userAccountService.getTestStatistics(uid, "SJL");
-          this.anjStatistics$ = this.userAccountService.getTestStatistics(uid, "ANJ");
-          this.matStatistics$ = this.userAccountService.getTestStatistics(uid, "MAT");
-          this.sjlStatistics$.subscribe(stats => {
+
+          this.userAccountService.getTestStatistics(uid, 'SJL').subscribe(stats => {
             this.sjlAveragePercentage = stats.averagePercentage;
             this.sjlAverageTime = stats.averageTime;
           });
-          this.anjStatistics$.subscribe(stats => {
+
+          this.userAccountService.getTestStatistics(uid, 'ANJ').subscribe(stats => {
             this.anjAveragePercentage = stats.averagePercentage;
             this.anjAverageTime = stats.averageTime;
           });
-          this.matStatistics$.subscribe(stats => {
+
+          this.userAccountService.getTestStatistics(uid, 'MAT').subscribe(stats => {
             this.matAveragePercentage = stats.averagePercentage;
             this.matAverageTime = stats.averageTime;
-          });        
+          });
         }
       }
     });

@@ -19,29 +19,33 @@ export class UserAccountService {
   selectedIcon!: string;
 
   getTestStatistics(uid: string, subCat: string): Observable<{ averagePercentage: number, averageTime: string }> {
-    const dataCollection = this.firestore.collection('users');
-    const documentRef = dataCollection.doc(uid);
-    const userStatisticsCollectionRef = documentRef.collection('userStatistics');
-    const subjectDocumentRef = userStatisticsCollectionRef.doc('subjects');
-    const subjectCollectionRef = subjectDocumentRef.collection(subCat);
-
+    const userStatisticsCollectionRef = this.firestore.collection('users').doc(uid).collection('userStatistics');
+    const subjectCollectionRef = userStatisticsCollectionRef.doc('subjects').collection(subCat);
+  
     return from(subjectCollectionRef.get()).pipe(
       map((querySnapshot) => {
         const statistics: UserStatistic[] = [];
-
+  
         querySnapshot.forEach((doc) => {
           const data = doc.data();
+          
           const userStatistic: UserStatistic = {
             percentageScore: data['percentageScore'],
             timeTaken: data['timeTaken']
           };
           statistics.push(userStatistic);
+          console.log('Data:', data);
+          console.log('Statistics:', userStatistic);
         });
-
+  
         // Calculate average percentage and time
+        console.log('statistic: ',statistics)
         const averagePercentage = this.calculateAveragePercentage(statistics);
         const averageTime = this.calculateAverageTime(statistics);
-
+  
+        console.log('Average Percentage:', averagePercentage);
+        console.log('Average Time:', averageTime);
+  
         return {
           averagePercentage: averagePercentage,
           averageTime: averageTime
@@ -49,31 +53,39 @@ export class UserAccountService {
       })
     );
   }
+  
 
   private calculateAveragePercentage(statistics: UserStatistic[]): number {
     if (statistics.length === 0) return 0;
     const totalPercentage = statistics.reduce((sum, stat) => sum + stat.percentageScore, 0);
-    return totalPercentage / statistics.length;
+    const averagePercentage = totalPercentage / statistics.length;
+    console.log('Total Percentage:', totalPercentage, 'Average Percentage:', averagePercentage);
+    return averagePercentage;
   }
 
   private calculateAverageTime(statistics: UserStatistic[]): string {
-    if (statistics.length === 0) return '00:00:00';
+    if (statistics.length === 0) return '00:00';
+  
+    // Prevod času do sekúnd
     const totalSeconds = statistics.reduce((sum, stat) => sum + this.timeStringToSeconds(stat.timeTaken), 0);
     const averageSeconds = totalSeconds / statistics.length;
-    return this.secondsToTimeString(averageSeconds);
+  
+    // Výpočet priemeru
+    const averageMinutes = Math.floor(averageSeconds / 60);
+    const averageSecondsRemainder = Math.floor(averageSeconds % 60);
+  
+    // Formátovanie na formát "mm:ss"
+    const averageTimeString = `${averageMinutes.toString().padStart(2, '0')}:${averageSecondsRemainder.toString().padStart(2, '0')}`;
+    return averageTimeString;
   }
 
-  private timeStringToSeconds(time: string): number {
+  timeStringToSeconds(time: string): number {
     const parts = time.split(':');
-    return (+parts[0]) * 3600 + (+parts[1]) * 60 + (+parts[2]);
+    const minutes = parseInt(parts[0], 10);
+    const seconds = parseInt(parts[1], 10);
+    return minutes * 60 + seconds;
   }
 
-  private secondsToTimeString(seconds: number): string {
-    const h = Math.floor(seconds / 3600);
-    const m = Math.floor((seconds % 3600) / 60);
-    const s = Math.floor(seconds % 60);
-    return [h, m, s].map(v => v < 10 ? '0' + v : v).join(':');
-  }
 
   getTestCountBySubject(uid: string, subCat: string): Observable<number> {
     const userStatisticsCollectionRef = this.firestore.collection('users').doc(uid).collection('userStatistics');
