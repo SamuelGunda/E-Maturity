@@ -3,7 +3,6 @@ import { AuthService } from '../../../service/auth-serivce/auth.service';
 import { UserAccountService } from '../../../service/user-acc-service/user-acc.service';
 import { Observable, map } from 'rxjs';
 import { CookieService } from 'ngx-cookie';
-import { UserStatistic } from 'src/app/model/user-statistics';
 
 @Component({
     selector: 'app-user-account',
@@ -29,9 +28,9 @@ export class UserAccountComponent implements OnInit {
     sjlAveragePercentage: number = 0;
     anjAveragePercentage: number = 0;
     matAveragePercentage: number = 0;
-    sjlAverageTime: string = '00:00:00';
-    anjAverageTime: string = '00:00:00';
-    matAverageTime: string = '00:00:00';
+    sjlAverageTime: string = '00:00';
+    anjAverageTime: string = '00:00';
+    matAverageTime: string = '00:00';
 
     constructor(
         private authService: AuthService,
