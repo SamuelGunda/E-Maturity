@@ -39,34 +39,43 @@ export class UserAccountComponent implements OnInit {
         private cookieService: CookieService,
     ) {}
 
-  ngOnInit() {
-    this.authService.userData.subscribe((user) => {
-      if (user) {
-        this.userName = user.displayName || '';
-        const uid = this.cookieService.get('uid');
-        if (uid) {
-          this.userAccountService.getTestCountBySubject(uid, 'sjl').subscribe(count => this.sjlTestCount = count);
-          this.userAccountService.getTestCountBySubject(uid, 'anj').subscribe(count => this.anjTestCount = count);
-          this.userAccountService.getTestCountBySubject(uid, 'mat').subscribe(count => this.matTestCount = count);
-          this.sjlStatistics$ = this.userAccountService.getTestStatistics(uid, "SJL");
-          this.anjStatistics$ = this.userAccountService.getTestStatistics(uid, "ANJ");
-          this.matStatistics$ = this.userAccountService.getTestStatistics(uid, "MAT");
-          this.sjlStatistics$.subscribe(stats => {
-            this.sjlAveragePercentage = stats.averagePercentage;
-            this.sjlAverageTime = stats.averageTime;
-          });
-          this.anjStatistics$.subscribe(stats => {
-            this.anjAveragePercentage = stats.averagePercentage;
-            this.anjAverageTime = stats.averageTime;
-          });
-          this.matStatistics$.subscribe(stats => {
-            this.matAveragePercentage = stats.averagePercentage;
-            this.matAverageTime = stats.averageTime;
-          });        
-        }
-      }
-    });
-  }
+    ngOnInit() {
+        this.authService.userData.subscribe((user) => {
+            if (user) {
+                this.userName = user.displayName || '';
+                const uid = this.cookieService.get('uid');
+                if (uid) {
+                    this.userAccountService
+                        .getTestCountBySubject(uid, 'sjl')
+                        .subscribe((count) => (this.sjlTestCount = count));
+                    this.userAccountService
+                        .getTestCountBySubject(uid, 'anj')
+                        .subscribe((count) => (this.anjTestCount = count));
+                    this.userAccountService
+                        .getTestCountBySubject(uid, 'mat')
+                        .subscribe((count) => (this.matTestCount = count));
+                    this.sjlStatistics$ =
+                        this.userAccountService.getTestStatistics(uid, 'sjl');
+                    this.anjStatistics$ =
+                        this.userAccountService.getTestStatistics(uid, 'anj');
+                    this.matStatistics$ =
+                        this.userAccountService.getTestStatistics(uid, 'mat');
+                    this.sjlStatistics$.subscribe((stats) => {
+                        this.sjlAveragePercentage = stats.averagePercentage;
+                        this.sjlAverageTime = stats.averageTime;
+                    });
+                    this.anjStatistics$.subscribe((stats) => {
+                        this.anjAveragePercentage = stats.averagePercentage;
+                        this.anjAverageTime = stats.averageTime;
+                    });
+                    this.matStatistics$.subscribe((stats) => {
+                        this.matAveragePercentage = stats.averagePercentage;
+                        this.matAverageTime = stats.averageTime;
+                    });
+                }
+            }
+        });
+    }
 
     darkToggle = document.querySelector('.toggle_dark');
 
