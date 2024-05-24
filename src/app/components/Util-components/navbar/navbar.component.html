@@ -51,8 +51,10 @@
             />Učebné materiály
         </li>
         <li
+            [ngClass]="{
+                'border-0 hover:rounded-b-lg': !authServ.adminLog
+            }"
             id="nav_menu_savedtests"
-            class="border-0 hover:rounded-b-lg"
             routerLink="/test-history"
         >
             <img
@@ -62,6 +64,19 @@
                 height="28px"
             />
             História testov
+        </li>
+        <li
+            class="border-0 hover:rounded-b-lg"
+            *ngIf="authServ.adminLog"
+            routerLink="/official-test-constructor"
+        >
+            <img
+                src="assets/icons/const.png"
+                alt=""
+                width="28px"
+                height="28px"
+            />
+            Konštruktor testov
         </li>
     </ul>
 </nav>

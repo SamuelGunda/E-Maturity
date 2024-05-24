@@ -23,6 +23,7 @@ export class AuthService {
         return uid;
     }
     isLoggedIn = false;
+    adminLog: boolean = false;
     userData: Observable<firebase.User>;
 
     constructor(
@@ -41,7 +42,7 @@ export class AuthService {
     checkToken() {
         console.log('ngOnInit() start');
         const token = this.cookieService.get('token');
-    
+
         if (!token) {
             console.log('No token found');
             return;
@@ -140,6 +141,11 @@ export class AuthService {
             return;
         }
         const uid = userCredential.user.uid;
+        if (uid === 'Thlx1tYLcnfft6fey38i6KTD5bY2') {
+            this.adminLog = true;
+        } else {
+            this.adminLog = false;
+        }
         this.isLoggedIn = true;
 
         userCredential.user
@@ -167,6 +173,7 @@ export class AuthService {
 
     logout() {
         this.isLoggedIn = false;
+        this.adminLog = false;
         this.router.navigateByUrl('/');
         this.cookieService.remove('uid');
         this.cookieService.remove('token');
