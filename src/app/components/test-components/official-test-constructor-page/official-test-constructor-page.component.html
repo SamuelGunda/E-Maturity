@@ -1,58 +1,113 @@
-<div>
-  <div>
-    <form [formGroup]="testForm">
-
-      <div id="subCat-window">
-        <label for="subCat">Kategória:</label>
-        <select id="subCat" formControlName="subCat">
-          <option value="anj">Angličtina</option>
-          <option value="mat">Matematika</option>
-          <option value="sjl">Slovenčina</option>
-        </select>
-      </div>
+    <div>
       <div>
-        <label for="year">Rok:</label>
-        <input id="year" formControlName="year" placeholder=" Year"/>
-        <select *ngIf="testForm.get('subCat')?.value === 'anj'" id="level" formControlName="level">
-          <option value="B1">B1</option>
-          <option value="B2">B2</option>
-          <option value="C1">C1</option>
-        </select>
-      </div>
+        <form [formGroup]="testForm">
 
-      <div formArrayName="sections">
-        <div *ngFor="let section of sections.controls; let sectionIndex = index" [formGroupName]="sectionIndex">
-          <h1>Section: {{sectionIndex + 1}}</h1>
-
-<!--      IN DIV UNDER ARTICLES-->
-          <div class="articleSection" formArrayName="articleUrls">
-            <h2 *ngIf="getArticleUrls(sectionIndex).length > 0">Articles:</h2>
-            <div *ngFor="let articleUrl of getArticleUrls(sectionIndex).controls; let articleIndex = index" [formGroupName]="articleIndex">
-              <input type="text" formControlName="url" placeholder=" Article: {{articleIndex + 1}}">
-              <br>
-              <button class="removeButton" type="button" (click)="removeArticleUrl(sectionIndex, articleIndex)">Remove article</button>
-            </div>
-            <button class="addButton" type="button" (click)="addArticleUrl(sectionIndex)">Add article</button>
+          <div id="subCat-window">
+            <label for="subCat">Kategória:</label>
+            <select id="subCat" formControlName="subCat">
+              <option value="anj">Angličtina</option>
+              <option value="mat">Matematika</option>
+              <option value="sjl">Slovenčina</option>
+            </select>
+          </div>
+          <div>
+            <label for="year">Rok:</label>
+            <input id="year" formControlName="year" placeholder=" Year"/>
+            <select *ngIf="testForm.get('subCat')?.value === 'anj'" id="level" formControlName="level">
+              <option value="B1">B1</option>
+              <option value="B2">B2</option>
+              <option value="C1">C1</option>
+            </select>
           </div>
 
-<!--      IN DIV UNDER QUESTIONS-->
-          <div class="questionSection" formArrayName="questions">
-            <h2 *ngIf="getQuestions(sectionIndex).length > 0">Questions:</h2>
-            <div *ngFor="let question of getQuestions(sectionIndex).controls; let questionIndex = index" [formGroupName]="questionIndex">
-              <textarea formControlName="questionJson" placeholder=" Question: {{questionIndex + 1}}"></textarea>
-              <br>
-              <button class="removeButton" type="button" (click)="removeQuestion(sectionIndex, questionIndex)">Remove question</button>
+          <div formArrayName="sections">
+            <div *ngFor="let section of sections.controls; let sectionIndex = index" [formGroupName]="sectionIndex">
+              <h1>Section: {{sectionIndex + 1}}</h1>
+
+    <!--      IN DIV UNDER ARTICLES-->
+              <div class="articleSection" formArrayName="articleUrls">
+                <h2 *ngIf="getArticleUrls(sectionIndex).length > 0">Articles:</h2>
+                <div *ngFor="let articleUrl of getArticleUrls(sectionIndex).controls; let articleIndex = index" [formGroupName]="articleIndex">
+                  <input type="text" formControlName="url" placeholder=" Article: {{articleIndex + 1}}">
+                  <br>
+                  <button class="removeButton" type="button" (click)="removeArticleUrl(sectionIndex, articleIndex)">Remove article</button>
+                </div>
+                <button class="addButton" type="button" (click)="addArticleUrl(sectionIndex)">Add article</button>
+              </div>
+
+    <!--      IN DIV UNDER QUESTIONS-->
+                <div class="questionSection" formArrayName="questions">
+                    <h2 *ngIf="getQuestions(sectionIndex).length > 0">Questions:</h2>
+                    <div *ngFor="let question of getQuestions(sectionIndex).controls; let questionIndex = index" [formGroupName]="questionIndex">
+                        <div>
+                            <button type="button" (click)="addQuestionType(sectionIndex, questionIndex, 'select')">Otázka s možnosťami</button>
+                            <button type="button" (click)="addQuestionType(sectionIndex, questionIndex, 'select_twice')">Otázka s dvoma skupinami možností</button>
+                            <button type="button" (click)="addQuestionType(sectionIndex, questionIndex, 'input')">Otázka s dopisovaním</button>
+                            <button type="button" (click)="addQuestionType(sectionIndex, questionIndex, 'input_twice')">Otázka s dopisovaním dvoch viet/slov</button>
+                        </div>
+                        <!-- Structure for 'select' question type -->
+                        <div class="flex flex-col" *ngIf="question.get('questionType')?.value === 'select'">
+                            <input type="text" formControlName="text" placeholder="Zadanie">
+                            <div>
+                                <input *ngFor="let options of getOptions(sectionIndex, questionIndex).controls; let answerIndex = index" type="radio" formControlName="answer{{questionIndex}}"[name]="'answer'+questionIndex" value="{{answerIndex}} " checked>
+                            </div>
+                            <div formArrayName="options">
+                                <div *ngFor="let option of getOptions(sectionIndex, questionIndex).controls; let optionIndex = index" [formGroupName]="optionIndex">
+                                    <input type="text" formControlName="option" placeholder="Možnosť {{optionIndex + 1}}">
+                                    <button type="button" (click)="removeOption(sectionIndex, questionIndex, optionIndex)">Remove option</button>
+                                </div>
+                                <button type="button" (click)="addOption(sectionIndex, questionIndex)">Add option</button>
+                            </div>
+                        </div>
+                        <!-- Structure for 'select_twice' question type -->
+                        <div *ngIf="question.get('questionType')?.value === 'select_twice'">
+                            <input type="text" formControlName="text" placeholder="Zadanie">
+                            <div>
+                                <input *ngFor="let options of getOptions(sectionIndex, questionIndex).controls; let answerIndex = index" type="radio" formControlName="answer{{questionIndex}}" [name]="'answer'+questionIndex" value="{{answerIndex}}" required>
+                            </div>
+                            <div formArrayName="options">
+                                <div *ngFor="let option of getOptions(sectionIndex, questionIndex).controls; let optionIndex = index" [formGroupName]="optionIndex">
+                                    <input type="text" formControlName="option" placeholder="Možnosť {{optionIndex + 1}}">
+                                    <button type="button" (click)="removeOption(sectionIndex, questionIndex, optionIndex)">- skupina 1</button>
+                                </div>
+                                <button type="button" (click)="addOption(sectionIndex, questionIndex)">+ skupina 1</button>
+                            </div>
+                            <div>
+                                <input *ngFor="let options2 of getOptions2(sectionIndex, questionIndex).controls; let answerIndex2 = index" type="radio" formControlName="answer2{{questionIndex}}" [name]="'answer2'+questionIndex" value="{{answerIndex2}}" required>
+                            </div>
+                            <div formArrayName="options2">
+                                <div *ngFor="let option of getOptions2(sectionIndex, questionIndex).controls; let optionIndex2 = index" [formGroupName]="optionIndex2">
+                                    <input type="text" formControlName="option2" placeholder="Možnosť {{optionIndex2 + 1}}">
+                                    <button type="button" (click)="removeOption2(sectionIndex, questionIndex, optionIndex2)">- skupina 2</button>
+                                </div>
+                                <button type="button" (click)="addOption2(sectionIndex, questionIndex)">+ skupina 2</button>
+                            </div>
+                        </div>
+                        <!-- Structure for 'input' question type -->
+                        <div *ngIf="question.get('questionType')?.value === 'input'">
+                            <input type="text" formControlName="text" placeholder="Zadanie">
+                            <input type="text" formControlName="answer{{questionIndex}}" placeholder="Odpoveď">
+                        </div>
+                        <!-- Structure for 'input_twice' question type -->
+                        <div *ngIf="question.get('questionType')?.value === 'input_twice'">
+                            <input type="text" formControlName="text" placeholder="Text">
+                            <div>
+                            <input type="text" formControlName="answer{{questionIndex}}" placeholder="Odpoveď 1">
+                            <input type="text" formControlName="answer2{{questionIndex}}" placeholder="Odpoveď 2">
+                            </div>
+                        </div>
+                        <button class="removeButton" type="button" (click)="removeQuestion(sectionIndex, questionIndex)">Remove question</button>
+                    </div>
+                    <button class="addButton" type="button" (click)="addQuestion(sectionIndex)">Add question</button>
+                </div>
+
+
+                <button class="removeButton" type="button" (click)="removeSection(sectionIndex)">Remove section</button>
             </div>
-
-            <button class="addButton" type="button" (click)="addQuestion(sectionIndex)">Add question</button>
           </div>
+          <button class="addButton" type="button" (click)="addSection()">Add section</button>
 
-          <button class="removeButton" type="button" (click)="removeSection(sectionIndex)">Remove section</button>
-        </div>
+        </form>
+        <button type="submit" (click)="onSubmit()" [disabled]="testForm.invalid">Submit</button>
       </div>
-      <button class="addButton" type="button" (click)="addSection()">Add section</button>
-
-    </form>
-    <button type="submit" (click)="onSubmit()" [disabled]="testForm.invalid">Submit</button>
-  </div>
-</div>
+    </div>
