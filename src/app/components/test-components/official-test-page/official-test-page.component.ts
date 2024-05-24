@@ -116,8 +116,6 @@ export class OfficialTestPageComponent {
                                 ', ' +
                                 question.userAnswer_2.trim();
                         }
-                    } else if (question.questionType === 'canceled') {
-                        question.userAnswer = '*';
                     }
 
                     if (
@@ -142,12 +140,8 @@ export class OfficialTestPageComponent {
             }
             this.testService.getTestResult(testResults).subscribe(
                 (result: TestResult) => {
-                    (this.testResults = result),
-                        this.testService.saveTestStatistics(
-                            testResults.subCat,
-                            testResults.percentageScore,
-                            testResults.timeTaken,
-                        );
+                    this.testResults = result,
+                    this.testService.saveTestStatistics(testResults.subCat, testResults.percentageScore, testResults.timeTaken);
                 },
                 (error) => {
                     console.error('Error updating test results:', error);
