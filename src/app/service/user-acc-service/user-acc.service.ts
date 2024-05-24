@@ -11,33 +11,29 @@ export class UserAccountService {
     selectedIcon!: string;
 
   getTestStatistics(uid: string, subCat: string): Observable<{ averagePercentage: number, averageTime: string }> {
-    const userStatisticsCollectionRef = this.firestore.collection('users').doc(uid).collection('userStatistics');
-    const subjectCollectionRef = userStatisticsCollectionRef.doc('subjects').collection(subCat);
-  
+    const dataCollection = this.firestore.collection('users');
+    const documentRef = dataCollection.doc(uid);
+    const userStatisticsCollectionRef = documentRef.collection('userStatistics');
+    const subjectDocumentRef = userStatisticsCollectionRef.doc('subjects');
+    const subjectCollectionRef = subjectDocumentRef.collection(subCat);
+
     return from(subjectCollectionRef.get()).pipe(
       map((querySnapshot) => {
         const statistics: UserStatistic[] = [];
-  
+
         querySnapshot.forEach((doc) => {
           const data = doc.data();
-          
           const userStatistic: UserStatistic = {
             percentageScore: data['percentageScore'],
             timeTaken: data['timeTaken']
           };
           statistics.push(userStatistic);
-          console.log('Data:', data);
-          console.log('Statistics:', userStatistic);
         });
-  
+
         // Calculate average percentage and time
-        console.log('statistic: ',statistics)
         const averagePercentage = this.calculateAveragePercentage(statistics);
         const averageTime = this.calculateAverageTime(statistics);
-  
-        console.log('Average Percentage:', averagePercentage);
-        console.log('Average Time:', averageTime);
-  
+
         return {
           averagePercentage: averagePercentage,
           averageTime: averageTime
@@ -45,14 +41,11 @@ export class UserAccountService {
       })
     );
   }
-  
 
   private calculateAveragePercentage(statistics: UserStatistic[]): number {
     if (statistics.length === 0) return 0;
     const totalPercentage = statistics.reduce((sum, stat) => sum + stat.percentageScore, 0);
-    const averagePercentage = totalPercentage / statistics.length;
-    console.log('Total Percentage:', totalPercentage, 'Average Percentage:', averagePercentage);
-    return averagePercentage;
+    return totalPercentage / statistics.length;
   }
 
   private calculateAverageTime(statistics: UserStatistic[]): string {
