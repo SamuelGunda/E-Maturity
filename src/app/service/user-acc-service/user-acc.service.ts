@@ -20,11 +20,6 @@ export class UserAccountService {
             documentRef.collection('userStatistics');
         const subjectDocumentRef = userStatisticsCollectionRef.doc('subjects');
         const subjectCollectionRef = subjectDocumentRef.collection(subCat);
-        console.log(dataCollection);
-        console.log(documentRef);
-        console.log(userStatisticsCollectionRef);
-        console.log(subjectDocumentRef);
-        console.log(subjectCollectionRef);
 
         return from(subjectCollectionRef.get()).pipe(
             map((querySnapshot) => {
@@ -38,7 +33,6 @@ export class UserAccountService {
                     statistics.push(userStatistic);
                 });
 
-                // Calculate average percentage and time
                 const averagePercentage =
                     this.calculateAveragePercentage(statistics);
                 const averageTime = this.calculateAverageTime(statistics);
