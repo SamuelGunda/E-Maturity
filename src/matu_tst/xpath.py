@@ -3,11 +3,11 @@ class HomePagePaths:
 class LoginPagePaths:
     EMAIL_INPUT = '//*[@id="meno"]'
     PASSWORD_INPUT = '//*[@id="heslo"]'
-    LOGIN_BUTTON = '/html/body/app-root/div/div/app-login-page/div/div/div/div[5]/button[1]'
-    ERROR_MESSAGE_LOGIN = '/html/body/app-root/div/div/app-login-page/div/div/div/div[3]/p'
+    LOGIN_BUTTON = '//*[@id="loginButton"]'
+    ERROR_MESSAGE_LOGIN = '//*[@id="errorMessage"]'
     REMEMBER_ME_BUTTON = '//*[@id="rememberMe"]'
-    REGISTRACIA_BUTTON = '/html/body/app-root/div/div/app-login-page/div/div/div/div[5]/button[2]'
-    FORGOT_PASSWORD_BUTTON = '/html/body/app-root/div/div/app-login-page/div/div/div/div[2]/button'
+    REGISTRACIA_BUTTON = '//*[@id="registerButton"]'
+    FORGOT_PASSWORD_BUTTON = '//*[@id="forgotButton"]'
 
 class RegistrationPagePaths:
     NAME_INPUT = '//*[@id="krstne"]'
@@ -15,13 +15,13 @@ class RegistrationPagePaths:
     EMAIL_INPUT = '//*[@id="email"]'
     PASSWORD_INPUT = '//*[@id="heslo"]'
     PASSWORD_CHECK_INPUT = '//*[@id="hesloKontrola"]'
-    BACK_TO_REGISTRATION_BUTTON = '//*[@id="register_log_button"]/p'
-    ZALOZ_UCET = '/html/body/app-root/div/div/app-register-page/div/div/div/div[6]/button[2]/p'
+    BACK_TO_REGISTRATION_BUTTON = '//*[@id="register_log_button"]'
+    ZALOZ_UCET = '//*[@id="createButton"]'
 
 
 class HeaderPaths:
-    PROFILE_BUTTON = '//*[@id="main_header"]/div[3]/p[1]/img'
-    LOG_OUT_BUTTON = '//*[@id="main_header"]/div[3]/p[2]/img'
+    PROFILE_BUTTON = '//*[@id="userAccButton"]'
+    LOG_OUT_BUTTON = '//*[@id="logOutButton"]'
 
 class cookies:
-    COOKIES_BUTTON = '/html/body/app-root/div/div/app-tos-page/div/div/div/button'
+    COOKIES_BUTTON = '//*[@id="acceptCookiesButton"]'

@@ -26,6 +26,7 @@
 
     <div *ngIf="authService.isLoggedIn" class="flex gap-6">
         <p
+            id="userAccButton"
             routerLink="/user-account"
             class="hover:cursor-pointer hover:scale-110 transition duration-250"
         >
@@ -38,6 +39,7 @@
         </p>
 
         <p
+            id="logOutButton"
             (click)="onLogout()"
             class="hover:cursor-pointer hover:scale-110 transition duration-250"
         >

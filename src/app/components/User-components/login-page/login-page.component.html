@@ -43,7 +43,9 @@
             <div
                 class="flex text-sm justify-evenly items-start w-full md:px-16 text-ang-text_white font-semibold"
             >
-                <button routerLink="/forgot-password">Zabudnuté heslo</button>
+                <button routerLink="/forgot-password" id="forgotButton">
+                    Zabudnuté heslo
+                </button>
 
                 <div class="flex items-center gap-1">
                     <label
@@ -61,6 +63,7 @@
                 </div>
             </div>
             <div
+                id="errorMessage"
                 class="opacity-0 font-semibold text-xl"
                 [class]="{ 'text-red-600': error, 'opacity-100': error }"
             >
@@ -84,12 +87,14 @@
             <div class="flex justify-evenly items-center w-full">
                 <button
                     (click)="login()"
+                    id="loginButton"
                     type="submit"
                     class="border border-ang-border_main px-3 py-1 text-ang-text_main font-semibold hover:opacity-85 rounded-lg bg-white"
                 >
                     Prihlásiť
                 </button>
                 <button
+                    id="registerButton"
                     routerLink="/register"
                     class="border border-ang-border_main px-3 py-1 text-ang-text_main font-semibold hover:opacity-85 rounded-lg bg-white"
                 >
