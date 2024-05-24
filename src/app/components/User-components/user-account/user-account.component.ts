@@ -6,11 +6,32 @@ import { CookieService } from 'ngx-cookie';
 import { UserStatistic } from 'src/app/model/user-statistics';
 
 @Component({
-  selector: 'app-user-account',
-  templateUrl: './user-account.component.html',
-  styleUrls: ['./user-account.component.css'],
+    selector: 'app-user-account',
+    templateUrl: './user-account.component.html',
+    styleUrls: ['./user-account.component.css'],
 })
 export class UserAccountComponent implements OnInit {
+    userName: string = '';
+    isDarkMode: boolean = false;
+    darkMode: boolean = false;
+    sjlStatistics$:
+        | Observable<{ averagePercentage: number; averageTime: string }>
+        | undefined;
+    anjStatistics$:
+        | Observable<{ averagePercentage: number; averageTime: string }>
+        | undefined;
+    matStatistics$:
+        | Observable<{ averagePercentage: number; averageTime: string }>
+        | undefined;
+    sjlTestCount: number = 0;
+    anjTestCount: number = 0;
+    matTestCount: number = 0;
+    sjlAveragePercentage: number = 0;
+    anjAveragePercentage: number = 0;
+    matAveragePercentage: number = 0;
+    sjlAverageTime: string = '00:00:00';
+    anjAverageTime: string = '00:00:00';
+    matAverageTime: string = '00:00:00';
   userName: string = '';
   isDarkMode: boolean = false;
   darkMode: boolean = false;
@@ -30,11 +51,11 @@ export class UserAccountComponent implements OnInit {
   anjAverageTime: string = '00:00:00';
   matAverageTime: string = '00:00:00';
 
-  constructor(
-    private authService: AuthService,
-    public userAccountService: UserAccountService,
-    private cookieService: CookieService,
-  ) { }
+    constructor(
+        private authService: AuthService,
+        public userAccountService: UserAccountService,
+        private cookieService: CookieService,
+    ) {}
 
   ngOnInit() {
     this.authService.userData.subscribe((user) => {
@@ -65,14 +86,14 @@ export class UserAccountComponent implements OnInit {
     });
   }
 
-  darkToggle = document.querySelector('.toggle_dark');
+    darkToggle = document.querySelector('.toggle_dark');
 
-  toggleDark() {
-    this.darkMode = !this.darkMode;
-    if (this.darkMode) {
-      document.documentElement.classList.toggle('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
+    toggleDark() {
+        this.darkMode = !this.darkMode;
+        if (this.darkMode) {
+            document.documentElement.classList.toggle('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
     }
-  }
 }

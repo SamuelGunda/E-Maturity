@@ -1,22 +1,14 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, forkJoin, from, map, of, switchMap } from 'rxjs';
-import {
-  AngularFirestore,
-  DocumentReference,
-} from '@angular/fire/compat/firestore';
-import * as XLSX from 'xlsx';
-import { CollectionReference, DocumentData, Firestore, QuerySnapshot, collection, doc, getDocs } from 'firebase/firestore';
+import { Observable, from, map } from 'rxjs';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { UserStatistic } from 'src/app/model/user-statistics';
 @Injectable({
-  providedIn: 'root',
+    providedIn: 'root',
 })
 export class UserAccountService {
+    constructor(private firestore: AngularFirestore) {}
 
-  constructor(
-    private firestore: AngularFirestore,
-  ) {}
-
-  selectedIcon!: string;
+    selectedIcon!: string;
 
   getTestStatistics(uid: string, subCat: string): Observable<{ averagePercentage: number, averageTime: string }> {
     const userStatisticsCollectionRef = this.firestore.collection('users').doc(uid).collection('userStatistics');
@@ -87,26 +79,30 @@ export class UserAccountService {
   }
 
 
-  getTestCountBySubject(uid: string, subCat: string): Observable<number> {
-    const userStatisticsCollectionRef = this.firestore.collection('users').doc(uid).collection('userStatistics');
-    const subjectCollectionRef = userStatisticsCollectionRef.doc('subjects').collection(subCat);
+    getTestCountBySubject(uid: string, subCat: string): Observable<number> {
+        const userStatisticsCollectionRef = this.firestore
+            .collection('users')
+            .doc(uid)
+            .collection('userStatistics');
+        const subjectCollectionRef = userStatisticsCollectionRef
+            .doc('subjects')
+            .collection(subCat);
 
-    return from(subjectCollectionRef.get()).pipe(
-      map((querySnapshot) => {
-        return querySnapshot.size; // Vráti počet dokumentov v kolekcii
-      })
-    );
-  }
+        return from(subjectCollectionRef.get()).pipe(
+            map((querySnapshot) => {
+                return querySnapshot.size; // Vráti počet dokumentov v kolekcii
+            }),
+        );
+    }
 
-
-  getAvailableIcons(): string[] {
-    return [
-      'assets/user_icons/boy.png',
-      'assets/user_icons/girl.png',
-      'assets/user_icons/default.png',
-    ];
-  }
-  getSelectedIcon(): string {
-    return this.selectedIcon || 'assets/user_icons/default.png';
-  }
+    getAvailableIcons(): string[] {
+        return [
+            'assets/user_icons/boy.png',
+            'assets/user_icons/girl.png',
+            'assets/user_icons/default.png',
+        ];
+    }
+    getSelectedIcon(): string {
+        return this.selectedIcon || 'assets/user_icons/default.png';
+    }
 }
