@@ -33,7 +33,7 @@ const routes: Routes = [
     { path: 'test-history', component: TestHistoryPageComponent },
     {
         path: 'official-test-constructor',
-        component: OfficialTestConstructorPageComponent,
+        component: CustomTestConstructorComponent,
     },
     {
         path: 'custom-test-constructor',

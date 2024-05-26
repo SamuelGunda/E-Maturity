@@ -4,6 +4,9 @@ module.exports = {
     darkMode: "class",
     theme: {
         extend: {
+            gridTemplateColumns: {
+                seclect: "64px 1fr",
+            },
             backgroundImage: {
                 first_landing_page_card:
                     "url('/assets/card1_wave_coloured.jpg')",
