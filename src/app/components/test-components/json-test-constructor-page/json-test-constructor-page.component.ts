@@ -6,12 +6,12 @@ import { Question } from "../../../model/test-parts/question.model";
 import { TestService } from "../../../service/test-service/test.service";
 
 @Component({
-  selector: 'app-official-test-constructor-page',
-  templateUrl: './official-test-constructor-page.component.html',
-  styleUrls: ['./official-test-constructor-page.component.css'],
+  selector: 'app-json-test-constructor-page',
+  templateUrl: './json-test-constructor-page.component.html',
+  styleUrls: ['./json-test-constructor-page.component.css'],
 })
 
-export class OfficialTestConstructorPageComponent implements OnInit {
+export class JsonTestConstructorPageComponent implements OnInit {
   testForm = this.fb.group({
     year: ['', Validators.required],
     subCat: ['', Validators.required],

@@ -31,6 +31,7 @@ import {
 import { AuthService } from './service/auth-serivce/auth.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TosPageComponent } from './components/Util-components/tos-page/tos-page.component';
+import { ConstructorSelectComponent } from './components/test-components/constructor-select/constructor-select.component';
 
 @NgModule({
     declarations: [
@@ -39,6 +40,7 @@ import { TosPageComponent } from './components/Util-components/tos-page/tos-page
         NavbarComponent,
         routingComponent,
         TosPageComponent,
+        ConstructorSelectComponent,
     ],
     imports: [
         BrowserModule,

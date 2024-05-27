@@ -6,11 +6,11 @@ import { Question } from "../../../model/test-parts/question.model";
 import { TestService } from "../../../service/test-service/test.service";
 
 @Component({
-  selector: 'app-custom-test-constructor',
-  templateUrl: './custom-test-constructor.component.html',
-  styleUrls: ['./custom-test-constructor.component.css']
+  selector: 'app-custom-test-constructor-page',
+  templateUrl: './custom-test-constructor-page.component.html',
+  styleUrls: ['./custom-test-constructor-page.component.css']
 })
-export class CustomTestConstructorComponent implements OnInit {
+export class CustomTestConstructorPageComponent implements OnInit {
     testForm = this.fb.group({
         year: ['', Validators.required],
         subCat: ['', Validators.required],
@@ -178,10 +178,10 @@ export class CustomTestConstructorComponent implements OnInit {
     }
 
     onSubmit() {
-        this.testFromIntoTestModel().then((r) => console.log('done'));
+        this.testFromIntoTestModel();
     }
 
-    async testFromIntoTestModel() {
+    testFromIntoTestModel() {
         const test: Test = {
             sections: [],
             subCat: '',
@@ -371,6 +371,8 @@ export class CustomTestConstructorComponent implements OnInit {
         }
 
         console.log(test);
-        await this.testService.addOfficialTestToFirestore(test);
+        this.testService.addOfficialTestToFirestore(test).then(r => {
+            console.log(r);
+        });
     }
 }

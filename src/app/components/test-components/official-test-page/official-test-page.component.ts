@@ -116,6 +116,8 @@ export class OfficialTestPageComponent {
                                 ', ' +
                                 question.userAnswer_2.trim();
                         }
+                    } else if (question.questionType === 'canceled') {
+                        question.userAnswer = '*';
                     }
 
                     if (
