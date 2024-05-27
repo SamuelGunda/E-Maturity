@@ -1,14 +1,16 @@
-import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, FormArray, Validators } from "@angular/forms";
-import { Test } from "../../../model/test-parts/test.model";
-import { Section } from "../../../model/test-parts/section.model";
-import { Question } from "../../../model/test-parts/question.model";
-import { TestService } from "../../../service/test-service/test.service";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
+import { Test } from '../../../model/test-parts/test.model';
+import { Section } from '../../../model/test-parts/section.model';
+import { Question } from '../../../model/test-parts/question.model';
+import { TestService } from '../../../service/test-service/test.service';
+import { AuthService } from 'src/app/service/auth-serivce/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-custom-test-constructor-page',
-  templateUrl: './custom-test-constructor-page.component.html',
-  styleUrls: ['./custom-test-constructor-page.component.css']
+    selector: 'app-custom-test-constructor-page',
+    templateUrl: './custom-test-constructor-page.component.html',
+    styleUrls: ['./custom-test-constructor-page.component.css'],
 })
 export class CustomTestConstructorPageComponent implements OnInit {
     testForm = this.fb.group({
@@ -31,9 +33,15 @@ export class CustomTestConstructorPageComponent implements OnInit {
     constructor(
         private fb: FormBuilder,
         private testService: TestService,
+        private authServ: AuthService,
+        private router: Router,
     ) {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        if (!this.authServ.adminLog) {
+            this.router.navigateByUrl('/');
+        }
+    }
 
     get sections() {
         return this.testForm.get('sections') as FormArray;
@@ -371,7 +379,7 @@ export class CustomTestConstructorPageComponent implements OnInit {
         }
 
         console.log(test);
-        this.testService.addOfficialTestToFirestore(test).then(r => {
+        this.testService.addOfficialTestToFirestore(test).then((r) => {
             console.log(r);
         });
     }

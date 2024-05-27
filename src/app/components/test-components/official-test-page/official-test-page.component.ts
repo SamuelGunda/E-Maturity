@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Test } from '../../../model/test-parts/test.model';
 import { TestService } from '../../../service/test-service/test.service';
 import { ActivatedRoute } from '@angular/router';
@@ -19,7 +19,31 @@ export class OfficialTestPageComponent {
     testResults: TestResult | undefined;
     display: any;
     windowShown: boolean = true;
+    isShow: boolean | undefined;
+    topPosToStartShowing = 100;
 
+    scrollTop() {
+        window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'smooth',
+        });
+    }
+
+    @HostListener('window:scroll')
+    checkScroll() {
+        const scrollPosition =
+            window.pageYOffset ||
+            document.documentElement.scrollTop ||
+            document.body.scrollTop ||
+            0;
+
+        if (scrollPosition >= this.topPosToStartShowing) {
+            this.isShow = true;
+        } else {
+            this.isShow = false;
+        }
+    }
     expandTimer() {
         this.windowShown = !this.windowShown;
     }
@@ -142,8 +166,12 @@ export class OfficialTestPageComponent {
             }
             this.testService.getTestResult(testResults).subscribe(
                 (result: TestResult) => {
-                    this.testResults = result,
-                    this.testService.saveTestStatistics(testResults.subCat, testResults.percentageScore, testResults.timeTaken);
+                    (this.testResults = result),
+                        this.testService.saveTestStatistics(
+                            testResults.subCat,
+                            testResults.percentageScore,
+                            testResults.timeTaken,
+                        );
                 },
                 (error) => {
                     console.error('Error updating test results:', error);
