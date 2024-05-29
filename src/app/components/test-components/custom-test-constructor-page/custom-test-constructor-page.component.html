@@ -9,7 +9,7 @@
                 <select
                     id="subCat"
                     formControlName="subCat"
-                    class="w-48 text-center"
+                    class="text-center"
                 >
                     <option value="anj">Angličtina</option>
                     <option value="mat">Matematika</option>
@@ -245,179 +245,233 @@
                                     'select_twice'
                                 "
                             >
-                                <input
-                                    type="text"
-                                    formControlName="text"
-                                    placeholder="Zadanie"
-                                />
-                                <div>
+                                <div class="flex flex-col gap-1">
+                                    <label>Zadanie:</label>
                                     <input
-                                        *ngFor="
-                                            let options of getOptions(
-                                                sectionIndex,
-                                                questionIndex
-                                            ).controls;
-                                            let answerIndex = index
-                                        "
-                                        type="radio"
-                                        formControlName="answer{{
-                                            questionIndex
-                                        }}"
-                                        [name]="'answer' + questionIndex"
-                                        value="{{ answerIndex }}"
-                                        required
+                                        class="w-full"
+                                        type="text"
+                                        formControlName="text"
+                                        placeholder="Zadanie"
                                     />
                                 </div>
-                                <div formArrayName="options">
+                                <div class="grid grid-cols-1 md:grid-cols-2">
                                     <div
-                                        *ngFor="
-                                            let option of getOptions(
-                                                sectionIndex,
-                                                questionIndex
-                                            ).controls;
-                                            let optionIndex = index
-                                        "
-                                        [formGroupName]="optionIndex"
+                                        class="grid grid-cols-[48px_1fr] auto-rows-auto"
                                     >
-                                        <input
-                                            type="text"
-                                            formControlName="option"
-                                            placeholder="Možnosť {{
-                                                optionIndex + 1
-                                            }}"
-                                        />
-                                        <button
-                                            type="button"
-                                            (click)="
-                                                removeOption(
-                                                    sectionIndex,
-                                                    questionIndex,
-                                                    optionIndex
-                                                )
-                                            "
+                                        <div
+                                            class="flex flex-col gap-7 pt-4 items-center"
                                         >
-                                            - skupina 1
-                                        </button>
+                                            <input
+                                                *ngFor="
+                                                    let options of getOptions(
+                                                        sectionIndex,
+                                                        questionIndex
+                                                    ).controls;
+                                                    let answerIndex = index
+                                                "
+                                                type="radio"
+                                                formControlName="answer{{
+                                                    questionIndex
+                                                }}"
+                                                [name]="
+                                                    'answer' + questionIndex
+                                                "
+                                                value="{{ answerIndex }}"
+                                                required
+                                            />
+                                        </div>
+                                        <div formArrayName="options">
+                                            <div
+                                                class="flex gap-2 items-center"
+                                                *ngFor="
+                                                    let option of getOptions(
+                                                        sectionIndex,
+                                                        questionIndex
+                                                    ).controls;
+                                                    let optionIndex = index
+                                                "
+                                                [formGroupName]="optionIndex"
+                                            >
+                                                <input
+                                                    class="my-2"
+                                                    type="text"
+                                                    formControlName="option"
+                                                    placeholder="Možnosť {{
+                                                        optionIndex + 1
+                                                    }}"
+                                                />
+                                                <button
+                                                    class="border border-red-500 w-6 h-6 bg-red-500 bg-opacity-40 text-sm rounded-full px-2 py-0.5 hover:opacity-90"
+                                                    type="button"
+                                                    (click)="
+                                                        removeOption(
+                                                            sectionIndex,
+                                                            questionIndex,
+                                                            optionIndex
+                                                        )
+                                                    "
+                                                >
+                                                    -
+                                                </button>
+                                            </div>
+                                            <button
+                                                class="border border-ang-border_main bg-ang-main_btn bg-opacity-40 text-sm rounded-lg px-2 py-0.5 hover:opacity-90"
+                                                type="button"
+                                                (click)="
+                                                    addOption(
+                                                        sectionIndex,
+                                                        questionIndex
+                                                    )
+                                                "
+                                            >
+                                                + skupina 1
+                                            </button>
+                                        </div>
                                     </div>
-                                    <button
-                                        type="button"
-                                        (click)="
-                                            addOption(
-                                                sectionIndex,
-                                                questionIndex
-                                            )
-                                        "
-                                    >
-                                        + skupina 1
-                                    </button>
-                                </div>
-                                <div>
-                                    <input
-                                        *ngFor="
-                                            let options2 of getOptions2(
-                                                sectionIndex,
-                                                questionIndex
-                                            ).controls;
-                                            let answerIndex2 = index
-                                        "
-                                        type="radio"
-                                        formControlName="answer2{{
-                                            questionIndex
-                                        }}"
-                                        [name]="'answer2' + questionIndex"
-                                        value="{{ answerIndex2 }}"
-                                        required
-                                    />
-                                </div>
-                                <div formArrayName="options2">
                                     <div
-                                        *ngFor="
-                                            let option of getOptions2(
-                                                sectionIndex,
-                                                questionIndex
-                                            ).controls;
-                                            let optionIndex2 = index
-                                        "
-                                        [formGroupName]="optionIndex2"
+                                        class="grid grid-cols-[48px_1fr] auto-rows-auto"
                                     >
-                                        <input
-                                            type="text"
-                                            formControlName="option2"
-                                            placeholder="Možnosť {{
-                                                optionIndex2 + 1
-                                            }}"
-                                        />
-                                        <button
-                                            type="button"
-                                            (click)="
-                                                removeOption2(
-                                                    sectionIndex,
-                                                    questionIndex,
-                                                    optionIndex2
-                                                )
-                                            "
+                                        <div
+                                            class="flex flex-col gap-7 pt-4 items-center"
                                         >
-                                            - skupina 2
-                                        </button>
+                                            <input
+                                                *ngFor="
+                                                    let options2 of getOptions2(
+                                                        sectionIndex,
+                                                        questionIndex
+                                                    ).controls;
+                                                    let answerIndex2 = index
+                                                "
+                                                type="radio"
+                                                formControlName="answer2{{
+                                                    questionIndex
+                                                }}"
+                                                [name]="
+                                                    'answer2' + questionIndex
+                                                "
+                                                value="{{ answerIndex2 }}"
+                                                required
+                                            />
+                                        </div>
+                                        <div formArrayName="options2">
+                                            <div
+                                                class="flex gap-2 items-center"
+                                                *ngFor="
+                                                    let option of getOptions2(
+                                                        sectionIndex,
+                                                        questionIndex
+                                                    ).controls;
+                                                    let optionIndex2 = index
+                                                "
+                                                [formGroupName]="optionIndex2"
+                                            >
+                                                <input
+                                                    class="my-2"
+                                                    type="text"
+                                                    formControlName="option2"
+                                                    placeholder="Možnosť {{
+                                                        optionIndex2 + 1
+                                                    }}"
+                                                />
+                                                <button
+                                                    class="border border-red-500 w-6 h-6 bg-red-500 bg-opacity-40 text-sm rounded-full px-2 py-0.5 hover:opacity-90"
+                                                    type="button"
+                                                    (click)="
+                                                        removeOption2(
+                                                            sectionIndex,
+                                                            questionIndex,
+                                                            optionIndex2
+                                                        )
+                                                    "
+                                                >
+                                                    -
+                                                </button>
+                                            </div>
+                                            <button
+                                                class="border border-ang-border_main bg-ang-main_btn bg-opacity-40 text-sm rounded-lg px-2 py-0.5 hover:opacity-90"
+                                                type="button"
+                                                (click)="
+                                                    addOption2(
+                                                        sectionIndex,
+                                                        questionIndex
+                                                    )
+                                                "
+                                            >
+                                                + skupina 2
+                                            </button>
+                                        </div>
                                     </div>
-                                    <button
-                                        type="button"
-                                        (click)="
-                                            addOption2(
-                                                sectionIndex,
-                                                questionIndex
-                                            )
-                                        "
-                                    >
-                                        + skupina 2
-                                    </button>
                                 </div>
                             </div>
                             <!-- Structure for 'input' question type -->
                             <div
+                                class="flex flex-col gap-4"
                                 *ngIf="
                                     question.get('questionType')?.value ===
                                     'input'
                                 "
                             >
-                                <input
-                                    type="text"
-                                    formControlName="text"
-                                    placeholder="Zadanie"
-                                />
-                                <input
-                                    type="text"
-                                    formControlName="answer{{ questionIndex }}"
-                                    placeholder="Odpoveď"
-                                />
+                                <div>
+                                    <label>Zadanie: </label>
+                                    <input
+                                        class="w-full"
+                                        type="text"
+                                        formControlName="text"
+                                        placeholder="Zadanie"
+                                    />
+                                </div>
+                                <div>
+                                    <label>Odpoveď: </label>
+                                    <input
+                                        class="w-full"
+                                        type="text"
+                                        formControlName="answer{{
+                                            questionIndex
+                                        }}"
+                                        placeholder="Odpoveď"
+                                    />
+                                </div>
                             </div>
                             <!-- Structure for 'input_twice' question type -->
                             <div
+                                class="flex flex-col gap-4"
                                 *ngIf="
                                     question.get('questionType')?.value ===
                                     'input_twice'
                                 "
                             >
-                                <input
-                                    type="text"
-                                    formControlName="text"
-                                    placeholder="Text"
-                                />
-                                <div>
+                                <div class="flex flex-col gap-1">
+                                    <label>Zadanie:</label>
                                     <input
+                                        class="w-full"
                                         type="text"
-                                        formControlName="answer{{
-                                            questionIndex
-                                        }}"
-                                        placeholder="Odpoveď 1"
+                                        formControlName="text"
+                                        placeholder="Zadanie"
                                     />
-                                    <input
-                                        type="text"
-                                        formControlName="answer2{{
-                                            questionIndex
-                                        }}"
-                                        placeholder="Odpoveď 2"
-                                    />
+                                </div>
+                                <div class="flex flex-col gap-4">
+                                    <div class="flex flex-col gap-1">
+                                        <label>Odpoveď 1:</label>
+                                        <input
+                                            class="w-full"
+                                            type="text"
+                                            formControlName="answer{{
+                                                questionIndex
+                                            }}"
+                                            placeholder="Odpoveď 1"
+                                        />
+                                    </div>
+                                    <div class="flex flex-col gap-1">
+                                        <label>Odpoveď 2:</label>
+                                        <input
+                                            class="w-full"
+                                            type="text"
+                                            formControlName="answer2{{
+                                                questionIndex
+                                            }}"
+                                            placeholder="Odpoveď 2"
+                                        />
+                                    </div>
                                 </div>
                             </div>
                             <button

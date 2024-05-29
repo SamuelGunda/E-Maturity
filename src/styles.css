@@ -34,8 +34,10 @@
     .profileRightCard {
         @apply bg-ang-gradient_to bg-opacity-25 px-4 py-4 w-52 sm:w-64 lg:w-72 rounded-b-lg lg:rounded-b-none lg:rounded-r-lg lg:rounded-br-lg;
     }
-    app-custom-test-constructor input,
-    app-custom-test-constructor select {
+    app-custom-test-constructor-page input,
+    app-custom-test-constructor-page select,
+    app-json-test-constructor-page input,
+    app-json-test-constructor-page select {
         @apply border border-ang-border_main rounded-lg w-48 pl-1;
     }
 }

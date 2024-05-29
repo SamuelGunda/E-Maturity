@@ -322,6 +322,13 @@
             </div>
         </div>
     </div>
+    <span
+        *ngIf="isShow"
+        class="hover:cursor-pointer material-symbols-outlined fixed bottom-10 right-14 border border-ang-border_main rounded-full p-1 text-ang-text_main"
+        (click)="scrollTop()"
+    >
+        arrow_upward
+    </span>
 
     <button
         (click)="submitTest()"

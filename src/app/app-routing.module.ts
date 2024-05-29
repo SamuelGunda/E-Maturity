@@ -8,10 +8,10 @@ import { OfficialTestPageComponent } from './components/test-components/official
 import { ForgotPasswordComponent } from './components/User-components/forgot-password/forgot-password.component';
 import { UserAccountComponent } from './components/User-components/user-account/user-account.component';
 import { EducationMaterialsComponent } from './components/Util-components/education-materials/education-materials.component';
-
+import { ConstructorSelectComponent } from "./components/test-components/constructor-select/constructor-select.component";
 import { TestHistoryPageComponent } from './components/test-components/test-history-page/test-history-page.component';
-import { OfficialTestConstructorPageComponent } from './components/test-components/official-test-constructor-page/official-test-constructor-page.component';
-import { CustomTestConstructorComponent } from './components/test-components/custom-test-constructor/custom-test-constructor.component';
+import { JsonTestConstructorPageComponent } from './components/test-components/json-test-constructor-page/json-test-constructor-page.component';
+import { CustomTestConstructorPageComponent } from './components/test-components/custom-test-constructor-page/custom-test-constructor-page.component';
 import { IconSelectorComponent } from './components/Util-components/icon-selector/icon-selector.component';
 import { NotFoundPageComponent } from './components/Util-components/not-found-page/not-found-page.component';
 const routes: Routes = [
@@ -32,14 +32,15 @@ const routes: Routes = [
     { path: 'education-materials', component: EducationMaterialsComponent },
     { path: 'test-history', component: TestHistoryPageComponent },
     {
-        path: 'official-test-constructor',
-        component: CustomTestConstructorComponent,
+        path: 'json-constructor',
+        component: JsonTestConstructorPageComponent,
     },
     {
-        path: 'custom-test-constructor',
-        component: CustomTestConstructorComponent,
+        path: 'custom-constructor',
+        component: CustomTestConstructorPageComponent,
     },
     { path: 'icon-selector', component: IconSelectorComponent },
+    { path: 'constructor-select', component: ConstructorSelectComponent },
     { path: '**', component: NotFoundPageComponent },
 ];
 
@@ -59,8 +60,9 @@ export const routingComponent = [
     OfficialTestPageComponent,
     EducationMaterialsComponent,
     TestHistoryPageComponent,
-    OfficialTestConstructorPageComponent,
-    CustomTestConstructorComponent,
+    JsonTestConstructorPageComponent,
+    CustomTestConstructorPageComponent,
     IconSelectorComponent,
     NotFoundPageComponent,
+    ConstructorSelectComponent,
 ];

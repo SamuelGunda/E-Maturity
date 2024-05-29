@@ -1,0 +1,172 @@
+<div class="outer_container justify-center">
+    <div class="md:inner_container items-center flex-col">
+        <form
+            [formGroup]="testForm"
+            class="max-w-[720px] w-full flex flex-col items-center"
+        >
+            <div id="subCat-window" class="flex justify-between w-72 pt-4">
+                <label for="subCat">Kategória:</label>
+                <select
+                    id="subCat"
+                    formControlName="subCat"
+                    class="text-center"
+                >
+                    <option value="anj">Angličtina</option>
+                    <option value="mat">Matematika</option>
+                    <option value="sjl">Slovenčina</option>
+                </select>
+            </div>
+            <div class="flex justify-between w-72 py-4">
+                <label for="year">Rok:</label>
+                <input id="year" formControlName="year" placeholder=" Rok" />
+                <select
+                    *ngIf="testForm.get('subCat')?.value === 'anj'"
+                    id="level"
+                    formControlName="level"
+                    class="w-10"
+                >
+                    <option value="B1">B1</option>
+                    <option value="B2">B2</option>
+                    <option value="C1">C1</option>
+                </select>
+            </div>
+
+            <div formArrayName="sections" class="w-full px-4">
+                <div
+                    class="border-b border-ang-border_main pb-4"
+                    *ngFor="
+                        let section of sections.controls;
+                        let sectionIndex = index
+                    "
+                    [formGroupName]="sectionIndex"
+                >
+                    <h1 class="text-center text-xl font-bold">
+                        Sekcia: {{ sectionIndex + 1 }}
+                    </h1>
+
+                    <!--      IN DIV UNDER ARTICLES-->
+                    <div
+                        class="flex flex-col gap-4"
+                        formArrayName="articleUrls"
+                    >
+                        <h2 *ngIf="getArticleUrls(sectionIndex).length > 0">
+                            Článok:
+                        </h2>
+                        <div
+                            class="flex gap-3"
+                            *ngFor="
+                                let articleUrl of getArticleUrls(sectionIndex)
+                                    .controls;
+                                let articleIndex = index
+                            "
+                            [formGroupName]="articleIndex"
+                        >
+                            <input
+                                type="text"
+                                formControlName="url"
+                                placeholder=" Článok: {{ articleIndex + 1 }}"
+                            />
+                            <button
+                                class="border border-red-500 bg-red-500 bg-opacity-40 text-sm rounded-lg px-2 py-0.5 hover:opacity-90"
+                                type="button"
+                                (click)="
+                                    removeArticleUrl(sectionIndex, articleIndex)
+                                "
+                            >
+                                Zmazať článok
+                            </button>
+                        </div>
+                        <button
+                            class="max-w-48 border border-ang-border_main bg-ang-main_btn bg-opacity-40 text-sm rounded-lg px-2 py-0.5 hover:opacity-90"
+                            type="button"
+                            (click)="addArticleUrl(sectionIndex)"
+                        >
+                            Pridať článok
+                        </button>
+                    </div>
+
+                    <!--      IN DIV UNDER QUESTIONS-->
+                    <div class="pt-4" formArrayName="questions">
+                        <h2 *ngIf="getQuestions(sectionIndex).length > 0">
+                            Otázky:
+                        </h2>
+                        <div
+                            class="flex flex-col gap-4 py-4"
+                            *ngFor="
+                                let question of getQuestions(sectionIndex)
+                                    .controls;
+                                let questionIndex = index
+                            "
+                            [formGroupName]="questionIndex"
+                        >
+                            <textarea
+                                class="border border-ang-border_main"
+                                formControlName="questionJson"
+                                placeholder=" Otázka: {{ questionIndex + 1 }}"
+                            ></textarea>
+                            <div
+                                class="mx-auto flex gap-4 border border-ang-border_main items-center justify-center p-3 w-fit"
+                                (drop)="
+                                    onFileDropped(
+                                        $event,
+                                        sectionIndex,
+                                        questionIndex
+                                    )
+                                "
+                                (dragover)="onDragOver($event)"
+                            >
+                                <img
+                                    src="/assets/jsonIcon.png"
+                                    alt=""
+                                    class="w-10 h-10"
+                                />
+                                <p>Pridaj JSON súbor sem</p>
+                            </div>
+                            <br />
+                            <button
+                                class="border border-red-500 bg-red-500 bg-opacity-40 text-sm rounded-lg px-2 py-0.5 hover:opacity-90"
+                                type="button"
+                                (click)="
+                                    removeQuestion(sectionIndex, questionIndex)
+                                "
+                            >
+                                Zmazať otázku
+                            </button>
+                        </div>
+
+                        <button
+                            class="max-w-48 border border-ang-border_main bg-ang-main_btn bg-opacity-40 text-sm rounded-lg px-2 py-0.5 hover:opacity-90"
+                            type="button"
+                            (click)="addQuestion(sectionIndex)"
+                        >
+                            Pridať otázku
+                        </button>
+                    </div>
+
+                    <button
+                        class="border mt-4 border-red-500 bg-red-500 bg-opacity-40 text-sm rounded-lg px-2 py-0.5 hover:opacity-90"
+                        type="button"
+                        (click)="removeSection(sectionIndex)"
+                    >
+                        Zmazať sekciu
+                    </button>
+                </div>
+            </div>
+            <button
+                class="max-w-48 mt-4 border border-ang-border_main bg-ang-main_btn bg-opacity-40 text-sm rounded-lg px-2 py-0.5 hover:opacity-90"
+                type="button"
+                (click)="addSection()"
+            >
+                Pridať sekciu
+            </button>
+        </form>
+        <button
+            class="border-2 my-4 border-ang-border_main py-2 px-6 bg-ang-main_btn text-ang-text_white rounded-lg hover:opacity-85 hover:cursor-pointer transition"
+            type="submit"
+            (click)="onSubmit()"
+            [disabled]="testForm.invalid"
+        >
+            Odoslať
+        </button>
+    </div>
+</div>

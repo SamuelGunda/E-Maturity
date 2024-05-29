@@ -1,16 +1,18 @@
-import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, FormArray, Validators } from "@angular/forms";
-import { Test } from "../../../model/test-parts/test.model";
-import { Section } from "../../../model/test-parts/section.model";
-import { Question } from "../../../model/test-parts/question.model";
-import { TestService } from "../../../service/test-service/test.service";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
+import { Test } from '../../../model/test-parts/test.model';
+import { Section } from '../../../model/test-parts/section.model';
+import { Question } from '../../../model/test-parts/question.model';
+import { TestService } from '../../../service/test-service/test.service';
+import { AuthService } from 'src/app/service/auth-serivce/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-custom-test-constructor',
-  templateUrl: './custom-test-constructor.component.html',
-  styleUrls: ['./custom-test-constructor.component.css']
+    selector: 'app-custom-test-constructor-page',
+    templateUrl: './custom-test-constructor-page.component.html',
+    styleUrls: ['./custom-test-constructor-page.component.css'],
 })
-export class CustomTestConstructorComponent implements OnInit {
+export class CustomTestConstructorPageComponent implements OnInit {
     testForm = this.fb.group({
         year: ['', Validators.required],
         subCat: ['', Validators.required],
@@ -31,9 +33,15 @@ export class CustomTestConstructorComponent implements OnInit {
     constructor(
         private fb: FormBuilder,
         private testService: TestService,
+        private authServ: AuthService,
+        private router: Router,
     ) {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        if (!this.authServ.adminLog) {
+            this.router.navigateByUrl('/');
+        }
+    }
 
     get sections() {
         return this.testForm.get('sections') as FormArray;
@@ -178,10 +186,10 @@ export class CustomTestConstructorComponent implements OnInit {
     }
 
     onSubmit() {
-        this.testFromIntoTestModel().then((r) => console.log('done'));
+        this.testFromIntoTestModel();
     }
 
-    async testFromIntoTestModel() {
+    testFromIntoTestModel() {
         const test: Test = {
             sections: [],
             subCat: '',
@@ -371,6 +379,8 @@ export class CustomTestConstructorComponent implements OnInit {
         }
 
         console.log(test);
-        await this.testService.addOfficialTestToFirestore(test);
+        this.testService.addOfficialTestToFirestore(test).then((r) => {
+            console.log(r);
+        });
     }
 }
