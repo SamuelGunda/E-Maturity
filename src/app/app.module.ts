@@ -7,7 +7,7 @@ import { AppRoutingModule, routingComponent } from './app-routing.module';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
-import { environment } from './environments/environment';
+import { environment } from '../environments/environment';
 import { HeaderComponent } from './components/Util-components/header/header.component';
 import { NavbarComponent } from './components/Util-components/navbar/navbar.component';
 import { NgOptimizedImage } from '@angular/common';
@@ -31,7 +31,6 @@ import {
 import { AuthService } from './service/auth-serivce/auth.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TosPageComponent } from './components/Util-components/tos-page/tos-page.component';
-import { ConstructorSelectComponent } from './components/test-components/constructor-select/constructor-select.component';
 
 @NgModule({
     declarations: [
@@ -40,7 +39,6 @@ import { ConstructorSelectComponent } from './components/test-components/constru
         NavbarComponent,
         routingComponent,
         TosPageComponent,
-        ConstructorSelectComponent,
     ],
     imports: [
         BrowserModule,

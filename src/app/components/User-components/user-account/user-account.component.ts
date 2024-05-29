@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../service/auth-serivce/auth.service';
 import { UserAccountService } from '../../../service/user-acc-service/user-acc.service';
-import { Observable, map } from 'rxjs';
+import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie';
 
 @Component({
