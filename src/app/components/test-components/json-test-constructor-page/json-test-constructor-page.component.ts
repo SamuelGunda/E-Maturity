@@ -162,6 +162,37 @@ export class JsonTestConstructorPageComponent implements OnInit {
         await this.testService.addOfficialTestToFirestore(test);
     }
 
+    onDragOver(event: DragEvent) {
+        event.preventDefault();
+    }
+
+    onFileDropped(event: DragEvent, sectionIndex: number, questionIndex: number) {
+        event.preventDefault();
+        const file = event.dataTransfer?.files[0];
+        if (file) {
+            if (file.type === 'application/json') {
+                this.processJSONFile(file, sectionIndex, questionIndex);
+            } else {
+                alert('Please select a valid JSON file.');
+            }
+        } else {
+            console.error('No file dropped.');
+        }
+    }
+
+    processJSONFile(file: File, sectionIndex: number, questionIndex: number) {
+        const reader = new FileReader();
+        reader.readAsText(file);
+        reader.onload = (event: any) => {
+            const jsonData = JSON.parse(event.target.result);
+            const questionFormGroup = this.getQuestions(sectionIndex).at(questionIndex) as FormGroup;
+            questionFormGroup.get('questionJson')?.setValue(JSON.stringify(jsonData, null, 2));
+        };
+        reader.onerror = (error) => {
+            console.error('Error reading file:', error);
+        };
+    }
+
     parseJson(json: any): Question[] {
         const questions: Question[] = [];
         for (const key in json) {
