@@ -39,4 +39,3 @@ def test_profile_button():
     assert "https://maturity-project.web.app/user-account" == driver.current_url
 
 
-

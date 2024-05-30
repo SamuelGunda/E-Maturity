@@ -25,3 +25,8 @@ class HeaderPaths:
 
 class cookies:
     COOKIES_BUTTON = '//*[@id="acceptCookiesButton"]'
+    COOKIES_TEXT = '/html/body/app-root/div/div/app-tos-page/div/div'
+
+class hamburgermenu_items:
+    DOMOV_BUTTON='//*[@id="nav_menu_home"]'
+

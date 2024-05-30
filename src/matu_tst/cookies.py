@@ -6,7 +6,13 @@ import time
 from xpath import *
 from ConfigSelenium import *
 def cookies_accept():
-    accept_cookies = WebDriverWait(driver, 2).until(
-        EC.presence_of_element_located((By.XPATH, cookies.COOKIES_BUTTON)))
-    time.sleep(1)
-    accept_cookies.click()
+    # accept_cookies = WebDriverWait(driver, 2).until(
+    #     EC.presence_of_element_located((By.XPATH, cookies.COOKIES_BUTTON)))
+    # time.sleep(1)
+    # if accept_cookies.is_displayed():
+    #     accept_cookies.click()
+
+    if len(driver.find_elements(By.XPATH, cookies.COOKIES_BUTTON)) > 0:
+        accept_cookies = WebDriverWait(driver, 2).until(
+            EC.presence_of_element_located((By.XPATH, cookies.COOKIES_BUTTON)))
+        accept_cookies.click()
