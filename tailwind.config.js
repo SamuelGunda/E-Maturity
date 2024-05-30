@@ -16,6 +16,7 @@ module.exports = {
                     "url('/assets/card3_wave_coloured.jpg')",
                 fourth_landing_page_card:
                     "url('/assets/card4_wave_coloured.jpg')",
+                selector_bg: "url('/assets/selector-bg.jpg')",
             },
             colors: {
                 ang: {

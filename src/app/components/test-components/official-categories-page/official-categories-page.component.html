@@ -4,7 +4,9 @@
     >
         <div class="text-center">
             <div *ngIf="subCat === 'mat'">
-                <h1 class="text-2xl sm:text-3xl font-bold text-ang-text_main">
+                <h1
+                    class="text-2xl sm:text-3xl font-bold text-ang-text_main mb-4"
+                >
                     Matematika
                 </h1>
                 <ul>
@@ -28,7 +30,9 @@
                 </ul>
             </div>
             <div *ngIf="subCat === 'sjl'">
-                <h1 class="text-2xl sm:text-3xl font-bold text-ang-text_main">
+                <h1
+                    class="text-2xl sm:text-3xl font-bold text-ang-text_main mb-4"
+                >
                     Slovenský jazyk a literatúra
                 </h1>
                 <br />
@@ -73,7 +77,7 @@
         </div>
         <div
             *ngIf="years"
-            class="flex gap-4 flex-wrap items-center justify-center px-2"
+            class="flex gap-4 flex-wrap items-center max-w-96 justify-center px-2"
         >
             <a
                 *ngFor="let year of years"
