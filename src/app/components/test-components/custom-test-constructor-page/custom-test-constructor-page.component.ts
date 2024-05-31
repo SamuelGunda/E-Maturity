@@ -186,10 +186,16 @@ export class CustomTestConstructorPageComponent implements OnInit {
     }
 
     onSubmit() {
-        this.testFromIntoTestModel();
+        this.testFromIntoTestModel().then(() => {
+            this.router.navigate([
+                '/official-categories/' +
+                    // @ts-ignore
+                    this.testForm.get('subCat').value,
+            ]);
+        });
     }
 
-    testFromIntoTestModel() {
+    async testFromIntoTestModel() {
         const test: Test = {
             sections: [],
             subCat: '',
@@ -379,7 +385,7 @@ export class CustomTestConstructorPageComponent implements OnInit {
         }
 
         console.log(test);
-        this.testService.addOfficialTestToFirestore(test).then((r) => {
+        await this.testService.addOfficialTestToFirestore(test).then((r) => {
             console.log(r);
         });
     }

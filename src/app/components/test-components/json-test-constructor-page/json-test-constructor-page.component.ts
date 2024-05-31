@@ -110,7 +110,13 @@ export class JsonTestConstructorPageComponent implements OnInit {
 
     onSubmit() {
         console.log(this.testForm.value);
-        this.testFromIntoTestModel();
+        this.testFromIntoTestModel().then(() => {
+            this.router.navigate([
+                '/official-categories/' +
+                    // @ts-ignore
+                    this.testForm.get('subCat').value,
+            ]);
+        });
     }
 
     async testFromIntoTestModel() {
@@ -166,7 +172,11 @@ export class JsonTestConstructorPageComponent implements OnInit {
         event.preventDefault();
     }
 
-    onFileDropped(event: DragEvent, sectionIndex: number, questionIndex: number) {
+    onFileDropped(
+        event: DragEvent,
+        sectionIndex: number,
+        questionIndex: number,
+    ) {
         event.preventDefault();
         const file = event.dataTransfer?.files[0];
         if (file) {
@@ -185,8 +195,12 @@ export class JsonTestConstructorPageComponent implements OnInit {
         reader.readAsText(file);
         reader.onload = (event: any) => {
             const jsonData = JSON.parse(event.target.result);
-            const questionFormGroup = this.getQuestions(sectionIndex).at(questionIndex) as FormGroup;
-            questionFormGroup.get('questionJson')?.setValue(JSON.stringify(jsonData, null, 2));
+            const questionFormGroup = this.getQuestions(sectionIndex).at(
+                questionIndex,
+            ) as FormGroup;
+            questionFormGroup
+                .get('questionJson')
+                ?.setValue(JSON.stringify(jsonData, null, 2));
         };
         reader.onerror = (error) => {
             console.error('Error reading file:', error);
