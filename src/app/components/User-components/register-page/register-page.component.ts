@@ -57,7 +57,7 @@ export class RegisterPageComponent {
             this.pswdError = false;
         }
         if (this.password !== this.passwordCheck) {
-            this.errorMessage = 'Hesla sa nezhodujú';
+            this.errorMessage = 'Heslá sa nezhodujú';
             this.pswdError = true;
             this.emailError = false;
             return;
