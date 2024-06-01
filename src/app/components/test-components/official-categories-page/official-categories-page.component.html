@@ -75,10 +75,7 @@
                 </div>
             </div>
         </div>
-        <div
-            *ngIf="years"
-            class="flex gap-4 flex-wrap items-center max-w-96 justify-center px-2"
-        >
+        <div *ngIf="years" class="grid grid-flow-row grid-cols-4 gap-4">
             <a
                 *ngFor="let year of years"
                 [routerLink]="['/official-test', subCat, year]"

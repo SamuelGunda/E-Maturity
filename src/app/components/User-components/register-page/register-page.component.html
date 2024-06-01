@@ -7,6 +7,7 @@
                 <div class="flex flex-col w-full">
                     <label for="krstne">Meno</label>
                     <input
+                        (ngModelChange)="newInput()"
                         [(ngModel)]="fname"
                         type="text"
                         name="krstne"
@@ -19,6 +20,7 @@
                 <div class="flex flex-col w-full">
                     <label for="priezv">Priezvisko</label>
                     <input
+                        (ngModelChange)="newInput()"
                         [(ngModel)]="lname"
                         type="text"
                         name="priezv"
@@ -32,6 +34,7 @@
             <div class="py-2">
                 <label for="email">E-mail</label>
                 <input
+                    (ngModelChange)="newInputEmail()"
                     [(ngModel)]="email"
                     type="email"
                     name="email"
@@ -47,6 +50,7 @@
             <div class="py-2">
                 <label for="heslo">Heslo</label>
                 <input
+                    (ngModelChange)="newInputPswd()"
                     [(ngModel)]="password"
                     type="password"
                     name="heslo"
@@ -76,11 +80,8 @@
             </div>
 
             <div
-                class="opacity-0 font-semibold text-xl flex items-center justify-center pt-4"
-                [ngClass]="{
-                    'text-red-600': !pswdError || !emailError,
-                    'opacity-100': !pswdError || !emailError
-                }"
+                class="font-semibold text-xl border border-red-500 bg-red-500 bg-opacity-70 rounded-lg px-2 py-0.5 text-zinc-950 text-center"
+                *ngIf="pswdError || emailError || inputErr"
             >
                 {{ errorMessage }}
             </div>

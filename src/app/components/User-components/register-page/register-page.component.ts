@@ -16,12 +16,21 @@ export class RegisterPageComponent {
     errorMessage: string = '';
     pswdError: boolean = false;
     emailError: boolean = false;
+    inputErr: boolean = false;
 
     constructor(
         private router: Router,
         private service: AuthService,
     ) {}
-
+    newInputPswd() {
+        this.pswdError = false;
+    }
+    newInput() {
+        this.inputErr = false;
+    }
+    newInputEmail() {
+        this.emailError = false;
+    }
     isValidEmail(email: string): boolean {
         const emailRegex = /^[\w\-\.]+@([\w-]+\.)+[\w-]{2,}$/;
         return emailRegex.test(email);
@@ -35,6 +44,7 @@ export class RegisterPageComponent {
             !this.fname ||
             !this.lname
         ) {
+            this.inputErr = true;
             this.errorMessage = 'Prosím vyplň všetky políčka';
             return;
         }

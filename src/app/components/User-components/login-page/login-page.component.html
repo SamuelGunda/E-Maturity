@@ -64,8 +64,8 @@
             </div>
             <div
                 id="errorMessage"
-                class="opacity-0 font-semibold text-xl"
-                [class]="{ 'text-red-600': error, 'opacity-100': error }"
+                *ngIf="error"
+                class="font-semibold text-xl border border-red-500 bg-red-500 bg-opacity-70 rounded-lg px-2 py-0.5 text-zinc-950"
             >
                 <p>Nesprávne zadané údaje</p>
             </div>
